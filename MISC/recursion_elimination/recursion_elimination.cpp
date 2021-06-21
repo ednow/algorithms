@@ -32,9 +32,9 @@ double p(int n, double x) {
 double recursion(int n, double x) {
     switch (n) {
         case 0:
-            return 2 * x;
-        case 1:
             return 1;
+        case 1:
+            return 2 * x;
         default:
             return 2 * x * recursion(n - 1, x) - 2 * (n - 1) * recursion(n - 2, x);
     }

@@ -15,12 +15,4 @@ $$
 # 配套答案
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210621224600.png)
 
-# 测试结果
 
-$\color{red}{\text{经测试答案是错的？}}$
-
-|参数|p|recursion|
-|----|----|----|
-|(1,1)|2|1|
-|(3,2)|40|-20|
-|(6,5)|717880|-79880|

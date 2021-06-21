@@ -17,7 +17,7 @@ $$
 
 # 测试结果
 
-$\color{yellow}{\text{经测试答案是错的？}}$
+$\color{red}{\text{经测试答案是错的？}}$
 
 |参数|p|recursion|
 |----|----|----|

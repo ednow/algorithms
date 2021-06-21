@@ -30,9 +30,17 @@ string solution(int A, int B) {
 //cin>>A
 //scanf("")
 
+int summit(){
+    int A=0, B=0;
+    scanf("%d %d", &A, &B);
+    cout << solution(A, B);
+    return 0;
+}
+
 TEST(TestCase, solution_A_plus_B) {
     ASSERT_EQ("-999,991", solution(-1000000, 9));
     ASSERT_EQ("0", solution(-1, 1));
     ASSERT_EQ("300", solution(300, 0));
     ASSERT_EQ("1,300", solution(1300, 0));
+    ASSERT_EQ("-300", solution(-300, 0));
 }

@@ -9,8 +9,8 @@
 using namespace std;
 
 
-string solution(int A, int B) {
-    int num = A + B;
+string solution(long long int A, long long int B) {
+    long long int num = A + B;
     string S(to_string(abs(num)));
     unsigned long long len = S.length();
 
@@ -26,13 +26,10 @@ string solution(int A, int B) {
     return S;
 }
 
-//int A = 0, B = 0;
-//cin>>A
-//scanf("")
 
 int summit(){
-    int A=0, B=0;
-    scanf("%d %d", &A, &B);
+    long long int A=0, B=0;
+    scanf("%lld %lld", &A, &B);
     cout << solution(A, B);
     return 0;
 }

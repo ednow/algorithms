@@ -1,27 +1,5 @@
 import unittest
-from typing import List, Tuple, Dict
-
-
-# def rectify_str(_str: str) -> List[Tuple[int, int]]:
-#     """
-#     给定一个多项式字符串,将其分割为(幂，系数)的形式
-#     :param _str:
-#     """
-#     result = []
-#     for i in range(len(_str)):
-#         result.append(
-#             (int(_str[i + 1]), int(_str[i + 1]))
-#         )
-#     return result
-
-# def cal_poly(a: List[Tuple[int, int]], b: List[Tuple[int, int]]):
-#     """
-#     计算两项多项式的和，结果保留两位小数
-#     :param a: 由(幂，系数)组成的list
-#     :param b: 由(幂，系数)组成的list
-#     """
-#     for e in range(max(a[-1][0], b[-1][0]) + 1):
-#         if not (e in )
+from typing import Dict
 
 def rectify_str(_str: str) -> Dict:
     """

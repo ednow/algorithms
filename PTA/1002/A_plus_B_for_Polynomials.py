@@ -1,6 +1,7 @@
 import unittest
 from typing import Dict
 
+
 def rectify_str(_str: str) -> Dict:
     """
     给定一个题目定义的多项式字符串,将其放到一个dict中{幂，系数}
@@ -19,7 +20,11 @@ def rectify_data(data: Dict) -> str:
     :param data: 求解用的数据结构
     """
     data = {k: data[k] for k in sorted(data.keys(), reverse=True)}
-    return f"{len(data.keys())} {' '.join(map(str ,sum(zip(data.keys(), data.values()), ())))}"
+
+    if len(data.keys()) > 0:
+        return f"{len(data.keys())} {' '.join(map(str ,sum(zip(data.keys(), data.values()), ())))}"
+    else:
+        return "0"
 
 
 def cal_poly(a: Dict, b: Dict):
@@ -50,7 +55,7 @@ def summit():
 class Test(unittest.TestCase):
     def test_solution(self):
         assert "3 2 1.5 1 2.9 0 3.2" == rectify_data(cal_poly(rectify_str("2 1 2.4 0 3.2"), rectify_str("2 2 1.5 1 0.5")))
-        # assert "0" == rectify_data(cal_poly(rectify_str("0"), rectify_str("0")))
+        assert "0" == rectify_data(cal_poly(rectify_str("1 2 -1"), rectify_str("1 2 1")))
 
 
 if __name__ == '__main__':

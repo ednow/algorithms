@@ -42,9 +42,11 @@ def cal_poly(a: Dict, b: Dict):
             if c != 0:
                 result[e] = c
         elif e in a_keys:
-            result[e] = a[e]
+            if 0 != a[e]:
+                result[e] = a[e]
         elif e in b_keys:
-            result[e] = b[e]
+            if 0 != b[e]:
+                result[e] = b[e]
     return result
 
 
@@ -56,6 +58,7 @@ class Test(unittest.TestCase):
     def test_solution(self):
         assert "3 2 1.5 1 2.9 0 3.2" == rectify_data(cal_poly(rectify_str("2 1 2.4 0 3.2"), rectify_str("2 2 1.5 1 0.5")))
         assert "0" == rectify_data(cal_poly(rectify_str("1 2 -1"), rectify_str("1 2 1")))
+        assert "1 1 -1.0" == rectify_data(cal_poly(rectify_str("1 2 0"), rectify_str("1 1 -1")))
 
 
 if __name__ == '__main__':

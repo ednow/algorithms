@@ -56,9 +56,15 @@ def summit():
 
 class Test(unittest.TestCase):
     def test_solution(self):
-        assert "3 2 1.5 1 2.9 0 3.2" == rectify_data(cal_poly(rectify_str("2 1 2.4 0 3.2"), rectify_str("2 2 1.5 1 0.5")))
-        assert "0" == rectify_data(cal_poly(rectify_str("1 2 -1"), rectify_str("1 2 1")))
-        assert "1 1 -1.0" == rectify_data(cal_poly(rectify_str("1 2 0"), rectify_str("1 1 -1")))
+        testCases = [
+            ["3 2 1.5 1 2.9 0 3.2", "2 1 2.4 0 3.2", "2 2 1.5 1 0.5"],
+            ["0", "1 2 -1", "1 2 1"],  # 格式错误的代码
+            ["1 1 -1.0", "1 2 0", "1 1 -1"],  # 极端情况1, 解决了, 并未ac
+            ["0", "1 1 0", "1 2 0"]  # 极端情况1, 解决了, 并未ac
+        ]
+
+        for result, a, b in testCases:
+            assert result == rectify_data(cal_poly(rectify_str(a), rectify_str(b)))
 
 
 if __name__ == '__main__':

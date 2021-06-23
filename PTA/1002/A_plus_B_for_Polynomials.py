@@ -47,8 +47,8 @@ def rectify_data(data: Dict) -> str:
 def cal_poly(a: Dict, b: Dict):
     """
     计算两项多项式的和，结果保留两位小数
-    :param a: 由(幂，系数)组成的list
-    :param b: 由(幂，系数)组成的list
+    :param a: 由{幂:系数}组成的Dict
+    :param b: 由{幂:系数}组成的Dict
     """
     result = {}
     a_keys = list(a.keys())

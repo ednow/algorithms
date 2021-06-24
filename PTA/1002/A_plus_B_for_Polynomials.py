@@ -23,7 +23,7 @@ def rectify_data(data: Dict) -> str:
 
     if len(data) > 0:
         answerList = map(
-            lambda x: '{:.1f}'.format(x) if isinstance(x, float) else str(x),
+            lambda x: f'{x:.1f}' if isinstance(x, float) else str(x),
             sum(zip(data.keys(), data.values()), ())
         )
         return f"{len(data)} {' '.join(answerList)}"
@@ -67,6 +67,7 @@ class Test(unittest.TestCase):
             ["0", "1 1 0", "1 2 0"],  # 极端情况1, 解决了, 但未过测试点1
             # 极端情况2, 64位整型溢出, 解决了, 但未过测试点1
             ["1 18446744073709551616 1.0", "1 18446744073709551616 0.5", "1 18446744073709551616 0.5"]
+            # ac不了的原因,str(round(value, 1)) != f"{value:.1f}"
         ]
 
         for answer, a, b in testCases:

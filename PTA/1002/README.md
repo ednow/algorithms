@@ -3,7 +3,7 @@
 ## python
 [一个正确答案](https://blog.csdn.net/weixin_44575329/article/details/104362066)
 
-原来没过是因为round和".1f"不一样:
+原来没过是因为str(round(value, 1)) != f"{value:.1f}不一样:
 
 - [ ] <p color='red'> 但不一样的测试数据还没找到 </p>
 ### 关于四舍五入

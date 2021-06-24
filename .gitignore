@@ -7,3 +7,6 @@ temp.*
 # 字节码文件
 */__pycache__
 */*/__pycache__
+
+# java的目标文件
+target

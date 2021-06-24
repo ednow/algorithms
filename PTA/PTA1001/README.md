@@ -1,8 +1,6 @@
 # 总结
 
 ## python
-[一个正确答案](https://blog.csdn.net/weixin_44575329/article/details/104362066)
-
 ### 坑点1:
 需要考虑到多项式的值为0的时候,输出为`"0"`不能有空格`"0 "`
 
@@ -30,3 +28,5 @@ $\xrightarrow{\text{summit}}$读取输入的字符串$\xrightarrow{\text{rectify
 [python中四舍五入的特殊情况](https://zhuanlan.zhihu.com/p/93363837)
 
 [参考文献2](https://zhuanlan.zhihu.com/p/115431517)
+
+[另外一个正确答案](https://blog.csdn.net/weixin_44575329/article/details/104362066)

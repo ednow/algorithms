@@ -35,7 +35,7 @@ int summit(){
 }
 
 
-TEST(TestCase, solution_A_plus_B) {
+TEST(TestCase, test_PTA_1001) {
     ASSERT_EQ("-999,991", solution(-1000000, 9));
     ASSERT_EQ("0", solution(-1, 1));
     ASSERT_EQ("300", solution(300, 0));

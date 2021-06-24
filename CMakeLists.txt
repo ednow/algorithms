@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.14)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(algorithms
-        MISC/recursion_elimination/recursion_elimination.cpp "PTA/1001/A_plus_B_Format.cpp" main.cpp PTA/1002/A_plus_B_for_Polynomials.cpp)
+        MISC/recursion_elimination/recursion_elimination.cpp PTA/PTA1001/A_plus_B_Format.cpp main.cpp PTA/PTA1002/A_plus_B_for_Polynomials.cpp)
 
 # 添加头文件
 include_directories(

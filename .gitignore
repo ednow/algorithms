@@ -3,3 +3,7 @@ cmake-build-debug
 googletest
 # 临时文件
 temp.*
+
+# 字节码文件
+*/__pycache__
+*/*/__pycache__

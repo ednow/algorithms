@@ -23,6 +23,7 @@ $\xrightarrow{\text{summit}}$读取输入的字符串$\xrightarrow{\text{rectify
 
 #### [sum的特殊用法](https://ednow.github.io/2021/02/01/python%E6%8A%80%E6%B3%95%E6%80%BB%E7%BB%93/#%E4%BA%A4%E6%9B%BF%E7%A9%BF%E6%8F%92%E4%B8%A4%E4%B8%AA%E7%AD%89%E9%95%BF%E7%9A%84list)
 
+#### range() takes no keyword arguments
 
 ### 拓展阅读
 #### 四舍五入

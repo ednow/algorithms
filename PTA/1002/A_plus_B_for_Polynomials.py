@@ -17,7 +17,7 @@ def rectify_str(_str: str) -> Dict:
 def rectify_data(data: Dict) -> str:
     """
     将求解用的数据结构，转换为题目定义的多项式字符串
-    :param data: 求解用的数据结构
+    :param data: 由{幂:系数}组成的Dict
     """
     data = {k: data[k] for k in sorted(data.keys(), reverse=True)}
 

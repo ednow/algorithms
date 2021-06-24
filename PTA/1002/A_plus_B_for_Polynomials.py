@@ -22,11 +22,11 @@ def rectify_data(data: Dict) -> str:
     data = {k: data[k] for k in sorted(data.keys(), reverse=True)}
 
     if len(data) > 0:
-        answerList = map(
+        numbers = map(
             lambda x: f'{x:.1f}' if isinstance(x, float) else str(x),
             sum(zip(data.keys(), data.values()), ())
         )
-        return f"{len(data)} {' '.join(answerList)}"
+        return f"{len(data)} {' '.join(numbers)}"
     else:
         return "0"
 
@@ -42,7 +42,7 @@ def cal_poly(a: Dict, b: Dict) -> Dict:
     b_keys = list(b.keys())
     for e in set(a_keys + b_keys):
         if (e in a_keys) and (e in b_keys):
-            c = round(a[e] + b[e], 1)
+            c = a[e] + b[e]
             if c != 0:
                 result[e] = c
         elif e in a_keys:

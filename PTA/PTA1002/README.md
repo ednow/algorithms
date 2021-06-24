@@ -1,4 +1,6 @@
 # 总结
+## 考点
++ 输入输出
 
 ## python
 [一个正确答案](https://blog.csdn.net/weixin_44575329/article/details/104362066)

@@ -16,9 +16,7 @@
 测试数据中的`测试点1`
 
 ### 思路
-首先处理题目给的字符串，转为自己中间解答的数据结构，将中间数据结构再输出为题目要求的字符串
-
-$\xrightarrow{\text{summit}}$读取输入的字符串$\xrightarrow{\text{rectify\_data}}$得到的中间数据结构$\xrightarrow{\text{cal\_poly}}$得到中间数据结构计算的结果$\xrightarrow{\text{rectify\_str}}$得到符合题目要求的正确结果$\xrightarrow{\text{summit}}$输出
+$\xrightarrow{\text{summit}}$读取输入的字符串$\xrightarrow{\text{rectify\_data}}$得到的中间数据结构$\xrightarrow{\text{cal\_poly}}$得到中间数据结构表示的计算的结果$\xrightarrow{\text{rectify\_str}}$得到符合题目要求的正确结果$\xrightarrow{\text{summit}}$输出
 
 ### 语法技术
 #### keys()不能进行+运算

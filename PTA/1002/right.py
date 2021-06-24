@@ -14,7 +14,7 @@ def rectify_str(_str: str) -> Dict:
     return result
 
 
-def rectify_data(data: Dict) -> str:
+def rectify_data(data: Dict) -> None:
     """
     将求解用的数据结构，转换为题目定义的多项式字符串
     :param data: 求解用的数据结构

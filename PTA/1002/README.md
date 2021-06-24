@@ -3,6 +3,7 @@
 ## python
 [一个正确答案](https://blog.csdn.net/weixin_44575329/article/details/104362066)
 
+原来没过是因为round和".1f"不一样
 ### 关于四舍五入
 [python中四舍五入的特殊情况](https://zhuanlan.zhihu.com/p/93363837)
 

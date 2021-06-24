@@ -1,3 +1,5 @@
 .idea
 cmake-build-debug
 googletest
+# 临时文件
+temp.*

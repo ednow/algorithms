@@ -22,7 +22,11 @@ def rectify_data(data: Dict) -> str:
     data = {k: data[k] for k in sorted(data.keys(), reverse=True)}
 
     if len(data) > 0:
-        return f"{len(data)} {' '.join(map(str ,sum(zip(data.keys(), data.values()), ())))}"
+        answerList = map(
+            lambda x: '{:.1f}'.format(x) if isinstance(x, float) else str(x),
+            sum(zip(data.keys(), data.values()), ())
+        )
+        return f"{len(data)} {' '.join(answerList)}"
     else:
         return "0"
 

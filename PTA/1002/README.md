@@ -3,9 +3,8 @@
 ## python
 [一个正确答案](https://blog.csdn.net/weixin_44575329/article/details/104362066)
 
-原来没过是因为str(round(value, 1)) != f"{value:.1f}不一样:
-
-- [ ] <p color='red'> 但不一样的测试数据还没找到 </p>
+原因,这个地方也需要round
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210624124308.png)
 ### 关于四舍五入
 [python中四舍五入的特殊情况](https://zhuanlan.zhihu.com/p/93363837)
 

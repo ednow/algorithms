@@ -1,5 +1,6 @@
 package PTA.PTA1003;
 
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -159,6 +160,24 @@ class AdjacencyMatrix extends GraphAdapter {
 public class Emergency {
     private AdjacencyMatrix g = null;
     private int[] teams = null;
+    private int source = 0;
+    private int destination = 0;
+
+    public AdjacencyMatrix getG() {
+        return g;
+    }
+
+    public int[] getTeams() {
+        return teams;
+    }
+
+    public int getSource() {
+        return source;
+    }
+
+    public int getDestination() {
+        return destination;
+    }
 
     public void initGraph(int nodesNum){
         this.g = new AdjacencyMatrix(nodesNum);
@@ -227,7 +246,32 @@ public class Emergency {
     }
 
     public String rectifyData(int [] data){
-        return Arrays.toString(data);
+        String[] arr = Arrays.stream(data).mapToObj(String::valueOf).toArray(String[]::new);
+        return String.join(" ", arr);
+    }
+
+    public static int[] stringToInt(String str){
+        return Arrays
+                .stream(str.split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+    }
+
+    public void rectifyInput(InputStream stream){
+        Scanner scan=new Scanner(stream);
+        int[] temp = null;
+        temp = stringToInt(scan.nextLine());
+        initGraph(temp[0]);
+        this.source = temp[2];
+        this.destination = temp[3];
+        if (scan.hasNextLine()) {
+            temp = stringToInt(scan.nextLine());
+            addEdge(temp[0], temp[1], temp[2]);
+        }
+    }
+
+    public void buildSolution(){
+
     }
 
     public static void main(String[] args) {

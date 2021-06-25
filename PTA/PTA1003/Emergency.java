@@ -1,8 +1,8 @@
 package PTA.PTA1003;
 
+
 import java.io.InputStream;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 interface Graph {
@@ -302,12 +302,13 @@ public class Emergency {
             addEdge(temp[0], temp[1], temp[2]);
         }
     }
+}
 
-    public void buildSolution(){
-
-    }
-
+class Main{
     public static void main(String[] args) {
-
+        Emergency e = new Emergency();
+        e.rectifyInput(System.in);
+        String result = e.rectifyData(e.solution(e.getSource(), e.getDestination()));
+        System.out.println(result);
     }
 }

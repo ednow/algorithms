@@ -14,3 +14,5 @@ target
 
 # 旧版idea的信息文件
 *.iml
+
+json

@@ -22,6 +22,7 @@ public class Main {
             JSONObject testCase = (JSONObject) o;
             e.rectifyInput(tools.stringToInputStream(testCase.getString("data")));
             String result = e.rectifyData(e.solution(e.getSource(), e.getDestination()));
+            System.out.println(result);
             assertEquals(testCase.get("answer"), result);
         }
 

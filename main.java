@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 
 
-public class main {
+public class Main {
     @Test
     public void testEmergency(){
         Path path = Paths.get("PTA", "PTA1003", "data.json");

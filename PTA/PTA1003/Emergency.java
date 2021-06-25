@@ -97,6 +97,11 @@ abstract class GraphAdapter implements Graph {
 class AdjacencyMatrix extends GraphAdapter {
     private int[][] matrix = null;
     private int nodesNum = 0;
+    private int edgesNum = 0;
+
+    public void setEdgesNum(int edgesNum) {
+        this.edgesNum = edgesNum;
+    }
 
     public AdjacencyMatrix(int nodesNum) {
         this.matrix = new int[nodesNum][nodesNum];
@@ -106,12 +111,15 @@ class AdjacencyMatrix extends GraphAdapter {
     @Override
     public boolean deleteEdge(int x, int y) {
         this.matrix[x][y] = 0;
+        this.matrix[y][x] = 0;
+        this.edgesNum--;
         return true;
     }
 
     @Override
     public boolean setEdgeValue(int x, int y, int value) {
         this.matrix[x][y] = value;
+        this.matrix[y][x] = value;
         return true;
     }
 
@@ -122,34 +130,52 @@ class AdjacencyMatrix extends GraphAdapter {
 
     public int [][] dijkstra(int node){
         int [][] nodesInfo = new int[3][this.nodesNum];
-        nodesInfo[0][node] = 0; // 设置访问位为false,true为1
-        nodesInfo[1][node] = -1; // 设置距离为无穷大
-        nodesInfo[2][node] = -1; // 父亲设置为空
+        Arrays.fill(nodesInfo[0], 0); // 设置访问位为false,true为1
+        Arrays.fill(nodesInfo[1], -1); // 设置距离为无穷大
+        Arrays.fill(nodesInfo[2], -1); // 父亲设置为空
 
-        // 还有未访问的点
-        while (IntStream.of(nodesInfo[0]).anyMatch(x -> x==0)) {
-            for (int neighbor :
-                    nodesInfo[node]) {
-                int temp = nodesInfo[1][node] + this.matrix[node][neighbor];
-                if (nodesInfo[1][neighbor] == -1) {
-                    nodesInfo[1][neighbor] = temp;
-                    nodesInfo[2][neighbor] = node;
+        nodesInfo[0][node] = 1;
+        nodesInfo[1][node] = 0;
+        // 还有未访问的点,而且是连通图
+        while (IntStream.of(nodesInfo[0]).anyMatch(x -> x==0) && this.edgesNum > this.nodesNum - 1) {
+            for (int neighbor = 0;neighbor <  this.nodesNum; neighbor++) {
+                // 有无访问过
+                if(nodesInfo[0][neighbor] == 1){
                     continue;
                 }
-                if (nodesInfo[1][neighbor] > temp) {
-                    nodesInfo[1][neighbor] = temp;
-                    nodesInfo[2][neighbor] = node;
+                // 存在一条路径
+                if (this.matrix[node][neighbor] != 0){
+                    int temp = nodesInfo[1][node] + this.matrix[node][neighbor];
+                    if (nodesInfo[1][neighbor] == -1) {
+                        nodesInfo[1][neighbor] = temp;
+                        nodesInfo[2][neighbor] = node;
+                        continue;
+                    }
+                    if (nodesInfo[1][neighbor] > temp) {
+                        nodesInfo[1][neighbor] = temp;
+                        nodesInfo[2][neighbor] = node;
+                    }
                 }
             }
 
-            int minIdx = 1;
+            // 找到当前未访问且路径最短的节点
+            int minIdx = -1;
+            float min = Float.POSITIVE_INFINITY;
             for (int i = 1; i < this.nodesNum; i++) {
-                if (nodesInfo[0][i] == 0 && nodesInfo[1][i] != -1 && nodesInfo[1][i] < nodesInfo[1][minIdx]) {
+                // 未访问 && 距离不是无穷大 && 小于找到的最小节点
+                if (nodesInfo[0][i] == 0 && nodesInfo[1][i] != -1 && nodesInfo[1][i] < min) {
                     minIdx = i;
+                    min = nodesInfo[1][i];
                 }
             }
-            nodesInfo[0][minIdx] = 1;
-            node = minIdx;
+
+            // 找到了下一个节点
+            if (minIdx!=-1){
+                // 此时前进的node
+                nodesInfo[0][minIdx] = 1;
+                node = minIdx;
+            }
+
         }
 
         return nodesInfo;
@@ -179,8 +205,9 @@ public class Emergency {
         return destination;
     }
 
-    public void initGraph(int nodesNum){
+    public void initGraph(int nodesNum, int edgesNum){
         this.g = new AdjacencyMatrix(nodesNum);
+        this.g.setEdgesNum(edgesNum);
     }
 
     public void initTeams(int [] teams){
@@ -200,7 +227,7 @@ public class Emergency {
     public int teamsNum(int[][] nodesInfo, int source, int destination){
         int result = 0;
         int parent = destination;
-        while (parent != source){
+        while (parent != -1){
             result += this.teams[parent];
             parent = nodesInfo[2][parent];
         }
@@ -213,14 +240,18 @@ public class Emergency {
      * @param source 启始位置
      * @param destination 援救位置
      */
-    public void deletePaths(int[][] nodesInfo, int source, int destination){
+    public boolean deletePaths(int[][] nodesInfo, int source, int destination){
         int parent = nodesInfo[2][destination];
         int now = destination;
         while (now != source){
+            if (parent == -1 || now == -1){
+                return false;
+            }
             this.g.deleteEdge(now, parent);
             parent = nodesInfo[2][parent];
             now = nodesInfo[2][now];
         }
+        return true;
     }
 
     public int[] solution(int source, int destination){
@@ -229,10 +260,9 @@ public class Emergency {
         int maxTeams = 0;
         int tempTeams = 0;
         int pathNum = 0;
-
         do {
             nodesInfo = this.g.dijkstra(source);
-            shortestLength = nodesInfo[2][destination];
+            shortestLength = nodesInfo[1][destination];
             tempTeams = teamsNum(nodesInfo, source, destination);
             if (tempTeams > maxTeams) {
                 maxTeams = tempTeams;
@@ -240,7 +270,8 @@ public class Emergency {
             pathNum += 1;
             deletePaths(nodesInfo, source, destination);
             nodesInfo = this.g.dijkstra(source);
-        } while (shortestLength >= nodesInfo[2][destination]);
+            // 如果当前的路径还是最短的，而且是有路径的
+        } while (shortestLength >= nodesInfo[1][destination] && nodesInfo[1][destination] != -1);
 
         return new int[]{pathNum, maxTeams};
     }
@@ -261,10 +292,12 @@ public class Emergency {
         Scanner scan=new Scanner(stream);
         int[] temp = null;
         temp = stringToInt(scan.nextLine());
-        initGraph(temp[0]);
+        initGraph(temp[0], temp[1]);
         this.source = temp[2];
         this.destination = temp[3];
-        if (scan.hasNextLine()) {
+        temp = stringToInt(scan.nextLine());
+        this.teams = temp.clone();
+        while (scan.hasNextLine()) {
             temp = stringToInt(scan.nextLine());
             addEdge(temp[0], temp[1], temp[2]);
         }

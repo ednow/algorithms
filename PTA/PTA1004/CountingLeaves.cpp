@@ -13,33 +13,34 @@ using namespace std;
 
 // 将int定义为long long int
 //#define int long long int
-
-
 // 一个树的数据结构
 typedef vector<list<int>> Tree; // 树的孩子表示法
-typedef map<int, int> item; //{节点编号:层数}
-
+typedef struct queueItem {
+    int label;
+    int level;
+}item; //{节点编号:层数}
 
 // 进行层次遍历,返回每一层的叶子节点数
-vector<int> solution(Tree & tree){
-
-    map<int,int> answer;
+map<int,int, greater<>>
+solution(Tree & tree){
+    map<int,int, greater<>> answer;
     queue<item> q;
-    // 第一个节点第一层
-    item head = {{1, 1}};
+    int childLevel = 0;
+    // 第一个节点在第一层
+    item head = {.label=1, .level=1};
     q.push(head); // 先push根节点进去
     while (!q.empty()){
         head = q.front(); // 队列的头元素
         if (tree[head.label].empty()){ // 检查头元素是不是叶子节点
             answer[head.level]++; // 头元素所在层的叶子节点数+1
         } else { // 让头元素的孩子节点进入队列
+            childLevel = head.level + 1;
             for(auto & child : tree[head.label]){
-                q.push(child);
+                q.push(item{.label=child, .level=childLevel});
             }
         }
         q.pop();
     }
-
     return answer;
 }
 
@@ -50,21 +51,22 @@ string summit(){
     // N:节点数, M:非叶子节点的数量, parent:父亲节点的编号,label:孩子节点编号, children:孩子的数量
     int N = int(), M=0,  label = 0, parent=0, children = 0;
     cin >> N >> M;
-    Tree tree = {.nodes = vector<list<child>>(N, list<child>()), .depth=0};
-//    tree.nodes[0].de
+    Tree tree = Tree(N,list<int>());
     do {
         cin >> name >> children;
         parent = strtol(name.c_str(), end, 2);
         do {
             cin >> name;
             label = strtol(name.c_str(), end, 2);
-//            tree[parent]
+            tree[parent].push_back(label);
             children--;
-        } while (children>0);
+        } while (children>0); // 该节点还有孩子
         N--;
-    } while (N > 0);
-
-//    copy(my_vector.begin(), my_vector.end(), ostream_iterator<int>(result, " "));
+    } while (M > 0); // 还有非叶子节点
+    map<int, int, greater<>> answer = solution(tree);
+    for(auto & it :answer){
+        s += to_string(it.second);
+    }
     return s;
 }
 

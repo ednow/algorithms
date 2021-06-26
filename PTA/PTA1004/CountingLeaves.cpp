@@ -9,6 +9,7 @@
 #include "map"
 #include "list"
 #include "vector"
+#include <iostream>
 using namespace std;
 
 // 将int定义为long long int
@@ -21,9 +22,48 @@ typedef struct queueItem {
 }item; //{节点编号:层数}
 
 // 进行层次遍历,返回每一层的叶子节点数
-map<int,int, greater<>>
-solution(Tree & tree){
-    map<int,int, greater<>> answer;
+//map<int,int, greater<>>
+//solution(Tree & tree){
+//    map<int,int, greater<>> answer;
+//    queue<item> q;
+//    int childLevel = 0;
+//    // 第一个节点在第一层
+//    item head = {.label=1, .level=1};
+//    q.push(head); // 先push根节点进去
+//    while (!q.empty()){
+//        head = q.front(); // 队列的头元素
+//        if (tree[head.label].empty()){ // 检查头元素是不是叶子节点
+//            answer[head.level]++; // 头元素所在层的叶子节点数+1
+//        } else { // 让头元素的孩子节点进入队列
+//            childLevel = head.level + 1;
+//            for(auto & child : tree[head.label]){
+//                q.push(item{.label=child, .level=childLevel});
+//            }
+//        }
+//        q.pop();
+//    }
+//    return answer;
+//}
+
+
+string summit(){
+    string s, name;
+    char **end = nullptr;
+    // N:节点数, M:非叶子节点的数量, parent:父亲节点的编号,label:孩子节点编号, children:孩子的数量
+    int N = 0, M = 0,  label = 0, parent=0, children = 0;
+    cin >> N >> M;
+    Tree tree = Tree(N);
+    do {
+        cin >> name >> children;
+        parent = strtol(name.c_str(), end, 2);
+        do {
+            cin >> name;
+            label = strtol(name.c_str(), end, 2);
+            tree[parent].push_back(label);
+        } while (--children); // 该节点还有孩子
+    } while (--M); // 还有非叶子节点
+
+    map<int,int> answer;
     queue<item> q;
     int childLevel = 0;
     // 第一个节点在第一层
@@ -41,35 +81,23 @@ solution(Tree & tree){
         }
         q.pop();
     }
-    return answer;
-}
-
-
-string summit(){
-    string s, name;
-    char **end = nullptr;
-    // N:节点数, M:非叶子节点的数量, parent:父亲节点的编号,label:孩子节点编号, children:孩子的数量
-    int N = int(), M=0,  label = 0, parent=0, children = 0;
-    cin >> N >> M;
-    Tree tree = Tree(N,list<int>());
-    do {
-        cin >> name >> children;
-        parent = strtol(name.c_str(), end, 2);
-        do {
-            cin >> name;
-            label = strtol(name.c_str(), end, 2);
-            tree[parent].push_back(label);
-        } while (--children); // 该节点还有孩子
-    } while (--M); // 还有非叶子节点
-    map<int, int, greater<>> answer = solution(tree);
-    for(auto & it :answer){
-        s += to_string(it.second);
+    if (answer.find(1) == answer.end()){
+        s += "0";
     }
+    for (int i = 2; i <= childLevel; ++i) {
+        if (answer.find(i) == answer.end()){
+            s += " 0";
+        } else {
+            s += " " + to_string(answer[i]);
+        }
+
+    }
+
     return s;
 }
 
 int Main(){
-    cout << summit();
+    cout << summit() << endl;
     return 0;
 }
 

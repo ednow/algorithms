@@ -21,31 +21,6 @@ typedef struct queueItem {
     int level;
 }item; //{节点编号:层数}
 
-// 进行层次遍历,返回每一层的叶子节点数
-//map<int,int, greater<>>
-//solution(Tree & tree){
-//    map<int,int, greater<>> answer;
-//    queue<item> q;
-//    int childLevel = 0;
-//    // 第一个节点在第一层
-//    item head = {.label=1, .level=1};
-//    q.push(head); // 先push根节点进去
-//    while (!q.empty()){
-//        head = q.front(); // 队列的头元素
-//        if (tree[head.label].empty()){ // 检查头元素是不是叶子节点
-//            answer[head.level]++; // 头元素所在层的叶子节点数+1
-//        } else { // 让头元素的孩子节点进入队列
-//            childLevel = head.level + 1;
-//            for(auto & child : tree[head.label]){
-//                q.push(item{.label=child, .level=childLevel});
-//            }
-//        }
-//        q.pop();
-//    }
-//    return answer;
-//}
-
-
 string summit(){
     string s, name;
     char **end = nullptr;
@@ -63,6 +38,7 @@ string summit(){
         } while (--children); // 该节点还有孩子
     } while (--M); // 还有非叶子节点
 
+    // 进行层次遍历
     map<int,int> answer;
     queue<item> q;
     int childLevel = 0;
@@ -92,7 +68,6 @@ string summit(){
         }
 
     }
-
     return s;
 }
 

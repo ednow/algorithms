@@ -21,7 +21,7 @@ typedef struct queueItem {
     int level;
 }item; //{节点编号:层数}
 
-string summit(){
+int Main(){
     string s, name;
     char **end = nullptr;
     // N:节点数, M:非叶子节点的数量, parent:父亲节点的编号,label:孩子节点编号, children:孩子的数量
@@ -68,13 +68,10 @@ string summit(){
         }
 
     }
-    return s;
-}
-
-int Main(){
-    cout << summit() << endl;
+    cout << s << endl;
     return 0;
 }
+
 
 TEST(TestCase, test_PTA_1004) {
     using json = nlohmann::json;

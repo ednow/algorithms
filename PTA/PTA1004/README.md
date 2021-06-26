@@ -17,3 +17,11 @@
 
 ## 结果
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210627010059.png)
+
+### 改进
+只生成空vector
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210627011114.png)
+
+生成整个树的结构，不进行队列的操作
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210627011239.png)
+

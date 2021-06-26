@@ -59,10 +59,8 @@ string summit(){
             cin >> name;
             label = strtol(name.c_str(), end, 2);
             tree[parent].push_back(label);
-            children--;
-        } while (children>0); // 该节点还有孩子
-        N--;
-    } while (M > 0); // 还有非叶子节点
+        } while (--children); // 该节点还有孩子
+    } while (--M); // 还有非叶子节点
     map<int, int, greater<>> answer = solution(tree);
     for(auto & it :answer){
         s += to_string(it.second);

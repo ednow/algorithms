@@ -14,25 +14,20 @@ using namespace std;
 // 将int定义为long long int
 //#define int long long int
 
-// 一颗树的孩子
-typedef struct {
-    int label; // 编号
-    int level; // 所在层数
-} child;
 
 // 一个树的数据结构
-typedef struct TreeStructure{
-    vector<list<child>> nodes; // 树的孩子表示法
-    int depth{}; //这课树的深度
-} Tree;
+typedef vector<list<int>> Tree; // 树的孩子表示法
+typedef map<int, int> item; //{节点编号:层数}
+
 
 // 进行层次遍历,返回每一层的叶子节点数
-vector<int> solution(Tree & t){
-    vector<list<child>> tree = t.nodes;
-    vector<int> answer(t.depth,0) ;
-    queue<child> q;
-    child head;
-    q.push(tree[0].front()); // 先push根节点进去
+vector<int> solution(Tree & tree){
+
+    map<int,int> answer;
+    queue<item> q;
+    // 第一个节点第一层
+    item head = {{1, 1}};
+    q.push(head); // 先push根节点进去
     while (!q.empty()){
         head = q.front(); // 队列的头元素
         if (tree[head.label].empty()){ // 检查头元素是不是叶子节点
@@ -56,14 +51,14 @@ string summit(){
     int N = int(), M=0,  label = 0, parent=0, children = 0;
     cin >> N >> M;
     Tree tree = {.nodes = vector<list<child>>(N, list<child>()), .depth=0};
-    tree.nodes[0].de
+//    tree.nodes[0].de
     do {
         cin >> name >> children;
         parent = strtol(name.c_str(), end, 2);
         do {
             cin >> name;
             label = strtol(name.c_str(), end, 2);
-            tree[parent]
+//            tree[parent]
             children--;
         } while (children>0);
         N--;

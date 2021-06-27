@@ -1,12 +1,12 @@
-from typing import List,Dict
+from typing import List, Dict
 import unittest
 
 
 def extract_details(name: str, signIn: str, signOut: str):
     return {
         "name": name,
-        "signIn": sum([60**(2-idx) * int(i) for idx, i in enumerate(signIn.split(":"))]),
-        "signOut": sum([60 ** (2 - idx) * int(i) for idx, i in enumerate(signIn.split(":"))]),
+        "signIn": sum([60 ** (2 - idx) * int(i) for idx, i in enumerate(signIn.split(":"))]),
+        "signOut": sum([60 ** (2 - idx) * int(i) for idx, i in enumerate(signOut.split(":"))]),
     }
 
 
@@ -21,10 +21,9 @@ def summit():
     memberInfos = []
     members = int(input())
     while members > 0:
+        string = input()
         memberInfos.append(
-            {
-                extract_details(*input().split())
-            }
+            extract_details(*(string.split()))
         )
         members -= 1
     return solution(memberInfos)
@@ -37,7 +36,7 @@ class TestPTA1006(unittest.TestCase):
             self.testCases = json.load(f)
 
     def test_1006(self):
-        for testCase in self.testCases:
+        for idx, testCase in enumerate(self.testCases):
             a, answer = list(testCase.values())
             memberInfos = [extract_details(*i.split()) for i in a.split("\n")[1:]]
             result = solution(memberInfos)

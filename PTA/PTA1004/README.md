@@ -25,3 +25,9 @@
 生成整个树的结构，不进行队列的操作
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210627011239.png)
 
+## python
+### 第一次提交
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210627212423.png)
+同样的思路,python好好的
+
+果然没能好好掌握c++呢

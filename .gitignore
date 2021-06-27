@@ -1,6 +1,12 @@
+# Jetbrains
 .idea
+
+# clion
 cmake-build-debug
+
+# c++测试库
 googletest
+
 # 临时文件
 temp.*
 *.temp
@@ -15,4 +21,9 @@ target
 # 旧版idea的信息文件
 *.iml
 
+# c++读取json的库
 json
+
+# visual studio
+.vs
+out

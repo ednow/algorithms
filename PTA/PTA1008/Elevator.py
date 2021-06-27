@@ -1,14 +1,16 @@
-from typing import List, Dict
 import unittest
-from functools import reduce
 
 
 def summit(string):
-    return reduce(
-        lambda a, b: 5 + a + (b - a) * 6 if b > a else (a - b) * 4,
-        map(int, string.split()),
-        0
-    )
+    result = 0
+    q = list(map(int, string.split()))
+    for now, destination in zip(([0]+q)[:-1], q):
+        if now > destination:
+            result += (now - destination) * 4
+        else:
+            result += (destination - now) * 6
+        result += 5
+    return f"{result}"
 
 
 class TestPTA1008(unittest.TestCase):

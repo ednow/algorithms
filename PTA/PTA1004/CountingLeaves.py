@@ -4,17 +4,22 @@ import queue
 
 
 def solution(tree: Dict[int, List[int]]) -> str:
+    """
+    :param tree: 孩子表示法：见readme
+    :return:
+    """
     q = queue.Queue()
     answer = dict()
     result = []
     childLevel = 0
     q.put((1, 1))  # 根节点进入队列,(节点编号，节点所在层号)
+    # 进行层次遍历, 返回每一层的叶子节点数
     while not q.empty():
-        head = q.get()
-        if len(tree[head[0]]) == 0:
+        head = q.get()  # 队列的头元素
+        if len(tree[head[0]]) == 0:  # 检查头元素是不是叶子节点
             emptyNum = answer.get(head[1], 0)
-            answer[head[1]] = emptyNum + 1
-        else:
+            answer[head[1]] = emptyNum + 1  # 该层叶子节点数+1
+        else:  # 让头元素的孩子节点进入队列
             childLevel = head[1] + 1
             for child in tree[head[0]]:
                 q.put((child, childLevel))

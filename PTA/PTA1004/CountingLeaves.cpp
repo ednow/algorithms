@@ -9,7 +9,6 @@
 #include "map"
 #include "list"
 #include "vector"
-#include <iostream>
 using namespace std;
 
 // 将int定义为long long int
@@ -21,25 +20,10 @@ typedef struct queueItem {
     int level;
 }item; //{节点编号:层数}
 
-int Main(){
-    string s, name;
-    char **end = nullptr;
-    // N:节点数, M:非叶子节点的数量, parent:父亲节点的编号,label:孩子节点编号, children:孩子的数量
-    int N = 0, M = 0,  label = 0, parent=0, children = 0;
-    cin >> N >> M;
-    Tree tree = Tree(N);
-    do {
-        cin >> name >> children;
-        parent = strtol(name.c_str(), end, 2);
-        do {
-            cin >> name;
-            label = strtol(name.c_str(), end, 2);
-            tree[parent].push_back(label);
-        } while (--children); // 该节点还有孩子
-    } while (--M); // 还有非叶子节点
-
-    // 进行层次遍历
-    map<int,int> answer;
+// 进行层次遍历,返回每一层的叶子节点数
+map<int,int, greater<>>
+solution(Tree & tree){
+    map<int,int, greater<>> answer;
     queue<item> q;
     int childLevel = 0;
     // 第一个节点在第一层
@@ -57,30 +41,48 @@ int Main(){
         }
         q.pop();
     }
-    if (answer.find(1) == answer.end()){
-        s += "0";
-    }
-    for (int i = 2; i <= childLevel; ++i) {
-        if (answer.find(i) == answer.end()){
-            s += " 0";
-        } else {
-            s += " " + to_string(answer[i]);
-        }
-
-    }
-    cout << s << endl;
-    return 0;
+    return answer;
 }
 
+
+string summit(){
+    string s, name;
+    char **end = nullptr;
+    // N:节点数, M:非叶子节点的数量, parent:父亲节点的编号,label:孩子节点编号, children:孩子的数量
+    int N = int(), M=0,  label = 0, parent=0, children = 0;
+    cin >> N >> M;
+    Tree tree = Tree(N,list<int>());
+    do {
+        cin >> name >> children;
+        parent = strtol(name.c_str(), end, 2);
+        do {
+            cin >> name;
+            label = strtol(name.c_str(), end, 2);
+            tree[parent].push_back(label);
+        } while (--children); // 该节点还有孩子
+    } while (--M); // 还有非叶子节点
+    map<int, int, greater<>> answer = solution(tree);
+    for(auto & it :answer){
+        s += to_string(it.second);
+    }
+    return s;
+}
+
+int Main(){
+    cout << summit();
+    return 0;
+}
 
 TEST(TestCase, test_PTA_1004) {
     using json = nlohmann::json;
     ifstream in("../PTA/PTA1004/data.json");
     json j;
     in >> j;
-    istringstream oss(to_string(j[0]["data"]));
-    cin.rdbuf(oss.rdbuf());
+//    istringstream oss(to_string(j[0]["data"]));
+////    cout << to_string(j[0]["data"]);
+////    printf("%s", j[0]["data"]);
+//    cin.rdbuf(oss.rdbuf());
+//    ASSERT_EQ(j[0]["answer"], summit());
+//    Main();
     ASSERT_EQ(j[0]["answer"], summit());
 }
-
-

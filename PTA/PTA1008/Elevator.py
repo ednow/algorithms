@@ -3,7 +3,7 @@ import unittest
 
 def summit(string):
     result = 0
-    q = list(map(int, string.split()))
+    q = list(map(int, string.split()))[1:]
     for now, destination in zip(([0]+q)[:-1], q):
         if now > destination:
             result += (now - destination) * 4

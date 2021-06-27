@@ -34,3 +34,5 @@
 同样的思路,python好好的
 
 果然没能好好掌握c++呢
+### 第二次提交
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210627220613.png)

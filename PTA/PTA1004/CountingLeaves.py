@@ -25,6 +25,8 @@ def solution(tree: Dict[int, List[int]]) -> str:
                 q.put((child, childLevel))
     for i in range(1, childLevel+1):
         result.append(str(answer.get(i, 0)))
+    if childLevel == 0:
+        result = ["1"]
     return " ".join(result)
 
 

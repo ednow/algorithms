@@ -138,6 +138,7 @@ class AdjacencyMatrix extends GraphAdapter {
         nodesInfo[1][node] = 0;
         // 还有未访问的点,而且是连通图
         while (IntStream.of(nodesInfo[0]).anyMatch(x -> x==0) && this.edgesNum > this.nodesNum - 1) {
+            // 扫描现在节点的邻居
             for (int neighbor = 0;neighbor <  this.nodesNum; neighbor++) {
                 // 有无访问过
                 if(nodesInfo[0][neighbor] == 1){
@@ -146,7 +147,7 @@ class AdjacencyMatrix extends GraphAdapter {
                 // 存在一条路径
                 if (this.matrix[node][neighbor] != 0){
                     int temp = nodesInfo[1][node] + this.matrix[node][neighbor];
-                    if (nodesInfo[1][neighbor] == -1) {
+                    if (nodesInfo[1][neighbor] == -1) { // 如果是无穷大
                         nodesInfo[1][neighbor] = temp;
                         nodesInfo[2][neighbor] = node;
                         continue;

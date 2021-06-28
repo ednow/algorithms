@@ -3,10 +3,16 @@ from functools import reduce
 import unittest
 
 
-def next_positive_in_result(result: List[List[int]]) -> Generator:
-    for i in range(len(result)):
+def next_positive_in_result(result: List[List[int]], now: int) -> int:
+    """
+
+    :param result:
+    :param now: 现在指针的位置
+    :return:
+    """
+    for i in range(now+1, len(result)):
         if sum(result[i]) >= 0:
-            yield i
+            return i
     return -1
 
 
@@ -36,42 +42,29 @@ def split_positive_negative(nums: List[int]) -> List[List[int]]:
 def merge_positive(result: List[List[int]]) -> None:
     # 试图合并正负序列
     isChange = False  # result列表有没有改变
-    nextPositiveIdx = next_positive_in_result(result)
-    nextTimes = 0
-    while True:
-        try:
-            idx1 = next(nextPositiveIdx)
-            nextTimes += 1
-            idx2 = next(nextPositiveIdx)
-            nextTimes += 1
-            merge = reduce(lambda a, b: a + sum(b), result[idx1:idx2+1], 0)
-            if sum(result[idx1]) < merge and sum(result[idx2]) < merge:
-                result.insert(idx1, reduce(lambda a, b: a + b, result[idx1:idx2+1], []))
-                del result[idx1+1:idx2+2]
-                isChange = True
-            else:
-                isChange = False
-                nextPositiveIdx = next_positive_in_result(result)
-                for i in range(nextTimes - 1):
-                    next(nextPositiveIdx)
-                nextTimes -= 1
-            if isChange:
-                nextPositiveIdx = next_positive_in_result(result)
-                nextTimes = 0
-        except StopIteration:
-            return None
+    now = next_positive_in_result(result, 0)
+    nextPositiveIdx = next_positive_in_result(result, now)
+    while nextPositiveIdx != -1:
+        merge = reduce(lambda a, b: a + sum(b), result[now:nextPositiveIdx+1], 0)
+        if sum(result[now]) < merge and sum(result[nextPositiveIdx]) < merge:
+            result.insert(now, reduce(lambda a, b: a + b, result[now:nextPositiveIdx+1], []))
+            del result[now+1:nextPositiveIdx+2]
+            isChange = True
+        else:
+            isChange = False
+            now = nextPositiveIdx
+            nextPositiveIdx = next_positive_in_result(result, now)
+        if isChange:
+            now = 0
+            nextPositiveIdx = next_positive_in_result(result, now)
 
 
 def find_max_sequence(result: List[List[int]]) -> int:
-    nextPositiveIdx = next_positive_in_result(result)
-    maxIdx = next(nextPositiveIdx)
-    while True:
-        try:
-            nextIdx = next(nextPositiveIdx)
-            if sum(result[nextIdx]) > sum(result[maxIdx]):
-                maxIdx = nextIdx
-        except StopIteration:
-            return maxIdx
+    maxIdx = 0
+    for i in range(len(result)):
+        if sum(result[i]) > sum(result[maxIdx]):
+            maxIdx = i
+    return maxIdx
 
 
 def solution(nums: List[int]) -> str:
@@ -97,7 +90,7 @@ class TestPTA1007(unittest.TestCase):
     # @unittest.skip
     def test_1007(self):
         for idx, testCase in enumerate(self.testCases):  # test all
-        # for idx, testCase in enumerate([self.testCases[19]]):
+        # for idx, testCase in enumerate([self.testCases[0]]):
             a, answer = testCase["data"], testCase["answer"]
             lines = a.split("\n")
             result = solution(list(map(int, lines[1].split())))

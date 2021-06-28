@@ -15,6 +15,12 @@
 ### 第一次提交
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210628133412.png)
 
+错误原因没有考虑经过$\color{green}{\text{前面一个点}}$到$\color{red}{\text{现在这个点}}$需要加上到$\color{green}{\text{前面一个点}}$的路径数（见data.json中的第三个测试数据）
+### 第二次提交
+#### 去掉typing和unittest
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/1624878909(1).jpg)
+#### 包含typing和unittest
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/36968004f0dccef0ad5da1bf4355776.png)
 
 ## java
 ### 测试点情况

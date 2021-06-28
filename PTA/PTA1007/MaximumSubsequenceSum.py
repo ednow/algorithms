@@ -16,15 +16,20 @@ def split_positive_negative(nums: List[int]) -> List[List[int]]:
     positive = False if nums[0] < 0 else True
     start = 0
     end = 0
+    isChange = False
     for i in range(1, len(nums)):
         iPositive = False if nums[i] < 0 else True
-        # 如果符号相等
+        # 如果符号不相等
         if not(positive is iPositive):
             result.append(nums[start:i].copy())
             start = i
             positive = not positive
+            isChange = True
     if start == len(nums) - 1:  # 考虑最后一位
         result.append(nums[-1:].copy())
+    if not isChange:
+        return [nums]
+
     return result
 
 
@@ -61,7 +66,7 @@ def find_max_sequence(result: List[List[int]]) -> int:
 
 def solution(nums: List[int]) -> str:
     result = split_positive_negative(nums)
-    if len(result) == 1:  # 全是负数
+    if len(result) == 1 and sum(result[0]) <= 0:  # 全是负数
         return f"0 {result[0][0]} {result[0][-1]}"
     merge_positive(result)
     idx = find_max_sequence(result)
@@ -81,8 +86,9 @@ class TestPTA1007(unittest.TestCase):
 
     # @unittest.skip
     def test_1007(self):
-        for idx, testCase in enumerate(self.testCases):
-            a, answer = list(testCase.values())
+        # for idx, testCase in enumerate(self.testCases):  # test all
+        for idx, testCase in enumerate([self.testCases[9]]):
+            a, answer = testCase["data"], testCase["answer"]
             lines = a.split("\n")
             result = solution(list(map(int, lines[1].split())))
             assert answer == result, f"{answer}, {result}"

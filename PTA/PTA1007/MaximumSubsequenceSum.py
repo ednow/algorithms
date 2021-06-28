@@ -1,16 +1,16 @@
-from typing import List, Dict
+from typing import List, Generator
 from functools import reduce
 import unittest
 
 
-def next_positive_in_result(result):
+def next_positive_in_result(result: List[List[int]]) -> Generator:
     for i in range(len(result)):
         if sum(result[i]) > 0:
             yield i
     return -1
 
 
-def split_positive_negative(nums):
+def split_positive_negative(nums: List[int]) -> List[List[int]]:
     result = []
     # 正负分割
     positive = False if nums[0] < 0 else True
@@ -28,7 +28,7 @@ def split_positive_negative(nums):
     return result
 
 
-def merge_positive(result):
+def merge_positive(result: List[List[int]]) -> None:
     # 试图合并正负序列
     isChange = False  # result列表有没有改变
     nextPositiveIdx = next_positive_in_result(result)
@@ -47,7 +47,7 @@ def merge_positive(result):
             return None
 
 
-def find_max_sequence(result):
+def find_max_sequence(result: List[List[int]]) -> int:
     nextPositiveIdx = next_positive_in_result(result)
     maxIdx = next(nextPositiveIdx)
     while True:

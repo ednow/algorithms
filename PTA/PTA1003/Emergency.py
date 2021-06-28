@@ -7,7 +7,7 @@ def solution(graph: List[List[int]], source: int, destination: int, teams: Dict[
     infos = {
         "isVisited": [False] * nodes,  # 访问位
         "shortestLen": [float("inf")] * nodes,  # 最短路径的长度
-        # [None] * nodes,  # 最短路径的父亲节点
+        "parent": [None] * nodes,  # 最短路径的父亲节点
         "shortestNum": [0] * nodes,  # 多少条最短路径
         "maxTeams": [0] * nodes  # 最大的资源数
     }
@@ -25,15 +25,17 @@ def solution(graph: List[List[int]], source: int, destination: int, teams: Dict[
         # 扫描现在节点的邻居
         for neighbor in range(nodes):
             # 存在一条边
-            if graph[now][neighbor] != 0:
+            if graph[now][neighbor] != 0 and not infos["isVisited"][neighbor]:
                 temp = infos["shortestLen"][now] + graph[now][neighbor]
                 if infos["shortestLen"][neighbor] > temp:  # 当前的路径更小，替换信息表中的路径
                     infos["shortestLen"][neighbor] = temp
                     totalTeams = infos["maxTeams"][now] + teams[neighbor]
                     if infos["maxTeams"][neighbor] < totalTeams:  # 如果这条最短路径上的物资更多
                         infos["maxTeams"][neighbor] = totalTeams
-                        # 如果相等且已经访问，最短路径数+1
-                elif infos["shortestLen"][neighbor] == temp and infos["isVisited"][neighbor] is True:
+                    infos['parent'][neighbor] = now
+                    infos["shortestNum"][neighbor] = 1  # 重置最短路径数
+                    # 如果相等且已经访问，且这条路径和之前的最短路径不一样,最短路径数+1
+                elif infos["shortestLen"][neighbor] == temp and infos["parent"][neighbor] != now:
                     infos["shortestNum"][neighbor] += 1
                     totalTeams = infos["maxTeams"][now] + teams[neighbor]
                     if infos["maxTeams"][neighbor] < totalTeams:  # 如果这条最短路径上的物资更多
@@ -47,11 +49,11 @@ def solution(graph: List[List[int]], source: int, destination: int, teams: Dict[
                 minIdx = i
                 minWeight = infos["shortestLen"][i]
 
-        # 更新当前的扫描头
+        # 更新visited节点
         infos["isVisited"][minIdx] = True
         now = minIdx
 
-    return f"{infos['shortestNum'][destination]} {infos['shortestLen'][destination]}"
+    return f"{infos['shortestNum'][destination]} {infos['maxTeams'][destination]}"
 
 
 def get_cities_roads_source_destination(string: str) -> List[int]:

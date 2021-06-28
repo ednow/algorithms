@@ -46,6 +46,8 @@ def merge_positive(result: List[List[int]]) -> None:
                 result.insert(idx1, reduce(lambda a, b: a + b, result[idx1:idx2+1], []))
                 del result[idx1+1:idx2+2]
                 isChange = True
+            else:
+                isChange = False
             if isChange:
                 nextPositiveIdx = next_positive_in_result(result)
         except StopIteration:
@@ -86,12 +88,13 @@ class TestPTA1007(unittest.TestCase):
 
     # @unittest.skip
     def test_1007(self):
-        for idx, testCase in enumerate(self.testCases):  # test all
-        # for idx, testCase in enumerate([self.testCases[11]]):
+        # for idx, testCase in enumerate(self.testCases):  # test all
+        for idx, testCase in enumerate([self.testCases[14]]):
             a, answer = testCase["data"], testCase["answer"]
             lines = a.split("\n")
             result = solution(list(map(int, lines[1].split())))
             assert answer == result, f"{answer}, {result}"
+            print(testCase["id"], "ok")
 
     @unittest.skip
     def test_next_positive_in_result(self):

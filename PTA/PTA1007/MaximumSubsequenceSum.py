@@ -93,4 +93,4 @@ class TestPTA1007(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(summit(), end="")
+    print(summit())

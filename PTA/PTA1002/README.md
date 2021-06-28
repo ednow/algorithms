@@ -2,6 +2,9 @@
 ## 考点
 + 输入输出
 
+## 问题重述
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210628134558.png)
+
 ## python
 [一个正确答案](https://blog.csdn.net/weixin_44575329/article/details/104362066)
 

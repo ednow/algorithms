@@ -25,8 +25,8 @@ def split_positive_negative(nums: List[int]) -> List[List[int]]:
             start = i
             positive = not positive
             isChange = True
-    if start == len(nums) - 1:  # 考虑最后一位
-        result.append(nums[-1:].copy())
+    # if start == len(nums) - 1:  # 考虑最后一位
+    result.append(nums[start:].copy())
     if not isChange:
         return [nums]
 
@@ -43,7 +43,7 @@ def merge_positive(result: List[List[int]]) -> None:
             idx2 = next(nextPositiveIdx)
             merge = reduce(lambda a, b: a + sum(b), result[idx1:idx2+1], 0)
             if sum(result[idx1]) < merge and sum(result[idx2]) < merge:
-                result.insert(idx1, result[idx1] + result[idx2])
+                result.insert(idx1, reduce(lambda a, b: a + b, result[idx1:idx2+1], []))
                 del result[idx1+1:idx2+2]
                 isChange = True
             if isChange:
@@ -87,7 +87,7 @@ class TestPTA1007(unittest.TestCase):
     # @unittest.skip
     def test_1007(self):
         # for idx, testCase in enumerate(self.testCases):  # test all
-        for idx, testCase in enumerate([self.testCases[9]]):
+        for idx, testCase in enumerate([self.testCases[11]]):
             a, answer = testCase["data"], testCase["answer"]
             lines = a.split("\n")
             result = solution(list(map(int, lines[1].split())))

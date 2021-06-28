@@ -4,50 +4,54 @@ from typing import Dict, List, Tuple
 
 def solution(graph: List[List[int]], source: int, destination: int, teams: Dict[int, int]) -> str:
     nodes = len(graph)
-    infos = [
-        [False] * nodes,  # 访问位
-        [float("inf")] * nodes,  # 最短路径的长度
+    infos = {
+        "isVisited": [False] * nodes,  # 访问位
+        "shortestLen": [float("inf")] * nodes,  # 最短路径的长度
         # [None] * nodes,  # 最短路径的父亲节点
-        [0] * nodes,  # 多少条最短路径
-        [0] * nodes  # 最大的资源数
-    ]
+        "shortestNum": [0] * nodes,  # 多少条最短路径
+        "maxTeams": [0] * nodes  # 最大的资源数
+    }
 
-    infos[0][source] = True  # 起点的访问位为True
-    infos[1][source] = 0  # 起点的最短路径的长度为0
-    infos[3][source] = teams[source]  # 起点的最大资源数为其自己的资源
+    infos["isVisited"][source] = True  # 起点的访问位为True
+    infos["shortestLen"][source] = 0  # 起点的最短路径的长度为0
+    infos["maxTeams"][source] = teams[source]  # 起点的最大资源数为其自己的资源
 
     # 现在扫描的节点
     now = source
 
     # 还有未访问的点
-    while not all(infos[0]):
+    while not all(infos["isVisited"]):
         # for i in zip(*infos) 转置的效率会怎么样
         # 扫描现在节点的邻居
         for neighbor in range(nodes):
             # 存在一条边
             if graph[now][neighbor] != 0:
-                temp = infos[1][now] + graph[now][neighbor]
-                if infos[1][neighbor] > temp:  # 当前的路径更小，替换信息表中的路径
-                    infos[1][neighbor] = temp
-                    totalTeams = infos[3][now] + teams[neighbor]
-                    if infos[3][neighbor] < totalTeams:  # 如果这条最短路径上的物资更多
-                        infos[3][neighbor] = totalTeams
-                elif infos[1][neighbor] == temp and infos[0][neighbor] is True:  # 如果相等且已经访问，最短路径数+1
-                    infos[2][neighbor] += 1
+                temp = infos["shortestLen"][now] + graph[now][neighbor]
+                if infos["shortestLen"][neighbor] > temp:  # 当前的路径更小，替换信息表中的路径
+                    infos["shortestLen"][neighbor] = temp
+                    totalTeams = infos["maxTeams"][now] + teams[neighbor]
+                    if infos["maxTeams"][neighbor] < totalTeams:  # 如果这条最短路径上的物资更多
+                        infos["maxTeams"][neighbor] = totalTeams
+                        # 如果相等且已经访问，最短路径数+1
+                elif infos["shortestLen"][neighbor] == temp and infos["isVisited"][neighbor] is True:
+                    infos["shortestNum"][neighbor] += 1
+                    totalTeams = infos["maxTeams"][now] + teams[neighbor]
+                    if infos["maxTeams"][neighbor] < totalTeams:  # 如果这条最短路径上的物资更多
+                        infos["maxTeams"][neighbor] = totalTeams
 
         #  找到当前未访问且路径最短的节点
         minIdx = -1
         minWeight = float("inf")
         for i in range(nodes):
-            if (infos[0][i] is False) and (infos[1][i] < minWeight):
+            if (infos["isVisited"][i] is False) and (infos["shortestLen"][i] < minWeight):
                 minIdx = i
-                minWeight = infos[1][i]
+                minWeight = infos["shortestLen"][i]
 
         # 更新当前的扫描头
-        infos[0][minIdx] = True
+        infos["isVisited"][minIdx] = True
         now = minIdx
 
-    return f"{infos[2][destination]} {infos[3][destination]}"
+    return f"{infos['shortestNum'][destination]} {infos['shortestLen'][destination]}"
 
 
 def get_cities_roads_source_destination(string: str) -> List[int]:
@@ -80,7 +84,7 @@ def add_edge(graph: List[List[int]], string: str) -> None:
 
 def summit() -> str:
     cities,  roads, source, destination = get_cities_roads_source_destination(input())
-    graph = [[0] * cities] * cities
+    graph = [[0] * cities for _ in range(cities)]
     teams = get_teams_size(input())
     while roads > 0:
         add_edge(graph, input())
@@ -107,7 +111,7 @@ class TestPTA1003(unittest.TestCase):
             a, answer = list(testCase.values())
             lines = a.split("\n")
             cities, roads, source, destination = get_cities_roads_source_destination(lines[0])
-            graph = [[0] * cities] * cities
+            graph = [[0] * cities for _ in range(cities)]
             teams = get_teams_size(lines[1])
             for i in lines[2:]:
                 add_edge(graph, i)

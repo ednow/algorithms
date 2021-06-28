@@ -86,8 +86,8 @@ class TestPTA1007(unittest.TestCase):
 
     # @unittest.skip
     def test_1007(self):
-        # for idx, testCase in enumerate(self.testCases):  # test all
-        for idx, testCase in enumerate([self.testCases[11]]):
+        for idx, testCase in enumerate(self.testCases):  # test all
+        # for idx, testCase in enumerate([self.testCases[11]]):
             a, answer = testCase["data"], testCase["answer"]
             lines = a.split("\n")
             result = solution(list(map(int, lines[1].split())))

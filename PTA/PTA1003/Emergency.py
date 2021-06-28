@@ -15,6 +15,7 @@ def solution(graph: List[List[int]], source: int, destination: int, teams: Dict[
     infos["isVisited"][source] = True  # 起点的访问位为True
     infos["shortestLen"][source] = 0  # 起点的最短路径的长度为0
     infos["maxTeams"][source] = teams[source]  # 起点的最大资源数为其自己的资源
+    infos["shortestNum"][source] = 1  # 起点的最短路径为1，为了保证后面的逻辑能够正常运行
 
     # 现在扫描的节点
     now = source
@@ -33,10 +34,10 @@ def solution(graph: List[List[int]], source: int, destination: int, teams: Dict[
                     if infos["maxTeams"][neighbor] < totalTeams:  # 如果这条最短路径上的物资更多
                         infos["maxTeams"][neighbor] = totalTeams
                     infos['parent'][neighbor] = now
-                    infos["shortestNum"][neighbor] = 1  # 重置最短路径数
+                    infos["shortestNum"][neighbor] = infos["shortestNum"][now]  # 重置最短路径数
                     # 如果相等且已经访问，且这条路径和之前的最短路径不一样,最短路径数+1
                 elif infos["shortestLen"][neighbor] == temp and infos["parent"][neighbor] != now:
-                    infos["shortestNum"][neighbor] += 1
+                    infos["shortestNum"][neighbor] += infos["shortestNum"][now]
                     totalTeams = infos["maxTeams"][now] + teams[neighbor]
                     if infos["maxTeams"][neighbor] < totalTeams:  # 如果这条最短路径上的物资更多
                         infos["maxTeams"][neighbor] = totalTeams

@@ -37,10 +37,13 @@ def merge_positive(result: List[List[int]]) -> None:
     # 试图合并正负序列
     isChange = False  # result列表有没有改变
     nextPositiveIdx = next_positive_in_result(result)
+    nextTimes = 0
     while True:
         try:
             idx1 = next(nextPositiveIdx)
+            nextTimes += 1
             idx2 = next(nextPositiveIdx)
+            nextTimes += 1
             merge = reduce(lambda a, b: a + sum(b), result[idx1:idx2+1], 0)
             if sum(result[idx1]) < merge and sum(result[idx2]) < merge:
                 result.insert(idx1, reduce(lambda a, b: a + b, result[idx1:idx2+1], []))
@@ -48,8 +51,13 @@ def merge_positive(result: List[List[int]]) -> None:
                 isChange = True
             else:
                 isChange = False
+                nextPositiveIdx = next_positive_in_result(result)
+                for i in range(nextTimes - 1):
+                    next(nextPositiveIdx)
+                nextTimes -= 1
             if isChange:
                 nextPositiveIdx = next_positive_in_result(result)
+                nextTimes = 0
         except StopIteration:
             return None
 
@@ -88,8 +96,8 @@ class TestPTA1007(unittest.TestCase):
 
     # @unittest.skip
     def test_1007(self):
-        # for idx, testCase in enumerate(self.testCases):  # test all
-        for idx, testCase in enumerate([self.testCases[21]]):
+        for idx, testCase in enumerate(self.testCases):  # test all
+        # for idx, testCase in enumerate([self.testCases[19]]):
             a, answer = testCase["data"], testCase["answer"]
             lines = a.split("\n")
             result = solution(list(map(int, lines[1].split())))

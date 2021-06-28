@@ -17,14 +17,12 @@ def split_positive_negative(nums):
     start = 0
     end = 0
     for i in range(1, len(nums)):
-        iPositive = False if nums[0] < 0 else True
+        iPositive = False if nums[i] < 0 else True
         # 如果符号相等
-        if positive is iPositive:
-            end = i
-        else:
-            result.append(nums[start:end].copy())
+        if not(positive is iPositive):
+            result.append(nums[start:i].copy())
             start = i
-            positive = not iPositive
+            positive = not positive
     if start == len(nums) - 1:  # 考虑最后一位
         result.append(nums[-1:].copy())
     return result
@@ -42,10 +40,11 @@ def merge_positive(result):
             if sum(result[idx1]) < merge and sum(result[idx2]) < merge:
                 result.insert(idx1, result[idx1] + result[idx2])
                 del result[idx1+1:idx2+2]
-            isChange = True
-            nextPositiveIdx = next_positive_in_result(result)
+                isChange = True
+            if isChange:
+                nextPositiveIdx = next_positive_in_result(result)
         except StopIteration:
-            return isChange
+            return None
 
 
 def find_max_sequence(result):
@@ -64,7 +63,7 @@ def solution(nums: List[int]) -> str:
     result = split_positive_negative(nums)
     if len(result) == 1:  # 全是负数
         return f"0 {result[0][0]} {result[0][-1]}"
-    isChange = merge_positive(result)
+    merge_positive(result)
     idx = find_max_sequence(result)
     return f"{sum(result[idx])} {result[idx][0]} {result[idx][-1]}"
 

@@ -5,7 +5,7 @@ import unittest
 
 def next_positive_in_result(result: List[List[int]]) -> Generator:
     for i in range(len(result)):
-        if sum(result[i]) > 0:
+        if sum(result[i]) >= 0:
             yield i
     return -1
 
@@ -89,7 +89,7 @@ class TestPTA1007(unittest.TestCase):
     # @unittest.skip
     def test_1007(self):
         # for idx, testCase in enumerate(self.testCases):  # test all
-        for idx, testCase in enumerate([self.testCases[14]]):
+        for idx, testCase in enumerate([self.testCases[21]]):
             a, answer = testCase["data"], testCase["answer"]
             lines = a.split("\n")
             result = solution(list(map(int, lines[1].split())))

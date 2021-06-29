@@ -7,6 +7,7 @@
 #include "list"
 #include "vector"
 #include <iostream>
+#include <string>
 using namespace std;
 
 // 将int定义为long long int

@@ -9,8 +9,24 @@ cmake_minimum_required(VERSION 3.14)
 
 set(CMAKE_CXX_STANDARD 14)
 
+# add_compile_options("/std:c++latest")
+#if (MSVC_VERSION GREATER_EQUAL "1900")
+#    include(CheckCXXCompilerFlag)
+#    CHECK_CXX_COMPILER_FLAG("/std:c++latest" _cpp_latest_flag_supported)
+#    if (_cpp_latest_flag_supported)
+#        add_compile_options("/std:c++latest")
+#    endif()
+#endif()
+
+#if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 16)
+#    set(CMAKE_CXX20_STANDARD_COMPILE_OPTION "-std:c++latest")
+#    set(CMAKE_CXX20_EXTENSION_COMPILE_OPTION "-std:c++latest")
+#  endif()
+
+
+
 add_executable(algorithms
-        MISC/recursion_elimination/recursion_elimination.cpp PTA/PTA1001/A_plus_B_Format.cpp main.cpp PTA/PTA1002/A_plus_B_for_Polynomials.cpp PTA/PTA1004/Slim.cpp PTA/PTA1004/CountingLeaves.cpp)
+        MISC/recursion_elimination/recursion_elimination.cpp PTA/PTA1001/A_plus_B_Format.cpp main.cpp PTA/PTA1002/A_plus_B_for_Polynomials.cpp PTA/PTA1004/Slim.cpp PTA/PTA1004/CountingLeaves.cpp "temp.cpp")
 
 # 添加头文件
 include_directories(

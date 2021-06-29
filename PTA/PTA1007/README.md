@@ -43,7 +43,7 @@ $\xrightarrow{\text{summit}}$读取输入的字符串,处理成`List[int]`$\xrig
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210629150348.png)
 
 ### 6
-发现原来是题目理解错了，他要求的不是最长的序列。
+发现原来是题目理解错了，他要求的不是最长的序列。$\color{red}{\text{读题很重要}}$
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210629171544.png)
 
 ## 参考文献

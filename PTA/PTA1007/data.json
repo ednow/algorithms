@@ -47,7 +47,7 @@
   {
     "id": 10,
     "data": "10\n1 1 0",
-    "answer": "2 1 0"
+    "answer": "2 1 1"
   },
   {
     "id": 11,
@@ -117,7 +117,14 @@
   {
     "id": 24,
     "data": "5\n-10 11 -5 -6 13",
-    "answer": "13 11 13"
+    "answer": "13 11 13",
+    "description": "保证最大，且i最小"
+  },
+  {
+    "id": "24-2",
+    "data": "5\n-10 11 -5 -6 13 0",
+    "answer": "13 11 13",
+    "description": "保证最大，且j最小，尾是0"
   },
   {
     "id": 25,
@@ -133,7 +140,7 @@
   {
     "id": 27,
     "data": "5\n0 -1 0 0 1 2 -1 1 0",
-    "answer": "3 0 0",
+    "answer": "3 0 2",
     "description": "并列和对应相同i但是不同j，即尾是0"
   },
   {
@@ -159,5 +166,17 @@
       "data": "5\n0 9 -9 0 9",
       "answer": "9 0 9",
       "source": "https://blog.csdn.net/Joyceyang_999/article/details/81872970"
+  },
+  {
+      "id": 32,
+      "data": "5\n1 -1 2",
+      "answer": "2 1 2",
+      "description": "readme中的例子"
+  },
+  {
+      "id": 32,
+      "data": "5\n1 -1 2",
+      "answer": "2 1 2",
+      "description": "readme中的例子"
   }
 ]

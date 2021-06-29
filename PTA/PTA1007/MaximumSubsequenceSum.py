@@ -1,11 +1,10 @@
-from typing import List, Generator
+from typing import List
 from functools import reduce
 import unittest
 
 
 def next_positive_in_result(result: List[List[int]], now: int) -> int:
     """
-
     :param result:
     :param now: 现在指针的位置
     :return:
@@ -32,11 +31,18 @@ def split_positive_negative(nums: List[int]) -> List[List[int]]:
             positive = not positive
             isChange = True
     # if start == len(nums) - 1:  # 考虑最后一位
-    result.append(nums[start:].copy())
-    if not isChange:
+    result.append(nums[start:].copy())  # 帮前面的循环收尾
+    if not isChange:  # 符号都一样
         return [nums]
 
     return result
+
+
+def delete_zero_at_last(l: List[int]) -> None:
+    if sum(l) == 0:  # 只有0不考虑
+        return None
+    while l[-1] == 0:
+        del l[-1]
 
 
 def merge_positive(result: List[List[int]]) -> None:
@@ -48,7 +54,7 @@ def merge_positive(result: List[List[int]]) -> None:
         if nextPositiveIdx == -1:
             break
         merge = reduce(lambda a, b: a + sum(b), result[now:nextPositiveIdx+1], 0)
-        if sum(result[now]) <= merge and sum(result[nextPositiveIdx]) <= merge:
+        if sum(result[now]) < merge and sum(result[nextPositiveIdx]) <= merge:  # 保证i最小
             result.insert(now, reduce(lambda a, b: a + b, result[now:nextPositiveIdx+1], []))
             del result[now+1:nextPositiveIdx+2]
             isChange = True
@@ -70,11 +76,17 @@ def find_max_sequence(result: List[List[int]]) -> int:
 
 
 def solution(nums: List[int]) -> str:
+    """
+    :param nums:
+    :return: "maxSum maxSequenceFirstItem maxSequenceLastItem"
+    """
     result = split_positive_negative(nums)
     if len(result) == 1 and sum(result[0]) <= 0:  # 全是负数
         return f"0 {result[0][0]} {result[0][-1]}"
     merge_positive(result)
     idx = find_max_sequence(result)
+    # fix: id="24-2"
+    delete_zero_at_last(result[idx])
     return f"{sum(result[idx])} {result[idx][0]} {result[idx][-1]}"
 
 

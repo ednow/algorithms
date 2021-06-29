@@ -7,8 +7,8 @@
 
 ## python
 ### 思路
-${\textstyle\unicode{x2460}}$  将一个`[1,-1,2]`,按照正负拆分为子列表`[[1],[-1],[2]]`(result)。
-> $\color{red}{\text{正数列表}}$：`[1]`,`[2]`
+${\textstyle\unicode{x2460}}$  将一个`[1,-1,2]`(data.json中id=32的测试数据),按照正负拆分为子列表`[[1],[-1],[2]]`。
+> $\color{red}{\text{正数列表}}$：`[1]`,`[2]`  
 > $\color{green}{\text{负数列表}}$:`[-1]`
 
 
@@ -42,8 +42,15 @@ $\xrightarrow{\text{summit}}$读取输入的字符串,处理成`List[int]`$\xrig
 让merge_positive在result更新之后，记住merge的位置，不再从0开始扫描，不再TLE
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210629150348.png)
 
+### 6
+发现原来是题目理解错了，他要求的不是最长的序列。
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210629171544.png)
+
 ## 参考文献
 [解析](https://blog.csdn.net/qq_43647628/article/details/104930219)
+
 [解析2](https://blog.csdn.net/S_999999/article/details/88043852)
+
 [测试数据参考](https://blog.csdn.net/qq_42672532/article/details/102641396)
+
 [解析3](https://blog.csdn.net/Joyceyang_999/article/details/81872970)

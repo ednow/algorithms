@@ -57,7 +57,7 @@ def merge_positive(result: List[List[int]]) -> None:
             now = nextPositiveIdx
             nextPositiveIdx = next_positive_in_result(result, now)
         if isChange:
-            now = 0
+            now = nextPositiveIdx
             nextPositiveIdx = next_positive_in_result(result, now)
 
 

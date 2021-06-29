@@ -23,6 +23,7 @@ set(CMAKE_CXX_STANDARD 14)
 #    set(CMAKE_CXX20_EXTENSION_COMPILE_OPTION "-std:c++latest")
 #  endif()
 
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static=libstdc++")
 
 
 add_executable(algorithms

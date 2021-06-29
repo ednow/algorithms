@@ -23,6 +23,11 @@
 
 ### 4
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210629011516.png)
+
+### 5
+让merge_positive在result更新之后，记住merge的位置，不再从0开始扫描，不再TLE
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210629150348.png)
+
 ## 参考文献
 [解析](https://blog.csdn.net/qq_43647628/article/details/104930219)
 [解析2](https://blog.csdn.net/S_999999/article/details/88043852)

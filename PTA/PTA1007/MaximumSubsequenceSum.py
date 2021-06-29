@@ -42,7 +42,7 @@ def split_positive_negative(nums: List[int]) -> List[List[int]]:
 def merge_positive(result: List[List[int]]) -> None:
     # 试图合并正负序列
     isChange = False  # result列表有没有改变
-    now = next_positive_in_result(result, 0)
+    now = 0 if sum(result[0]) > 0 else next_positive_in_result(result, 0)
     while now != -1:
         nextPositiveIdx = next_positive_in_result(result, now)
         if nextPositiveIdx == -1:
@@ -92,7 +92,7 @@ class TestPTA1007(unittest.TestCase):
     # @unittest.skip
     def test_1007(self):
         for idx, testCase in enumerate(self.testCases):  # test all
-        # for idx, testCase in enumerate([self.testCases[21]]):
+        # for idx, testCase in enumerate([self.testCases[27]]):
             a, answer = testCase["data"], testCase["answer"]
             lines = a.split("\n")
             result = solution(list(map(int, lines[1].split())))

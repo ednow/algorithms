@@ -135,5 +135,29 @@
     "data": "5\n0 -1 0 0 1 2 -1 1 0",
     "answer": "3 0 0",
     "description": "并列和对应相同i但是不同j，即尾是0"
+  },
+  {
+    "id": 28,
+    "data": "5\n5 4 -1 7 8",
+    "answer": "23 5 8",
+    "description": "https://leetcode.com/problems/maximum-subarray/"
+  },
+  {
+      "id": 29,
+      "data": "5\n-9 9 -9 -9 9",
+      "answer": "9 9 9",
+      "source": "https://blog.csdn.net/Joyceyang_999/article/details/81872970"
+  },
+  {
+      "id": 30,
+      "data": "5\n9 -9 -9 -9 9",
+      "answer": "9 9 9",
+      "source": "https://blog.csdn.net/Joyceyang_999/article/details/81872970"
+  },
+  {
+      "id": 31,
+      "data": "5\n0 9 -9 0 9",
+      "answer": "9 0 9",
+      "source": "https://blog.csdn.net/Joyceyang_999/article/details/81872970"
   }
 ]

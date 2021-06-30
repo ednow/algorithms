@@ -1,7 +1,7 @@
 //
 // Created by ednow on 2021/6/25.
 //
-
+#include "gtest/gtest.h"
 #include "queue"
 #include "map"
 #include "list"
@@ -19,7 +19,7 @@ typedef struct queueItem {
     int level;
 }item; //{节点编号:层数}
 
-int main() {
+int SlimMain() {
     string s, name;
     char** end = nullptr;
     // N:节点数, M:非叶子节点的数量, parent:父亲节点的编号,label:孩子节点编号, children:孩子的数量
@@ -83,3 +83,6 @@ int main() {
 
 
 
+//TEST(TestCase, test_PTA_1004_slim) {
+//    Main();
+//}

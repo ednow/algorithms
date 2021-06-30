@@ -4,6 +4,7 @@
 #include <fstream>
 #include "gtest/gtest.h"
 #include "nlohmann/json.hpp"
+#include "utils.h"
 
 #include "queue"
 #include "map"
@@ -21,22 +22,23 @@ typedef struct queueItem {
 }item; //{节点编号:层数}
 
 // 进行层次遍历,返回每一层的叶子节点数
-map<int,int, greater<>>
-solution(Tree & tree){
-    map<int,int, greater<>> answer;
+map<int,int>
+solution(Tree & tree, int & childLevel){
+    map<int, int> answer;
     queue<item> q;
-    int childLevel = 0;
+//    int childLevel = 0;
     // 第一个节点在第一层
-    item head = {.label=1, .level=1};
+    item head = { .label = 1, .level = 1 };
     q.push(head); // 先push根节点进去
-    while (!q.empty()){
+    while (!q.empty()) {
         head = q.front(); // 队列的头元素
-        if (tree[head.label].empty()){ // 检查头元素是不是叶子节点
+        if (tree[head.label].empty()) { // 检查头元素是不是叶子节点
             answer[head.level]++; // 头元素所在层的叶子节点数+1
-        } else { // 让头元素的孩子节点进入队列
+        }
+        else { // 让头元素的孩子节点进入队列
             childLevel = head.level + 1;
-            for(auto & child : tree[head.label]){
-                q.push(item{.label=child, .level=childLevel});
+            for (auto& child : tree[head.label]) {
+                q.push(item{ .label = child, .level = childLevel });
             }
         }
         q.pop();
@@ -47,28 +49,44 @@ solution(Tree & tree){
 
 string summit(){
     string s, name;
-    char **end = nullptr;
+    char** end = nullptr;
     // N:节点数, M:非叶子节点的数量, parent:父亲节点的编号,label:孩子节点编号, children:孩子的数量
-    int N = int(), M=0,  label = 0, parent=0, children = 0;
+    int N = 0, M = 0, label = 0, parent = 0, children = 0, childLevel = 0;
     cin >> N >> M;
-    Tree tree = Tree(N,list<int>());
-    do {
+    //    scanf("%d %d", &N, &M);
+    Tree tree = Tree(N + 1);
+    while (M-- > 0) {
         cin >> name >> children;
-        parent = strtol(name.c_str(), end, 2);
+
+        parent = strtol(name.c_str(), end, 10);
         do {
             cin >> name;
-            label = strtol(name.c_str(), end, 2);
+            label = strtol(name.c_str(), end, 10);
             tree[parent].push_back(label);
-        } while (--children); // 该节点还有孩子
-    } while (--M); // 还有非叶子节点
-    map<int, int, greater<>> answer = solution(tree);
-    for(auto & it :answer){
-        s += to_string(it.second);
+        } while (--children > 0); // 该节点还有孩子
+    } ; // 还有非叶子节点
+
+    map<int, int> answer = solution(tree, childLevel );
+    if (answer.find(1) == answer.end()) {
+        s += "0";
+    }
+    for (int i = 2; i <= childLevel; ++i) {
+        if (answer.find(i) == answer.end()) {
+            s += " 0";
+        }
+        else {
+            s += " " + to_string(answer[i]);
+        }
+
+    }
+    if (childLevel == 0)
+    {
+        s += "1";
     }
     return s;
 }
 
-int Main(){
+int CountingLeavesMain(){
     cout << summit();
     return 0;
 }
@@ -78,11 +96,13 @@ TEST(TestCase, test_PTA_1004) {
     ifstream in("../PTA/PTA1004/data.json");
     json j;
     in >> j;
-//    istringstream oss(to_string(j[0]["data"]));
-////    cout << to_string(j[0]["data"]);
-////    printf("%s", j[0]["data"]);
-//    cin.rdbuf(oss.rdbuf());
-//    ASSERT_EQ(j[0]["answer"], summit());
-//    Main();
-    ASSERT_EQ(j[0]["answer"], summit());
+    for (auto & testcase :j) {
+        cout << testcase["data"];
+        string s = to_string(testcase["data"]);
+        s = s.substr(1, s.length() - 2);
+        replace_all_distinct(s, "\\n", " ");
+        istringstream oss(s);
+        cin.rdbuf(oss.rdbuf());
+        ASSERT_EQ(testcase["answer"], summit());
+    }
 }

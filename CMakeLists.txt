@@ -24,15 +24,19 @@ set(CMAKE_CXX_STANDARD 14)
 #  endif()
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static=libstdc++")
-
+file(GLOB_RECURSE SOURCES
+        header-folder/*.h
+        source-folder/*.cpp
+        )
 
 add_executable(algorithms
-        MISC/recursion_elimination/recursion_elimination.cpp PTA/PTA1001/A_plus_B_Format.cpp main.cpp PTA/PTA1002/A_plus_B_for_Polynomials.cpp PTA/PTA1004/Slim.cpp PTA/PTA1004/CountingLeaves.cpp "temp.cpp")
+        MISC/recursion_elimination/recursion_elimination.cpp PTA/PTA1001/A_plus_B_Format.cpp main.cpp PTA/PTA1002/A_plus_B_for_Polynomials.cpp PTA/PTA1004/Slim.cpp PTA/PTA1004/CountingLeaves.cpp utils/utils.cpp utils/utils.h)
 
 # 添加头文件
 include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/googletest/include
         ${CMAKE_CURRENT_SOURCE_DIR}/json/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/utils
 )
 
 # 添加下级目录，生成.a文件
@@ -51,3 +55,4 @@ link_directories(
 
 # 将目标文件与库文件进行链接
 target_link_libraries(algorithms gtest nlohmann_json::nlohmann_json)
+

@@ -11,6 +11,9 @@ googletest
 temp.*
 *.temp
 
+# 测试配置文件
+config.json
+
 # 字节码文件
 */__pycache__
 */*/__pycache__

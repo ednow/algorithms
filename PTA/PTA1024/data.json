@@ -20,5 +20,11 @@
     "data": "131 3",
     "answer": "131\n0",
     "descriptions": "本身是回文，step为0"
+  },
+  {
+    "id": "5",
+    "data": "11 3",
+    "answer": "11\n0",
+    "descriptions": "本身是回文，step为0"
   }
 ]

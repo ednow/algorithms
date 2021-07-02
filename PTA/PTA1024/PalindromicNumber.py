@@ -5,7 +5,7 @@ def check_is_num_palindromic(num: int) -> bool:
     numStr = str(num)
     numLen = len(numStr)
     for i in range(int(numLen/2)):
-        if numStr[i] != numStr[numLen-1]:
+        if numStr[i] != numStr[numLen - i - 1]:
             return False
     return True
 

@@ -26,5 +26,11 @@
     "data": "11 3",
     "answer": "11\n0",
     "descriptions": "本身是回文，step为0"
+  },
+  {
+    "id": "6",
+    "data": "123321 3",
+    "answer": "123321\n0",
+    "descriptions": "本身是回文，step为0，判断回文的策略出错了"
   }
 ]

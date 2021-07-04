@@ -51,4 +51,4 @@ class TestPTA1035(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    print(summit(), end="")
+    summit()

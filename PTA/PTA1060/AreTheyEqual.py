@@ -3,6 +3,9 @@ import sys
 from io import StringIO
 from typing import Tuple
 
+# def delete_zero_at_tail(num: str):
+#     pass
+
 
 def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
     """
@@ -17,13 +20,13 @@ def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
     if numLen >= significant:
         result += num[:significant]
     else:
-        result += num + "0" * numLen
+        result += num + "0" * (significant - numLen)
 
     if floatPos == '-1':
         floatPos = str(numLen)
 
     if int(num) == 0:
-        floatPos = str(0)
+        floatPos = '0'
 
     return result, floatPos
 

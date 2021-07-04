@@ -2,7 +2,7 @@ import unittest
 import sys
 from io import StringIO
 from typing import Tuple
-
+import re
 # def delete_zero_at_tail(num: str):
 #     pass
 
@@ -15,10 +15,19 @@ def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
     """
     result = ""
     floatPos = str(num.find("."))
+    notFloat = False  # 有没有小数点
+    if floatPos == '-1':
+        notFloat = True
+
     num = num.replace(".", "")
     if floatPos == '1' and num[0] == "0":  # id=6，如果是0.xxx，
         num = num[1:]  # 切片掉前面的0
-        floatPos = '0'
+        if num[0] == "0":  # id=11，如果是0.0..0xxx，
+            notZeroPos = re.search(r'[^0]', num).start()
+            floatPos = f'-{notZeroPos}'
+            num = num[notZeroPos:]
+        else:
+            floatPos = '0'
 
     numLen = len(num)
     if numLen >= significant:
@@ -26,7 +35,7 @@ def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
     else:
         result += num + "0" * (significant - numLen)
 
-    if floatPos == '-1':  # 如果没有小数点，幂次是字符串的长度
+    if notFloat:  # 如果没有小数点，幂次是字符串的长度
         floatPos = str(numLen)
 
     if int(num) == 0:  # 如果这个数字是0，幂次是0

@@ -16,16 +16,20 @@ def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
     result = ""
     floatPos = str(num.find("."))
     num = num.replace(".", "")
+    if floatPos == '1' and num[0] == "0":  # id=6，如果是0.xxx，
+        num = num[1:]  # 切片掉前面的0
+        floatPos = '0'
+
     numLen = len(num)
     if numLen >= significant:
         result += num[:significant]
     else:
         result += num + "0" * (significant - numLen)
 
-    if floatPos == '-1':
+    if floatPos == '-1':  # 如果没有小数点，幂次是字符串的长度
         floatPos = str(numLen)
 
-    if int(num) == 0:
+    if int(num) == 0:  # 如果这个数字是0，幂次是0
         floatPos = '0'
 
     return result, floatPos

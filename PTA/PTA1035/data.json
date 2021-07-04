@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "data": "3\nTeam000002 Rlsp0dfa\nTeam000003 perfectpwd\nTeam000001 R1spOdfa",
+    "answer": "2\nTeam000002 RLsp%dfa\nTeam000001 R@spodfa\n",
+    "description": "问题给的案例"
+  },
+  {
+    "id": "2",
+    "data": "1\nteam110 abcdefg332",
+    "answer": "There is 1 account and no account is modified\n",
+    "description": "问题给的案例"
+  },
+  {
+    "id": "3",
+    "data": "2\nteam110 abcdefg222\nteam220 abcdefg333",
+    "answer": "There are 2 accounts and no account is modified\n",
+    "description": "问题给的案例"
+  }
+]

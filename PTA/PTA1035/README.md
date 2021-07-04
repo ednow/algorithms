@@ -14,5 +14,13 @@
 + `dict.items()`可以直接迭代
 
 ### pta输出了None？
+忘记了新的架构已经变了
+
+<details>
+    <summary>Details</summary>
+
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210704212308.png)
+
+</details>
+
 

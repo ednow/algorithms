@@ -1,0 +1,65 @@
+import unittest
+import sys
+from io import StringIO
+from typing import Tuple
+
+
+def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
+    """
+    :param num: 数字的字符串
+    :param significant: 保留的位数
+    :return: 有效位数， 幂
+    """
+    result = ""
+    floatPos = str(num.find("."))
+    num = num.replace(".", "")
+    numLen = len(num)
+    if numLen >= significant:
+        result += num[:significant]
+    else:
+        result += num + "0" * numLen
+
+    if floatPos == '-1':
+        floatPos = str(numLen)
+
+    if int(num) == 0:
+        floatPos = str(0)
+
+    return result, floatPos
+
+
+def summit():
+    digits = input().split()
+    significant, digits = int(digits[0]), digits[1:]
+    choppedDigitsList = [separate_digits_power(i, significant) for i in digits]
+    choppedDigits = set(choppedDigitsList)
+    if len(choppedDigits) == 1:
+        print(f"YES 0.{list(choppedDigits)[0][0]}*10^{list(choppedDigits)[0][1]}")
+    else:
+        print(f"NO {' '.join(['0.' + i[0] + '*10^' + str(i[1]) for i in choppedDigitsList])}")
+
+
+class TestPTA1060(unittest.TestCase):
+    def setUp(self) -> None:
+        import json
+        with open("data.json", encoding="utf-8", mode="r") as f:
+            self.testCases = json.load(f)
+
+        with open("config.json", encoding="utf-8", mode="r") as f:
+            self.config = json.load(f)
+
+        if any(list(self.config.values())):
+            self.testCases = list(filter(lambda x: x["id"] == self.config["testCaseId"], self.testCases))
+
+    def test_pta101060(self):
+        for idx, testCase in enumerate(self.testCases):
+            a, answer = testCase["data"], testCase["answer"]
+            sys.stdin = StringIO(a)
+            f = StringIO()
+            sys.stdout = f
+            summit()
+            assert answer == f.getvalue(), f"{testCase['id']}right:{answer}, my:{f.getvalue()}"
+
+
+if __name__ == '__main__':
+    summit()

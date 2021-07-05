@@ -22,6 +22,9 @@ def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
         else:
             num = "0" + num[num.find("."):]  # 将000.xxx转换为0.xxx
         floatPos = str(num.find("."))
+    if re.search(r'[^0]', num[:num.find(".")]) is not None and num[0] == '0':  # id=13-1,整数前面有多余的0，后面有多余的0
+        num = num[re.search(r'[^0]', num[:num.find(".")]).start():]
+        floatPos = str(num.find("."))
 
     if float(num) == 0:  # 如果这个数字是0，幂次是0
         return '0' * significant, '0'

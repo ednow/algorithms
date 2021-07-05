@@ -16,7 +16,10 @@ def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
     result = ""
     floatPos = str(num.find("."))
     notFloat = False  # 有没有小数点
-    if floatPos == '-1':
+    if float(num) == 0:  # 如果这个数字是0，幂次是0
+        return '0' * significant, '0'
+
+    if floatPos == '-1':  # 没有小数点
         notFloat = True
 
     num = num.replace(".", "")
@@ -37,9 +40,6 @@ def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
 
     if notFloat:  # 如果没有小数点，幂次是字符串的长度
         floatPos = str(numLen)
-
-    if int(num) == 0:  # 如果这个数字是0，幂次是0
-        floatPos = '0'
 
     return result, floatPos
 

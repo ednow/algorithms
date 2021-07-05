@@ -17,7 +17,10 @@ def separate_digits_power(num: str, significant: int) -> Tuple[str, str]:
     floatPos = str(num.find("."))
     notFloat = False  # 有没有小数点
     if re.search(r'[^0]', num[:num.find(".")]) is None and num[0] == '0':  # id=12,如果这个数字前面有多余的0
-        num = "0" + num[num.find("."):]  # 将000.xxx转换为0.xxx
+        if num.find(".") == -1:  # 是小数还是整数
+            num = num[num.find("."):]  # 将000xxx转化位xxx
+        else:
+            num = "0" + num[num.find("."):]  # 将000.xxx转换为0.xxx
         floatPos = str(num.find("."))
 
     if float(num) == 0:  # 如果这个数字是0，幂次是0

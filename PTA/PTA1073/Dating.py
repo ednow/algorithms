@@ -36,8 +36,6 @@ def summit():
         if a == b:
             if a in alphabet:
                 minutes = idx
-                break
-
     print(f"{week} {hours:>02d}:{minutes:>02d}")
 
 

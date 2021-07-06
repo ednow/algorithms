@@ -1,8 +1,14 @@
 [
   {
     "id": "1",
-    "data": "3485djDkxh4hhGE \n2984akDfkkkkggEdsb \ns&hgsfdk \nd&Hyscvnm",
-    "answer": "THU 14:04\n",
+    "data": "+1.23400E-03",
+    "answer": "0.00123400\n",
+    "description": "问题给的案例"
+  },
+  {
+    "id": "2",
+    "data": "-1.2E+10",
+    "answer": "-12000000000\n",
     "description": "问题给的案例"
   }
 ]

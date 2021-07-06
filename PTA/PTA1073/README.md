@@ -4,10 +4,12 @@
 
 ## 问题重述
 
+<details>
+    <summary>Details</summary>
+
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210706000421.png)
+</details>
 
 
-
-+ 读题设置了障碍,the first common capital English letter:共同的大写字母
-+ 本题用c*语言更合适,直接对字母加减就得到了排序
 
 ## python

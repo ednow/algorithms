@@ -44,7 +44,7 @@ class Test:
             sys.stdout = f
             getattr(module, self.entry)()
             assert answer == f.getvalue(), repr(
-                f"error in id={testCase['id']},expected:{answer}, however:{f.getvalue()}")
+                f"error in id={testCase['id']},data:{testCase['data']},expected:{answer}, however:{f.getvalue()}")
             sys.stdout = stdoutBackup
             print(f"pass:id = {testCase['id']}")
 

@@ -1,6 +1,3 @@
-import unittest
-
-
 def check_is_num_palindromic(numStr: str) -> bool:
     numLen = len(numStr)
     for i in range(int(numLen/2)):
@@ -13,7 +10,8 @@ def reverse(numStr: str) -> str:
     return "".join(reversed([i for i in numStr]))
 
 
-def summit(string) -> str:
+def summit():
+    string = input()
     num, step = string.split()
     remainStep = step = int(step)
     carry = 0
@@ -33,24 +31,5 @@ def summit(string) -> str:
     return f"{num}\n{step - remainStep}"
 
 
-class TestPTA1024_2(unittest.TestCase):
-    def setUp(self) -> None:
-        import json
-        with open("data.json", encoding="utf-8", mode="r") as f:
-            self.testCases = json.load(f)
-        with open("config.json", encoding="utf-8", mode="r") as f:
-            self.config = json.load(f)
-
-        if any(list(self.config.values())):
-            self.testCases = list(filter(lambda x: x["id"] == self.config["testCaseId"], self.testCases))
-
-    def test_pta1024_2(self):
-        for idx, testCase in enumerate(self.testCases):
-            a, answer = testCase["data"], testCase["answer"]
-            result = summit(a)
-            assert answer == result, f"id={testCase['id']}\n{answer},\n{result}"
-            print(testCase['id'])
-
-
 if __name__ == '__main__':
-    print(summit(input()))
+    summit()

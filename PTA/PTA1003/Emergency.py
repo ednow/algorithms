@@ -1,5 +1,4 @@
-import unittest
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 
 def solution(graph: List[List[int]], source: int, destination: int, teams: Dict[int, int]) -> str:
@@ -92,36 +91,8 @@ def summit() -> str:
     while roads > 0:
         add_edge(graph, input())
         roads -= 1
-    return solution(graph, source, destination, teams)
-
-
-class TestPTA1003(unittest.TestCase):
-    def setUp(self) -> None:
-        import json
-        with open("data.json", encoding="utf-8", mode="r") as f:
-            self.testCases = json.load(f)
-
-    def modify(self, a):
-        a["1"] = 1
-
-    def test_modify(self):
-        a = {}
-        self.modify(a)
-        assert a["1"] == 1, f"{a['1']}"
-
-    def test_pta1003(self):
-        for idx, testCase in enumerate(self.testCases):
-            a, answer = list(testCase.values())
-            lines = a.split("\n")
-            cities, roads, source, destination = get_cities_roads_source_destination(lines[0])
-            graph = [[0] * cities for _ in range(cities)]
-            teams = get_teams_size(lines[1])
-            for i in lines[2:]:
-                add_edge(graph, i)
-                roads -= 1
-            result = solution(graph, source, destination, teams)
-            assert answer == result, f"{answer}, {result}"
+    print(solution(graph, source, destination, teams), end="\n")
 
 
 if __name__ == '__main__':
-    print(summit(), end="\n")
+    summit()

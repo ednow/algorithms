@@ -2,181 +2,181 @@
   {
     "id": 1,
     "data": "10\n-10 1 2 3 4 -5 -23 3 7 -21",
-    "answer": "10 1 4"
+    "answer": "10 1 4\n"
   },
   {
     "id": 2,
     "data": "10\n1 2 3",
-    "answer": "6 1 3"
+    "answer": "6 1 3\n"
   },
   {
     "id": 3,
     "data": "10\n-1 -2 -3",
-    "answer": "0 -1 -3"
+    "answer": "0 -1 -3\n"
   },
   {
     "id": 4,
     "data": "10\n1 -2 3",
-    "answer": "3 3 3"
+    "answer": "3 3 3\n"
   },
   {
     "id": 5,
     "data": "10\n-1 -2 3",
-    "answer": "3 3 3"
+    "answer": "3 3 3\n"
   },
   {
     "id": 6,
     "data": "10\n1 -2 -3",
-    "answer": "1 1 1"
+    "answer": "1 1 1\n"
   },
   {
     "id": 7,
     "data": "10\n0",
-    "answer": "0 0 0"
+    "answer": "0 0 0\n"
   },
   {
     "id": 8,
     "data": "10\n-1",
-    "answer": "0 -1 -1"
+    "answer": "0 -1 -1\n"
   },
   {
     "id": 9,
     "data": "10\n1",
-    "answer": "1 1 1"
+    "answer": "1 1 1\n"
   },
   {
     "id": 10,
     "data": "10\n1 1 0",
-    "answer": "2 1 1"
+    "answer": "2 1 1\n"
   },
   {
     "id": 11,
     "data": "10\n0 0 0 0 0 0 0",
-    "answer": "0 0 0"
+    "answer": "0 0 0\n"
   },
   {
     "id": 12,
     "data": "10\n-2 11 -4 13 -5 -2",
-    "answer": "20 11 13"
+    "answer": "20 11 13\n"
   },
   {
     "id": 13,
     "data": "10\n-2 11 -4 13 -5 -2",
-    "answer": "20 11 13"
+    "answer": "20 11 13\n"
   },
   {
     "id": 14,
     "data": "10\n0 -7 7 8",
-    "answer": "15 7 8"
+    "answer": "15 7 8\n"
   },
   {
     "id": 15,
     "data": "10\n-10 0  7 -2 -1 8 4 -100 30 2",
-    "answer": "32 30 2"
+    "answer": "32 30 2\n"
   },
   {
     "id": 16,
     "data": "10\n-10 1 2 3 4 -5 -23 3 7 -21",
-    "answer": "10 1 4"
+    "answer": "10 1 4\n"
   },
   {
     "id": 17,
     "data": "10\n0 0 0 0 0 0 0 0 0 0",
-    "answer": "0 0 0"
+    "answer": "0 0 0\n"
   },
   {
     "id": 18,
     "data": "10\n1 2 3 4 5 -1 -2 -3 -4 -5",
-    "answer": "15 1 5"
+    "answer": "15 1 5\n"
   },
   {
     "id": 19,
     "data": "10\n-1 -2 -3 -4 -5",
-    "answer": "0 -1 -5"
+    "answer": "0 -1 -5\n"
   },
     {
     "id": 20,
     "data": "10\n1 -2 3 4 -8 6 0 7 -9 10",
-    "answer": "14 6 10"
+    "answer": "14 6 10\n"
   },
   {
      "id": 21,
     "data": "10\n-100 99 -300 200 -500",
-    "answer": "200 200 200"
+    "answer": "200 200 200\n"
   },
   {
      "id": 22,
     "data": "10\n-100 -200 0 -300 -500",
-    "answer": "0 0 0"
+    "answer": "0 0 0\n"
   },
   {
     "id": 23,
     "data": "11\n-10 1 2 3 -4 5 -10 7 -1 8 -9",
-    "answer": "14 7 8"
+    "answer": "14 7 8\n"
   },
   {
     "id": 24,
     "data": "5\n-10 11 -5 -6 13",
-    "answer": "13 11 13",
+    "answer": "13 11 13\n",
     "description": "保证最大，且i最小"
   },
   {
     "id": "24-2",
     "data": "5\n-10 11 -5 -6 13 0",
-    "answer": "13 11 13",
+    "answer": "13 11 13\n",
     "description": "保证最大，且j最小，尾是0"
   },
   {
     "id": 25,
     "data": "5\n-1 1 -1 1 -1 1",
-    "answer": "1 1 1"
+    "answer": "1 1 1\n"
   },
   {
     "id": 26,
     "data": "5\n0 -1 0 0 1 2",
-    "answer": "3 0 2",
+    "answer": "3 0 2\n",
     "description": "最大和前面有一段是0"
   },
   {
     "id": 27,
     "data": "5\n0 -1 0 0 1 2 -1 1 0",
-    "answer": "3 0 2",
+    "answer": "3 0 2\n",
     "description": "并列和对应相同i但是不同j，即尾是0"
   },
   {
     "id": 28,
     "data": "5\n5 4 -1 7 8",
-    "answer": "23 5 8",
+    "answer": "23 5 8\n",
     "description": "https://leetcode.com/problems/maximum-subarray/"
   },
   {
       "id": 29,
       "data": "5\n-9 9 -9 -9 9",
-      "answer": "9 9 9",
+      "answer": "9 9 9\n",
       "source": "https://blog.csdn.net/Joyceyang_999/article/details/81872970"
   },
   {
       "id": 30,
       "data": "5\n9 -9 -9 -9 9",
-      "answer": "9 9 9",
+      "answer": "9 9 9\n",
       "source": "https://blog.csdn.net/Joyceyang_999/article/details/81872970"
   },
   {
       "id": 31,
       "data": "5\n0 9 -9 0 9",
-      "answer": "9 0 9",
+      "answer": "9 0 9\n",
       "source": "https://blog.csdn.net/Joyceyang_999/article/details/81872970"
   },
   {
       "id": 32,
       "data": "5\n1 -1 2",
-      "answer": "2 1 2",
+      "answer": "2 1 2\n",
       "description": "readme中的例子"
   },
   {
       "id": 32,
       "data": "5\n1 -1 2",
-      "answer": "2 1 2",
+      "answer": "2 1 2\n",
       "description": "readme中的例子"
   }
 ]

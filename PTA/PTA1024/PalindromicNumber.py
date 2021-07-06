@@ -1,6 +1,3 @@
-import unittest
-
-
 def check_is_num_palindromic(num: int) -> bool:
     numStr = str(num)
     numLen = len(numStr)
@@ -22,29 +19,12 @@ def find_pair(num: int, step: int):
     return find_pair(num + reverse(num), step)
 
 
-def summit(string) -> str:
+def summit():
+    string = input()
     num, step = map(int, string.split())
     num, remainStep = find_pair(num, step)
-    return f"{num}\n{step - remainStep}"
-
-
-class TestPTA1024(unittest.TestCase):
-    def setUp(self) -> None:
-        import json
-        with open("data.json", encoding="utf-8", mode="r") as f:
-            self.testCases = json.load(f)
-        with open("config.json", encoding="utf-8", mode="r") as f:
-            self.config = json.load(f)
-
-        if any(list(self.config.values())):
-            self.testCases = list(filter(lambda x: x["id"] == self.config["testCaseId"], self.testCases))
-
-    def test_pta1024(self):
-        for idx, testCase in enumerate(self.testCases):
-            a, answer = testCase["data"], testCase["answer"]
-            result = summit(a)
-            assert answer == result, f"{answer}, {result}"
+    print(f"{num}\n{step - remainStep}")
 
 
 if __name__ == '__main__':
-    print(summit(input()))
+    summit()

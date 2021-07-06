@@ -56,29 +56,9 @@ def summit() -> str:
         parent, children = get_children(input())
         tree[parent].extend(children)
         notLeaves -= 1
-    return solution(tree)
-
-
-class TestPTA1004(unittest.TestCase):
-    def setUp(self) -> None:
-        import json
-        with open("data.json", encoding="utf-8", mode="r") as f:
-            self.testCases = json.load(f)
-
-    def test_pta1004(self):
-        for idx, testCase in enumerate(self.testCases):
-            a, answer = list(testCase.values())
-            lines = a.split("\n")
-            nodes, notLeaves = get_nodes_and_not_leaves_num(lines[0])
-            tree = {
-                i: [] for i in range(nodes + 1)
-            }
-            for line in lines[1:]:
-                parent, children = get_children(line)
-                tree[parent].extend(children)
-            result = solution(tree)
-            assert answer == result, f"{answer}, {result}"
+    print(solution(tree), end="\n")
 
 
 if __name__ == '__main__':
-    print(summit(), end="\n")
+    summit()
+

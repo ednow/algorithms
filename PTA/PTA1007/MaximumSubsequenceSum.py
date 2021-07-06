@@ -1,6 +1,5 @@
 from typing import List
 from functools import reduce
-import unittest
 
 
 def next_positive_in_result(result: List[List[int]], now: int) -> int:
@@ -92,29 +91,8 @@ def solution(nums: List[int]) -> str:
 
 def summit():
     input()
-    return solution(list(map(int, input().split())))
-
-
-class TestPTA1007(unittest.TestCase):
-    def setUp(self) -> None:
-        import json
-        with open("data.json", encoding="utf-8", mode="r") as f:
-            self.testCases = json.load(f)
-
-    # @unittest.skip
-    def test_1007(self):
-        for idx, testCase in enumerate(self.testCases):  # test all
-        # for idx, testCase in enumerate([self.testCases[27]]):
-            a, answer = testCase["data"], testCase["answer"]
-            lines = a.split("\n")
-            result = solution(list(map(int, lines[1].split())))
-            assert answer == result, f"{answer}, {result}"
-            print(testCase["id"], "ok")
-
-    @unittest.skip
-    def test_next_positive_in_result(self):
-        print(next(next_positive_in_result([[1], [2]])))
+    print(solution(list(map(int, input().split()))))
 
 
 if __name__ == '__main__':
-    print(summit())
+    summit()

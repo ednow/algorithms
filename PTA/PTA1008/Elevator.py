@@ -1,7 +1,5 @@
-import unittest
-
-
-def summit(string):
+def summit():
+    string = input()
     result = 0
     q = list(map(int, string.split()))[1:]
     for now, destination in zip(([0]+q)[:-1], q):
@@ -10,21 +8,8 @@ def summit(string):
         else:
             result += (destination - now) * 6
         result += 5
-    return f"{result}"
-
-
-class TestPTA1008(unittest.TestCase):
-    def setUp(self) -> None:
-        import json
-        with open("data.json", encoding="utf-8", mode="r") as f:
-            self.testCases = json.load(f)
-
-    def test_pta1008(self):
-        for idx, testCase in enumerate(self.testCases):
-            a, answer = list(testCase.values())
-            result = summit(a)
-            assert answer == result, f"{answer}, {result}"
+    print(f"{result}", end="")
 
 
 if __name__ == '__main__':
-    print(summit(input()), end="")
+    summit()

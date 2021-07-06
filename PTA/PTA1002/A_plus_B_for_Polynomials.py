@@ -1,4 +1,3 @@
-import unittest
 from typing import Dict
 
 
@@ -56,24 +55,6 @@ def cal_poly(a: Dict, b: Dict) -> Dict:
 
 def summit():
     print(rectify_data(cal_poly(rectify_str(input()), rectify_str(input()))), end='')
-
-
-class TestPTA1002(unittest.TestCase):
-    def test_solution(self):
-        testCases = [
-            ["3 2 1.5 1 2.9 0 3.2", "2 1 2.4 0 3.2", "2 2 1.5 1 0.5"],
-            ["0", "1 2 -1", "1 2 1"],  # 某个测试点的输出格式错误的测试数据
-            ["1 1 -1.0", "1 2 0", "1 1 -1"],  # 极端情况1, 解决了, 但未过测试点1
-            ["0", "1 1 0", "1 2 0"],  # 极端情况1, 解决了, 但未过测试点1
-            # 极端情况2, 64位整型溢出, 解决了, 但未过测试点1
-            ["1 18446744073709551616 1.0", "1 18446744073709551616 0.5", "1 18446744073709551616 0.5"],
-            # 测试点1
-            ["1 2 0.6", "1 1 0", "1 2 0.59"]
-        ]
-
-        for answer, a, b in testCases:
-            result = rectify_data(cal_poly(rectify_str(a), rectify_str(b)))
-            assert answer == result, f"{answer}, {result}"
 
 
 if __name__ == '__main__':

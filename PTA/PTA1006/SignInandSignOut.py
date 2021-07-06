@@ -1,5 +1,4 @@
-from typing import List, Dict
-import unittest
+from typing import List
 
 
 def extract_details(name: str, signIn: str, signOut: str):
@@ -26,22 +25,8 @@ def summit():
             extract_details(*(string.split()))
         )
         members -= 1
-    return solution(memberInfos)
-
-
-class TestPTA1006(unittest.TestCase):
-    def setUp(self) -> None:
-        import json
-        with open("data.json", encoding="utf-8", mode="r") as f:
-            self.testCases = json.load(f)
-
-    def test_1006(self):
-        for idx, testCase in enumerate(self.testCases):
-            a, answer = list(testCase.values())
-            memberInfos = [extract_details(*i.split()) for i in a.split("\n")[1:]]
-            result = solution(memberInfos)
-            assert answer == result, f"{answer}, {result}"
+    print(solution(memberInfos), end="")
 
 
 if __name__ == '__main__':
-    print(summit(), end="")
+    summit()

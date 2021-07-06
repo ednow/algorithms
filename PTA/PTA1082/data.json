@@ -46,5 +46,11 @@
     "data": "10101",
     "answer": "yi Wan ling yi Bai ling yi\n",
     "description": "后面全是0"
+  },
+  {
+    "id": "7",
+    "data": "0",
+    "answer": "ling\n",
+    "description": "测试点3"
   }
 ]

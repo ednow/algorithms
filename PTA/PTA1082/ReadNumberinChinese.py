@@ -47,6 +47,10 @@ def summit():
         num = string
 
     result = []
+    if int(num) == 0:
+        print(" ".join([sign, 'ling']).strip())
+        return 0
+
     for idx, group in enumerate(split_digits_by_four("".join(reversed(num)))):
         read = read_four_digits(group)
         if len(read) > 0:

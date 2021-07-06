@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "data": "3\nItai nyan~\nNinjin wa iyadanyan~\nuhhh nyan~",
+    "answer": "nyan~\n",
+    "description": "问题给的案例"
+  },
+  {
+    "id": "2",
+    "data": "3\nItai!\nNinjinnwaiyada T_T\nT_T",
+    "answer": "nai\n",
+    "description": "问题给的案例"
+  }
+]

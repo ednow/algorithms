@@ -10,5 +10,41 @@
     "data": "100800",
     "answer": "yi Shi Wan ling ba Bai\n",
     "description": "问题给的案例"
+  },
+  {
+    "id": "3",
+    "data": "1",
+    "answer": "yi\n",
+    "description": ""
+  },
+  {
+    "id": "4",
+    "data": "100000000",
+    "answer": "yi Yi\n",
+    "description": "后面全是0，bug"
+  },
+  {
+    "id": "5",
+    "data": "10000",
+    "answer": "yi Wan\n",
+    "description": "后面全是0"
+  },
+  {
+    "id": "5-1",
+    "data": "10000",
+    "answer": "yi Wan\n",
+    "description": "后面全是0"
+  },
+  {
+    "id": "5-2",
+    "data": "100010000",
+    "answer": "yi Yi ling yi Wan\n",
+    "description": "后面全是0"
+  },
+  {
+    "id": "6",
+    "data": "10101",
+    "answer": "yi Wan ling yi Bai ling yi\n",
+    "description": "后面全是0"
   }
 ]

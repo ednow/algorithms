@@ -30,20 +30,6 @@ def read_four_digits(num: str) -> List[str]:
             result.insert(0, numToChinese[int(one)])
             zero = False  # 状态变化
 
-    # # 如果是连续0，将不做任何处理
-    # if not zero and num[1] == '0':  # 如果上一个不是0，这一位是0，这时候需要把0读出来;
-    #     result = "ling" + result
-    # elif num[1] != '0':  # 只要不是0都要读出来，并且加上单位
-    #     result = numToChinese[int(num[1])] + "Shi"
-    #     zero = False  # 状态变化
-    #
-    # # 如果是连续0，将不做任何处理
-    # if not zero and num[2] == '0':  # 如果上一个不是0，这一位是0，这时候需要把0读出来;
-    #     result = "ling" + result
-    # elif num[2] != '0':  # 只要不是0都要读出来，并且加上单位
-    #     result = numToChinese[int(num[2])] + "Bai"
-    #     zero = False  # 状态变化
-
     return result
 
 
@@ -62,7 +48,9 @@ def summit():
 
     result = []
     for idx, group in enumerate(split_digits_by_four("".join(reversed(num)))):
-        result = read_four_digits(group) + [units[idx]] + result
+        read = read_four_digits(group)
+        if len(read) > 0:
+            result = read_four_digits(group) + [units[idx]] + result
     result = [sign] + result
     print(" ".join(result).strip())
 

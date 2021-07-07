@@ -50,8 +50,9 @@ class Test:
                 errors = [
                     f"error id: {testCase['id']}",
                     f"data    : {testCase['data']}",
+                    f"got     : {f.getvalue()}",
                     f"expected: {answer}",
-                    f"however : {f.getvalue()}"
+
                 ]
                 for error in errors:
                     print(repr(error), file=sys.stderr)

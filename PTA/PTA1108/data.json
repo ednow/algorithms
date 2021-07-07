@@ -134,5 +134,10 @@
     "data": "1\n-.99",
     "answer": "The average of 1 number is -0.99\n",
     "description": "The average of 1 number is -0.99\n"
+  },{
+    "id": "8-3",
+    "data": "1\n1000.99",
+    "answer": "ERROR: 1000.99 is not a legal number\nThe average of 0 numbers is Undefined\n",
+    "description": "测试点3"
   }
 ]

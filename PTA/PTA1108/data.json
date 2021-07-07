@@ -104,5 +104,20 @@
     "data": "1\n0.01",
     "answer": "The average of 1 number is 0.01\n",
     "description": "我觉得应该是：ERROR: 0000 is not a legal number\nThe average of 0 numbers is Undefined\n"
+  },{
+    "id": "16",
+    "data": "1\n-1000",
+    "answer": "The average of 1 number is -1000.00\n",
+    "description": ""
+  },{
+    "id": "16",
+    "data": "1\n99",
+    "answer": "The average of 1 number is 99.00\n",
+    "description": ""
+  },{
+    "id": "16",
+    "data": "1\n1000.00",
+    "answer": "The average of 1 number is 1000.00\n",
+    "description": ""
   }
 ]

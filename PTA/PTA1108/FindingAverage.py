@@ -6,7 +6,7 @@ def summit():
     illegalNums: List[str] = []
     nums: List[float] = []
     input()  # 不读取有几个数字
-    pattern = re.compile(r"^[-]?(\d{1,3}(\.\d{1,2})?|1000)$")
+    pattern = re.compile(r"^[-]?((([1-9]\d{1,2})|\d)(\.\d{1,2})?|1000)$")
     for num in input().split():
         if pattern.match(num) is not None:
             nums.append(float(num))
@@ -22,6 +22,8 @@ def summit():
     elif numsLen > 1:
         print(f"The average of {numsLen} numbers is {sum(nums)/numsLen:.2f}")
     else:
+        if nums[0] == 0:
+            nums[0] = 0
         print(f"The average of 1 number is {nums[0]:.2f}")
 
 

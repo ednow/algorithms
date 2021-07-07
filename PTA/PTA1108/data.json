@@ -33,7 +33,7 @@
     "id": "6",
     "data": "1\n-0",
     "answer": "The average of 1 number is 0.00\n",
-    "description": "猜测用例"
+    "description": "测试点2"
   },
   {
     "id": "7",
@@ -48,13 +48,13 @@
     "description": "猜测用例：遇到了bug"
   },
   {
-    "id": "8",
+    "id": "8-1",
     "data": "1\n-1000",
-    "answer": "The average of 1 numbers is -1000.00\n",
+    "answer": "The average of 1 number is -1000.00\n",
     "description": "猜测用例"
   },
   {
-    "id": "8",
+    "id": "8-2",
     "data": "1\n-.11",
     "answer": "ERROR: -.11 is not a legal number\nThe average of 0 numbers is Undefined\n",
     "description": ""
@@ -75,6 +75,18 @@
     "id": "11",
     "data": "1\n1.111",
     "answer": "ERROR: 1.111 is not a legal number\nThe average of 0 numbers is Undefined\n",
+    "description": ""
+  },
+  {
+    "id": "12",
+    "data": "1\n-0.00",
+    "answer": "The average of 1 number is 0.00\n",
+    "description": ""
+  },
+  {
+    "id": "13",
+    "data": "1\n0078",
+    "answer": "ERROR: 0078 is not a legal number\nThe average of 0 numbers is Undefined\n",
     "description": ""
   }
 ]

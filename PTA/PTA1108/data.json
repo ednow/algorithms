@@ -56,8 +56,8 @@
   {
     "id": "8-2",
     "data": "1\n-.11",
-    "answer": "ERROR: -.11 is not a legal number\nThe average of 0 numbers is Undefined\n",
-    "description": ""
+    "answer": "The average of 1 number is -0.11\n",
+    "description": "我的理解：ERROR: -.11 is not a legal number\nThe average of 0 numbers is Undefined\n"
   },
   {
     "id": "9",
@@ -119,5 +119,20 @@
     "data": "1\n1000.00",
     "answer": "The average of 1 number is 1000.00\n",
     "description": ""
+  },{
+    "id": "16",
+    "data": "1\n-",
+    "answer": "ERROR: - is not a legal number\nThe average of 0 numbers is Undefined\n",
+    "description": "ERROR: - is not a legal number\nThe average of 0 numbers is Undefined\n"
+  },{
+    "id": "16",
+    "data": "1\n12",
+    "answer": "The average of 1 number is 12.00\n",
+    "description": ""
+  },{
+    "id": "9-1",
+    "data": "1\n-.99",
+    "answer": "The average of 1 number is -0.99\n",
+    "description": "The average of 1 number is -0.99\n"
   }
 ]

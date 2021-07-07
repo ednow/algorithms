@@ -43,10 +43,13 @@ class Test:
             stdoutBackup = sys.stdout
             sys.stdout = f
             getattr(module, self.entry)()
-            assert answer == f.getvalue(), repr(
-                f"error in id={testCase['id']},data:{testCase['data']},expected:{answer}, however:{f.getvalue()}")
             sys.stdout = stdoutBackup
-            print(f"pass:id = {testCase['id']}")
+            if answer == f.getvalue():
+                print(f"pass:id = {testCase['id']}")
+            else:
+                error = repr(f"error in id={testCase['id']},"
+                             f"data:{testCase['data']},expected:{answer}, however:{f.getvalue()}")
+                print(error, file=sys.stderr)
 
 
 if __name__ == '__main__':

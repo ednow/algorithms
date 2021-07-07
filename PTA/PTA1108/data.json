@@ -62,8 +62,8 @@
   {
     "id": "9",
     "data": "1\n-1.",
-    "answer": "ERROR: -1. is not a legal number\nThe average of 0 numbers is Undefined\n",
-    "description": ""
+    "answer": "The average of 1 number is -1.00\n",
+    "description": "我觉得应该是：ERROR: -1. is not a legal number\nThe average of 0 numbers is Undefined\n"
   },
   {
     "id": "10",
@@ -94,5 +94,15 @@
     "data": "0\n",
     "answer": "The average of 0 numbers is Undefined\n",
     "description": ""
+  },{
+    "id": "15",
+    "data": "1\n00000",
+    "answer": "The average of 1 number is 0.00\n",
+    "description": "我觉得应该是：ERROR: 0000 is not a legal number\nThe average of 0 numbers is Undefined\n"
+  },{
+    "id": "16",
+    "data": "1\n0.01",
+    "answer": "The average of 1 number is 0.01\n",
+    "description": "我觉得应该是：ERROR: 0000 is not a legal number\nThe average of 0 numbers is Undefined\n"
   }
 ]

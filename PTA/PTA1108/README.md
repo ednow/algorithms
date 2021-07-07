@@ -54,3 +54,14 @@
 
 测试点2，3未过
 
+
+### 测试点2的奇怪点
+没有.2f就过不了，意味着？哦哦，他是2.0我要保留为2.00
+<details>
+    <summary>Details</summary>
+
+
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210707233017.png)
+
+</details>
+

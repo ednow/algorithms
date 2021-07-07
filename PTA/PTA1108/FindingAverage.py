@@ -19,8 +19,10 @@ def summit():
     numsLen = len(nums)
     if numsLen == 0:
         print("The average of 0 numbers is Undefined")
-    else:
+    elif numsLen > 1:
         print(f"The average of {numsLen} numbers is {sum(nums)/numsLen:.2f}")
+    else:
+        print(f"The average of 1 number is {nums[0]:.2f}")
 
 
 if __name__ == '__main__':

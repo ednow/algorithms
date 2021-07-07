@@ -32,19 +32,19 @@
   {
     "id": "6",
     "data": "1\n-0",
-    "answer": "The average of 1 numbers is 0.00\n",
+    "answer": "The average of 1 number is 0.00\n",
     "description": "猜测用例"
   },
   {
     "id": "7",
     "data": "1\n-0",
-    "answer": "The average of 1 numbers is 0.00\n",
+    "answer": "The average of 1 number is 0.00\n",
     "description": "猜测用例"
   },
   {
     "id": "8",
     "data": "1\n1000",
-    "answer": "The average of 1 numbers is 1000.00\n",
+    "answer": "The average of 1 number is 1000.00\n",
     "description": "猜测用例：遇到了bug"
   },
   {
@@ -63,6 +63,18 @@
     "id": "9",
     "data": "1\n-1.",
     "answer": "ERROR: -1. is not a legal number\nThe average of 0 numbers is Undefined\n",
+    "description": ""
+  },
+  {
+    "id": "10",
+    "data": "1\n1",
+    "answer": "The average of 1 number is 1.00\n",
+    "description": ""
+  },
+  {
+    "id": "11",
+    "data": "1\n1.111",
+    "answer": "ERROR: 1.111 is not a legal number\nThe average of 0 numbers is Undefined\n",
     "description": ""
   }
 ]

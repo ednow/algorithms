@@ -5,13 +5,14 @@ import re
 def summit():
     illegalNums: List[str] = []
     nums: List[float] = []
-    input()  # 不读取有几个数字
+    numbers = input()  # 不读取有几个数字
     pattern = re.compile(r"^[-]?((([1-9]\d{1,2})|\d)(\.\d{1,2})?|1000)$")
-    for num in input().split():
-        if pattern.match(num) is not None:
-            nums.append(float(num))
-        else:
-            illegalNums.append(num)
+    if int(numbers) != 0:
+        for num in input().split():
+            if pattern.match(num) is not None:
+                nums.append(float(num))
+            else:
+                illegalNums.append(num)
 
     for num in illegalNums:
         print(f"ERROR: {num} is not a legal number")

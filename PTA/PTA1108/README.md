@@ -57,6 +57,9 @@
 
 ### 测试点2的奇怪点
 没有.2f就过不了，意味着？哦哦，他是2.0我要保留为2.00
+
+$\color{red}{\text{读题}}$,记得只有一位的时候是number
+
 <details>
     <summary>Details</summary>
 

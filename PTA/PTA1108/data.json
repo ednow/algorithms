@@ -86,8 +86,8 @@
   {
     "id": "13",
     "data": "1\n0078",
-    "answer": "ERROR: 0078 is not a legal number\nThe average of 0 numbers is Undefined\n",
-    "description": ""
+    "answer": "The average of 1 number is 78.00\n",
+    "description": "我觉得应该是：ERROR: 0078 is not a legal number\nThe average of 0 numbers is Undefined\n"
   },
   {
     "id": "14",

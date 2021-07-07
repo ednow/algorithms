@@ -20,6 +20,30 @@
 + 格式化浮点数`f"{2.2222:.2f}"`
 + 主要有小数不要用`int()`转型，用`float()`转型
 
+#### 与正则勾心斗角
+
++ 第二种bug：匹配了`2.3.4`
+
+<details>
+    <summary>Details</summary>
+
+
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210707222848.png)
+
+</details>
+
+
++ 第二种bug：`r"^[-]?(1000|\d{1,2})?\d(\.\d{0,2})?$"`匹配不了`1000`
+
+<details>
+    <summary>Details</summary>
+
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210707230713.png)
+
+</details>
+
+
+
 ### 第一次提交
 <details>
     <summary>Details</summary>
@@ -28,3 +52,4 @@
 </details>
 
 测试点2，3未过
+

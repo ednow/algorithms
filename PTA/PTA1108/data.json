@@ -46,5 +46,23 @@
     "data": "1\n1000",
     "answer": "The average of 1 numbers is 1000.00\n",
     "description": "猜测用例：遇到了bug"
+  },
+  {
+    "id": "8",
+    "data": "1\n-1000",
+    "answer": "The average of 1 numbers is -1000.00\n",
+    "description": "猜测用例"
+  },
+  {
+    "id": "8",
+    "data": "1\n-.11",
+    "answer": "ERROR: -.11 is not a legal number\nThe average of 0 numbers is Undefined\n",
+    "description": ""
+  },
+  {
+    "id": "9",
+    "data": "1\n-1.",
+    "answer": "ERROR: -1. is not a legal number\nThe average of 0 numbers is Undefined\n",
+    "description": ""
   }
 ]

@@ -6,7 +6,7 @@ def summit():
     illegalNums: List[str] = []
     nums: List[float] = []
     input()  # 不读取有几个数字
-    pattern = re.compile(r"^[-]?(\d{1,3}(\.\d{0,2})?|1000)$")
+    pattern = re.compile(r"^[-]?(\d{1,3}(\.\d{1,2})?|1000)$")
     for num in input().split():
         if pattern.match(num) is not None:
             nums.append(float(num))

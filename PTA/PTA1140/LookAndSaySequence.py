@@ -1,13 +1,16 @@
-from typing import List
-from collections import Counter
-from functools import reduce
-
-
 def say(num: str, step: int) -> str:
-    if step == 0:
+    if step == 1:
         return num
-    count = Counter(num)
-    result = reduce(lambda a, b: a + b + str(count[b]), num, "")
+    now = 0
+    duplicate = 0
+    result = ""
+    for idx, one in enumerate(num + "x"):
+        if one != num[now]:
+            result += f"{num[now]}{duplicate}"
+            now = idx
+            duplicate = 1
+        else:
+            duplicate += 1
     step -= 1
     return say(result, step)
 

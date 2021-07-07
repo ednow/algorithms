@@ -47,9 +47,15 @@ class Test:
             if answer == f.getvalue():
                 print(f"pass:id = {testCase['id']}")
             else:
-                error = repr(f"error in id={testCase['id']},"
-                             f"data:{testCase['data']},expected:{answer}, however:{f.getvalue()}")
-                print(error, file=sys.stderr)
+                errors = [
+                    f"error id: {testCase['id']}",
+                    f"data    : {testCase['data']}",
+                    f"expected: {answer}",
+                    f"however : {f.getvalue()}"
+                ]
+                for error in errors:
+                    print(repr(error), file=sys.stderr)
+                print("-" * 10, file=sys.stderr)
 
 
 if __name__ == '__main__':

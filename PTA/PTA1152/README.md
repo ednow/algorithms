@@ -33,11 +33,21 @@
 ### 优化
 for i in range(2, int(log2(num)) + 1)
 
-为什么过不了测试点3？
+为什么过不了测试点3？：$\color{red}{\text{log2不是sqrt}}$
 
 [参考文献](https://blog.csdn.net/huang_miao_xin/article/details/51331710)
 
-### c++
+### 第二次提交
+<details>
+    <summary>Details</summary>
+
+
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210708140149.png)
+
+</details>
+
+
+## c++
 <details>
     <summary>Details</summary>
 
@@ -47,11 +57,21 @@ for i in range(2, int(log2(num)) + 1)
 
 
 
-#### 第一次提交
+### 第一次提交
 <details>
     <summary>Details</summary>
 
 
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210708135259.png)
 </details>
+
+
+### 第二次提交
+<details>
+    <summary>Details</summary>
+
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210708135935.png)
+</details>
+
+
 

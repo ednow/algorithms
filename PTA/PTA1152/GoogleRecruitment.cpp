@@ -7,11 +7,12 @@
 #include "utils.h"
 
 #include "string"
+#include <cmath>
 
 using namespace std;
 
 bool is_prime(unsigned long long num){
-    for(int i = 2 ;i <= num -1;i++){
+    for(int i = 2 ;i <= sqrt(num);i++){
         if (num % i == 0){
             return false;
         }

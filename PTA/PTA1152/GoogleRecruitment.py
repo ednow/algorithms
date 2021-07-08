@@ -1,8 +1,8 @@
-from math import log2
+from math import sqrt
 
 
 def is_prime(num: int) -> bool:
-    for i in range(2, num - 1):
+    for i in range(2, int(sqrt(num))):
         if num % i == 0:
             return False
     return True

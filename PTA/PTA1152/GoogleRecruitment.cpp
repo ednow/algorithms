@@ -25,7 +25,7 @@ string summit_1(){
     unsigned long long numLen, primeLen;
     cin >> numLen >> primeLen;
     cin >> num;
-    for(int i=0;i<numLen-primeLen;i++){
+    for(int i=0;i<numLen-primeLen + 1;i++){
         if (is_prime(stoull(num.substr(i, primeLen)))){
             return num.substr(i, primeLen) + "\n";
         }

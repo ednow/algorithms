@@ -30,13 +30,13 @@ class Test:
             "testData": "data"
         }
         for key in ["testCaseId", "testData"]:
-            if self.config[key] is not None:
+            if self.config.get(key, None) is not None:
                 temp.extend(list(filter(lambda x: x[mapper[key]] == self.config[key], self.testCases)))
         if len(temp) > 1:
             self.testCases = temp
 
         # 如果设定了模块的入口函数
-        if self.config["moduleEntry"] is not None:
+        if self.config.get("moduleEntry", None) is not None:
             self.entry = self.config["moduleEntry"]
         else:
             self.entry = "summit"

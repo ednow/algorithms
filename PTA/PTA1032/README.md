@@ -32,6 +32,17 @@
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210708210648.png)
 </details>
 
+经研究发现生成内存块的时候就已经超时了:感觉没救了，先做下一题
+<details>
+    <summary>Details</summary>
 
 
+![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210708211831.png)
 
+</details>
+
+
+## c++
+直接用一个node的数组表示内存块
+
+[参考文献](https://zhuanlan.zhihu.com/p/141604272)

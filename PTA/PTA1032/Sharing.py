@@ -20,12 +20,20 @@ def summit():
             link.append(memory[head])
             head = memory[head]
 
-    # reverse之后将后缀操作变成前缀操作
-    link1.reverse()
-    link2.reverse()
-    for i in range(min(len(link1), len(link2))):
+    # 对齐再比较
+    link1Len = len(link1)
+    link2Len = len(link2)
+    if link1Len > link2Len:
+        link1 = link1[-link2Len:]
+        end = link2Len
+    else:
+        link2 = link2[-link1Len:]
+        end = link1Len
+
+    for i in range(end):
         if link1[i] == link2[i]:
             result = link1[i]
+            break
 
     print(result)
 

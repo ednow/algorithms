@@ -19,7 +19,7 @@
 |1082|:white_check_mark:|||字符串处理|
 |1108|:white_check_mark:|||字符串处理|
 |1140|:white_check_mark:|||字符串处理|
-|1150||||字符串处理|
+|1150||||图|
 |1152|:white_check_mark:||:white_check_mark:|质数|
 |1032||||链表|
 |1052||||链表|

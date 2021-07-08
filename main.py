@@ -11,7 +11,7 @@ class Test:
     def __init__(self):
         with open("config.json", "r", encoding="utf-8") as f:
             self.config = json.load(f)
-        self.testCases = None  # 测试用例的信息
+        self.testCases = []  # 测试用例的信息
         self.entry = None  # 模块的入口函数
         self.set_up()
 
@@ -23,9 +23,17 @@ class Test:
         with open(dataPath, encoding="utf-8", mode="r") as f:
             self.testCases = json.load(f)
 
-        # 如果指定了test case id，则只测试对应id的测试用例
-        if self.config["testCaseId"] is not None:
-            self.testCases = list(filter(lambda x: x["id"] == self.config["testCaseId"], self.testCases))
+        # 如果指定了test case id 或者测试数据，则只测试对应的测试用例
+        temp = []
+        mapper = {
+            "testCaseId": "id",
+            "testData": "data"
+        }
+        for key in ["testCaseId", "testData"]:
+            if self.config[key] is not None:
+                temp.extend(list(filter(lambda x: x[mapper[key]] == self.config[key], self.testCases)))
+        if len(temp) > 1:
+            self.testCases = temp
 
         # 如果设定了模块的入口函数
         if self.config["moduleEntry"] is not None:
@@ -52,6 +60,7 @@ class Test:
                     f"data    : {testCase['data']}",
                     f"got     : {f.getvalue()}",
                     f"expected: {answer}",
+                    f"data    : {testCase['description']}",
 
                 ]
                 for error in errors:

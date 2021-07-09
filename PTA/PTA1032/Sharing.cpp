@@ -24,12 +24,9 @@ int sharingMain(){
     // nodeNum,内存块的个数
     int head1=0, head2=0, nodeNum=0, address=0, next=0;
     string data, result;
-//    scanf("%d %d %d", &head1, &head2, &nodeNum);
     cin >> head1 >> head2 >> nodeNum;
     for (int i = 0; i < nodeNum; ++i) {
-//        scanf("%d %s %d", &address, &data, &next);
         cin >> address >> data >> next;
-//        nodes[address] = {.data = data, .next=next};
         nodes[address].data = data;
         nodes[address].next = next;
         nodes[address].address = address;

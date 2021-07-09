@@ -4,8 +4,11 @@
 
 #include   <string>
 #include   <iostream>
+#include <vector>
+#include <regex>
+
 using   namespace   std;
-// 循环替换
+// python.replace()循环替换
 string&   replace_all(string&   str, const  string&  old_value, const  string&  new_value)
 {
  while(true)
@@ -21,7 +24,7 @@ string&   replace_all(string&   str, const  string&  old_value, const  string&  
 }
 
 
-// 只替换一次
+// python.replace(step=1) 只替换一次
 string&   replace_all_distinct(string&   str, const  string&  old_value, const   string&   new_value)
 {
  for(string::size_type   pos(0);   pos!=string::npos;   pos+=new_value.length())
@@ -33,4 +36,24 @@ string&   replace_all_distinct(string&   str, const  string&  old_value, const  
      else  { break; }
  }
  return   str;
+}
+
+
+// 切分字符
+vector<string>
+split(string text, const string& delimiter){
+    std::regex ws_re(delimiter);
+    return vector<string>(std::sregex_token_iterator(text.begin() ,text.end(),ws_re,-1),std ::sregex_token_iterator());
+}
+
+
+// join
+string
+join(std::vector<std::string> strings, const string& delimiter){
+
+
+    std::ostringstream imploded;
+    std::copy(strings.begin(), strings.end(),
+  std::ostream_iterator<std::string>(imploded, delimiter.c_str()));
+    return imploded.str();
 }

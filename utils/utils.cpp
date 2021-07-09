@@ -39,7 +39,7 @@ string&   replace_all_distinct(string&   str, const  string&  old_value, const  
 }
 
 
-// 切分字符
+// python.split
 vector<string>
 split(string text, const string& delimiter){
     std::regex ws_re(delimiter);
@@ -47,7 +47,7 @@ split(string text, const string& delimiter){
 }
 
 
-// join
+// python.join
 string
 join(std::vector<std::string> strings, const string& delimiter){
 

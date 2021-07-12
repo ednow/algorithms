@@ -1,11 +1,15 @@
 from typing import List, Dict
 
+N = 100000
+
 
 def summit():
     head1, head2, nodeNum = input().split()
     link1: List[str] = []
     link2: List[str] = []
-    memory: Dict[str, str] = {}
+    memory: Dict[str, str] = {
+        str(i): '' for i in range(N)
+    }
     result = "-1"
 
     # 生成内存块

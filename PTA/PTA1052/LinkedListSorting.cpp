@@ -49,7 +49,12 @@ int LinkedListSortingMain(){
 
     list[len].address = -1;
     // 输出
-    cout << len << ' ' << setfill('0') << list[0].address << endl;
+    if (len == 0){
+        cout << len << ' ' << -1 << endl;
+    } else{
+        cout << len << ' ' << setw(5) << setfill('0') << list[0].address<< endl;
+    }
+
     for (int i = 0; i  <  len; i++) {
         cout << setw(5) << setfill('0') << list[i].address << ' ';
         cout << list[i].key << ' ';

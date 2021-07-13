@@ -64,6 +64,7 @@ int DeduplicationOnLinkedList(){
             cout << setw(5) << setfill('0') << nodes[pointer].address << ' ';
             cout << nodes[pointer].key << ' ';
             cout << -1 << endl;
+            nodes[pointer].isPrinted = true;
             break; // 结束输出
         }
 
@@ -109,6 +110,8 @@ int DeduplicationOnLinkedList(){
             break; // 结束输出
         }
 
+        // 重置有没有下一个
+        isNext = false;
 
     }
 

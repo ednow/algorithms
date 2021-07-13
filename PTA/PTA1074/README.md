@@ -21,6 +21,10 @@
 
 ### 第一次提交
 测试点5运行超时，`//输出`前没有超时,cout输出超时了？
+> 解决方法，不用cin，cout，或者加上`ios::sync_with_stdio(false);`，需要的头文件:`#include "ios"`
+
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210713213034.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210713213034.png';" /></details>
 
+### 第二次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210713213659.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210713213659.png';" /></details>

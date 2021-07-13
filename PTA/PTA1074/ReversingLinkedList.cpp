@@ -23,6 +23,7 @@ typedef struct node_{
 
 
 int ReversingLinkedList(){
+    ios::sync_with_stdio(false);
     int head{}, nodeNum{}, address{}, data{}, next{}, step{}, len{};
     cin >> head >> nodeNum >> step;
     vector<node> list(100000), nodes(100000);

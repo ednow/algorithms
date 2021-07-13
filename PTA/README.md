@@ -21,8 +21,8 @@
 |1140|:white_check_mark:|||字符串处理|
 |1150||||图|
 |1152|:white_check_mark:||:white_check_mark:|质数|
-|1032||||链表|
-|1052||||链表|
+|1032|||:white_check_mark:|链表|
+|1052|||:white_check_mark:|链表|
 |1074||||链表|
 |1097||||链表|
 |1133||||链表|

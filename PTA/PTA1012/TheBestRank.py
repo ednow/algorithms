@@ -25,15 +25,18 @@ def summit():
 
     # 修正排名
     # _ranks = [{}] * 4:这样子每个的{}的索引都相同
+    # rankId：第i类成绩，0：平均成绩，1：c语言，2：数学，3：英语
     _ranks = [{}, {}, {}, {}]
     for rankId, rank in enumerate(ranks):
         _ranks[rankId][rank[0]] = 1  # 让第一个排名第一
         compare = students[rank[0]][rankId]  # 获得第一个成绩
         rightRank = 1  # 真正的排名是1
+        # idx：学生编号
         for idx in rank[1:]:
             if compare == students[idx][rankId]:
                 _ranks[rankId][idx] = rightRank  # 和上一个的排名相同
             else:
+                compare = students[idx][rankId]
                 rightRank += 1
                 _ranks[rankId][idx] = rightRank
 

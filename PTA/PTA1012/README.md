@@ -18,7 +18,7 @@
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210714154429.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210714154429.png';" /></details>
 
 ### 第三次提交
-+ 感觉修复了第二次提交的bug？
++ 感觉修复了第二次提交的bug？（但这种写法大数据下效率更高了？
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210714171914.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210714171914.png';" /></details>
 

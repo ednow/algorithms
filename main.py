@@ -56,11 +56,11 @@ class Test:
                 print(f"pass:id = {testCase['id']}")
             else:
                 errors = [
-                    f"error id: {testCase['id']}",
-                    f"data    : {testCase['data']}",
-                    f"got     : {f.getvalue()}",
-                    f"expected: {answer}",
-                    f"data    : {testCase['description']}",
+                    f"error id   : {testCase['id']}",
+                    f"data       : {testCase['data']}",
+                    f"got        : {f.getvalue()}",
+                    f"expected   : {answer}",
+                    f"description: {testCase['description']}",
 
                 ]
                 for error in errors:

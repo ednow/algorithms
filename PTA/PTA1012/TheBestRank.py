@@ -5,6 +5,7 @@ def summit():
     studentsNum, checkNum = map(int, input().split())
     students: Dict[str, List[int]] = {}
     result = ""
+    
     # 读入
     for _ in range(studentsNum):
         infos = input().split()
@@ -13,13 +14,11 @@ def summit():
 
     studentsItem = students.items()
 
-
     # 对每门学科各自排序
     rankC = list(dict(sorted(studentsItem, key=lambda x: x[1][0], reverse=True)).keys())
     rankM = list(dict(sorted(studentsItem, key=lambda x: x[1][1], reverse=True)).keys())
     rankE = list(dict(sorted(studentsItem, key=lambda x: x[1][2], reverse=True)).keys())
     rankA = list(dict(sorted(studentsItem, key=lambda x: x[1][3], reverse=True)).keys())
-
 
     # 对每一个请求输出最高排名, 排序优先级ACME
     ranks = [rankA, rankC, rankM, rankE]

@@ -4,7 +4,7 @@ from typing import Dict, List
 def summit():
     studentsNum, checkNum = map(int, input().split())
     students: Dict[str, List[int]] = {}
-
+    result = ""
     # 读入
     for _ in range(studentsNum):
         infos = input().split()
@@ -13,11 +13,13 @@ def summit():
 
     studentsItem = students.items()
 
+
     # 对每门学科各自排序
     rankC = list(dict(sorted(studentsItem, key=lambda x: x[1][0], reverse=True)).keys())
     rankM = list(dict(sorted(studentsItem, key=lambda x: x[1][1], reverse=True)).keys())
     rankE = list(dict(sorted(studentsItem, key=lambda x: x[1][2], reverse=True)).keys())
     rankA = list(dict(sorted(studentsItem, key=lambda x: x[1][3], reverse=True)).keys())
+
 
     # 对每一个请求输出最高排名, 排序优先级ACME
     ranks = [rankA, rankC, rankM, rankE]
@@ -31,9 +33,11 @@ def summit():
         request = input()
         try:
             minIdx = min(enumerate(ranks), key=lambda x: x[1].index(request))[0]
-            print(f"{ranks[minIdx].index(request) + 1} {mapper[minIdx]}")
+            result += f"{ranks[minIdx].index(request) + 1} {mapper[minIdx]}\n"
         except ValueError:  # 没有这号学生
-            print(f"N/A")
+            result += f"N/A\n"
+
+    print(result, end='')
 
 
 if __name__ == '__main__':

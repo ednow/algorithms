@@ -88,7 +88,7 @@ int DeduplicationOnLinkedList(){
     }
 
     // 输出去掉的节点
-    for (; pointer != -1; pointer = nextPointer) {
+    for (; ; pointer = nextPointer) {
         nodes[pointer].isPrinted = true; // 当前要打印的节点标记为已经输出过
         for (int i = nodes[pointer].next; i != -1 ; i = nodes[i].next) {  // 找到下一个没有输出过的节点
             if (!nodes[i].isPrinted){  // 如果这个节点未被输出

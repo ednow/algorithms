@@ -12,7 +12,7 @@ int TheBestRank(){
     return 0;
 }
 
-TEST(TestCase, test_PTA_1133) {
+TEST(TestCase, test_PTA_1012) {
     using json = nlohmann::json;
     json j, config;
     ifstream in("../PTA/PTA1133/data.json");

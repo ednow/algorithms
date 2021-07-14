@@ -22,10 +22,12 @@
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210714171914.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210714171914.png';" /></details>
 
-### 测试数据藐视
-前三个测试数据都是只有5个studentsNum
+### 第四次提交
+神坑！相同分数的人排名相同，但下一个新排位是他前面的人的数量！
 
-测试点2：studentsNum：5，checkNum：4
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210715013649.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210715013649.png';" /></details>
+
+
 
 ## cpp
 

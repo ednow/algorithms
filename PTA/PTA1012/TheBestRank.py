@@ -32,12 +32,12 @@ def summit():
         compare = students[rank[0]][rankId]  # 获得第一个成绩
         rightRank = 1  # 真正的排名是1
         # idx：学生编号
-        for idx in rank[1:]:
+        for num, idx in enumerate(rank[1:]):
             if compare == students[idx][rankId]:
                 _ranks[rankId][idx] = rightRank  # 和上一个的排名相同
             else:
                 compare = students[idx][rankId]
-                rightRank += 1
+                rightRank = num + 2
                 _ranks[rankId][idx] = rightRank
 
     ranks = _ranks

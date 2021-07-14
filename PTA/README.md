@@ -26,7 +26,7 @@
 |1074|||:white_check_mark:|链表|
 |1097|||:white_check_mark:|链表|
 |1133|||:white_check_mark:|链表|
-|1012||||排序|
+|1012|:white_check_mark:|||排序|
 |1016||||排序|
 |1025||||排序|
 |1028||||排序|

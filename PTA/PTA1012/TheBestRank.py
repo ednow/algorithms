@@ -5,7 +5,7 @@ def summit():
     studentsNum, checkNum = map(int, input().split())
     students: Dict[str, List[int]] = {}
     result = ""
-    
+
     # 读入
     for _ in range(studentsNum):
         infos = input().split()

@@ -32,7 +32,7 @@ class Test:
         for key in ["testCaseId", "testData"]:
             if self.config.get(key, None) is not None:
                 temp.extend(list(filter(lambda x: x[mapper[key]] == self.config[key], self.testCases)))
-        if len(temp) > 1:
+        if len(temp) > 0:
             self.testCases = temp
 
         # 如果设定了模块的入口函数

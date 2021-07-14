@@ -63,54 +63,60 @@ int SplittingALinkedList(){
                 greaterNodesLen++;
             }
         }
-        
+
+    }
+    if (negativeNodesLen!=0){
+        // 链接输出negativeNodes
+        for (int i = 0; i < negativeNodesLen-1; ++i) {
+            cout << setw(5) << setfill('0') << negativeNodes[i].address << ' ';
+            cout << negativeNodes[i].data << ' ';
+            cout << setw(5) << setfill('0') << negativeNodes[i + 1].address << endl;
+        }
+        // 最后一个元素，看后面还有没有元素，有元素链接输出
+        cout << setw(5) << setfill('0') << negativeNodes[negativeNodesLen-1].address << ' ';
+        cout << negativeNodes[negativeNodesLen-1].data << ' ';
+        if (lessNodesLen != 0){  // 有negative node ，lessNodesLen,输出lessNode0号节点地址
+            cout << setw(5) << setfill('0') << lessNodes[0].address << endl;
+        } else {
+            if (greaterNodesLen != 0){  // 有negative node ，greaterNodesLen,输出greaterNodes0号节点地址
+                cout << setw(5) << setfill('0') << greaterNodes[0].address << endl;
+            } else{
+                cout << -1 << endl;
+                return 0;
+            }
+        }
     }
 
-    // 链接输出negativeNodes
-    for (int i = 0; i < negativeNodesLen-1; ++i) {
-        cout << setw(5) << setfill('0') << negativeNodes[i].address << ' ';
-        cout << negativeNodes[i].data << ' ';
-        cout << setw(5) << setfill('0') << negativeNodes[i + 1].address << endl;
-    }
-    // 最后一个元素，看后面还有没有元素，有元素链接输出
-    cout << setw(5) << setfill('0') << negativeNodes[negativeNodesLen-1].address << ' ';
-    cout << negativeNodes[negativeNodesLen-1].data << ' ';
-    if (negativeNodesLen != 0 && lessNodesLen != 0){  // 有negative node ，lessNodesLen,输出lessNode0号节点地址
-        cout << setw(5) << setfill('0') << lessNodes[0].address << endl;
-    } else {
-        if (negativeNodesLen != 0 && greaterNodesLen != 0){  // 有negative node ，greaterNodesLen,输出greaterNodes0号节点地址
+    if (lessNodesLen!=0){
+        // 链接输出lessNodesLen
+        for (int i = 0; i < lessNodesLen-1; ++i) {
+            cout << setw(5) << setfill('0') << lessNodes[i].address << ' ';
+            cout << lessNodes[i].data << ' ';
+            cout << setw(5) << setfill('0') << lessNodes[i + 1].address << endl;
+        }
+        cout << setw(5) << setfill('0') << lessNodes[lessNodesLen-1].address << ' ';
+        cout << lessNodes[lessNodesLen-1].data << ' ';
+        // 最后一个元素，看后面还有没有元素，有元素链接输出
+        if (greaterNodesLen != 0){  // 有negative node ，lessNodesLen,输出lessNode0号节点地址
             cout << setw(5) << setfill('0') << greaterNodes[0].address << endl;
-        } else{
+        } else {
             cout << -1 << endl;
             return 0;
         }
     }
 
-    // 链接输出lessNodesLen
-    for (int i = 0; i < lessNodesLen-1; ++i) {
-        cout << setw(5) << setfill('0') << lessNodes[i].address << ' ';
-        cout << lessNodes[i].data << ' ';
-        cout << setw(5) << setfill('0') << lessNodes[i + 1].address << endl;
-    }
-    cout << setw(5) << setfill('0') << lessNodes[lessNodesLen-1].address << ' ';
-    cout << lessNodes[lessNodesLen-1].data << ' ';
-    // 最后一个元素，看后面还有没有元素，有元素链接输出
-    if (lessNodesLen != 0 && greaterNodesLen != 0){  // 有negative node ，lessNodesLen,输出lessNode0号节点地址
-        cout << setw(5) << setfill('0') << greaterNodes[0].address << endl;
-    } else {
+    if (greaterNodesLen!=0){
+        for (int i = 0; i < greaterNodesLen-1; ++i) {
+            cout << setw(5) << setfill('0') << greaterNodes[i].address << ' ';
+            cout << greaterNodes[i].data << ' ';
+            cout << setw(5) << setfill('0') << greaterNodes[i + 1].address << endl;
+        }
+        cout << setw(5) << setfill('0') << greaterNodes[greaterNodesLen-1].address << ' ';
+        cout << greaterNodes[greaterNodesLen-1].data << ' ';
         cout << -1 << endl;
-        return 0;
     }
 
-    for (int i = 0; i < greaterNodesLen-1; ++i) {
-        cout << setw(5) << setfill('0') << greaterNodes[i].address << ' ';
-        cout << greaterNodes[i].data << ' ';
-        cout << setw(5) << setfill('0') << greaterNodes[i + 1].address << endl;
-    }
-    cout << setw(5) << setfill('0') << greaterNodes[greaterNodesLen-1].address << ' ';
-    cout << greaterNodes[greaterNodesLen-1].data << ' ';
-    cout << -1 << endl;
-    
+
 
     return 0;
 }

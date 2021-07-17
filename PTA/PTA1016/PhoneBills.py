@@ -21,7 +21,7 @@ def summit():
     for one in records.keys():
         # 按照日排序，题目明说了一个测试用例，只有一个月
         records[one].sort(
-            key=lambda x: x[0][1]
+            key=lambda x: (x[0][1], x[0][2], x[0][3])
         )
 
         onLine = -1
@@ -29,13 +29,14 @@ def summit():
         # off-line
         # on-line
         for idx in range(len(records[one])):
-            if records[one] == 'on-line':
+            if records[one][idx][1] == 'on-line':
                 onLine = idx
+                break
 
         if onLine == -1:  # 全是off-line，不合法的记录
             continue
         else:
-            for idx in range(onLine, len(records[one])):
+            for idx in range(onLine + 1, len(records[one])):
                 if records[one] == 'on-line':  # 上一天on-line没有pair off-line
                     onLine = idx
                 else:  # 计算账单
@@ -82,28 +83,32 @@ def summit():
                         for _ in range(records[one][onLine][0][1], records[one][idx][0][1]):
                             last += 24 * 60
                             bill += sum(rates) * 60
-
-                    bills[one]["bills"] = oneBill.append(
-                        [
-                            ":".join([f"{i:02d}" for i in records[one][onLine]]) + ' ' +
-                            ":".join([f"{i:02d}" for i in records[one][idx]]) + ' ' +
-                            str(last) +
+                    oneBill.append(
+                            ":".join([f"{i:02d}" for i in records[one][onLine][0]]) + ' ' +
+                            ":".join([f"{i:02d}" for i in records[one][idx][0]]) + ' ' +
+                            str(last) + ' ' +
                             '$' + f"{bill:.2f}"
-                        ]
                     )
-                    bills[one]["total"] = oneTotal + bill
+                    oneDetail.update({
+                        "bills": oneBill
+                    })
+                    oneDetail.update({
+                        "total": oneTotal + bill
+                    })
+                    bills[one] = oneDetail
 
     # 得到账单的月份
     month = 0
-    for bill in bills.values():
-        month = bill[0][0]
+    for record in records.values():
+        month = record[0][0][0]
+        break
 
     # 对账单进行字母表排序
     bills = sorted(bills.items(), key=lambda x:x[0])
     for one, oneBills in bills:
         result += one + ' ' + f"{month:02d}" + \
                 "\n".join(oneBills["bills"]) + "\n" + \
-                oneBills["total"] + "\n"
+                str(oneBills["total"]) + "\n"
 
     print(result)
 

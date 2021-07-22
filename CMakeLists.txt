@@ -24,6 +24,12 @@ set(CMAKE_CXX_STANDARD 14)
 #  endif()
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static=libstdc++")
+message(STATUS "execute shell command")
+execute_process(
+        COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/utils/utils.py
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
 file(GLOB_RECURSE SOURCES
         header-folder/*.h
         source-folder/*.cpp
@@ -33,7 +39,11 @@ add_executable(algorithms
         MISC/recursion_elimination/recursion_elimination.cpp PTA/PTA1001/A_plus_B_Format.cpp main.cpp
         PTA/PTA1002/A_plus_B_for_Polynomials.cpp PTA/PTA1004/Slim.cpp PTA/PTA1004/CountingLeaves.cpp
         utils/utils.cpp utils/utils.h PTA/PTA1152/GoogleRecruitment.cpp
-        PTA/PTA1032/Sharing.cpp PTA/PTA1032/Sharing2.cpp PTA/PTA1052/LinkedListSorting.cpp PTA/PTA1074/ReversingLinkedList.cpp "PTA/PTA1097/DeduplicationOnLinkedList.cpp" PTA/PTA1133/SplittingALinkedList.cpp PTA/PTA1012/TheBestRank.cpp PTA/PTA1012/example.cpp)
+        PTA/PTA1032/Sharing.cpp PTA/PTA1032/Sharing2.cpp PTA/PTA1052/LinkedListSorting.cpp
+        PTA/PTA1074/ReversingLinkedList.cpp "PTA/PTA1097/DeduplicationOnLinkedList.cpp"
+        PTA/PTA1133/SplittingALinkedList.cpp PTA/PTA1012/TheBestRank.cpp PTA/PTA1012/example.cpp
+        examples/exampleForMain.cpp
+        PTA/PTA1016/PhoneBills.cpp)
 
 # 添加头文件
 include_directories(

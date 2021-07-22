@@ -32,38 +32,23 @@ typedef struct record_{
 
 
 int PhoneBills(){
-//    vector<int> rates{20, 0};
     int recordsNum{}, hour{}, minute{}, day{}, rate{}, month{};  // 记录的条数
     string result;  // 最后输出的字符串，防止反复io造成的超时
     map<string, list<record>> records;
     vector<int> rates(24, 0); // 不能使用rates{24, 0}来初始化，这样子相当于初始化两个元素
     string line;
-    char name[20]= {0}, status[7]= {0};
-//    getline(cin, line);
-//    istringstream this_line(line);
-//    istream_iterator<int> begin(this_line), end;
-//    vector<int> rates(begin, end); // 每个小时每分钟的价格
     for (int i = 0; i < 24; ++i) {
         cin >> rates[i];
-//        scanf("%d ", &rates[i]);
     }
 
     cin >> recordsNum;
     regex ws_re(" ");
     getline(cin, line);  // 会多一个空行？？？
     while (recordsNum--){
-//        cin >> name;
-//        cin >> month >> day >> hour >> minute;
-//        cin >> status;
-//        records[name].push_back(record{.date{month, day, hour, minute}, .status{status}});
-//        sscanf()
-//        records[]
         getline(cin, line);
         vector<string> strings(std::sregex_token_iterator(line.begin() ,line.end(),ws_re,-1),std ::sregex_token_iterator());
-        sscanf(line.c_str(), "%s %d:%d:%d:%d %s", name, &month, &day, &hour, &minute, status);
         sscanf(strings[1].c_str(), "%d:%d:%d:%d", &month, &day, &hour, &minute);
         records[strings[0]].push_back(record{.date{month, day, hour, minute}, .status{strings[2]}});
-//        cout << line;
     }
     return 0;
 }

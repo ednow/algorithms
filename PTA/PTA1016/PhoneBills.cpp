@@ -28,14 +28,14 @@ typedef struct record_{
 
 }record;
 
-typedef struct one_bill{
+typedef struct one_bill_{
     vector<string> bills;  // 每一条账单字符串
     double total{};  // 总的金额
-} bill;
+} one_bill;
 
 
 int PhoneBills(){
-    int recordsNum{}, hour{}, minute{}, day{}, rate{}, month{};  // 记录的条数
+    int recordsNum{}, hour{}, minute{}, day{},month{};  // 记录的条数
     string result;  // 最后输出的字符串，防止反复io造成的超时
     map<string, vector<record>> records;
     vector<int> rates(24, 0); // 不能使用rates{24, 0}来初始化，这样子相当于初始化两个元素
@@ -43,7 +43,7 @@ int PhoneBills(){
     for (int i = 0; i < 24; ++i) {
         cin >> rates[i];
     }
-    map<string, bill> bills;
+    map<string, one_bill> bills;
     cin >> recordsNum;
     regex ws_re(" ");
     getline(cin, line);  // 会多一个空行？？？
@@ -52,7 +52,7 @@ int PhoneBills(){
         // 将line按照空格分开
         vector<string> strings(std::sregex_token_iterator(line.begin() ,line.end(),ws_re,-1),std ::sregex_token_iterator());
         sscanf(strings[1].c_str(), "%d:%d:%d:%d", &month, &day, &hour, &minute);
-        records[strings[0]].push_back(record{.date{month, day, hour, minute}, .status{strings[2]}});
+        records[strings[0]].push_back(record{.date = {month, day, hour, minute}, .status = {strings[2]}});  // 没有=pta的编辑器报错
     }
 
     // start遍历的记录指针，onLine上线的下标，offLine下线的下标,temp循环用的记录变量

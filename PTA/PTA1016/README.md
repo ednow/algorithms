@@ -240,3 +240,11 @@ mingw32-make.exe: *** [Makefile:182: algorithms] Error 2
 [参考文献](http://c.biancheng.net/view/445.html)
 
 
+### clear并不能清空缓存
+
+如果需要清空缓存要使用,[参考文献](https://blog.csdn.net/zzw_17805056819/article/details/99574971)
+
+[ostringstream是重量级对象](https://blog.csdn.net/billdavid/article/details/3899312?utm_source=blogxgwz2)
+
+stringstream.str(""); 
+

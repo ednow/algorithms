@@ -6,21 +6,16 @@
 #include "gtest/gtest.h"
 #include "nlohmann/json.hpp"
 #include "utils.h"
+
+
+
 #include <cstdio>
 #include <iostream>
 #include <string>
-
-
-
 #include "list"
 #include "map"
 #include "algorithm"
-#include "string"
 #include "vector"
-#include <iostream>
-#include <sstream>
-#include <utility>
-#include <iterator>
 #include "iomanip"
 #include <regex>
 #include <numeric>
@@ -35,7 +30,7 @@ typedef struct record_{
 
 typedef struct one_bill{
     vector<string> bills;  // 每一条账单字符串
-    int total{};  // 总的金额
+    double total{};  // 总的金额
 } bill;
 
 
@@ -61,7 +56,8 @@ int PhoneBills(){
     }
 
     // start遍历的记录指针，onLine上线的下标，offLine下线的下标,temp循环用的记录变量
-    int start{}, onLine{}, offLine{}, temp{}, bill{}, last{};
+    int start{}, onLine{}, offLine{}, temp{}, last{};
+    double bill{};
     ostringstream tempStr;
     for (auto & one: records) {
         // 对通话记录的时间排序
@@ -80,7 +76,7 @@ int PhoneBills(){
 
             // 顺着之前的查找指针，找到下一条onLine的记录
             for (temp = start; temp < one.second.size(); ++temp) {
-                if (one.second[start].status == "on-line"){
+                if (one.second[temp].status == "on-line"){
                     onLine = temp;
                     break;
                 }
@@ -106,8 +102,8 @@ int PhoneBills(){
                                 bill += temp * rates[one.second[onLine].date[2]];
                                 last += temp;
                                 // 再求出off-line的时候，花的钱
-                                bill += one.second[onLine].date[3] * rates[one.second[onLine].date[2]];
-                                last += one.second[onLine].date[3];
+                                bill += one.second[offLine].date[3] * rates[one.second[offLine].date[2]];
+                                last += one.second[offLine].date[3];
                                 // 求出（on-line，off-line）之间小时的话费
                                 for (temp = one.second[onLine].date[2] + 1; temp < one.second[offLine].date[2]; ++temp) {
                                         bill += 60 * rates[temp];
@@ -139,7 +135,7 @@ int PhoneBills(){
                             }
 
                             // 中间一个有多少天
-                            temp = one.second[offLine].date[2] - one.second[onLine].date[2] - 1;
+                            temp = one.second[offLine].date[1] - one.second[onLine].date[1] - 1;
                             last += temp * 24 * 60;
                             bill += temp * accumulate(rates.begin(), rates.end(), 0) * 60;
                         }
@@ -158,16 +154,12 @@ int PhoneBills(){
 //                                << one.second[offLine].date[2] << ":"
 //                                << one.second[offLine].date[3];
 
-                        tempStr << setfill('0') << setw(2) << one.second[onLine].date[0];
-                        tempStr << ":";
                         tempStr << setfill('0') << setw(2) << one.second[onLine].date[1];
                         tempStr << ":";
                         tempStr << setfill('0') << setw(2) << one.second[onLine].date[2];
                         tempStr << ":";
                         tempStr << setfill('0') << setw(2) << one.second[onLine].date[3];
                         tempStr << " ";
-                        tempStr << setfill('0') << setw(2) << one.second[offLine].date[0];
-                        tempStr << ":";
                         tempStr << setfill('0') << setw(2) << one.second[offLine].date[1];
                         tempStr << ":";
                         tempStr << setfill('0') << setw(2) << one.second[offLine].date[2];
@@ -175,9 +167,10 @@ int PhoneBills(){
                         tempStr << setfill('0') << setw(2) << one.second[offLine].date[3];
                         tempStr << " ";
                         tempStr << last << ' ';
-                        tempStr << '$' << setprecision(2) << bill;
+                        tempStr << '$' << fixed <<  setprecision(2) << bill;
                         bills[one.first].bills.push_back(tempStr.str());
-                        tempStr.clear();
+                        tempStr.str("");
+                        break;// 这个break也太精髓了，我当时写python的时候在想什么？没有break会死循环
                     }
                 }
             }
@@ -188,16 +181,18 @@ int PhoneBills(){
             }
         }
     }
-
-    tempStr.clear();
+    tempStr.str("");
+    tempStr << setfill('0') << setw(2) << month;
+    string monthStr(tempStr.str());
+    tempStr.str("");
     for (const auto & one: bills) {
-        result += one.first + ' ';
+        result += one.first + ' ' + monthStr + '\n';
         for (const auto & str:one.second.bills) {
             result += str + '\n';  // 拼接每一次通话的话费的字符串
         }
         tempStr << setprecision(2) << one.second.total;
-        result += "Total amount: " + tempStr.str() + '\n';
-        tempStr.clear();
+        result += "Total amount: $" + tempStr.str() + '\n';
+        tempStr.str("");
     }
 
     cout << result;

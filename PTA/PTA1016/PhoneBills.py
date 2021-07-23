@@ -54,7 +54,7 @@ def summit():
                         if records[one][onLine][0][1] == records[one][idx][0][1]:
                             if records[one][onLine][0][2] == records[one][idx][0][2]:  # 如果在同一个小时
                                 last += records[one][idx][0][3] - records[one][onLine][0][3]
-                                bill += last * rates[records[one][idx][0][2]] / 100
+                                bill += last * rates[records[one][idx][0][2]] / 100  # 这里是不是不用/100
                             else:  # 不在同一个小时
                                 # 先求出on-line的小时，到该小时结束花的钱
                                 temp = 60 - records[one][onLine][0][3]

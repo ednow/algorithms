@@ -22,7 +22,7 @@
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210722215610.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210722215610.png';" /></details>
 
-sort buggy
+### sort buggy
 
 <details>
     <summary>Details</summary>
@@ -234,4 +234,9 @@ mingw32-make.exe[1]: *** [CMakeFiles\Makefile2:184: CMakeFiles/algorithms.dir/ru
 mingw32-make.exe: *** [Makefile:182: algorithms] Error 2
 
 </details>
+
+原因sort不能用于list，但是可以用于vector,并且line65对one的排序不影响record
+
+[参考文献](http://c.biancheng.net/view/445.html)
+
 

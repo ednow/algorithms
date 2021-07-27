@@ -83,7 +83,7 @@ int PhoneBills(){
             }
 
             if (onLine == -1){ // 全是off-line，没有合法的通话记录
-                continue;
+                break;
             } else{
                 for (temp = onLine + 1; temp < one.second.size(); ++temp) {
                     if (one.second[temp].status == "on-line"){ // 上一天on-line没有pair off-line,遇到的新的onLine，更新onLine

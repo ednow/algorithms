@@ -15,9 +15,12 @@
 #### 错误原因：死循环
 
 ### 第二次提交
-一行代码磨一年。。。
+一行代码磨一年。。。continue和break 引起的血案
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210727221933.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210727221933.png';" /></details>
+
+### 第三次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210728003414.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210728003414.png';" /></details>
 
 ## c++
 纠结cin了好久，看到网上cin也是写的很难看，感觉确实不能一股脑cin就完事了？
@@ -257,4 +260,5 @@ stringstream.str("");
 ### 第一次提交：后两个还是超时了
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210723235526.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210723235526.png';" /></details>
 
-
+### 第二次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210728003319.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210728003319.png';" /></details>

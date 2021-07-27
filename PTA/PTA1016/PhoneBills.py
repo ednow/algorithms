@@ -36,8 +36,8 @@ def summit():
                     onLine = idx
                     break
 
-            if onLine == -1:  # 全是off-line，不合法的记录
-                continue
+            if onLine == -1:  # 找不到一条onLine记录,全是off-line，不合法的记录
+                break
             else:
                 for idx in range(onLine + 1, len(records[one])):
                     if records[one][idx][1] == 'on-line':  # 上一天on-line没有pair off-line

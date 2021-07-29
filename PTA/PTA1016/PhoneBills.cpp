@@ -62,7 +62,6 @@ int PhoneBills(){
     for (auto & one: records) {
         // 对通话记录的时间排序
         sort(one.second.begin(), one.second.end(),[](auto a, auto b){
-            if (a.date[0] != b.date[0]) return a.date[0] < b.date[0];
             if (a.date[1] != b.date[1]) return a.date[1] < b.date[1];
             if (a.date[2] != b.date[2]) return a.date[2] < b.date[2];
             if (a.date[3] != b.date[3]) return a.date[3] < b.date[3];

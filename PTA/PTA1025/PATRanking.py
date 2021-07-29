@@ -46,6 +46,9 @@ def summit():
             [records[idx][0], rank, records[idx][2], localRank[records[idx][2]]["rank"]]
         )
 
+    # 测试点1，按照注册号排序
+    result.sort(key=lambda x: (x[1], x[0]))
+
     resultString += str(len(records)) + "\n"
     for record in result:
         resultString += " ".join(map(str, record)) + "\n"

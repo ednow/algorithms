@@ -11,7 +11,6 @@ def summit():
     # 读入记录
     for _ in range(N):
         strings = input().split()
-        # print(strings)
         records.append([strings[0], int(strings[1]), int(strings[2])])
 
     # 读入请求
@@ -32,7 +31,7 @@ def summit():
         else:
             result += 'None\n'
 
-    print(result.rstrip(), end='')
+    print(result, end='')
 
 
 if __name__ == '__main__':

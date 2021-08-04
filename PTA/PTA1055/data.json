@@ -1,8 +1,8 @@
 [
   {
     "id": "1",
-    "data": "",
-    "answer": "",
+    "data": "12 4\nZoe_Bill 35 2333\nBob_Volk 24 5888\nAnny_Cin 95 999999\nWilliams 30 -22\nCindy 76 76000\nAlice 18 88888\nJoe_Mike 32 3222\nMichael 5 300000\nRosemary 40 5888\nDobby 24 5888\nBilly 24 5888\nNobody 5 0\n4 15 45\n4 30 35\n4 5 95\n1 45 50",
+    "answer": "Case #1:\nAlice 18 88888\nBilly 24 5888\nBob_Volk 24 5888\nDobby 24 5888\nCase #2:\nJoe_Mike 32 3222\nZoe_Bill 35 2333\nWilliams 30 -22\nCase #3:\nAnny_Cin 95 999999\nMichael 5 300000\nAlice 18 88888\nCindy 76 76000\nCase #4:\nNone",
     "description": "题目的样例"
   }
 ]

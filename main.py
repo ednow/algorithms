@@ -2,6 +2,7 @@ import importlib
 import os
 import sys
 import json
+import traceback
 from io import StringIO
 from utils.Exception import *
 import logging
@@ -50,7 +51,13 @@ class Test:
             f = StringIO()
             stdoutBackup = sys.stdout
             sys.stdout = f
-            getattr(module, self.entry)()
+            try:
+                getattr(module, self.entry)()
+            except Exception as e:
+                print(traceback.format_exc(), file=sys.stderr)
+                sys.stdout = stdoutBackup
+                print(f.getvalue())
+
             sys.stdout = stdoutBackup
             if answer == f.getvalue():
                 print(f"pass:id = {testCase['id']}")

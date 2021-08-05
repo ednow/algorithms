@@ -23,52 +23,52 @@ typedef struct record_{
 
 
 int TheWorldsRichest(){
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr); cout.tie(nullptr);
+//    ios::sync_with_stdio(false);
+//    cin.tie(nullptr); cout.tie(nullptr);
     // N一共有多少人.K请求的个数,age、worth读入数据的时候的临时变量
     // maxLen需要求的前几名, minAge满足要求的最小的年龄, 满足要求的最大的年龄
     // exactLen实际输出的长度
     int N{}, K{}, age, worth, maxLen, minAge, maxAge, exactLen;
+    bool find = false;
     // name读入数据的时候的临时变量
     string name;
     cin >> N >> K;
     // temp 处理的时候的临时变量
-    vector<record> records(N), temp;
+    vector<record> records(N);
     // 最后输出的字符串
     string result;
 
     // 读入记录
-    while (N--){
-        cin >> name >> age >> worth;
-        records[N].age = age;
-        records[N].name = name;
-        records[N].worth = worth;
+    for (int i = 0; i < N; ++i) {
+        cin >> records[i].name >> records[i].age >> records[i].worth;
     }
+
+    sort(records.begin(), records.end(), [](const auto & a, const auto & b){
+        if(a.worth != b.worth)  return a.worth > b.worth;
+        if (a.age != b.age) return a.age < b.age;
+        return a.name < b.name;
+    });
 
     for (int i = 1; i < K+1; ++i) {
         cin >> maxLen >> minAge >> maxAge;
         // 筛选出相应年龄段的人
-        copy_if(records.begin(), records.end(), back_inserter(temp), [&](const auto & a){
-            return (a.age >= minAge) && (a.age <= maxAge);
-        });
         // 再根据净利润降序排序
-        sort(temp.begin(), temp.end(), [](const auto & a, const auto & b){
-            if(a.worth != b.worth)  return a.worth > b.worth;
-            if (a.age != b.age) return a.age < b.age;
-            return a.name < b.name;
-        });
 
+        int num = 0;
         result += "Case #" + to_string(i) + ":\n";
-        if (!temp.empty()){  // 如果存在记录
-            exactLen = min(maxLen, (int) temp.size());
-            for (int j = 0; j < exactLen; ++j) {
-                result += temp[j].name + " " + to_string(temp[j].age) + " " + to_string(temp[j].worth) + '\n';
+        for (int j = 0; j < N; ++j) {
+            if ((records[j].age >= minAge) && (records[j].age <= maxAge)){
+                result += records[j].name + " " + to_string(records[j].age) + " " + to_string(records[j].worth) + '\n';
+                num++;
             }
-        } else{
-            result += "None\n";
+            if(num==maxLen){
+                break;
+            }
         }
 
-        temp.clear();
+        if (!num){
+            result += "None\n";
+        }
     }
 
     cout << result;

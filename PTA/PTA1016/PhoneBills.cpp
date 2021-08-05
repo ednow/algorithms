@@ -37,6 +37,7 @@ typedef struct one_bill_{
 int PhoneBills(){
     int recordsNum{}, hour{}, minute{}, day{},month{};  // 记录的条数
     string result;  // 最后输出的字符串，防止反复io造成的超时
+    // key:name, value:record
     map<string, vector<record>> records;
     vector<int> rates(24, 0); // 不能使用rates{24, 0}来初始化，这样子相当于初始化两个元素
     string line;

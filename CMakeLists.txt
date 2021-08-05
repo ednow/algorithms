@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1028/ListSorting.cpp PTA/PTA1028/ListSorting.h)
+        PTA/PTA1055/TheWorldsRichest.cpp)
 
 # 添加头文件
 include_directories(

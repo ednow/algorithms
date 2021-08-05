@@ -29,7 +29,7 @@
 |1012|:white_check_mark:|||排序|
 |1016|:white_check_mark:|||排序|
 |1025|:white_check_mark:|||排序|
-|1028||||排序|
+|1028|||:white_check_mark:|排序|
 |1055||||排序|
 |1062||||排序|
 |1075||||排序|

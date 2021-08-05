@@ -30,8 +30,8 @@
 |1016|:white_check_mark:|||排序|
 |1025|:white_check_mark:|||排序|
 |1028|||:white_check_mark:|排序|
-|1055|:cross_mark:||:check_mark:|排序|
-|1062||||排序|
+|1055|||:white_check_mark:|排序|
+|1062|||:white_check_mark:|排序|
 |1075||||排序|
 |1080||||排序|
 |1083||||排序|

@@ -23,7 +23,8 @@ typedef struct record_{
 
 
 int TheWorldsRichest(){
-//    ios::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr); cout.tie(nullptr);
     // N一共有多少人.K请求的个数,age、worth读入数据的时候的临时变量
     // maxLen需要求的前几名, minAge满足要求的最小的年龄, 满足要求的最大的年龄
     // exactLen实际输出的长度
@@ -50,16 +51,11 @@ int TheWorldsRichest(){
         copy_if(records.begin(), records.end(), back_inserter(temp), [&](const auto & a){
             return (a.age >= minAge) && (a.age <= maxAge);
         });
-
-        // 先根据年龄和姓名非降序排序
-        sort(temp.begin(), temp.end(), [](const auto & a, const auto & b){
-            if (a.age != b.age) return a.age < b.age;
-            return a.name < b.name;
-        });
-
         // 再根据净利润降序排序
         sort(temp.begin(), temp.end(), [](const auto & a, const auto & b){
-            return a.worth > b.worth;
+            if(a.worth != b.worth)  return a.worth > b.worth;
+            if (a.age != b.age) return a.age < b.age;
+            return a.name < b.name;
         });
 
         result += "Case #" + to_string(i) + ":\n";

@@ -39,8 +39,8 @@ int TheWorldsRichest(){
     string result;
 
     // 读入记录
-    for (int i = 0; i < N; ++i) {
-        cin >> records[i].name >> records[i].age >> records[i].worth;
+    while (N--){
+        cin >> records[N].name >> records[N].age >> records[N].worth;
     }
 
     sort(records.begin(), records.end(), [](const auto & a, const auto & b){
@@ -51,24 +51,22 @@ int TheWorldsRichest(){
 
     for (int i = 1; i < K+1; ++i) {
         cin >> maxLen >> minAge >> maxAge;
-        // 筛选出相应年龄段的人
-        // 再根据净利润降序排序
-
-        int num = 0;
         result += "Case #" + to_string(i) + ":\n";
-        for (int j = 0; j < N; ++j) {
-            if ((records[j].age >= minAge) && (records[j].age <= maxAge)){
-                result += records[j].name + " " + to_string(records[j].age) + " " + to_string(records[j].worth) + '\n';
-                num++;
+        for (const auto & a: records) {
+            if ((a.age >= minAge) && (a.age <= maxAge)){
+                result += a.name + " " + to_string(a.age) + " " + to_string(a.worth) + '\n';
+                find = true;
+                maxLen--;
             }
-            if(num==maxLen){
+            if(maxLen==0){
                 break;
             }
         }
 
-        if (!num){
+        if (!find){
             result += "None\n";
         }
+        find = false;
     }
 
     cout << result;

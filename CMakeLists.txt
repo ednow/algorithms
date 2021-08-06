@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1062/TalentandVirtue.cpp PTA/PTA1062/TalentandVirtue.h)
+        PTA/PTA1075/PATJudge.cpp PTA/PTA1075/PATJudge.h)
 
 # 添加头文件
 include_directories(

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "data": "4\nTom CS000001 59\nJoe Math990112 89\nMike CS991301 100\nMary EE990830 95\n60 100",
+    "answer": "Mike CS991301\nMary EE990830\nJoe Math990112\n",
+    "description": "题目的样例"
+  },
+  {
+  "id": "2",
+  "data": "2\nJean AA980920 60\nAnn CS01 80\n90 95",
+  "answer": "NONE\n",
+  "description": "题目的样例"
+  }
+]

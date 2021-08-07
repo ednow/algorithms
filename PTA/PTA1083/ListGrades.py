@@ -14,6 +14,7 @@ def summit():
         print("NONE")
         return None
 
+    # 根据成绩排序
     records.sort(key=lambda x: x[2], reverse=True)
 
     result += "\n".join([" ".join(i[:-1]) for i in records])

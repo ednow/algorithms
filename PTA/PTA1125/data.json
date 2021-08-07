@@ -4,5 +4,17 @@
     "data": "8\n10 15 12 3 4 13 1 15\n",
     "answer": "14\n",
     "description": "题目的样例"
+  },
+  {
+    "id": "2",
+    "data": "8\n10 115 12 3 4 13 1 115",
+    "answer": "89\n",
+    "description": "测试点0"
+  },
+  {
+    "id": "2",
+    "data": "2\n2 10000",
+    "answer": "5001\n",
+    "description": "测试点1"
   }
 ]

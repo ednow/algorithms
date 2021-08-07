@@ -133,22 +133,46 @@ int GraduateAdmission(){
         newAcceptances.assign(M, 0);
         // 压入此时的学生申请表
         q.push(applications[i]);
+        currentRank = applications[i].rank;
     }
+
+    // 处理尾巴
+    // 处理队列中的请求
+    while (!q.empty()){
+        head = q.front();
+        // 查看这个人的志愿下还有没有配额
+        for (int j = 0; j < K; ++j) {
+
+            // 有余额
+            if (quotas[head.preference[j]] > 0){
+                // 该学校新接收的人数加1
+                newAcceptances[head.preference[j]]++;
+                acceptances[head.preference[j]].push_back(head.id);
+                break;
+            }
+        }
+        q.pop();
+    }
+
 
     // 每个学校的新生按照id升序排好,并输出
     for (int i = 0; i < M; ++i) {
+        // 如果这个学校没有新生输出为空
+        if (acceptances[i].empty()){
+            result << endl;
+            continue;
+        }
+
+        // 否则排序输出
         sort(acceptances[i].begin(), acceptances[i].end());
+
         for (int j = 0; j < acceptances[i].size() - 1 && !acceptances[i].empty(); ++j) {
             result << acceptances[i][j] << " ";
         }
 
-        // 如果这个学校没有新生输出为空
-        if (acceptances[i].empty()){
-            result << endl;
-        } else{
-            result << acceptances[i][acceptances[i].size() - 1] << endl;
+        result << acceptances[i][acceptances[i].size() - 1] << endl;
 
-        }
+
     }
 
     cout << result.str();

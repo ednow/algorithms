@@ -1,6 +1,7 @@
 # PTA1125总结
 ## 考点
 + 排序
++ 猜题意
 
 
 ## 问题重述
@@ -16,6 +17,8 @@
 实测有空行
 
 神坑：要把所有的绳子都折到一起
+
+必须加了之后再四舍五入
 ## python
 ### 第一次提交
 
@@ -32,9 +35,12 @@ version2
 
 测试点1的答案5001
 
-参考文献
+[参考文献](https://blog.csdn.net/Huangpengyu123/article/details/118583368)
 
 ### 最后一次提交
-reduce的起点必须是num[0]，然后从num[1:]开始reduce
+reduce的起点必须是num[0]，然后从num[1:]开始reduce，
+
+此操作再cpp中可使用accumulate实现，c17后可使用reduce
+
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210807215711.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210807215711.png';" /></details>

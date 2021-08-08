@@ -1,8 +1,8 @@
 [
   {
     "id": "1",
-    "data": "",
-    "answer": "",
+    "data": "10\nA57908 85 Au\nB57908 54 LanX\nA37487 60 au\nT28374 67 CMU\nT32486 24 hypu\nA66734 92 cmu\nB76378 71 AU\nA47780 45 lanx\nA72809 100 pku\nA03274 45 hypu",
+    "answer": "5\n1 cmu 192 2\n1 au 192 3\n3 pku 100 1\n4 hypu 81 2\n4 lanx 81 2\n",
     "description": "题目的样例"
   }
 ]

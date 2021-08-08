@@ -36,7 +36,7 @@
 |1080|||:white_check_mark:|排序|
 |1083|:white_check_mark:|||排序|
 |1113|:white_check_mark:|||排序|
-|1125||||排序|
+|1125|:white_check_mark:|||排序|
 |1141||||排序|
 |1076||||广度优先搜索BFS|
 |1146||||拓扑排序|

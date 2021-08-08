@@ -88,7 +88,7 @@ def summit():
         if postOrderList[i] in inOrderList[:rootIndex]:
             rightestOfLeft += 1
 
-    # 将右孩子附着到根节点
+    # 将左孩子附着到根节点
     attach_node(root, postOrderList[0: rightestOfLeft + 1], inOrderList[:rootIndex], isLeft=True)
     # 将右孩子附着到根节点
     attach_node(root, postOrderList[rightestOfLeft + 1: -1], inOrderList[rootIndex + 1:], isLeft=False)

@@ -28,6 +28,12 @@
 测试点不通过
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210808100417.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210808100417.png';" /></details>
 
+### 第二次提交
+使用读入加速技术大概能快50ms在大数据集的情况下10^5
+
+运算的前后顺序会造成精度上的差距，严格按照题目意思走
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210808101143.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210808101143.png';" /></details>
 
 ### 语法技术
 tolower()

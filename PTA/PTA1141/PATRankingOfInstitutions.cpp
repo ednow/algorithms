@@ -15,7 +15,10 @@
 using namespace std;
 
 typedef struct teamInfo_ {
-    int TWS{};  // 加权总分
+    int TWS{};  // 加权总分，排序的时候才计算
+    int scoreT{};  // 顶级得分
+    int scoreA{}; // 甲级得分
+    int scoreB{}; // 乙级得分
     int Ns{};  // 提交的题目总数
     string code; // 转为vector的时候才赋值
     int rank{}; // 排名，更新排名的时候哦才赋值
@@ -44,13 +47,13 @@ int PATRankingOfInstitutions(){
         teams[code].Ns++;
         switch (submissionId.at(0)) {
             case 'T':
-                teams[code].TWS += (int)(score * 1.5);
+                teams[code].scoreT += score;
                 break;
             case 'A':
-                teams[code].TWS += score;
+                teams[code].scoreA += score;
                 break;
             case 'B':
-                teams[code].TWS += (int)(score / 1.5);
+                teams[code].scoreB += score;
                 break;
             default:
                 break;
@@ -58,9 +61,10 @@ int PATRankingOfInstitutions(){
     }
 
     vector<teamInfo> teamsVector;
-    // 将map转为vector
+    // 将map转为vector,并计算总分
     for (auto &a: teams) {
         a.second.code = a.first;
+        a.second.TWS = (int) (a.second.scoreT * 1.5 + a.second.scoreA + a.second.scoreB / 1.5);
         teamsVector.push_back(a.second);
     }
 

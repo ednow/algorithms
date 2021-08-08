@@ -21,7 +21,7 @@ typedef struct teamInfo_ {
     int scoreB{}; // 乙级得分
     int Ns{};  // 提交的题目总数
     string code; // 转为vector的时候才赋值
-    int rank{}; // 排名，更新排名的时候哦才赋值
+    int rank{}; // 排名，更新排名的时候才赋值
 }teamInfo;
 
 int PATRankingOfInstitutions(){
@@ -85,6 +85,8 @@ int PATRankingOfInstitutions(){
         }
         teamsVector[i].rank = rank;
     }
+
+    // 输出结果
     result << teamsVector.size() << endl;
     for (const auto &a: teamsVector) {
         result << a.rank << " " << a.code << " " << a.TWS << " " << a.Ns << endl;

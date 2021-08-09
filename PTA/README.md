@@ -38,7 +38,7 @@
 |1113|:white_check_mark:| | |排序|
 |1125|:white_check_mark:| | |排序|
 |1141| | |:white_check_mark:|排序|
-|1014| | | |队列|
+|1014|:white_check_mark: | | |队列|
 |1056| | | |队列|
 |1051| | | |栈|
 |1098| | | |堆|

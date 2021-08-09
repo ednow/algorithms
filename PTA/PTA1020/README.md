@@ -28,3 +28,13 @@ slot的使用，[参考文献](https://stackoverflow.com/questions/5943425/is-th
 
 ### 第一次提交
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210808235418.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210808235418.png';" /></details>
+
+
+<details><summary>代码详情</summary>
+
+```
+C:\Users\lnd\anaconda3\lib\site-packages\urllib3\connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'pintia.cn'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(
+```
+
+</details>

@@ -31,7 +31,7 @@ def summit():
         windows.append(q)
 
     # 已完成的客户们
-    finishDict: Dict[int, int] = dict()
+    finishDict: Dict[int, str] = dict()
     # 正在等待的客户们
     waitingList: List[Customer] = []
 
@@ -58,9 +58,9 @@ def summit():
         window.remain -= 1
 
     # 如果还有客户没有得到处理，而且银行没有下班,窗口中还有人等待处理
-    while time <= 9 * 60 and any([len(q.q) > 0 for q in windows]):
-        # 如果黄线前还有位置，那么客户站进去
-        while any([q.remain > 0 for q in windows]) and len(waitingList) != 0:
+    while any([len(q.q) > 0 for q in windows]):
+        # 如果黄线前还有位置，那么客户站进去,银行下班进不了黄线
+        while any([q.remain > 0 for q in windows]) and len(waitingList) != 0 and time < 6 * 90:
             # 选一条等的人数最少的窗口
             window = max(windows, key=lambda x: x.remain)
             # 让等待的人进黄线内等
@@ -76,35 +76,31 @@ def summit():
         time += timePass
         # 对所有窗口正在处理的人更新剩余时间戳
         for window in windows:
+            # 超过17点，后面的的人站进了黄线的人被赶出去
+            if time >= 6 * 90 and len(window.q) > 1:
+                for c in window.q[1:]:
+                    waitingList.append(c)
+                    window.q.remove(c)
+
             if len(window.q) > 0:
                 window.q[0].remain -= timePass
                 # 所有已经处理完的人离开窗口，并记录结束时间戳到结束信息表中
                 if window.q[0].remain == 0:
-                    finishDict[window.q[0].id] = time
+                    hour = 8 + floor(time / 60)
+                    minute = time % 60
+                    finishDict[window.q[0].id] = f"{hour:02d}:{minute:02d}\n"
                     window.q.pop(0)
                     # 上一个客户走了之后窗口前有了新的容量
                     window.remain += 1
 
     # 剩下的人全部超时
     for c in waitingList:
-        finishDict[c.id] = 10 * 60
-    # 窗口前没有被处理的人也是超时的
-    for window in windows:
-        if len(window.q) > 0:
-            for c in window.q:
-                finishDict[c.id] = 10 * 60
+        finishDict[c.id] = "Sorry\n"
 
     # 最后输出的字符串
     result = ""
     for query in queries:
-        finishTime = finishDict[query]
-        # 将时间戳转为字符串并拼接到输出字符串中
-        hour = 8 + floor(finishTime / 60)
-        minute = finishTime % 60
-        if hour < 17 or (hour == 17 and minute == 0):
-            result += f"{hour:02d}:{minute:02d}\n"
-        else:
-            result += "Sorry\n"
+        result += finishDict[query]
 
     print(result, end='')
 

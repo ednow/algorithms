@@ -18,12 +18,15 @@ def summit():
     # rank会随着比赛的进行--,为了得到真正的排名需要加上场数
     rank = 0
     while len(nextOrders) > 0:
-        rank -= 1
+        # rank -= 1
+        for k in ranks.keys():
+            ranks[k] += 1
+
         orders = nextOrders
 
         # 只有一个就不比了
         if len(orders) == 1:
-            ranks[orders[0]] = rank
+            ranks[orders[0]] = 1
             break
 
         nextOrders = []
@@ -35,7 +38,7 @@ def summit():
             # 输的人被淘汰
             for one in orders[:G]:
                 if one != winner:
-                    ranks[one] = rank
+                    ranks[one] = 1
             orders = orders[G:]
 
     result = []

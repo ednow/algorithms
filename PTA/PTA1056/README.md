@@ -21,10 +21,21 @@
 
 如果最后一轮最高分打平怎么办，如果前面几轮打平怎么办
 
+为什么案例没有第四名？排名居然是group+1不是有多少层就排多少名[参考文献](https://my.oschina.net/u/4374940/blog/3391190)
+
+
 
 ## python
 ### 语法技术
 dict.items 不能 subscription
+
+### 先交再说
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210809221927.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210809221927.png';" /></details>
+
+### 第二次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210809223744.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210809223744.png';" /></details>
+
+
 
 ## cpp
 

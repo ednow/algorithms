@@ -39,7 +39,7 @@
 |1125|:white_check_mark:| | |排序|
 |1141| | |:white_check_mark:|排序|
 |1014|:white_check_mark: | | |队列|
-|1056| | | |队列|
+|1056|:white_check_mark: | | |队列|
 |1051| | | |栈|
 |1098| | | |堆|
 |1006| | | |查找元素|

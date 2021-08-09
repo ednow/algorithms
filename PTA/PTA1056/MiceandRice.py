@@ -1,5 +1,5 @@
 from typing import Dict
-
+from math import ceil
 
 def summit():
     N, G = map(int, input().split())
@@ -18,11 +18,8 @@ def summit():
     # rank会随着比赛的进行--,为了得到真正的排名需要加上场数
     rank = 0
     while len(nextOrders) > 0:
-        # rank -= 1
-        for k in ranks.keys():
-            ranks[k] += 1
-
         orders = nextOrders
+        group = ceil(len(orders) / G)
 
         # 只有一个就不比了
         if len(orders) == 1:
@@ -38,14 +35,13 @@ def summit():
             # 输的人被淘汰
             for one in orders[:G]:
                 if one != winner:
-                    ranks[one] = 1
+                    ranks[one] = group + 1
             orders = orders[G:]
 
     result = []
     # 修正排名
-    offset = - min(ranks.values(), key=lambda x: x) + 1
     for i in range(N):
-        result.append(str(ranks[i] + offset))
+        result.append(str(ranks[i]))
 
     print(" ".join(result))
 

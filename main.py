@@ -57,6 +57,7 @@ class Test:
                 print(traceback.format_exc(), file=sys.stderr)
                 sys.stdout = stdoutBackup
                 print(f.getvalue())
+                continue
 
             sys.stdout = stdoutBackup
             if answer == f.getvalue():

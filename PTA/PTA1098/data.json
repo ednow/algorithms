@@ -2,13 +2,35 @@
   {
     "id": "1",
     "data": "10\n3 1 2 8 7 5 9 4 6 0\n1 2 3 7 8 5 9 4 6 0",
-    "answer": "Insertion Sort\n1 2 3 5 7 8 9 4 6 0",
+    "answer": "Insertion Sort\n1 2 3 5 7 8 9 4 6 0\n",
     "description": "题目的样例"
   },
   {
-    "id": "1",
+    "id": "2",
     "data": "10\n3 1 2 8 7 5 9 4 6 0\n6 4 5 1 0 3 2 7 8 9",
-    "answer": "Heap Sort\n5 4 3 1 0 2 6 7 8 9",
+    "answer": "Heap Sort\n5 4 3 1 0 2 6 7 8 9\n",
     "description": "题目的样例"
+  },
+  {
+    "id": "3",
+    "data": "4\n254 387 2 1\n254 387 2 1",
+    "answer": "Insertion Sort\n2 254 387 1\n",
+    "description": "测试点2"
+  },
+  {
+    "id": "4",
+    "data": "4\n321 298 450 1\n321 298 1 450",
+    "answer": "Heap Sort\n298 1 321 450\n",
+    "description": "测试点3"
+  },{
+    "id": "5",
+    "data": "100\n0\n0",
+    "answer": "",
+    "description": "测试点5"
+  },{
+    "id": "6",
+    "data": "100\n0\n0",
+    "answer": "",
+    "description": "测试点6"
   }
 ]

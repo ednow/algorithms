@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "data": "10\n3 1 2 8 7 5 9 4 6 0\n1 2 3 7 8 5 9 4 6 0",
+    "answer": "Insertion Sort\n1 2 3 5 7 8 9 4 6 0",
+    "description": "题目的样例"
+  },
+  {
+    "id": "1",
+    "data": "10\n3 1 2 8 7 5 9 4 6 0\n6 4 5 1 0 3 2 7 8 9",
+    "answer": "Heap Sort\n5 4 3 1 0 2 6 7 8 9",
+    "description": "题目的样例"
+  }
+]

@@ -30,11 +30,23 @@ class Test:
             "testCaseId": "id",
             "testData": "data"
         }
+
+        # 给定testCaseId中的测试数据，只添加给定的测试数据
         for key in ["testCaseId", "testData"]:
             if self.config.get(key, None) is not None:
                 temp.extend(list(filter(lambda x: x[mapper[key]] == self.config[key], self.testCases)))
         if len(temp) > 0:
             self.testCases = temp
+
+        # 删除excludeTestCaseIds中指定的测试数据
+        if self.config.get("excludeTestCaseIds", None) is not None:
+            if len(self.config.get("excludeTestCaseIds")) > 0:
+                self.testCases = list(
+                    filter(
+                        lambda x: not(x["id"] in self.config["excludeTestCaseIds"]),
+                        self.testCases
+                    )
+                )
 
         # 如果设定了模块的入口函数
         if self.config.get("moduleEntry", None) is not None:

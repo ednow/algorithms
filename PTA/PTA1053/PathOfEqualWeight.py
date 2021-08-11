@@ -31,14 +31,19 @@ def summit():
     # 工作栈顶的元素不是根节点
     while stack[-1] != 0:
         currentWeight = reduce(lambda a, b: a + weights[b], stack, 0)
-        # 如果现在的路径的带权长度就是目标长度
+        # 如果现在的路径的带权长度就是目标长度,且是叶子节点
         if currentWeight == weight and isLeaf[stack[-1]]:
             result.append([weights[i] for i in stack])
             stack.pop(-1)
+            if len(tree[stack[-1]]) > 0:
+                stack.append(tree[stack[-1]].pop(0))
             continue
 
+        # 如果现在的路径的带权长度就是目标长度,不是叶子节点直接弹出,找付清节点的下一个叶子节点
         if currentWeight == weight and not isLeaf[stack[-1]]:
             stack.pop(-1)
+            if len(tree[stack[-1]]) > 0:
+                stack.append(tree[stack[-1]].pop(0))
             continue
 
         # 如果现在的路径的带权路径长度大于目标长度

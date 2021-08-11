@@ -37,6 +37,6 @@
     "id": "7",
     "data": "5\n1 2 3 4 5\n4 2 3 1 5",
     "answer": "Heap Sort\n3 2 1 4 5\n",
-    "description": "自定义测试数据1"
+    "description": "堆排序的时候临界判断"
   }
 ]

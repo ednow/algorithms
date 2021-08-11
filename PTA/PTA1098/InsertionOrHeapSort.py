@@ -50,7 +50,7 @@ def heap_adjust(seq: List[int], lastWorkPointer: int):
         compares = [[pointer, seq[pointer]], [nextPointer + 1, seq[nextPointer + 1]]]
 
         # 如果有右孩子,且不是输出的堆顶元素
-        if nextPointer + 2 < workPointer - 1:
+        if nextPointer + 2 < workPointer:
             compares.append([nextPointer + 2, seq[nextPointer + 2]])
 
         # 从 [根节点，左孩子，右孩子] 找出当前最大的节点

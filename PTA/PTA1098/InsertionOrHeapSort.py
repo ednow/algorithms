@@ -84,8 +84,19 @@ def summit():
         fun = 'Heap'  # 右边都被排好,采用的排序算法是堆排序
         heap_adjust(currentSeq, workPointer)
     else:
-        fun = 'Insertion'  # 否则是插入排序
-        insertion_adjust(currentSeq, rawSeq)
+        # 给的序列至少经过了一次排序，如果此次排序第一个比第二个更大，那么其实应该是堆排序
+        if currentSeq[0] > currentSeq[1]:
+            fun = 'Heap'  # 右边都被排好,采用的排序算法是堆排序
+            # 从最右边开始找直到没排序好就是工作指针
+            workPointer = len(rawSeq) - 1
+            for idx in range(len(rawSeq) - 1, 0, -1):
+                if not all([a == b for a, b in zip(sorted(rawSeq[idx:]), currentSeq[idx:])]):
+                    continue
+                workPointer = idx + 1
+            heap_adjust(currentSeq, workPointer)
+        else:
+            fun = 'Insertion'  # 否则是插入排序
+            insertion_adjust(currentSeq, rawSeq)
 
     print(f"{fun} Sort\n{' '.join(map(str, currentSeq))}")
 

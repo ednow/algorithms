@@ -43,3 +43,12 @@ python [swap](https://stackoverflow.com/questions/14836228/is-there-a-standardiz
 ### 第三次提交
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210811194257.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210811194257.png';" /></details>
+
+### 第四次提交
+
++ 判断工作指针的地方出错了
++ 双重确认是好方法
++ 也许判断排序方法上还有更好的操作
+
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210811203818.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210811203818.png';" /></details>

@@ -90,9 +90,10 @@ def summit():
             # 从最右边开始找直到没排序好就是工作指针
             workPointer = len(rawSeq) - 1
             for idx in range(len(rawSeq) - 1, 0, -1):
-                if not all([a == b for a, b in zip(sorted(rawSeq), currentSeq[idx:])]):
+                if all([a == b for a, b in zip(sorted(rawSeq)[idx:], currentSeq[idx:])]):
                     continue
                 workPointer = idx + 1
+                break
             heap_adjust(currentSeq, workPointer)
         else:
             fun = 'Insertion'  # 否则是插入排序

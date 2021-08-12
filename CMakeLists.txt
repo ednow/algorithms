@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1079/TotalSalesOfSupplyChain.cpp PTA/PTA1079/TotalSalesOfSupplyChain.h PTA/PTA1090/HighestPriceInSupplyChain.cpp PTA/PTA1090/HighestPriceInSupplyChain.h)
+        PTA/PTA1090/HighestPriceInSupplyChain.cpp PTA/PTA1090/HighestPriceInSupplyChain.h)
 
 # 添加头文件
 include_directories(

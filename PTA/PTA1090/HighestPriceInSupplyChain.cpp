@@ -9,6 +9,13 @@
 #include "vector"
 #include "algorithm" // max_element
 #include "cmath"
+#include "map"
+#include "queue"
+
+typedef struct item_ {
+    int level{};  // 在哪一层
+    int label{};
+}item;  // 队列中的元素
 
 using namespace std;
 
@@ -23,36 +30,48 @@ int HighestPriceInSupplyChain(){
     double price{}, rate{};
     cin >> members >> price >> rate;
     rate /= 100;
-    // 双亲表示法
-    vector<int> tree(members);
+    // 孩子兄弟表示法
+    vector<vector<int>> tree(members + 1);
     // 每一个
-    vector<int> levels(members);
+    vector<int> levels(members + 1);
     // 建树
-    for (int i = 0; i < members; ++i) {
-        cin >> tree[i];
-    }
-
-    // 标记所有节点的层次
-    int level{};
-    // 找到根节点前的临时节点
     int tempNode{};
-    for (int i = 0; i < members; ++i) {
-        level = 0;
-        tempNode = i;
-        while (tree[tempNode] != -1){
-            tempNode = tree[tempNode];
-            level++;
-        }
-        levels[i] = level;
+    for (int i = 1; i < members + 1; ++i) {
+        cin >> tempNode;
+        // 注意有0号有-1
+        tree[tempNode + 1].push_back(i);
+
     }
 
-    auto  maxLevel = *max_element(levels.begin(), levels.end());
+    // 找到根节点前的临时节点
+    int  maxLevel{};
     int maxLevelNum{};
-    // 找最大节点的个数
-    for (int i = 0; i < members; ++i) {
-        if(levels[i] == maxLevel){
-            maxLevelNum++;
+    // 层次遍历的时候顺便把最大的节点和节点数给找到
+    queue<item> q;
+    q.push(item{.level=-1, .label=0});
+    while (!q.empty()){
+        // 叶子节点
+        if (tree[q.front().label].empty()){
+            // 如果当前的层次更大，更新最大层次，将最大层次的节点数重置
+            if (q.front().level > maxLevel){
+                maxLevel = q.front().level;
+                maxLevelNum = 0;
+            }
+
+            if (q.front().level == maxLevel){
+                maxLevelNum ++;
+            }
+
+        }else{  // 非叶子节点
+            for (const auto a:tree[q.front().label]) {
+                q.push(item{
+                        .level = q.front().level + 1, // 下一层
+                        .label = a
+                });
+            }
         }
+
+        q.pop();
     }
 
     cout << setprecision(2) << fixed << price * pow(1 + rate, maxLevel) << " ";

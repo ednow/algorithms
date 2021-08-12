@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1083/ListGrades.cpp PTA/PTA1083/ListGrades.h PTA/PTA1141/PATRankingOfInstitutions.cpp PTA/PTA1141/PATRankingOfInstitutions.h PTA/PTA1014/WaitingInLine.cpp PTA/PTA1014/WaitingInLine.h)
+        PTA/PTA1079/TotalSalesOfSupplyChain.cpp PTA/PTA1079/TotalSalesOfSupplyChain.h PTA/PTA1090/HighestPriceInSupplyChain.cpp PTA/PTA1090/HighestPriceInSupplyChain.h)
 
 # 添加头文件
 include_directories(

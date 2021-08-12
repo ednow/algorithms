@@ -57,11 +57,11 @@ def level_traversal(root: Node) -> List[int]:
 def summit():
     # 节点数
     nodesNum = int(input())
-    # 二叉树的双亲表示法：好像教科书里面没有这种？
+    # 参考树的双亲表示法设计的二叉树的双亲表示法，用来找根节点
     # tree described by Parents
     treeDesByParents: List[int] = [-1 for _ in range(nodesNum)]
     # 二叉树的链式存储结构的节点列表
-    # tree described by Linked Node
+    # tree described by Linked Node, nodes are stored in List
     treeDesByNodeList: List[Node] = [Node(i) for i in range(nodesNum)]
     for idx in range(nodesNum):
         strings = input().split()

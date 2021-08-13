@@ -1,4 +1,6 @@
 from typing import List
+import sys
+sys.setrecursionlimit(3000)
 
 
 # 链式存储结构
@@ -78,7 +80,6 @@ def insert_node(root: Node, node: Node, swap: bool):
 
 
 def summit():
-    # nodeNums = int(input())
     input()
     nums = list(map(int, input().split()))
     # 节点列表

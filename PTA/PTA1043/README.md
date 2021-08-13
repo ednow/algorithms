@@ -19,8 +19,23 @@
 
 
 ## python
+todo:可将递归算法改成非递归实现，就不同修改递归栈深度了
 
 ### 第一次提交
 测试点6只有一个节点
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210813101924.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210813101924.png';" /></details>
+
+### 第二次提交
+测试点：超过递归栈最大深度
+<details><summary>代码详情</summary>
+
+```python
+# 重设递归栈深度
+import sys
+sys.setrecursionlimit(3000)
+```
+
+</details>
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210813103539.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210813103539.png';" /></details>

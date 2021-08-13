@@ -46,7 +46,7 @@ def postorder_traversal(root: Node, result: List[int]):
 
 def insert_node(root: Node, node: Node, swap: bool):
     """
-
+    在二叉排序树中加入节点
     :param root: 二叉排序树的根节点
     :param node: 要插入到二叉排序树的节点
     :param swap: 是不是镜像二叉排序树

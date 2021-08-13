@@ -16,5 +16,10 @@
     "data": "7\n8 6 8 5 10 9 11",
     "answer": "NO\n",
     "description": "题目的样例"
+  },{
+    "id": "4",
+    "data": "1\n8",
+    "answer": "YES\n8\n",
+    "description": "只有一个节点"
   }
 ]

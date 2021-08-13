@@ -85,8 +85,9 @@ def summit():
     nodes: List[Node] = [Node(i) for i in nums]
     # 按照镜像bst来存?
     swap = False
-    if nodes[1] >= nodes[0]:
-        swap = True
+    if len(nodes) > 1:
+        if nodes[1] >= nodes[0]:
+            swap = True
 
     root = nodes[0]
     # 建树

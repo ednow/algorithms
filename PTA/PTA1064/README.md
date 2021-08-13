@@ -22,6 +22,7 @@
 
 <!-- ${\textstyle\unicode{x2461}}$ 如果确定了右子树的元素的个数为k，根节点为L[-k-1],左子树的根节点为L[-k-2],右子树的根节点为L[-k] -->
 
-## cpp
+## python
 
-### 语法技术
+### 第一次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210813164659.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210813164659.png';" /></details>

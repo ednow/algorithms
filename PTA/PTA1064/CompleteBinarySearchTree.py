@@ -18,42 +18,27 @@ def insert_nodes(root: Node, nums: List[int]):
     """
     numLen = len(nums)
     # 没有待插入的节点
-    if numLen == 0:
-        return None
+    # 应该是没有可能是0的
+    # if numLen == 0:
+    #     return None
 
     # 只有一个节点
     if numLen == 1:
-        # 总的列表里面就只有一个节点
-        if root.label is None:
-            root.label = nums[0]
-        else:
-            # 总的列表长度大于等于3,通过递归来到了这个位置
-            root.left = Node(nums[0])
+        root.label = nums[0]
         return None
 
     # 只有两个节点
     if numLen == 2:
-        if root.label is None:
-            root.label = nums[1]
-        else:
-            root.right = Node(nums[1])
+        root.label = nums[1]
         root.left = Node(nums[0])
         return None
 
     # 只有三个节点
     if numLen == 3:
-        if root.label is None:
-            root.label = nums[1]
-            root.right = Node(nums[2])
-            root.left = Node(nums[0])
-        else:
-            n = Node(nums[1])
-            n.left = Node(nums[0])
-            n.right = Node(nums[2])
-            if n.label >= root.label:
-                root.right = n
-            else:
-                root.left = n
+        root.label = nums[1]
+        root.right = Node(nums[2])
+        root.left = Node(nums[0])
+
         return None
 
     # 算出来剩下树的高度

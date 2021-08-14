@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "data": "6\nPush 1\nPush 2\nPush 3\nPop\nPop\nPush 4\nPop\nPop\nPush 5\nPush 6\nPop\nPop",
+    "answer": "3 4 2 6 5 1\n",
+    "description": "题目的样例"
+  },
+  {
+    "id": "2",
+    "data": "1\nPush 1\nPop",
+    "answer": "1\n",
+    "description": "只测试1个点"
+  },
+  {
+    "id": "3",
+    "data": "2\nPush 1\nPush 2\nPop\nPop",
+    "answer": "2 1\n",
+    "description": "测试两个节点(1是根节点，2是左孩子)"
+  }
+]

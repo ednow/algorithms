@@ -91,6 +91,78 @@ def right_rotate(root: Node):
     root.label, b.label = b.label, root.label
 
 
+def left_balance(root: Node):
+    """
+    就地对左边的子树进行平衡性调整
+    :param root:
+    """
+    leftChildOfRoot: Node = root.left
+    # LL调整
+    if leftChildOfRoot.balanceFactor == 1:
+        # 调整后平衡因子「根节点」和「根节点的左孩子」的平衡因子都为0
+        root.balanceFactor = leftChildOfRoot.balanceFactor = 0
+        right_rotate(root)
+    # LR调整
+    if leftChildOfRoot.balanceFactor == -1:
+        # 「根节点的左孩子」的右子树
+        rightChildOfLeftChild: Node = leftChildOfRoot.right
+        # TODO:没来得及搞懂
+        if rightChildOfLeftChild.balanceFactor == 1:
+            root.balanceFactor = -1
+            leftChildOfRoot.balanceFactor = 0
+
+        if rightChildOfLeftChild.balanceFactor == 0:
+            root.balanceFactor = leftChildOfRoot.balanceFactor = 0
+
+        if rightChildOfLeftChild.balanceFactor == -1:
+            root.balanceFactor = 0
+            leftChildOfRoot.balanceFactor = 1
+
+        #  调整root和leftChildOfRoot的平衡因子
+        rightChildOfLeftChild.balanceFactor = 0
+        left_rotate(leftChildOfRoot)
+        right_rotate(root)
+
+
+def insert_node(root: Node, label: int) -> bool:
+    """
+    给定根节点和关键字向二叉树中插入节点
+
+    :return: 有没有长高,True长高了，False没有长高
+    :param root: 根节点
+    :param label: 待插入的关键字
+    """
+    if label < root.left:  # 比根节点小，插入到左边
+        # 非空接着找左孩子，有没有位置可以插入
+        if root.left is  None:
+            root.left = Node(label)
+            return True
+
+        taller = insert_node(root.left, label)
+        if taller:
+            # 原本就是平衡的,被插入在了左边，自然平衡因子更新为1，且长高了
+            if root.balanceFactor == 0:
+                root.balanceFactor = 1
+                return True
+
+            # 原本右子树更高，被插入到了左边，平衡因子变为0
+            if root.balanceFactor == -1:
+                root.balanceFactor = 0
+                return False
+
+            # 本来左边就高，现在要插入到左边, 需要左旋
+            if root.balanceFactor == 1:
+                left_balance(root)
+                return False
+
+    else:
+        # 非空接着找右孩子，有没有位置可以插入
+        if root.right is not None:
+            insert_node(root.right, label)
+
+    return False
+
+
 def summit():
     pass
 

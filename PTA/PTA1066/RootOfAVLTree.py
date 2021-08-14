@@ -40,7 +40,7 @@ class Node:
         https://github.com/clemtoy/pptree
         :return: 返回节点的值
         """
-        return self.label
+        return str(self.label)
 
     @property
     def value(self):
@@ -49,7 +49,7 @@ class Node:
         https://github.com/clemtoy/pptree
         :return: 返回节点的值
         """
-        return self.label
+        return str(self.label)
 
     @property
     def children(self):
@@ -58,24 +58,37 @@ class Node:
         https://github.com/clemtoy/pptree
         :return: 返回节点的孩子
         """
+        return filter(lambda x: x is not None, [self.left, self.right])
 
-        return [self.left if self.left is not None else [], self.right if self.right is not None else []]
 
-
-def left_rotate(root: Node) -> Node:
+def left_rotate(root: Node):
     """
-    本函数给定根节点，对根节点进行左旋操作
-    :return: 返回改变之后的根节点
+    本函数给定根节点，对根节点进行就地左旋操作
+
+    写成这样就是因为python中没有二级指针,赋值顺序满足拓扑排序(待证明，直觉告诉我要这样操作
     :param root: 最先不平衡的节点
     """
-    # 保存一下「根节点的右子树的根节点」的「根节点」，防止第三步的时候找到不到「根节点的右子树的根节点」
-    # 「根节点的右子树的根节点」将成为新的「根节点」
-    rightOfRoot: Node = root.right
-    # 「根节点的右子树的根节点」的左子树将依附到「根节点」的右子树上
-    root.right = rightOfRoot.left
-    # 将「根节点」依附到「根节点的右子树的根节点」的左子树上
-    rightOfRoot.left = root
-    return rightOfRoot
+    b: Node = root.right
+    root.right = b.right
+    b.right = b.left
+    b.left = root.left
+    root.left = b
+    root.label, b.label = b.label, root.label
+
+
+def right_rotate(root: Node):
+    """
+    本函数给定根节点，对根节点进行就地右旋操作
+
+    写成这样就是因为python中没有二级指针,赋值顺序满足拓扑排序(待证明，直觉告诉我要这样操作
+    :param root: 最先不平衡的节点
+    """
+    b: Node = root.left
+    root.left = b.left
+    b.left = b.right
+    b.right = root.right
+    root.right = b
+    root.label, b.label = b.label, root.label
 
 
 def summit():

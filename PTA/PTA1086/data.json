@@ -25,8 +25,8 @@
   },
   {
     "id": "5",
-    "data": "5\n",
-    "answer": "\n",
+    "data": "5\nPush 1\nPop\nPush 2\nPush 3\nPop\nPush 4\nPush 5\nPop\nPop\nPop",
+    "answer": "5 4 3 2 1\n",
     "description": "模拟测试点2"
   }
 ]

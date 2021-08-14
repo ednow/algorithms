@@ -81,7 +81,7 @@ def summit():
 
     root = Node(preorderSeq[0])
     # 通过中序序列找到前序序列左子树的部分
-    maxLeftIndexOfPreorder = -1
+    maxLeftIndexOfPreorder = 0
     for idx in range(len(preorderSeq)):
         if preorderSeq[idx] in inorderSeq[:inorderSeq.index(root.label)]:
             maxLeftIndexOfPreorder = idx

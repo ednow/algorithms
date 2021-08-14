@@ -13,8 +13,20 @@
   },
   {
     "id": "3",
-    "data": "2\nPush 1\nPush 2\nPop\nPop",
-    "answer": "2 1\n",
+    "data": "4\nPush 1\nPush 2\nPush 3\nPush 4\nPop\nPop\nPop\nPop",
+    "answer": "2 3 1\n",
     "description": "测试两个节点(1是根节点，2是左孩子)"
+  },
+  {
+    "id": "4",
+    "data": "7\nPush 1\nPush 2\nPush 3\nPush 4\nPop\nPop\nPop\nPop\nPush 5\nPop\nPush 6\nPop\nPush 7\nPop",
+    "answer": "4 3 2 7 6 5 1\n",
+    "description": "模拟测试点1"
+  },
+  {
+    "id": "5",
+    "data": "5\n",
+    "answer": "\n",
+    "description": "模拟测试点2"
   }
 ]

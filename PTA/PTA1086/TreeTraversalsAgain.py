@@ -27,7 +27,7 @@ def insert_nodes(root: Node, preorderSeq: List[int], inorderSeq: List[int], isLe
         root.right = child
 
     # 通过中序序列找到前序序列左子树的部分
-    maxLeftIndexOfPreorder = -1
+    maxLeftIndexOfPreorder = 0
     for idx in range(len(preorderSeq)):
         if preorderSeq[idx] in inorderSeq[:inorderSeq.index(child.label)]:
             maxLeftIndexOfPreorder = idx

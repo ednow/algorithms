@@ -18,6 +18,7 @@ Q: 如何让程序看见此时的旋转状态?
 A: 表示节点的数据中增加的一个
 
 """
+from ppbtree import print_tree
 
 
 # 平衡二叉树的节点
@@ -61,9 +62,10 @@ class Node:
         return [self.left if self.left is not None else [], self.right if self.right is not None else []]
 
 
-def left_rotate(root: Node):
+def left_rotate(root: Node) -> Node:
     """
     本函数给定根节点，对根节点进行左旋操作
+    :return: 返回改变之后的根节点
     :param root: 最先不平衡的节点
     """
     # 保存一下「根节点的右子树的根节点」的「根节点」，防止第三步的时候找到不到「根节点的右子树的根节点」
@@ -73,8 +75,7 @@ def left_rotate(root: Node):
     root.right = rightOfRoot.left
     # 将「根节点」依附到「根节点的右子树的根节点」的左子树上
     rightOfRoot.left = root
-    # # 「根节点」指向的内存块变为「根节点的右子树的根节点」
-    root = rightOfRoot
+    return rightOfRoot
 
 
 def summit():

@@ -10,8 +10,8 @@
 已知后序和先序，求中序遍历
 
 ## 边界点
-+ 只有一个节点
-
++ 只有一个节点#测试点5
++ label不是按照0-nodesNum来的
 
 ## 思路
 
@@ -58,5 +58,8 @@ $\text{总节点数} = n_0 + n_2 = 2_n2 + 1$
 
 ### 第一次提交
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210816002621.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210816002621.png';" /></details>
+
+### 第二次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210816005320.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210816005320.png';" /></details>
 
 ### 语法技术

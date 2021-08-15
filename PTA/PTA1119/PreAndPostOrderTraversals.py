@@ -94,7 +94,10 @@ def summit():
     nodesNum: int = int(input())
     preOrderSeq: List[int] = list(map(int, input().split()))
     postOrderSeq: List[int] = list(map(int, input().split()))
-    nodes: List[Node] = [Node(i) for i in range(0, nodesNum + 1)]
+    if nodesNum == 1:
+        print(f"Yes\n{preOrderSeq[0]}")
+        return None
+    nodes: List[Node] = [Node(i) for i in range(0, max(preOrderSeq) + 1)]
 
     # 模拟出入站能得到一颗树
     s = [preOrderSeq[0]]

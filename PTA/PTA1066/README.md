@@ -20,8 +20,7 @@
 <details><summary>插入120</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815141015.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210815141015.png';" /></details>
 
 ### 案例2的插入过程
-<details><summary>完整过程</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815151447.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210815151447.png';" /></details>
-
+<details><summary>完整过程</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815154433.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210815154433.png';" /></details>
 <details><summary>插入88和70</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815151123.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210815151123.png';" /></details>
 
 <details><summary>插入61</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815151151.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210815151151.png';" /></details>
@@ -32,7 +31,7 @@
 
 <details><summary>插入90</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815151341.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210815151341.png';" /></details>
 
-<details><summary>插入656</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815151407.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210815151407.png';" /></details>
+<details><summary>插入65</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815151407.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210815151407.png';" /></details>
 
 ### 要点复述
 
@@ -40,6 +39,9 @@
 
 ## 思路
 
-## cpp
+## python
+### 第一次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815154201.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210815154201.png';" /></details>
 
 ### 语法技术
+python中的引用,变量,赋值,内存空间

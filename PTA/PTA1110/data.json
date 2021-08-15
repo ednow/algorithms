@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "data": "9\n7 8\n- -\n- -\n- -\n0 1\n2 3\n4 5\n- -\n- -",
+    "answer": "YES 8\n",
+    "description": "题目的样例"
+  },
+  {
+    "id": "2",
+    "data": "8\n- -\n4 5\n0 6\n- -\n2 3\n- 7\n- -\n- -",
+    "answer": "NO 1\n",
+    "description": "题目的样例"
+  },
+  {
+    "id": "3",
+    "data": "",
+    "answer": "",
+    "description": ""
+  }
+]

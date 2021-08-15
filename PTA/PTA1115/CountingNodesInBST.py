@@ -1,5 +1,6 @@
 from typing import List, Dict, Union
-
+import sys
+sys.setrecursionlimit(3000)
 
 # 二叉树的链式表示法
 class Node:
@@ -13,7 +14,7 @@ class Node:
         return f"{self.label}"
 
     def __gt__(self, other):
-        return self.label >= other.label
+        return self.label > other.label
 
 # debug
 try:

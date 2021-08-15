@@ -11,9 +11,15 @@
     "answer": "1 + 1 = 2\n",
     "description": "题目的样例"
   },
-    {
+  {
     "id": "3",
     "data": "1\n2",
+    "answer": "1 + 0 = 1\n",
+    "description": "模拟测试点5"
+  },
+  {
+    "id": "4",
+    "data": "2\n5 4 3 2 1",
     "answer": "1 + 0 = 1\n",
     "description": "模拟测试点5"
   }

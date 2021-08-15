@@ -13,6 +13,7 @@ class Node:
         return f"{self.index}"
 
 
+# debug
 try:
     import ppbtree
     def print_tree(root:Node):
@@ -23,16 +24,6 @@ try:
         ppbtree.print_tree(root, left_child='right', right_child='left')
 except Exception:
     pass
-
-
-def check_level(level: int, num: int) -> bool:
-    """
-    检查每一层的节点是否符合完全二叉树的定义
-    :param level:
-    :param num:
-    :return:
-    """
-    return 2 ** (level - 1) == num
 
 
 def summit():
@@ -56,32 +47,25 @@ def summit():
     while fathers[root] != -1:
         root = fathers[root]
 
-    # 每一层的信息{层数：{"nums": 节点数量，"last": 最后一个节点是啥}}
-    # levelDetails: Dict[int, Dict[str, int]] = dict()
-    # 每一层的信息{层数：{"nums": 节点数量，"last": 最后一个节点是啥}}
-    nodeNumsByLevel: Dict[int, int] = dict()
+    # 最后一个节点是啥
     last = 0
-
+    # 层次遍历的结果
+    result = []
     # 变种层次遍历，记录每一层的数量和最后一次输出该层元素时候的元素
-    q: List[Dict[str, Union[int, Node]]] = [{"level": 1, "node": nodes[root]}]
+    q: List[Union[None, Node]] = [nodes[root]]
     while len(q) > 0:
-        if q[0]["node"].left is not None:
-            q.append({
-                "level": q[0]["level"] + 1,
-                "node": q[0]["node"].left,
-            })
-        if q[0]["node"].right is not None:
-            q.append({
-                "level": q[0]["level"] + 1,
-                "node": q[0]["node"].right,
-            })
-        nodeNumsByLevel[q[0]["level"]] = nodeNumsByLevel.get(q[0]["level"], 0) + 1
-        last = q[0]["node"].index
-        q.pop(0)
+        if q[0] is not None:
+            q.append(q[0].left)
+            q.append(q[0].right)
+            last = q[0].index
+            result.append(q.pop(0).index)
+        else:
+            result.append(q.pop(0))
 
-    # 检查每一层的节点数是否达标
-    isOk = all(check_level(level, num) for level, num in sorted(nodeNumsByLevel.items(), key=lambda x: x[0])[:-1])
-    if isOk:
+    # 层次遍历的结果中间不可能有空格
+    resultStr = "".join(map(str, result)).replace("None", " ")
+
+    if not (" " in resultStr.rstrip()):
         print(f"YES {last}")
     else:
         print(f"NO {root}")

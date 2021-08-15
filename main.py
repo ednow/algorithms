@@ -54,6 +54,14 @@ class Test:
         else:
             self.entry = "summit"
 
+        # 是否接管stdout
+        if self.config.get("isTakeOverOutput", None) is not None:
+            if not isinstance(self.config["isTakeOverOutput"], bool):
+                assert False, f"'isTakeOverOutput' should be boolean,not {type(self.config['isTakeOverOutput'])}"
+            setattr(self, "isTakeOverOutput", self.config["isTakeOverOutput"])
+        else:
+            setattr(self, "isTakeOverOutput", True)
+
     def run(self):
         module = importlib.import_module(self.config["module"])
         print(f"你正在测试的代码为：{self.config['module']}.py")
@@ -62,7 +70,8 @@ class Test:
             sys.stdin = StringIO(a)
             f = StringIO()
             stdoutBackup = sys.stdout
-            sys.stdout = f
+            if getattr(self, 'isTakeOverOutput'):
+                sys.stdout = f
             try:
                 getattr(module, self.entry)()
             except Exception as e:

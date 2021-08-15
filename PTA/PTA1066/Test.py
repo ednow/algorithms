@@ -26,6 +26,7 @@ class Test(unittest.TestCase):
         print_tree(nodes[1], left_child='right', right_child='left')
         # pptree.print_tree(nodes[1], horizontal=False)
 
+    @unittest.skip
     def test_right_rotate(self):
         """
         # https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210815011828.png

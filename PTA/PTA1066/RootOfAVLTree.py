@@ -15,7 +15,7 @@ Q: 左右双旋和右旋中的直觉?
 A: 「从哪条路来的回哪条路去」
 
 Q: 如何让程序看见此时的旋转状态?
-A: 表示节点的数据中增加的一个
+A: TODO
 
 """
 # OJ环境没有这个包
@@ -239,7 +239,7 @@ def summit():
     input()
     nums: List[int] = list(map(int, input().split()))
     root = Node(nums[0])
-    globals()["ROOT"] = root  # debug
+    # globals()["ROOT"] = root  # debug
     for num in nums[1:]:
         insert_node(root, num)
     print(root.label)

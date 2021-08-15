@@ -4,5 +4,17 @@
     "data": "9\n25 30 42 16 20 20 35 -5 28",
     "answer": "2 + 4 = 6\n",
     "description": "题目的样例"
+  },
+  {
+    "id": "2",
+    "data": "3\n1 2 3",
+    "answer": "1 + 1 = 2\n",
+    "description": "题目的样例"
+  },
+    {
+    "id": "3",
+    "data": "1\n2",
+    "answer": "1 + 0 = 1\n",
+    "description": "模拟测试点5"
   }
 ]

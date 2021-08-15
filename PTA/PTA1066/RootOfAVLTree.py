@@ -83,6 +83,7 @@ def left_rotate(root: Node):
     b.left = root.left
     root.left = b
     root.label, b.label = b.label, root.label
+    root.balanceFactor, b.balanceFactor = b.balanceFactor, root.balanceFactor
 
 
 def right_rotate(root: Node):
@@ -98,6 +99,7 @@ def right_rotate(root: Node):
     b.right = root.right
     root.right = b
     root.label, b.label = b.label, root.label
+    root.balanceFactor, b.balanceFactor = b.balanceFactor, root.balanceFactor
 
 
 def balance_left(root: Node):
@@ -166,7 +168,6 @@ def balance_right(root: Node):
         if leftChildOfRightChild.balanceFactor == -1:
             root.balanceFactor = 1
             rightChildOfRoot.balanceFactor = 0
-            pass
         """调整 root 和 rightChildOfRoot 的平衡因子 //"""
 
         # 调整完毕之后，成为根节点的节点平衡因子必定是0
@@ -189,11 +190,11 @@ def insert_node(root: Node, label: int) -> bool:
     # 这里是label的比别乱搞
     if label < root.label:  # 比根节点小，插入到左边
         # 非空接着找左孩子，有没有位置可以插入
+        taller = True
         if root.left is None:
             root.left = Node(label)
-            return True
-
-        taller = insert_node(root.left, label)
+        else:
+            taller = insert_node(root.left, label)
         if taller:
             # 原本就是平衡的,被插入在了左边，自然平衡因子更新为1，且长高了
             if root.balanceFactor == 0:
@@ -209,13 +210,14 @@ def insert_node(root: Node, label: int) -> bool:
             if root.balanceFactor == 1:
                 balance_left(root)
                 return False
-
     else:
         # 非空接着找右孩子，有没有位置可以插入
+        taller = True
         if root.right is None:
             root.right = Node(label)
+        else:
+            taller = insert_node(root.right, label)
 
-        taller = insert_node(root.right, label)
         if taller:
             # 原本就是平衡的,被插入在了右边，自然平衡因子更新为-1，且长高了
             if root.balanceFactor == 0:
@@ -230,8 +232,7 @@ def insert_node(root: Node, label: int) -> bool:
             # 原本右边就高，现在插入到了右边，需要右选
             if root.balanceFactor == -1:
                 balance_right(root)
-
-    return False
+                return False
 
 
 def summit():
@@ -241,7 +242,7 @@ def summit():
     globals()["ROOT"] = root  # debug
     for num in nums[1:]:
         insert_node(root, num)
-    # print(root.label)
+    print(root.label)
 
 
 if __name__ == '__main__':

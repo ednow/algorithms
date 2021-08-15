@@ -12,9 +12,8 @@ class Node:
     def value(self) -> str:
         return f"{self.label}"
 
-    def __ge__(self, other):
-        if isinstance(other, type(self)):
-            return self.label >= other.label
+    def __gt__(self, other):
+        return self.label >= other.label
 
 # debug
 try:
@@ -39,7 +38,7 @@ def insert_node(root: Node, node: Node):
     """
 
     # 大的放在右边
-    if node >= root:
+    if node > root:
         if root.right is None:
             root.right = node
         else:
@@ -53,7 +52,10 @@ def insert_node(root: Node, node: Node):
 
 
 def summit():
-    input()
+    nodesNum: int = int(input())
+    if nodesNum == 1:
+        print("1 + 0 = 1")
+        return None
     nums: List[int] = list(map(int, input().split()))
     root = Node(nums[0])
     for num in nums[1:]:

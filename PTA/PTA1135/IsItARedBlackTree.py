@@ -33,10 +33,10 @@ class Node:
         这个节点是不是叶子节点
         :return:
         """
-        return any([self.left, self.right])
+        return not any([self.left, self.right])
 
     @property
-    def is_all_child_red(self) -> bool:
+    def is_all_child_black(self) -> bool:
         """
         检查是不是孩子节点都是黑色的
         """
@@ -49,6 +49,25 @@ class Node:
     @property
     def is_black(self) -> bool:
         return self.label > 0
+
+    @property
+    def value(self):
+        return f"({abs(self.label)}, {self.color})"
+
+
+# debug
+try:
+    import ppbtree
+
+
+    def print_tree(root: Node):
+        """
+        他的横向打印不符合我的理解
+        :param root: 树
+        """
+        ppbtree.print_tree(root, left_child='right', right_child='left')
+except Exception:
+    pass
 
 
 def attach_node(root: Node, preOrderSeq: List[Node]):
@@ -73,8 +92,8 @@ def attach_node(root: Node, preOrderSeq: List[Node]):
     if maxLeftIdx != len(preOrderSeq) - 1:
         root.right = preOrderSeq[maxLeftIdx + 1]
 
-    attach_node(root.left, preOrderSeq[0:maxLeftIdx + 1])
-    attach_node(root.right, preOrderSeq[maxLeftIdx + 1:])
+    attach_node(root.left, preOrderSeq[1:maxLeftIdx + 1])
+    attach_node(root.right, preOrderSeq[maxLeftIdx + 2:])
 
 
 def check_red_black_tree() -> str:
@@ -87,15 +106,15 @@ def check_red_black_tree() -> str:
     if nodes[0].is_red:
         return "No"
 
+    attach_node(nodes[0], nodes[1:])  # 要先attach
     # 双亲表示法,方便求路径
     fathers: List[int] = [-1 for _ in range(nodesNum)]
     for node in nodes:
-        if node.left is not None:
+        if not (node.left is None):
             fathers[node.left.index] = node.index
-        if node.right is not None:
+        if not (node.right is None):  # 常犯小错误, is not xxx 通常是not(is xxx)
             fathers[node.right.index] = node.index
 
-    attach_node(nodes[0], nodes[1:])
     # 叶子节点
     # leafNodes: Iterable[Node] = filter(lambda x: x.is_leaf, nodes)
     # 从叶子节点一直到根节点,一路上黑色的节点的数量
@@ -106,6 +125,7 @@ def check_red_black_tree() -> str:
         while father != -1:
             if nodes[father].is_black:
                 blackNum += 1
+            father = fathers[father]  # 死循环
 
         blackNodesOnPath.append(blackNum)
 
@@ -113,7 +133,7 @@ def check_red_black_tree() -> str:
         return "No"
 
     # 检查所有红色节点的孩子是不是黑色
-    if not all(x.is_black for x in filter(lambda x: x.is_red, nodes)):
+    if not all(x.is_all_child_black for x in filter(lambda x: x.is_red, nodes)):
         return "No"
 
     return "Yes"

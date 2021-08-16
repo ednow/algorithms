@@ -3,7 +3,6 @@
 + 二叉树
 + 红黑树
 
-红黑树[参考文献](https://www.jianshu.com/p/e136ec79235c)
 
 ## 问题重述
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210816132243.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210816132243.png';" /></details>
@@ -21,6 +20,11 @@
 ## 边界点
 
 ## 思路
+
+红黑树[参考文献](https://www.jianshu.com/p/e136ec79235c)
+
+[红黑树在线演示](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+
 红黑树首先是一颗二叉排序树，前序遍历就可以把这个二叉排序树构建出来，
 
 

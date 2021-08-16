@@ -1,0 +1,8 @@
+[
+  {
+    "id": "1",
+    "data": "6 8\n7 2 3 4 6 5 1 8\n5 3 7 2 6 4 8 1\n2 6\n8 1\n7 9\n12 -3\n0 8\n99 99",
+    "answer": "LCA of 2 and 6 is 3.\n8 is an ancestor of 1.\nERROR: 9 is not found.\nERROR: 12 and -3 are not found.\nERROR: 0 is not found.\nERROR: 99 and 99 are not found.",
+    "description": "题目的样例"
+  }
+]

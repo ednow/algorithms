@@ -112,7 +112,7 @@ def check_red_black_tree() -> str:
     for node in nodes:
         if not (node.left is None):
             fathers[node.left.index] = node.index
-        if not (node.right is None):  # 常犯小错误, is not xxx 通常是not(is xxx)
+        if not (node.right is None):  # ~~常犯小错误, is not xxx 通常是not(is xxx),~~ 应该是可以的
             fathers[node.right.index] = node.index
 
     # 叶子节点

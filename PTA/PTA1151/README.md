@@ -13,7 +13,9 @@
 ## 边界点
 
 ## 思路
-先找到两个节点，从根节点到其的路径，寻找最长公共前缀
+通过中序和前序构建出二叉树
+
+然后找到两个节点，从根节点到其的路径，寻找最长公共前缀
 
 + 为了加速可以为路径建立一个缓存，就不用再次搜索了
 
@@ -21,3 +23,20 @@
 
 
 ### 语法技术
+
+#### slice vector
+[参考文献](https://stackoverflow.com/questions/50549611/slicing-a-vector-in-c/50549636)
+
+#### 找到某个元素值的index
+[参考文献](https://stackoverflow.com/questions/22388204/get-index-of-the-matching-item-from-vector-c)
+
+#### vector.end()指向最后一个元素的下一个元素的位置
+[参考文献](https://blog.csdn.net/hzw05103020/article/details/50397115)
+
+
+#### 释放vector of pointers的内存
+
+[参考文献](https://stackoverflow.com/questions/1361139/how-to-avoid-memory-leaks-when-using-a-vector-of-pointers-to-dynamically-allocat)
+
+#### 不能比较两个指针
+[参考文献](https://zhidao.baidu.com/question/1116986869358254139.html)

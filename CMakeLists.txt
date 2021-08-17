@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1147/Heaps.cpp PTA/PTA1147/Heaps.h)
+        PTA/PTA1151/LCAInABinaryTree.cpp)
 
 # 添加头文件
 include_directories(

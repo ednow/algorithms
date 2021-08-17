@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1106/LowestPriceInSupplyChain.cpp PTA/PTA1106/LowestPriceInSupplyChain.h)
+        PTA/PTA1147/Heaps.cpp PTA/PTA1147/Heaps.h)
 
 # 添加头文件
 include_directories(

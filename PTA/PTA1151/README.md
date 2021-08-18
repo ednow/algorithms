@@ -30,7 +30,14 @@
 + 不再用递归来插入节点
 
 ### 第二次提交
-运行超时，加入缓存机制
+运行超时，加入缓存机制,直接使用缓存中的变量
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210818224557.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210818224557.png';" /></details>
+
+### 第二次提交
+加入缓存机制
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210818230831.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210818230831.png';" /></details>
 
 ### 语法技术
 
@@ -52,3 +59,6 @@
 
 #### 不能比较两个指针
 [参考文献](https://zhidao.baidu.com/question/1116986869358254139.html)
+
+#### 查找一个key是不是在map中
+[参考文献](https://stackoverflow.com/questions/3886593/how-to-check-if-stdmap-contains-a-key-without-doing-insert)

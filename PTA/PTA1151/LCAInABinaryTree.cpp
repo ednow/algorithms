@@ -31,14 +31,24 @@ struct Node{
 
 // nodes记录当前new的对象的指针方便被回收
 void
-insert_nodes(Node * root, vector <int> preorderSeq, vector <int> inorderSeq, bool isLeft,vector<Node *> & nodes){
-    if (preorderSeq.empty() or inorderSeq.empty()){
+insert_nodes(
+    Node * root, // 现在要插入的根节点
+    vector <int> &preorderSeq, // 前序序列
+    vector <int> &inorderSeq, // 中序序列
+    bool isLeft,  // 现在的节点是需要插入到左边还是右边
+    vector<Node *> & nodes,  // 保存所有节点的指针
+    int leftIndexOfPreorderSeq, // 现在工作的preorderSeq的左边界
+    int rightIndexOfPreorderSeq, // 现在工作的preorderSeq的右边界
+    int leftIndexOfInorderSeq, // 现在工作的inorderSeq的左边界
+    int rightIndexOfInorderSeq // 现在工作的inorderSeq的右边界
+    ){
+    if (leftIndexOfPreorderSeq > rightIndexOfPreorderSeq or leftIndexOfInorderSeq > rightIndexOfInorderSeq){
         return;
     }
 
     // 新建节点
     // 并将指针统一管理
-    Node *child = new Node(preorderSeq[0]);
+    Node *child = new Node(preorderSeq[leftIndexOfPreorderSeq]);
     nodes.push_back(child);
     child->index = (int)(nodes.size() - 1);
     if (isLeft){
@@ -47,34 +57,42 @@ insert_nodes(Node * root, vector <int> preorderSeq, vector <int> inorderSeq, boo
         root->right = child;
     }
 
-    // 根节点在中序遍历序列中的位置
-    auto indexOfRoot = find(inorderSeq.begin(), inorderSeq.end(),preorderSeq[0]) - inorderSeq.begin();
+    // 孩子节点中序遍历序列中的位置
+    auto indexOfRoot = find(inorderSeq.begin() + leftIndexOfInorderSeq, inorderSeq.begin() + rightIndexOfInorderSeq + 1,preorderSeq[leftIndexOfPreorderSeq]) - inorderSeq.begin();
     //  找到前序序列中左子树的部分
-    int maxLeft = -1;
-    for (int i = 0; i < indexOfRoot; ++i) {
-        if (preorderSeq.end() != find(preorderSeq.begin(), preorderSeq.end()+ i, inorderSeq[i])){
-            maxLeft = i;
-        }
-    }
+    // 根本不用找啊，找到根节点,左子树的个数一定是根节点的index-开始的index
+    int maxLeft = (int)(indexOfRoot - leftIndexOfInorderSeq);
 
     // 插入左子树
     insert_nodes(child,
-                 vector<int>(preorderSeq.begin() + 1, preorderSeq.begin() + maxLeft + 2),
-                 vector<int>(inorderSeq.begin(), inorderSeq.begin() + indexOfRoot),
-                 true, nodes);
+                 preorderSeq,
+                 inorderSeq,
+                 true,
+                 nodes,
+                 leftIndexOfPreorderSeq + 1,
+                 leftIndexOfPreorderSeq + maxLeft,
+                 leftIndexOfInorderSeq,
+                 (int)(indexOfRoot - 1)
+                 );
     // 插入右子树
     insert_nodes(child,
-                 vector<int>(preorderSeq.begin() + maxLeft + 2, preorderSeq.end()),
-                 vector<int>(inorderSeq.begin() + indexOfRoot + 1, inorderSeq.end()),
-                 false, nodes);
+                 preorderSeq,
+                 inorderSeq,
+                 false,
+                 nodes,
+                 leftIndexOfPreorderSeq + maxLeft + 1,
+                 rightIndexOfPreorderSeq,
+                 (int) (indexOfRoot + 1),
+                 rightIndexOfInorderSeq
+                 );
 }
 
 
 int
 MAIN (){
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
+//    ios::sync_with_stdio(false);
+//    cin.tie(nullptr);
+//    cout.tie(nullptr);
     // pairsNum:任务请求的对数,nodesNum:一共的节点数
     int pairsNum{}, nodesNum{};
     ostringstream result;
@@ -99,24 +117,30 @@ MAIN (){
     // 根节点在中序遍历序列中的位置
     auto indexOfRoot = find(inorderSeq.begin(), inorderSeq.end(),preorderSeq[0]) - inorderSeq.begin();
     //  找到前序序列中左子树的部分
-    int maxLeft = -1;
-    for (int i = 0; i < indexOfRoot; ++i) {
-        if (preorderSeq.end() != find(preorderSeq.begin(), preorderSeq.end()+ i, inorderSeq[i])){
-            maxLeft = i;
-        }
-    }
+    int maxLeft = (int)indexOfRoot;
     // 将指针统一管理
     nodes.push_back(new Node(preorderSeq[0]));
     // 插入左子树
     insert_nodes(nodes[0],
-                 vector<int>(preorderSeq.begin() + 1, preorderSeq.begin() + maxLeft + 2),
-                 vector<int>(inorderSeq.begin(), inorderSeq.begin() + indexOfRoot),
-                true, nodes);
+                 preorderSeq,
+                 inorderSeq,
+                true, nodes,
+                1, //leftIndexOfPreorderSeq + 1
+                maxLeft,  // leftIndexOfPreorderSeq + maxLeft
+                0, // leftIndexOfInorderSeq,
+                 (int)(indexOfRoot - 1) // indexOfRoot - 1
+                );
+
     // 插入右子树
     insert_nodes(nodes[0],
-                 vector<int>(preorderSeq.begin() + maxLeft + 2, preorderSeq.end()),
-                 vector<int>(inorderSeq.begin() + indexOfRoot + 1, inorderSeq.end()),
-                 false, nodes);
+                 preorderSeq,
+                 inorderSeq,
+                 false, nodes,
+                 maxLeft + 1, //leftIndexOfPreorderSeq + maxLeft + 1
+                 (int)(preorderSeq.size() - 1), //  rightIndexOfPreorderSeq
+                 (int)indexOfRoot + 1, // indexOfRoot + 1
+                 (int)(inorderSeq.size() - 1) // rightIndexOfInorderSeq
+                 );
 
     // 建立双亲表示法的树结构。这里不如直接在node里面存father
     for (const auto node:nodes) {

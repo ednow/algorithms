@@ -24,6 +24,13 @@
 ### 第一次提交
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210818185140.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210818185140.png';" /></details>
 
+建树的时候就内存超时了 
++ 法1传引用和左右下标
++ 法2：将preorderSeq，inorderSeq,nodes设为全局变量全局变量
++ 不再用递归来插入节点
+
+### 第二次提交
+运行超时，加入缓存机制
 
 ### 语法技术
 

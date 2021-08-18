@@ -16,6 +16,7 @@
 #include "vector"
 #include "algorithm"
 #include "sstream"
+#include "map"
 
 using namespace std;
 
@@ -102,9 +103,14 @@ MAIN (){
     // 双亲表示法
     // 编号为nodes中的下标
     vector<int> fathers(nodesNum, -1);
-
     // 节点的地址们
     vector<Node *> nodes;
+    // 如果某个节点path已经被求过了，直接在缓存里面拿
+    // key是节点的值
+    // values是由nodes里面的节点的index构成的路径
+    map<int, vector<int>> paths;
+    // key是节点的值,value是这个节点在nodes的index
+    map<int, int> indices;
     // 读入中序遍历序列
     for (int i = 0; i < nodesNum; ++i) {
         cin >> inorderSeq[i];
@@ -159,20 +165,34 @@ MAIN (){
         // a,b需要查找的两个节点;indexOfA, indexOfB需要查找的两个节点的下标
         int a{}, b{}, indexOfA{}, indexOfB{};
         bool isAFound{false}, isBFound{false};
-        vector<int> pathOfA, pathOfB;
         cin >> a >> b;
         // 找到a的下标
-        auto findA = find_if(nodes.begin(), nodes.end(), [&](const auto c) { return c->label == a; });
-        if (findA != nodes.end()){
+        // 如果缓冲没有
+        if (paths.find(a) == paths.end()){
+            auto findA = find_if(nodes.begin(), nodes.end(), [&](const auto c) { return c->label == a; });
+            if (findA != nodes.end()){
+                isAFound = true;
+                indexOfA = (int) (findA - nodes.begin()); // 得到a在nodes中的下标
+                indices[a] = indexOfA;
+            }
+        }else{
             isAFound = true;
-            indexOfA = (int) (findA - nodes.begin()); // 得到a在nodes中的下标
+            indexOfA = indices[a];
         }
+
         // 找到b的下标
-        auto findB = find_if(nodes.begin(), nodes.end(), [&](const auto c) { return c->label == b; });
-        if (findB != nodes.end()){
+        if (paths.find(b) == paths.end()){
+            auto findB = find_if(nodes.begin(), nodes.end(), [&](const auto c) { return c->label == b; });
+            if (findB != nodes.end()){
+                isBFound = true;
+                indexOfB = (int) (findB - nodes.begin());
+                indices[b] = indexOfB;
+            }
+        }else{
             isBFound = true;
-            indexOfB = (int) (findB - nodes.begin());
+            indexOfB = indices[b];
         }
+
         if (!isAFound and !isBFound){
             result << "ERROR: " << a << " and " << b << " are not found.\n";
             continue;
@@ -188,37 +208,43 @@ MAIN (){
             continue;
         }
 
-        // 找到A一直到根节点的路径
-        int parent = indexOfA;
-        do {
-            pathOfA.insert(pathOfA.begin(), parent);
-            parent = fathers[parent];  // 更新爸爸，否则会死循环
-        } while (parent != -1);  // 直到根节点为止
-        // 找到B一直到根节点的路径
-        parent = indexOfB;
-        do {
-            pathOfB.insert(pathOfB.begin(), parent); // 得到b在nodes中的下标
-            parent = fathers[parent];  // 更新爸爸,否则会死循环
-        } while (parent != -1);  // 直到根节点为止
+        // 找到A一直到根节点的路径,如果缓存中没有
+        if (paths.find(a) == paths.end()){
+            int parent = indexOfA;
+            do {
+                paths[a].insert(paths[a].begin(), parent);
+                parent = fathers[parent];  // 更新爸爸，否则会死循环
+            } while (parent != -1);  // 直到根节点为止
+        }
+
+        if (paths.find(b) == paths.end()){
+            // 找到B一直到根节点的路径
+            int parent = indexOfB;
+            do {
+                paths[b].insert(paths[b].begin(), parent); // 得到b在nodes中的下标
+                parent = fathers[parent];  // 更新爸爸,否则会死循环
+            } while (parent != -1);  // 直到根节点为止
+        }
+
 
         // 检查A如果出现在B的路径上
-        if (find(pathOfB.begin(), pathOfB.end(), indexOfA) != pathOfB.end()){
+        if (find(paths[b].begin(), paths[b].end(), indexOfA) != paths[b].end()){
             result << a << " is an ancestor of " << b << ".\n";
             continue;
         }
         // 检查B有没有出现在A的路径上
-        if (find(pathOfA.begin(), pathOfA.end(), indexOfB) != pathOfA.end()){
+        if (find(paths[a].begin(), paths[a].end(), indexOfB) != paths[a].end()){
             result << b << " is an ancestor of " << a << ".\n";
             continue;
         }
-        auto iterA = pathOfA.begin();
-        auto iterB = pathOfB.begin();
-        for (;iterA != pathOfA.end() and iterB != pathOfB.end();iterA++,iterB++){
+        auto iterA = paths[a].begin();
+        auto iterB = paths[b].begin();
+        for (;iterA != paths[a].end() and iterB != paths[b].end();iterA++,iterB++){
             if (*iterA != *iterB){  //是迭代器的值比较，不是迭代器比较
                 break;
             }
         }
-        result << "LCA of " << a << " and " << b << " is " << nodes[pathOfA[iterA - pathOfA.begin() - 1]]->label << ".\n";
+        result << "LCA of " << a << " and " << b << " is " << nodes[paths[a][iterA - paths[a].begin() - 1]]->label << ".\n";
 
 
     }

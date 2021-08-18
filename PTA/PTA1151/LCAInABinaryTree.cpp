@@ -59,12 +59,12 @@ insert_nodes(Node * root, vector <int> preorderSeq, vector <int> inorderSeq, boo
 
     // 插入左子树
     insert_nodes(child,
-                 vector<int>(preorderSeq.begin() + 1, preorderSeq.begin() + maxLeft),
-                 vector<int>(inorderSeq.begin(), inorderSeq.begin() + indexOfRoot -1),
+                 vector<int>(preorderSeq.begin() + 1, preorderSeq.begin() + maxLeft + 2),
+                 vector<int>(inorderSeq.begin(), inorderSeq.begin() + indexOfRoot),
                  true, nodes);
     // 插入右子树
     insert_nodes(child,
-                 vector<int>(preorderSeq.begin() + maxLeft + 1, preorderSeq.end()),
+                 vector<int>(preorderSeq.begin() + maxLeft + 2, preorderSeq.end()),
                  vector<int>(inorderSeq.begin() + indexOfRoot + 1, inorderSeq.end()),
                  false, nodes);
 }
@@ -72,6 +72,9 @@ insert_nodes(Node * root, vector <int> preorderSeq, vector <int> inorderSeq, boo
 
 int
 MAIN (){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
     // pairsNum:任务请求的对数,nodesNum:一共的节点数
     int pairsNum{}, nodesNum{};
     ostringstream result;
@@ -105,13 +108,13 @@ MAIN (){
     // 将指针统一管理
     nodes.push_back(new Node(preorderSeq[0]));
     // 插入左子树
-    insert_nodes(nodes[nodes.size() - 1],
-                 vector<int>(preorderSeq.begin() + 1, preorderSeq.begin() + maxLeft),
-                 vector<int>(inorderSeq.begin(), inorderSeq.begin() + indexOfRoot -1),
+    insert_nodes(nodes[0],
+                 vector<int>(preorderSeq.begin() + 1, preorderSeq.begin() + maxLeft + 2),
+                 vector<int>(inorderSeq.begin(), inorderSeq.begin() + indexOfRoot),
                 true, nodes);
     // 插入右子树
-    insert_nodes(nodes[nodes.size() - 1],
-                 vector<int>(preorderSeq.begin() + maxLeft + 1, preorderSeq.end()),
+    insert_nodes(nodes[0],
+                 vector<int>(preorderSeq.begin() + maxLeft + 2, preorderSeq.end()),
                  vector<int>(inorderSeq.begin() + indexOfRoot + 1, inorderSeq.end()),
                  false, nodes);
 
@@ -138,11 +141,13 @@ MAIN (){
         auto findA = find_if(nodes.begin(), nodes.end(), [&](const auto c) { return c->label == a; });
         if (findA != nodes.end()){
             isAFound = true;
+            indexOfA = (int) (findA - nodes.begin()); // 得到a在nodes中的下标
         }
         // 找到b的下标
-        auto findB = find_if(nodes.begin(), nodes.end(), [&](const auto c) { return c->label == a; });
+        auto findB = find_if(nodes.begin(), nodes.end(), [&](const auto c) { return c->label == b; });
         if (findB != nodes.end()){
             isBFound = true;
+            indexOfB = (int) (findB - nodes.begin());
         }
         if (!isAFound and !isBFound){
             result << "ERROR: " << a << " and " << b << " are not found.\n";
@@ -163,29 +168,33 @@ MAIN (){
         int parent = indexOfA;
         do {
             pathOfA.insert(pathOfA.begin(), parent);
+            parent = fathers[parent];  // 更新爸爸，否则会死循环
         } while (parent != -1);  // 直到根节点为止
         // 找到B一直到根节点的路径
         parent = indexOfB;
         do {
-            pathOfB.insert(pathOfB.begin(), parent);
+            pathOfB.insert(pathOfB.begin(), parent); // 得到b在nodes中的下标
+            parent = fathers[parent];  // 更新爸爸,否则会死循环
         } while (parent != -1);  // 直到根节点为止
 
         // 检查A如果出现在B的路径上
         if (find(pathOfB.begin(), pathOfB.end(), indexOfA) != pathOfB.end()){
             result << a << " is an ancestor of " << b << ".\n";
+            continue;
         }
         // 检查B有没有出现在A的路径上
         if (find(pathOfA.begin(), pathOfA.end(), indexOfB) != pathOfA.end()){
             result << b << " is an ancestor of " << a << ".\n";
+            continue;
         }
         auto iterA = pathOfA.begin();
         auto iterB = pathOfB.begin();
         for (;iterA != pathOfA.end() and iterB != pathOfB.end();iterA++,iterB++){
-            if (iterA != iterB){
+            if (*iterA != *iterB){  //是迭代器的值比较，不是迭代器比较
                 break;
             }
         }
-        result << "LCA of " << " and " << " is " << pathOfA[iterA - pathOfA.begin() - 1] << ".\n";
+        result << "LCA of " << a << " and " << b << " is " << nodes[pathOfA[iterA - pathOfA.begin() - 1]]->label << ".\n";
 
 
     }

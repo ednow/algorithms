@@ -1,3 +1,7 @@
+"""
+copied from pta1147
+"""
+
 from typing import List
 import sys
 # 设置最大递归数

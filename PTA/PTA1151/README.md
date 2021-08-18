@@ -21,10 +21,15 @@
 
 ## cpp
 
+### 第一次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210818185140.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210818185140.png';" /></details>
+
 
 ### 语法技术
 
 #### slice vector
+跟python一样是左闭右开
+
 [参考文献](https://stackoverflow.com/questions/50549611/slicing-a-vector-in-c/50549636)
 
 #### 找到某个元素值的index

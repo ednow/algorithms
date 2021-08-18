@@ -1,12 +1,12 @@
 from __future__ import annotations
-from typing import List, Iterable
+from typing import List, Iterable, Union
 
 
 # 节点的链式存储结构
 class Node:
     def __init__(self, index: int, label: int):
         self.index = index
-        # 节点的值
+        # 节点的值,特殊的节点"null"label为1吧
         self.label = label
         self.left = None
         self.right = None
@@ -52,7 +52,7 @@ class Node:
 
     @property
     def value(self):
-        return f"({abs(self.label)}, {self.color})"
+        return f"({self.label}, {self.color})"
 
 
 # debug
@@ -96,6 +96,24 @@ def attach_node(root: Node, preOrderSeq: List[Node]):
     attach_node(root.right, preOrderSeq[maxLeftIdx + 2:])
 
 
+def add_nil(nodes: List[Node]):
+    """
+    所有的空姐点都被替换成"null"
+    :param nodes:
+    """
+    idx = len(nodes)
+    for node in nodes[:]:
+        if node.left is None:
+            node.left = Node(idx, 1)
+            idx += 1
+            nodes.append(node.left)
+
+        if node.right is None:
+            node.right = Node(idx, 1)
+            idx += 1
+            nodes.append(node.right)
+
+
 def check_red_black_tree() -> str:
     """
     检查输入的是不是红黑树,是返回“Yes”, 不是返回“No”
@@ -107,8 +125,11 @@ def check_red_black_tree() -> str:
         return "No"
 
     attach_node(nodes[0], nodes[1:])  # 要先attach
+
+    add_nil(nodes)
+
     # 双亲表示法,方便求路径
-    fathers: List[int] = [-1 for _ in range(nodesNum)]
+    fathers: List[int] = [-1 for _ in range(len(nodes))]
     for node in nodes:
         if not (node.left is None):
             fathers[node.left.index] = node.index

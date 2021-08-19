@@ -3,7 +3,7 @@
 |----|----|----|----|----|
 |1001| | |:white_check_mark:|字符串处理|
 |1002|:white_check_mark:| | |字符串处理|
-|1003|:white_check_mark:| | |Dijkstra|
+|1003|:white_check_mark:| | |图,最短路径,Dijkstra|
 |1004|:white_check_mark:| |:white_check_mark:|树的层次遍历|
 |1005|:white_check_mark:| | |字符串处理|
 |1006|:white_check_mark:| | |字符串处理|
@@ -19,7 +19,6 @@
 |1082|:white_check_mark:| | |字符串处理|
 |1108|:white_check_mark:| | |字符串处理|
 |1140|:white_check_mark:| | |字符串处理|
-|1150| | | |图|
 |1152|:white_check_mark:| |:white_check_mark:|质数|
 |1032| | |:white_check_mark:|链表|
 |1052| | |:white_check_mark:|链表|
@@ -93,8 +92,7 @@
 |1147| | | :white_check_mark:|二叉树,堆,层次遍历,后序遍历|
 |1151| | |:white_check_mark: |二叉树,前序遍历,中序遍历|
 |1155|:white_check_mark: | | |二叉树,堆|
-|1003| | | |最短路径|
-|1018| | | |最短路径|
+|1018| | | |图,最短路径|
 |1030| | | |最短路径|
 |1072| | | |最短路径|
 |1087| | | |最短路径|
@@ -107,6 +105,7 @@
 |1130| | | |DFS|
 |1131| | | |DFS|
 |1134| | | |DFS|
+|1150| | | |图|
 |1076| | | |BFS|
 |1091| | | |BFS|
 |1123| | | |其他的图论|

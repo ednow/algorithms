@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1151/LCAInABinaryTree.cpp PTA/PTA1135/other.cpp)
+        PTA/PTA1018/PublicBikeManagement.cpp)
 
 # 添加头文件
 include_directories(

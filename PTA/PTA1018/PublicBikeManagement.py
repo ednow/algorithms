@@ -7,12 +7,12 @@ def get_paths(
     nodes: List[Dict],
     paths: List[Dict],
     stack: List[int],
-    maxCapacity: int,
+    halfCapacity: int,
     indexOfProblemStation: int
 ):
     """
     该函数从有问题的节点出发，一直往回走走到发配站
-    :param maxCapacity: 每个节点最大的容量
+    :param halfCapacity: 每个节点最大的容量
     :param indexOfProblemStation:
     :param node: 现在走到的节点
     :param nodes: 由dijkstra求出来的节点信息
@@ -23,18 +23,18 @@ def get_paths(
     # 走到了发配站
     if len(nodes[node]["fathers"]) == 0:
         stack.pop(-1)  # 把发配站弹出
-        # 现在路径上的单车数的和
-        sumOfBikeNum = reduce(lambda a, b: a + nodes[b]["currentBikeNum"], stack, 0)
-        # 现在路径上的节点数
-        nodeNum = len(stack)
-
-        # 证明需要带回去
-        if nodes[indexOfProblemStation]["currentBikeNum"] == maxCapacity:
-            bikeNumToTake = maxCapacity / 2
-            bikeNumToSend = 0
-        else:  # 为0
-            bikeNumToTake = 0
-            bikeNumToSend = nodeNum * maxCapacity / 2 - sumOfBikeNum
+        bikeNumToSend = 0
+        bikeNumToTake = 0
+        for idx in reversed(stack):
+            if nodes[idx]["currentBikeNum"] < halfCapacity:
+                # 一路走过来有带上自行车
+                if bikeNumToTake > halfCapacity - nodes[idx]["currentBikeNum"]:  # 带的自行车很多
+                    bikeNumToTake -= nodes[idx]["currentBikeNum"]
+                else:  # 带的自行车很少，现在带的自行车全部补给这里，还需要多带nodes[idx]["currentBikeNum"] - bikeNumToTake车
+                    bikeNumToSend += halfCapacity - nodes[idx]["currentBikeNum"] - bikeNumToTake
+                    bikeNumToTake = 0
+            elif nodes[idx]["currentBikeNum"] > halfCapacity:
+                bikeNumToTake += nodes[idx]["currentBikeNum"] - halfCapacity
 
         paths.append({
             "path": stack[:],
@@ -48,7 +48,7 @@ def get_paths(
         return None
 
     for father in nodes[node]["fathers"]:
-        get_paths(father, nodes, paths, stack, maxCapacity, indexOfProblemStation)
+        get_paths(father, nodes, paths, stack, halfCapacity, indexOfProblemStation)
 
 
 def summit():
@@ -118,7 +118,7 @@ def summit():
     paths = []
     # 现在走到的节点的下标
     node = indexOfProblemStation
-    get_paths(node, nodes, paths, [], maxCapacity, node)
+    get_paths(node, nodes, paths, [], maxCapacity/2, node)
     result = min(paths, key=lambda x: (x["bikeNumToSend"], x["bikeNumToTake"]))
     print(f"{int(result['bikeNumToSend'])} {'->'.join(map(str, reversed(result['path'] + [0])))} {int(result['bikeNumToTake'])}")
 

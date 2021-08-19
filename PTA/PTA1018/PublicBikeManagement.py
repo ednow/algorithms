@@ -28,13 +28,20 @@ def get_paths(
         # 现在路径上的节点数
         nodeNum = len(stack)
 
-        bikeNumToSend = nodeNum * maxCapacity / 2 - sumOfBikeNum
+        # 证明需要带回去
+        if nodes[indexOfProblemStation]["currentBikeNum"] == maxCapacity:
+            bikeNumToTake = maxCapacity / 2
+            bikeNumToSend = 0
+        else:  # 为0
+            bikeNumToTake = 0
+            bikeNumToSend = nodeNum * maxCapacity / 2 - sumOfBikeNum
+
         paths.append({
             "path": stack[:],
             # 需要带过去的单车数量
-            "bikeNumToSend": 0 if bikeNumToSend < 0 else bikeNumToSend,
+            "bikeNumToSend": bikeNumToSend,
             # 需要带回来的单车的数量
-            "bikeNumToTake": 0 if -bikeNumToSend < 0 else -bikeNumToSend
+            "bikeNumToTake": bikeNumToTake
         })
         # 弹出最顶的节点
         stack.pop(-1)

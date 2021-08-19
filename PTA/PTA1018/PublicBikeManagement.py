@@ -29,7 +29,7 @@ def get_paths(
             if nodes[idx]["currentBikeNum"] < halfCapacity:
                 # 一路走过来有带上自行车
                 if bikeNumToTake > halfCapacity - nodes[idx]["currentBikeNum"]:  # 带的自行车很多
-                    bikeNumToTake -= nodes[idx]["currentBikeNum"]
+                    bikeNumToTake -= halfCapacity - nodes[idx]["currentBikeNum"]  # 忘记要减去了
                 else:  # 带的自行车很少，现在带的自行车全部补给这里，还需要多带nodes[idx]["currentBikeNum"] - bikeNumToTake车
                     bikeNumToSend += halfCapacity - nodes[idx]["currentBikeNum"] - bikeNumToTake
                     bikeNumToTake = 0

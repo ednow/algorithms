@@ -2,7 +2,7 @@
 // Created by ednow on 2021/8/19.
 //
 
-// 来源
+// 来源,好像运行之后并不能得到理想的输出，不知道为什么，比如测试点2，放OJ是过的，本地测试就出错了
 // https://blog.csdn.net/op_mocun/article/details/106158570
 
 #include<cstdio>

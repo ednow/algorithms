@@ -43,12 +43,14 @@ def get_paths(
             # 需要带回来的单车的数量
             "bikeNumToTake": bikeNumToTake
         })
-        # 弹出最顶的节点
-        stack.pop(-1)
+        # # 弹出最顶的节点
+        # if stack[-1] != indexOfProblemStation:
+        #     stack.pop(-1)
         return None
 
     for father in nodes[node]["fathers"]:
         get_paths(father, nodes, paths, stack, halfCapacity, indexOfProblemStation)
+    stack.pop(-1)  # 结束递归把自己弹出
 
 
 def summit():

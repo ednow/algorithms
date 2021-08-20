@@ -6,7 +6,8 @@ def get_paths(
         paths: List[List[int]],
         stack: List[int],
         source: int,
-        destination: int
+        destination: int,
+        childAttr: str
 ):
     """
     通过dijkstra的结果信息表凭借出每一条路径
@@ -23,8 +24,8 @@ def get_paths(
         stack.pop(-1)  # 弹出自己
         return None
 
-    for father in nodes[source]["fathers"]:
-        get_paths(nodes, paths, stack, father, destination)
+    for child in nodes[source][childAttr]:
+        get_paths(nodes, paths, stack, child, destination, childAttr)
 
     stack.pop(-1)
 
@@ -41,33 +42,13 @@ def get_cost(path: List[int], cost: List[List[int]]) -> int:
     return result
 
 
-def summit():
-    # cityNum城市（点）的数量,
-    # roadNum道路（边）数量,
-    # source, 起点
-    # destination,终点
-    cityNum, roadNum, source, destination = map(int, input().split())
-    source, destination = destination, source
-    # 邻接矩阵表示法,边的长度为0表示无法到达
-    # 边的长度
-    graph = [[0] * cityNum for _ in range(cityNum)]
-    # 边的花费
-    cost = [[0] * cityNum for _ in range(cityNum)]
-    # 读取边
-    for _ in range(roadNum):
-        a, b, d, c = map(int, input().split())
-        graph[a][b] = d
-        graph[b][a] = d
-        cost[a][b] = c
-        cost[b][a] = c
-        
-    # 维护dijkstra求最短路劲时所有节点的父亲
-    nodes = [{
-        "fathers": [],
-        "index": idx,
-        "weight": float("inf")  # 累计路径长度
-    } for idx in range(cityNum)]
-
+def dijkstra(nodes: List[Dict], source: int, graph: List[List[int]]):
+    """
+    对graph按照source求dijkstra
+    :param nodes: 所有的节点
+    :param source: 源
+    :param graph: 边权值的图
+    """
     nodes[source]["weight"] = 0
     unSelectedNodes = nodes[:]
     while len(unSelectedNodes) != 0:  # dijkstra
@@ -84,14 +65,44 @@ def summit():
                     nodes[idx]['fathers'].append(node["index"])
         unSelectedNodes.remove(node)
 
+
+def summit():
+    # cityNum城市（点）的数量,
+    # roadNum道路（边）数量,
+    # source, 起点
+    # destination,终点
+    cityNum, roadNum, source, destination = map(int, input().split())
+
+    # 邻接矩阵表示法,边的长度为0表示无法到达
+    # 边的长度
+    graph = [[0] * cityNum for _ in range(cityNum)]
+    # 边的花费
+    cost = [[0] * cityNum for _ in range(cityNum)]
+    # 读取边
+    for _ in range(roadNum):
+        a, b, d, c = map(int, input().split())
+        graph[a][b] = d
+        graph[b][a] = d
+        cost[a][b] = c
+        cost[b][a] = c
+    # 维护dijkstra求最短路劲时所有节点的父亲
+    nodes = [{
+        "fathers": [],
+        "index": idx,
+        "weight": float("inf")  # 累计路径长度
+    } for idx in range(cityNum)]
+
+    # 反向求dijkstra，然后就可以正向求路径了
+    dijkstra(nodes, destination, graph)
+
     # 存放source到destination的所有最短路径
     paths = []
-    # 其实就是个dfs
-    source, destination = destination, source
-    get_paths(nodes, paths, [], source, destination)
+    # 其实就是个dfs，反向dijkstra要交换回来
+    get_paths(nodes, paths, [], source, destination, "fathers")
     # 多条最短路径，选择最便宜的
     result = min(paths, key=lambda x: get_cost(x, cost))
     # 输出结果
+    # 由于是反向求dijkstra,最终的权重要用source来求
     print(f"{' '.join(map(str, result))} {nodes[source]['weight']} {get_cost(result, cost)}")
 
 

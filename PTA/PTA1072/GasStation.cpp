@@ -92,12 +92,12 @@ MAIN (){
     // 对每个station求一次dijkstra
     for (int i = 1; i < stationNum + 1; ++i) {
         // 记录所有节点的状态
-        vector<shared_ptr<Node>> nodes(stationNum + houseNum + 1);
+        vector<Node *> nodes(stationNum + houseNum + 1);
         for (int j = 0; j < stationNum + houseNum + 1; ++j) {
-            nodes[j] = make_shared<Node>(j);
+            nodes[j] = new Node(j);
         }
         // 记录未选点集
-        vector<shared_ptr<Node>> unSelectedNodes(nodes.begin(), nodes.end());
+        vector<Node *> unSelectedNodes(nodes.begin(), nodes.end());
         // 源的路径长度设置为0
         nodes[i]->weight = 0;
         while (!unSelectedNodes.empty()){

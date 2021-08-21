@@ -64,6 +64,18 @@
 ###### ？删一个而动全身？
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210821100021.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210821100021.png';" /></details>
 
+使用原生指针也是会出现同样的问题
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210821141235.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210821141235.png';" /></details>
+
+参考文献
+
++ https://stackoverflow.com/questions/6353149/does-vectorerase-on-a-vector-of-object-pointers-destroy-the-object-itself
++ https://stackoverflow.com/questions/30156670/copy-items-from-one-vector-to-another-vector
++ https://stackoverflow.com/questions/5253169/why-cant-i-perform-a-stdcopy-on-a-vector-of-stdshared-ptrs-in-c0x
++ https://stackoverflow.com/questions/49321107/how-to-make-a-copy-of-vector-of-shared-ptrs
++ https://stackoverflow.com/questions/23716018/deep-copy-constructor-with-stdvector-of-smart-pointers
+
 #### move和copy
 
 `<utility>`

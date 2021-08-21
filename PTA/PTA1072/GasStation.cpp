@@ -119,7 +119,8 @@ MAIN (){
         }
 
         // 如果到房子的距离大于maxDistance，那么该修建地址不合理
-        if (find_if(nodes.begin() + 1, nodes.end(), [&](const auto & a){ return a -> weight > maxDistance; }) != nodes.end()) {
+        // 注意时到房子的距离
+        if (find_if(nodes.begin() +  stationNum + 1, nodes.end(), [&](const auto & a){ return a -> weight > maxDistance; }) != nodes.end()) {
             stations[i].isOk = false;
             continue;
         }

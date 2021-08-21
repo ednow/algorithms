@@ -154,7 +154,7 @@ MAIN (){
         return a.index < b.index;
     });
     cout << "G" << (*result).index << endl;
-    cout << setprecision(1) << fixed << (*result).miniWeight << " " << (*result).sumOfWeight / houseNum;
+    cout << setprecision(1) << fixed << (*result).miniWeight * 1.0  << " " << (*result).sumOfWeight * 1.0 / houseNum;
     return 0;
 }
 

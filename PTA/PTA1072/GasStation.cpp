@@ -157,7 +157,7 @@ MAIN (){
     });
     cout << "G" << (*result).index << endl;
     // ?为什么G1时3.3
-    cout << setprecision(1) << fixed << (*result).miniWeight * 1.0  << " " << (*result).sumOfWeight * 1.0 / houseNum + 0.05 << endl;
+    cout << setprecision(1) << fixed << (*result).miniWeight * 1.0  << " " << (*result).sumOfWeight * 1.0 / houseNum + 0.005 << endl;
     return 0;
 }
 

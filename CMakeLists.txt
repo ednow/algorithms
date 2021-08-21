@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1018/PublicBikeManagement.cpp)
+        PTA/PTA1072/GasStation.cpp)
 
 # 添加头文件
 include_directories(

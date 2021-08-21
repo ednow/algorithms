@@ -92,17 +92,17 @@ MAIN (){
     // 对每个station求一次dijkstra
     for (int i = 1; i < stationNum + 1; ++i) {
         // 记录所有节点的状态
-        vector<Node *> nodes(stationNum + houseNum + 1);
+        vector<shared_ptr<Node>> nodes(stationNum + houseNum + 1);
         for (int j = 0; j < stationNum + houseNum + 1; ++j) {
-            nodes[j] = new Node(j);
+            nodes[j] = make_shared<Node>(j);
         }
         // 记录未选点集
-        vector<Node *> unSelectedNodes(nodes.begin(), nodes.end());
+        vector<shared_ptr<Node>> unSelectedNodes(nodes.begin(), nodes.end());
         // 源的路径长度设置为0
         nodes[i]->weight = 0;
         while (!unSelectedNodes.empty()){
             // 权值最小的节点
-            auto node = min_element(nodes.begin(), nodes.end(), [](const auto &a, const auto &b) {
+            auto node = min_element(unSelectedNodes.begin(), unSelectedNodes.end(), [](const auto &a, const auto &b) {
                 return a->weight < b->weight;
             });
             // 更新距离列表信息
@@ -128,12 +128,12 @@ MAIN (){
         stations[i].isOk = true;
 
         // 记录这个最短路径的离村庄的最小距离
-        stations[i].miniWeight = (*min_element(nodes.begin(), nodes.end(), [](const auto &a, const auto &b) {
+        stations[i].miniWeight = (*min_element(nodes.begin() + stationNum + 1, nodes.end(), [](const auto &a, const auto &b) {
             return a->weight < b->weight;})) -> weight;
 
-        // 求所有节点的权重和
-        stations[i].sumOfWeight = accumulate(nodes.begin() + 1, nodes.end(), 0,
-                                             [](const auto &a, const auto &b) { return a + b->weight; });
+        // 求所有节点的权重和,只需要求到村庄的距离
+        stations[i].sumOfWeight = accumulate(nodes.begin() + stationNum + 1, nodes.end(), 0,
+                                             [&](const auto &a, const auto &b) { return a + b->weight; });
     }
 
     // 筛选出能通往所有村庄的加油站
@@ -146,8 +146,11 @@ MAIN (){
     }
 
     auto result = min_element(candidateStation.begin(), candidateStation.end(), [](const auto &a, const auto &b){
+        // miniWeight越大越好
         if (a.miniWeight != b.miniWeight) return a.miniWeight > b.miniWeight;
+        // 平均距离越小越好
         if (a.sumOfWeight != b.sumOfWeight) return a.sumOfWeight < b.sumOfWeight;
+        // 优先选index小的
         return a.index < b.index;
     });
     cout << "G" << (*result).index << endl;

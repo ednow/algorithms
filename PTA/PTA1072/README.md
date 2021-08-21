@@ -26,6 +26,19 @@
 
 ## cpp
 
+### bug
+
+#### dijkstra:节点6的weight好像求错了
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210821144335.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210821144335.png';" /></details>
+
+原来是我自己算错了，那没事了
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210821144830.jpg" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210821144830.png';" /></details>
+
+
+#### setprecision(1) << fixed
+还是没有保留位数
+
 ### 语法技术
 
 #### 初始化二维vector数组
@@ -62,6 +75,8 @@
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210821092616.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210821092616.png';" /></details>
 
 ###### ？删一个而动全身？
+我试图。。。用一个实例的迭代器删除另外一个实例中的内容，导致出了这样的bug，我还查了那么多资料，btw 记得
+
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210821100021.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210821100021.png';" /></details>
 
 使用原生指针也是会出现同样的问题

@@ -51,10 +51,18 @@
 ###### makeshare
 [参考文献](https://www.jianshu.com/p/03eea8262c11)
 
-###### 不会用鸭
+###### debug不会用鸭
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210821085235.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210821085235.png';" /></details>
 
 [参考文献：好像都是空的构造器，他也出问题了](https://segmentfault.com/q/1010000040305430)
+
+解决方法：关闭GNU C++ Library Renderers option,[参考文献](https://youtrack.jetbrains.com/issue/CPP-22342)
+
+###### 会指向同一个对象
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210821092616.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210821092616.png';" /></details>
+
+###### ？删一个而动全身？
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210821100021.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210821100021.png';" /></details>
 
 #### move和copy
 

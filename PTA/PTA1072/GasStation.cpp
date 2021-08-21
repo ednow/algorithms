@@ -32,7 +32,7 @@ struct Node{
     // 节点的权值
     int weight{INT32_MAX};
     // 本不需要记录父亲这些相关信息
-//    explicit Node(int index): index(index) {};
+    explicit Node(int index): index(index) {};
 
 };
 
@@ -92,7 +92,10 @@ MAIN (){
     // 对每个station求一次dijkstra
     for (int i = 1; i < stationNum + 1; ++i) {
         // 记录所有节点的状态
-        vector<shared_ptr<Node>> nodes(stationNum + houseNum + 1, make_shared<Node>());
+        vector<shared_ptr<Node>> nodes(stationNum + houseNum + 1);
+        for (int j = 0; j < stationNum + houseNum + 1; ++j) {
+            nodes[j] = make_shared<Node>(j);
+        }
         // 记录未选点集
         vector<shared_ptr<Node>> unSelectedNodes(nodes.begin(), nodes.end());
         // 源的路径长度设置为0
@@ -103,10 +106,11 @@ MAIN (){
                 return a->weight < b->weight;
             });
             // 更新距离列表信息
-            for (const auto & edge:graph[(*node)->index]) {
+            for (int j = 1; j < stationNum + houseNum + 1; ++j) {
+                int edge = graph[(*node)->index][j];
                 if (edge != 0){
-                    if ((*node)->weight + edge < nodes[(*node)->index]->weight){
-                        nodes[(*node)->index]->weight = (*node)->weight + edge;
+                    if ((*node)->weight + edge < nodes[j]->weight){
+                        nodes[j]->weight = (*node)->weight + edge;
                     }
                 }
             }

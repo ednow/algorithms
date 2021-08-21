@@ -2,13 +2,13 @@
   {
     "id": "1",
     "data": "4 3 11 5\n1 2 2\n1 4 2\n1 G1 4\n1 G2 3\n2 3 2\n2 G2 1\n3 4 2\n3 G3 2\n4 G1 3\nG2 G1 1\nG3 G2 2",
-    "answer": "G1\n2.0 3.3",
+    "answer": "G1\n2.0 3.3\n",
     "description": "题目的样例"
   },
     {
     "id": "2",
     "data": "2 1 2 10\n1 G1 9\n2 G1 20",
-    "answer": "No Solution",
+    "answer": "No Solution\n",
     "description": "题目的样例"
   }
 ]

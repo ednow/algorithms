@@ -14,12 +14,19 @@
 ## 思路
 
 ## python
+### 第一次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210822155854.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210822155854.png';" /></details>
+
+
 ### 第二次提交
 为什么反而错了一个？
 
+按照严书优化的代码
+
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210822155551.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210822155551.png';" /></details>
 
-###
+### 第三次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210822161839.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210822161839.png';" /></details>
 
 ## cpp
 

@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1111/OnlineMap.cpp)
+        PTA/PTA1146/TopologicalOrder.cpp)
 
 # 添加头文件
 include_directories(

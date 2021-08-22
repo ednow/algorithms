@@ -2,20 +2,18 @@ from typing import List, Callable, Dict, Set
 from copy import deepcopy
 
 
-def dfs(start: int, graph: List[List[bool]], result: Set, isVisited: List[List[bool]]):
+def dfs(start: int, graph: List[List[bool]], isVisited: List[bool]):
     """
     对图进行一次dfs
     :param isVisited: 某个边的某个临界点是否被访问
     :param start: 开始的节点
     :param graph: 图
-    :param result: 存放遍历过的节点
     """
-    result.add(start)
+    isVisited[start] = True
     for idx, edge in enumerate(graph[start]):
         # 需要标记某个是否被访问
-        if edge and not isVisited[start][idx]:
-            isVisited[start][idx] = True
-            dfs(idx, graph, result, isVisited)
+        if edge and not isVisited[idx]:
+            dfs(idx, graph, isVisited)
 
 
 def occupy_city(node: int, graph: List[List[bool]], nodeNum: int) -> int:
@@ -36,12 +34,12 @@ def occupy_city(node: int, graph: List[List[bool]], nodeNum: int) -> int:
     dfsTimes = -1
 
     nodes = set(i for i in range(1, nodeNum + 1))
-    nodes.remove(node)
-    while len(nodes) > 0:
-        nodesToRemove = set()
-        isVisited = [[False] * (nodeNum + 1) for _ in range(nodeNum + 1)]
-        dfs(nodes.pop(), graph, nodesToRemove, isVisited)
-        nodes -= nodesToRemove
+    nodes -= {0, node}
+    isVisited = [False for _ in range(nodeNum + 1)]
+    isVisited[node] = True
+    isVisited[0] = True
+    while not all(isVisited):
+        dfs(nodes.pop(), graph, isVisited)
         dfsTimes += 1
 
     return dfsTimes

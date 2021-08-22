@@ -13,8 +13,17 @@
 
 ## 思路
 
+## python
+### 第二次提交
+为什么反而错了一个？
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210822155551.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210822155551.png';" /></details>
+
+###
+
 ## cpp
 
 ### 语法技术
 
-#### 从
+#### 从set中删除元素
+[参考文献](https://www.cnblogs.com/nxopen2018/p/10957679.html)

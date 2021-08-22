@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1087/AllRoadsLeadToRome.cpp)
+        PTA/PTA1111/OnlineMap.cpp)
 
 # 添加头文件
 include_directories(

@@ -36,7 +36,7 @@ def occupy_city(node: int, graph: List[List[bool]], nodeNum: int) -> int:
     dfsTimes = -1
 
     nodes = set(i for i in range(1, nodeNum + 1))
-    nodes -= {0, node}
+    nodes -= {node}
     isVisited = [False for _ in range(nodeNum + 1)]
     isVisited[node] = True
     isVisited[0] = True

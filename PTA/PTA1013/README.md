@@ -30,7 +30,19 @@
 
 ## cpp
 
+### 第一次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210822165635.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210822165635.png';" /></details>
+
 ### 语法技术
 
 #### 从set中删除元素
 [参考文献](https://www.cnblogs.com/nxopen2018/p/10957679.html)
+
+#### get_Item from set
+[参考文献](https://stackoverflow.com/questions/2540950/access-an-element-in-a-set)
+
+#### -= set
+[参考文献](https://stackoverflow.com/questions/6087388/c-equivalent-of-python-difference-update)
+
+#### enumerate in c++
+[参考文献](https://stackoverflow.com/questions/10962290/how-to-find-the-index-of-current-object-in-range-based-for-loop)

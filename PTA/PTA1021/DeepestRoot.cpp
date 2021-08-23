@@ -119,6 +119,7 @@ findMaxRoots(
     // 下标0代表外层循环的路径的长度
     // 下标1代表内层循环的路径长度
     // 下标2代表内外层循环合并的路径长度
+//    没有path会死循环？
     vector<int> lens(3, 0);
     int maxLen{INT32_MIN};
     for (int i = 0; i < paths.size()-1; ++i) {
@@ -170,6 +171,11 @@ MAIN(){
     // edgeNum边的数量，maxLen最大长度
     int nodeNum{};
     cin >> nodeNum;
+    if (nodeNum==1){
+        cout << 1 << endl;
+        return 0;
+    }
+
     // 邻接举证存储结构
     vector<vector<bool>> graph(nodeNum+1, vector<bool>(nodeNum+1, false));
 

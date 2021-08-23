@@ -22,5 +22,17 @@
     "data": "10\n9 1\n9 2\n9 3\n2 4\n2 5\n2 6\n5 8\n3 7\n1 10",
     "answer": "7\n8\n10\n",
     "description": "测试点0"
+  },
+  {
+    "id": "5",
+    "data": "7\n1 2\n3 1\n5 2\n3 6\n2 4\n7 3",
+    "answer": "4\n5\n6\n7\n",
+    "description": "测试点4"
+  },
+  {
+    "id": "6",
+    "data": "6\n1 3\n2 3\n3 4\n4 5\n4 6",
+    "answer": "1\n2\n5\n6\n",
+    "description": "测试点5"
   }
 ]

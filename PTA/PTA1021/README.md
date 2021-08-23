@@ -18,12 +18,16 @@
 
 
 ## 思路
-+ 思路1:深度优先遍历出所有的路径，初始化结果集合为空，取路径两两组合合并加入已选集合，可以合并则:超时
-+ 思路2:对每个叶子节点进行dfs
+<!-- + 思路1:深度优先遍历出所有的路径，初始化结果集合为空，取路径两两组合合并加入已选集合，可以合并则:超时 -->
+<!-- + 思路2:对每个叶子节点进行dfs，肯定不行 -->
 
+<!-- 求1次dfs用了325ms -->
 
+<!-- <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210823171951.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210823171951.png';" /></details> -->
 
 <!-- + 思路1:深度优先遍历出所有的路径，初始化结果集合为空，每加入一条路径看首元素和里面元素的首元素一不一致，一致则取最长的，相同则加入 -->
+
+两次dfs[参考文献](https://www.cnblogs.com/TenosDoIt/p/3401764.html)
 
 ## cpp
 
@@ -41,6 +45,9 @@ fix测试点0
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210823160600.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210823160600.png';" /></details>
 
+### 第三次提交
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210823192153.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210823192153.png';" /></details>
 
 ### 语法技术
 

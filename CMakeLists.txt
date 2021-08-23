@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1146/TopologicalOrder.cpp PTA/PTA1013/BattleOverCities.cpp PTA/PTA1021/DeepestRoot.cpp PTA/PTA1021/testReserve.cpp)
+        PTA/PTA1021/DeepestRoot.cpp)
 
 # 添加头文件
 include_directories(

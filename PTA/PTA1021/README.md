@@ -27,7 +27,13 @@
 
 <!-- + 思路1:深度优先遍历出所有的路径，初始化结果集合为空，每加入一条路径看首元素和里面元素的首元素一不一致，一致则取最长的，相同则加入 -->
 
-两次dfs[参考文献](https://www.cnblogs.com/TenosDoIt/p/3401764.html)
+### 两次dfs
+两次dfs[参考文献](https://www.cnblogs.com/TenosDoIt/p/3401764.html):虽然这份答案其实是错的
+
+[参考文献](https://blog.csdn.net/weixin_44699689/article/details/104587158)
+
+### 层次遍历
+用[层次遍历](https://blog.csdn.net/q839219286/article/details/81784084?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)得到答案
 
 ## cpp
 

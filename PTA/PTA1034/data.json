@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "data": "8 59\nAAA BBB 10\nBBB AAA 20\nAAA CCC 40\nDDD EEE 5\nEEE DDD 70\nFFF GGG 30\nGGG HHH 20\nHHH FFF 10",
+    "answer": "2\nAAA 3\nGGG 3\n",
+    "description": "题目的样例"
+  },
+  {
+    "id": "2",
+    "data": "8 70\nAAA BBB 10\nBBB AAA 20\nAAA CCC 40\nDDD EEE 5\nEEE DDD 70\nFFF GGG 30\nGGG HHH 20\nHHH FFF 10",
+    "answer": "0\n",
+    "description": "题目的样例"
+  }
+]

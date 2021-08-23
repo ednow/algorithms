@@ -12,8 +12,8 @@
 
 #include "vector"
 #include "iostream"
-//#include "set"
-#include "unordered_set"
+#include "set"
+//#include "unordered_set"
 #include "algorithm"
 
 //#define set unordered_set
@@ -40,7 +40,7 @@ occupy_city(int node, vector<vector<bool>> graph, int nodeNum){
         graph[i][node] = false;
         graph[node][i] = false;
     }
-    unordered_set<int> nodes;
+    set<int> nodes;
     for (int i = 1; i < nodeNum+1; ++i) {
         nodes.insert(i);
     }

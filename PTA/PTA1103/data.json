@@ -10,5 +10,23 @@
     "data": "169 167 3",
     "answer": "Impossible\n",
     "description": "题目的样例"
+  },
+  {
+    "id": "3",
+    "data": "173 6 2",
+    "answer": "\n",
+    "description": "测试点2"
+  },
+  {
+    "id": "4",
+    "data": "400 50 2",
+    "answer": "\n",
+    "description": "测试点5"
+  },
+  {
+    "id": "5",
+    "data": "400 28 5",
+    "answer": "\n",
+    "description": "测试点6"
   }
 ]

@@ -76,92 +76,94 @@ findMaxRoots(
     int nodeNum = (int)graph.size();
     // 得到叶子节点
     vector<bool> isLeaf(nodeNum, false);
-    for (int i = 0; i < nodeNum; ++i) {
+    // leafNode存放叶子节点
+    vector<int> leafNodes;
+    for (int i = 1; i < nodeNum; ++i) {
         // 出度为1一定是叶子节点
         if (accumulate(graph[i].begin(), graph[i].end(), 0)==1){
             isLeaf[i] = true;
         }
+        leafNodes.push_back(i);
     }
 
-    // 存放所有的路径
-    vector<vector<int>> paths;
+    // check是不是树
+    {
+        // 存放所有的路径
+        vector<vector<int>> paths;
 //    paths.reserve(accumulate(isLeaf.begin(), isLeaf.end(), 0));
-    paths.reserve(nodeNum);
-    int dfsTimes{};
-    unordered_set<int> nodes;
-    // 节点从1开始编号
-    for (int i = 1; i < nodeNum; ++i) {
-        nodes.insert(i);
-    }
-    nodes.erase(0);
-
-    // 这个节点是否被访问过
-    vector<bool> isVisited(nodeNum);
-    isVisited[0] = true;
-
-    // 节点中还有元素
-    while (!nodes.empty()){
-        vector<int> tempPath;
-        vector<int> stack;
-        dfs(*nodes.begin(), graph, isLeaf, paths, tempPath, isVisited, nodeNum, stack);
-        for (auto &a:tempPath) {
-            nodes.erase(a);
+        paths.reserve(nodeNum);
+        int dfsTimes{};
+        unordered_set<int> nodes;
+        // 节点从1开始编号
+        for (int i = 1; i < nodeNum; ++i) {
+            nodes.insert(i);
         }
-        dfsTimes++;
-    }
-    if (dfsTimes>1) {
-        isTree = false;
-        componentNum = dfsTimes;
-        return;
-    }
+        nodes.erase(0);
 
-    // 求最深的根节点们
-    // 下标0代表外层循环的路径的长度
-    // 下标1代表内层循环的路径长度
-    // 下标2代表内外层循环合并的路径长度
-//    没有path会死循环？
-    vector<int> lens(3, 0);
-    int maxLen{INT32_MIN};
-    for (int i = 0; i < paths.size()-1; ++i) {
-        for (int j = i+1; j < paths.size(); ++j) {
-            lens[0] = (int)paths[i].size();
-            lens[1] = (int)paths[j].size();
+        // 这个节点是否被访问过
+        vector<bool> isVisited(nodeNum);
+        isVisited[0] = true;
 
-            // 计算合并之后的长度
-            auto iter1 = paths[i].begin();
-            auto iter2 = paths[j].begin();
-            // 这里是等于
-            while (*iter1 == *iter2){
-                iter1++;
-                iter2++;
+        // 节点中还有元素
+        while (!nodes.empty()){
+            vector<int> tempPath;
+            vector<int> stack;
+            dfs(*nodes.begin(), graph, isLeaf, paths, tempPath, isVisited, nodeNum, stack);
+            for (auto &a:tempPath) {
+                nodes.erase(a);
             }
-            //   2 * (iter1 - paths[i].begin() + 1) + 1)
-            // = 2 * (iter1 - paths[i].begin()) - 1)
-            lens[2] = (int) (lens[0] + lens[1] - 2 * (iter1 - paths[i].begin()) + 1);
-            auto maxLenElem = max_element(lens.begin(), lens.end());
-            if (*maxLenElem > maxLen){
-                maxLen = *maxLenElem;
+            dfsTimes++;
+        }
+        if (dfsTimes>1) {
+            isTree = false;
+            componentNum = dfsTimes;
+            return;
+        }
+    }
+
+    int maxLen{0};
+
+    for (auto & leaf:leafNodes) {
+        // 存放所有的路径
+        vector<vector<int>> paths;
+//    paths.reserve(accumulate(isLeaf.begin(), isLeaf.end(), 0));
+        paths.reserve(nodeNum);
+
+        unordered_set<int> nodes;
+
+        // 节点从1开始编号
+        for (int i = 1; i < nodeNum; ++i) {
+            nodes.insert(i);
+        }
+        nodes.erase(0);
+        // 这个节点是否被访问过
+        vector<bool> isVisited(nodeNum);
+        isVisited[0] = true;
+
+        // 节点中还有元素
+        while (!nodes.empty()){
+            vector<int> tempPath;
+            vector<int> stack;
+            dfs(leaf, graph, isLeaf, paths, tempPath, isVisited, nodeNum, stack);
+            for (auto &a:tempPath) {
+                nodes.erase(a);
+            }
+        }
+
+
+        for (const auto & path:paths) {
+            if (path.size() > maxLen){
+                maxLen = (int)path.size();
                 maxLenRoots.clear();
             }
-
-            // 外循环的
-            if (maxLen == lens[0]){
-                maxLenRoots.insert(*paths[i].begin());
-                // c++切片最后一个元素是*(paths[i].end()-1)
-                maxLenRoots.insert(*(paths[i].end()-1));
+            if (path.size() == maxLen){
+                maxLenRoots.insert(*path.begin());
+                maxLenRoots.insert(*(path.end()-1));
             }
-            if (maxLen == lens[1]){
-                maxLenRoots.insert(*paths[j].begin());
-                maxLenRoots.insert(*(paths[j].end()-1));
-            }
-
-            if (maxLen == lens[2]){
-                maxLenRoots.insert(*(paths[i].end() - 1));
-                maxLenRoots.insert(*(paths[j].end() - 1));
-            }
-
         }
+
     }
+
 
 }
 

@@ -52,7 +52,10 @@ def summit():
 
     result = []
     inorder_traversal(root, result)
-    print("".join(result[1:-1]))
+    if len(result) == 1:
+        print(result[0])
+    else:
+        print("".join(result[1:-1]))
 
 
 if __name__ == '__main__':

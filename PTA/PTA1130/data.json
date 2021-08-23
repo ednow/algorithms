@@ -10,5 +10,11 @@
     "data": "8\n2.35 -1 -1\n* 6 1\n- -1 4\n% 7 8\n+ 2 3\na -1 -1\nstr -1 -1\n871 -1 -1",
     "answer": "(a*2.35)+(-(str%871))\n",
     "description": "题目的样例"
+  },
+  {
+    "id": "2",
+    "data": "1\na -1 -1",
+    "answer": "a\n",
+    "description": "模拟测试点2"
   }
 ]

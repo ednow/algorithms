@@ -145,17 +145,17 @@ findMaxRoots(
             }
 
             // 外循环的
-            if (*maxLenElem == lens[0]){
+            if (maxLen == lens[0]){
                 maxLenRoots.insert(*paths[i].begin());
                 // c++切片最后一个元素是*(paths[i].end()-1)
                 maxLenRoots.insert(*(paths[i].end()-1));
             }
-            if (*maxLenElem == lens[1]){
+            if (maxLen == lens[1]){
                 maxLenRoots.insert(*paths[j].begin());
                 maxLenRoots.insert(*(paths[j].end()-1));
             }
 
-            if (*maxLenElem == lens[2]){
+            if (maxLen == lens[2]){
                 maxLenRoots.insert(*(paths[i].end() - 1));
                 maxLenRoots.insert(*(paths[j].end() - 1));
             }

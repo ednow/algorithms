@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "data": "169 5 2",
+    "answer": "169 = 6^2 + 6^2 + 6^2 + 6^2 + 5^2\n",
+    "description": "题目的样例"
+  },
+  {
+    "id": "2",
+    "data": "169 167 3",
+    "answer": "Impossible\n",
+    "description": "题目的样例"
+  }
+]

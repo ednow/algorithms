@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1021/DeepestRoot.cpp PTA/PTA1034/HeadOfAGang.cpp)
+        PTA/PTA1021/DeepestRoot.cpp PTA/PTA1034/HeadOfAGang.cpp PTA/PTA1103/IntegerFactorization.cpp)
 
 # 添加头文件
 include_directories(

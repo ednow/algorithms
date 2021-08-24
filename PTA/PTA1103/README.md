@@ -23,7 +23,11 @@ dfs+减枝
 
 [vector之间可以直接比较](https://blog.csdn.net/sunshine_critical/article/details/84940105)
 ## cpp
+关键点：每一次向下搜索的值都小于等于此次搜索的值
 
+vector直接比较
+
+other1103不用恢复栈的内容的合理性在于当到达那处代码的时候每一个元素都被更新成了答案的值了
 ### 第一次提交
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210823225520.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210823225520.png';" /></details>
 
@@ -46,6 +50,10 @@ dfs+减枝
 ### 第三次提交
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824175212.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824175212.png';" /></details>
 
+### 第四次提交
+剪枝
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824184200.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824184200.png';" /></details>
 
 ### 语法技术
 

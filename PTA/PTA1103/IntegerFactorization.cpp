@@ -21,7 +21,7 @@ using namespace std;
 
 void
 dfs(
-        // 这次要加入的数
+        // 这次要加入的数的下标
         int start,
         // 要求的数
         const int &num,
@@ -56,8 +56,8 @@ dfs(
     }
 
     // 太大了，往小的值搜索
-    for (const auto i:numbers) {
-
+    for (int j = start; j < (int)numbers.size() ; j++) {
+        int i = numbers[j];
         // 记住当前的结果，退栈的时候恢复
         int rawPointerNum = stack[p];
         int rawNumByNow = numByNow;
@@ -65,7 +65,7 @@ dfs(
         stack[p] = i;
         // 如果结果更小，指针向后搜索
         if (numByNow <= num){
-            dfs(i, num, numByNow, p+1, numbers, len, stack, result, isExited);
+            dfs(j, num, numByNow, p+1, numbers, len, stack, result, isExited);
         }
         stack[p] = rawPointerNum;
         numByNow = rawNumByNow;

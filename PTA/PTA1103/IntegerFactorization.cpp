@@ -36,7 +36,7 @@ dfs(
         // 现在stack中的元素
         vector<int> &stack,
         // 存放结果序列
-        vector<int> &result,
+        vector<vector<int>> &result,
         // 是否存在
         bool &isExited
 ){
@@ -48,9 +48,7 @@ dfs(
     // 结果相等退栈
     // 满足条件压入结果中
     if (numByNow == num){
-        if (result < stack){
-            result = stack;
-        }
+        result.emplace_back(stack.begin(), stack.end());
         isExited = true;
         return;
     }
@@ -81,8 +79,8 @@ MAIN(){
     int n{}, k{}, p{};
     cin >> n >> k >> p;
     // 换底公式
-    int maxBase = (int) (log(n-k+1) / log(p));
-    int minBase = (int) (log(n/k) / log(p));
+    int maxBase = (int) pow(n-k+1, 1.0/p);
+//    int minBase = (int) pow(n/k, 1.0/p);
     // 大于要表示的数
     if (pow(maxBase, p) < n-k+1){
         maxBase++;
@@ -91,13 +89,13 @@ MAIN(){
     numToBase[1] = 1;
     vector<int> numbers;
     numbers.reserve(maxBase);
-    for (int i = maxBase; i >= minBase and i > 1; --i) {
+    for (int i = maxBase; i > 1; --i) {
         int num = (int) pow(i, p);
         numbers.push_back(num);
         numToBase[num] = i;
     }
     // 存放结果序列
-    vector<int> result(k,1);
+    vector<vector<int>> result;
     int numByNow=k;
     vector<int> stack(k,1);
     bool isExisted;
@@ -107,10 +105,28 @@ MAIN(){
     if (!isExisted){
         cout << "Impossible";
     }else{
+        auto maxElem = max_element(result.begin(), result.end(), [&](const auto &a, const auto &b) {
+            auto sumOfA = accumulate(a.begin(), a.end(),0,[&](const auto &a, const auto &b){
+                return a + numToBase[b];
+            });
+            auto sumOfB = accumulate(b.begin(), b.end(),0,[&](const auto &a, const auto &b){
+                return a + numToBase[b];
+            });
+            if (sumOfA != sumOfB) return sumOfA < sumOfB;
+            auto iter1 = a.begin();
+            auto iter2 = b.begin();
+            while (*iter1 == *iter2 and iter1 != a.end()) {
+                iter1++;
+                iter2++;
+            }
+            return *iter1 < *iter2;
+        });
+
         cout << n << " = ";
-        auto iter = result.begin();
+        auto iter = (*maxElem).begin();
+//        iter++;
         cout << numToBase[*iter++] << "^" << p;
-        while (iter != result.end()){
+        while (iter != (*maxElem).end()){
             cout << " + " << numToBase[*iter++] << "^" << p;
         }
     }

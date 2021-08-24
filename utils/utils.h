@@ -25,7 +25,17 @@ string &replace_all(string &str, const string &old_value, const string &new_valu
     ifstream configFile("../config.json");\
     configFile >> config;\
     vector<map<string, string>> testcases;\
-    copy_if(j.begin(), j.end(), std::back_inserter(testcases), [&](auto i) { return i["id"] == config["testCaseId"]; });\
+    if (!config["testCaseId"].is_null()){\
+            copy_if (j.begin(), j.end(), std::back_inserter(testcases), [&](auto i){return i["id"]== config["testCaseId"];} );\
+        } else{\
+            copy(j.begin(), j.end(), std::back_inserter(testcases));\
+    }\
+    if (config["excludeTestCaseIds"].is_array()){\
+    testcases.erase(remove_if(testcases.begin(), testcases.end(), [&](auto &a){\
+        auto excluded = config["excludeTestCaseIds"].get<vector<string>>();\
+        return find(excluded.begin(), excluded.end(), a["id"]) != excluded.end();\
+    }), testcases.end());\
+    }\
     if (testcases.empty()) {\
     testcases = j.get<vector<map<string, string>>>();\
     }\

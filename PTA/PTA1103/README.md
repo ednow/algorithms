@@ -26,6 +26,11 @@ dfs+减枝
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210823225849.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210823225849.png';" /></details>
 
+#### version2
+缩小了基数的范围,缩小了递归的深度
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824143007.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824143007.png';" /></details>
+
 ### 语法技术
 
 #### python + c++

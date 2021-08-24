@@ -11,6 +11,7 @@
 #include "ios"
 #include "iomanip"
 #include "vector"
+#include "algorithm"
 
 using namespace std;
 
@@ -132,20 +133,35 @@ TEST(TestCase, test_PTA_1133) {
     configFile >> config;
     vector<map<string, string>> testcases;
     //    &config
-    copy_if (j.begin(), j.end(), std::back_inserter(testcases), [&](auto i){return i["id"]== config["testCaseId"];} );
-    if (testcases.empty()){
-        testcases = j.get<vector<map<string, string>>>();
+    if (!config["testCaseId"].is_null()){
+        copy_if (j.begin(), j.end(), std::back_inserter(testcases), [&](auto i){return i["id"]== config["testCaseId"];} );
+    } else{
+        copy(j.begin(), j.end(), std::back_inserter(testcases));
     }
-    for (auto & testcase :testcases) {
-        cout << testcase["data"];
-        string s = testcase["data"];
-        replace_all_distinct(s, "\\n", " ");
-        istringstream oss(s);
-        cin.rdbuf(oss.rdbuf());  // 将测试用例读进cin
-        std::stringstream   redirectStream;
-        std::streambuf*     oldbuf  = std::cout.rdbuf( redirectStream.rdbuf() );
-        SplittingALinkedList();
-        ASSERT_EQ(testcase["answer"], redirectStream.str());
-        std::cout.rdbuf(oldbuf);
+
+    if (config["excludeTestCaseIds"].is_array()){
+        testcases.erase(remove_if(testcases.begin(), testcases.end(), [&](auto &a){
+            auto excluded = config["excludeTestCaseIds"].get<vector<string>>();
+            return find(excluded.begin(), excluded.end(), a["id"]) != excluded.end();
+        }), testcases.end());
     }
+
+    for (auto e:testcases) {
+        cout << e["id"] << endl;
+    }
+//    if (testcases.empty()){
+//        testcases = j.get<vector<map<string, string>>>();
+//    }
+//    for (auto & testcase :testcases) {
+//        cout << testcase["data"];
+//        string s = testcase["data"];
+//        replace_all_distinct(s, "\\n", " ");
+//        istringstream oss(s);
+//        cin.rdbuf(oss.rdbuf());  // 将测试用例读进cin
+//        std::stringstream   redirectStream;
+//        std::streambuf*     oldbuf  = std::cout.rdbuf( redirectStream.rdbuf() );
+//        SplittingALinkedList();
+//        ASSERT_EQ(testcase["answer"], redirectStream.str());
+//        std::cout.rdbuf(oldbuf);
+//    }
 }

@@ -71,3 +71,31 @@ other1103不用恢复栈的内容的合理性在于当到达那处代码的时�
 [参考文献](https://blog.csdn.net/u013992365/article/details/74276103)
 
 [参考文献](http://www.cplusplus.com/reference/vector/vector/operator=/)
+
+#### gdb显示vector
+一用就退出
+
+[参考文献](https://stackoverflow.com/questions/29587400/accessing-vector-items-in-gdb)
+
+#### debugger 不能显示二维数组
+[参考文献](https://stackoverflow.com/questions/33829684/c-2d-vector-declaration-and-element-access-from-debugger)
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824212027.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824212027.png';" /></details>
+
+##### toochain
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824212250.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824212250.png';" /></details>
+
+#### vector不是一个type
+
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824214531.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824214531.png';" /></details>
+
+#### 可能是我接管了input和output的原因,新建一个project就ok了
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824215315.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824215315.png';" /></details>
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824215331.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824215331.png';" /></details>
+
+
+[参考文献](https://stackoverflow.com/questions/24130093/gdb-could-not-find-operator)

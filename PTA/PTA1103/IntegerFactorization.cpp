@@ -64,6 +64,10 @@ dfs(
         }
         stack[p] = rawPointerNum;
         numByNow = rawNumByNow;
+//         第一次循环就是最大了，还小就不用for下去了
+//        if (numByNow <= num){
+//            return;
+//        }
     }
 }
 
@@ -83,6 +87,7 @@ MAIN(){
         maxBase++;
     }
     map<int, int> numToBase;
+    numToBase[1] = 1;
     vector<int> numbers;
     numbers.reserve(maxBase);
     for (int i = maxBase; i >= minBase and i > 1; --i) {

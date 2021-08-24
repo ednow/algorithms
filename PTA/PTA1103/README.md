@@ -19,6 +19,9 @@ dfs+减枝
 
 应该是开n次方
 
+[参考文献](https://blog.csdn.net/sunshine_critical/article/details/84940105)
+
+[vector之间可以直接比较](https://blog.csdn.net/sunshine_critical/article/details/84940105)
 ## cpp
 
 ### 第一次提交
@@ -33,9 +36,12 @@ dfs+减枝
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824143007.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824143007.png';" /></details>
 
-#### 第二次提交
+### 第二次提交
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824153942.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824153942.png';" /></details>
+
+#### 直接使用vector的比较
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824174308.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824174308.png';" /></details>
 
 ### 语法技术
 
@@ -43,3 +49,8 @@ dfs+减枝
 [参考文献](https://stackoverflow.com/questions/33799933/fast-logarithm-calculation)
 
 #### pow, log
+
+#### vector中的等于赋值
+[参考文献](https://blog.csdn.net/u013992365/article/details/74276103)
+
+[参考文献](http://www.cplusplus.com/reference/vector/vector/operator=/)

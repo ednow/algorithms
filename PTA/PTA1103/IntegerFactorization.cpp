@@ -109,20 +109,7 @@ MAIN(){
         cout << "Impossible";
     }else{
         auto maxElem = max_element(result.begin(), result.end(), [&](const auto &a, const auto &b) {
-            auto sumOfA = accumulate(a.begin(), a.end(),0,[&](const auto &a, const auto &b){
-                return a + numToBase[b];
-            });
-            auto sumOfB = accumulate(b.begin(), b.end(),0,[&](const auto &a, const auto &b){
-                return a + numToBase[b];
-            });
-            if (sumOfA != sumOfB) return sumOfA < sumOfB;
-            auto iter1 = a.begin();
-            auto iter2 = b.begin();
-            while (*iter1 == *iter2 and iter1 != a.end()) {
-                iter1++;
-                iter2++;
-            }
-            return *iter1 < *iter2;
+            return a < b;
         });
 
         cout << n << " = ";

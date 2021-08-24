@@ -15,6 +15,7 @@
 #include "cmath"
 #include "numeric"
 #include "algorithm"
+#include "map"
 
 using namespace std;
 
@@ -26,53 +27,44 @@ dfs(
     const int &num,
     // 现在stack中元素的和
     int &numByNow,
-    // 幂
-    const int &p,
+    // 现在指针的位置
+    int p,
     // 最大的底
-    const int &maxBase,
-    // stack的长度
+    const vector<int> &numbers,
+    // 指针最大长度
     const int &len,
     // 现在stack中的元素
     vector<int> &stack,
     // 存放结果序列
     vector<vector<int>> &result
 ){
-    // 先压进结果中
-    stack.push_back(start);
-    start = (int) pow(start, p);
-    numByNow += start;
     // 如果超过长度了退栈
-    if (len < stack.size()){
-        numByNow -= start;
-        stack.pop_back();
-        return;
-    }
-
-    // 如果结果太大了退栈
-    if (numByNow > num){
-        numByNow -= start;
-        stack.pop_back();
+    if (len < p){
         return;
     }
 
     // 结果相等退栈
+    // 满足条件压入结果中
     if (numByNow == num){
-        // 满足条件压入结果中
-        if (stack.size() == len){
-            result.emplace_back(stack.begin(), stack.end());
-        }
-        numByNow -= start;
-        stack.pop_back();
+        result.emplace_back(stack.begin(), stack.end());
         return;
     }
 
-    for (int i = maxBase; i >= 1 ; --i) {
-        dfs(i, num, numByNow, p, maxBase, len, stack, result);
-    }
+    // 太大了，往小的值搜索
+    for (const auto i:numbers) {
 
-    // 跟随函数一起退栈
-    numByNow -= start;
-    stack.pop_back();
+        // 记住当前的结果，退栈的时候恢复
+        int rawPointerNum = stack[p];
+        int rawNumByNow = numByNow;
+        numByNow = i + numByNow - rawPointerNum;
+        stack[p] = i;
+        // 如果结果更小，指针向后搜索
+        if (numByNow <= num){
+            dfs(i, num, numByNow, p+1, numbers, len, stack, result);
+        }
+        stack[p] = rawPointerNum;
+        numByNow = rawNumByNow;
+    }
 }
 
 
@@ -84,25 +76,41 @@ MAIN(){
     int n{}, k{}, p{};
     cin >> n >> k >> p;
     // 换底公式
-    int maxBase = (int) (log(n / k) / log(p));
+    int maxBase = (int) (log(n-k+1) / log(p));
+    int minBase = (int) (log(n/k) / log(p));
     // 大于要表示的数
-    if (pow(maxBase, p) * k < n){
+    if (pow(maxBase, p) < n-k+1){
         maxBase++;
+    }
+    map<int, int> numToBase;
+    vector<int> numbers;
+    numbers.reserve(maxBase);
+    for (int i = maxBase; i >= minBase and i > 1; --i) {
+        int num = (int) pow(i, p);
+        numbers.push_back(num);
+        numToBase[num] = i;
     }
     // 存放结果序列
     vector<vector<int>> result;
     // 递归开始的0不计
-    k++;
-    int numByNow;
-    vector<int> stack;
+//    k++;
+    int numByNow=k;
+    vector<int> stack(k,1);
 
     // 递归开始
-    dfs(0, n, numByNow, p, maxBase, k, stack, result);
+    dfs(0, n, numByNow, 0, numbers, k, stack, result);
 
     if (result.empty()){
         cout << "Impossible";
     }else{
-        auto maxElem = max_element(result.begin(), result.end(), [](const auto &a, const auto &b) {
+        auto maxElem = max_element(result.begin(), result.end(), [&](const auto &a, const auto &b) {
+            auto sumOfA = accumulate(a.begin(), a.end(),0,[&](const auto &a, const auto &b){
+                return a + numToBase[b];
+            });
+            auto sumOfB = accumulate(b.begin(), b.end(),0,[&](const auto &a, const auto &b){
+                return a + numToBase[b];
+            });
+            if (sumOfA != sumOfB) return sumOfA < sumOfB;
             auto iter1 = a.begin();
             auto iter2 = b.begin();
             while (*iter1 == *iter2 and iter1 != a.end()) {
@@ -114,10 +122,10 @@ MAIN(){
 
         cout << n << " = ";
         auto iter = (*maxElem).begin();
-        iter++;
-        cout << *iter++ << "^" << p;
+//        iter++;
+        cout << numToBase[*iter++] << "^" << p;
         while (iter != (*maxElem).end()){
-            cout << " + " << *iter++ << "^" << p;
+            cout << " + " << numToBase[*iter++] << "^" << p;
         }
     }
     cout << endl;

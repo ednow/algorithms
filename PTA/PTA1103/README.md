@@ -99,3 +99,12 @@ other1103不用恢复栈的内容的合理性在于当到达那处代码的时�
 
 
 [参考文献](https://stackoverflow.com/questions/24130093/gdb-could-not-find-operator)
+
+#### 不优化
+[参考文献](https://stackoverflow.com/questions/44630417/accessing-vector-of-vectors-in-gdb)
+
+#### 这样又出bug了
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210824225054.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210824225054.png';" /></details>
+
+然后关了优化，关了 关优化，创建graph的部分被直接优化掉了
+

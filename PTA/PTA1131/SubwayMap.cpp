@@ -60,7 +60,7 @@ dfs(
         if (graph[source][i] and !isVisited[i]){
             dfs(i, destination, graph, stack, result, isVisited);
         }else{
-            if (i == destination){
+            if (graph[source][i] and i == destination){
                 stack.push_back(i);
                 result.emplace_back(stack.begin(), stack.end());
                 stack.pop_back();
@@ -71,6 +71,10 @@ dfs(
     stack.pop_back();
 }
 
+void
+dijkstra(){
+
+}
 
 int
 MAIN(){

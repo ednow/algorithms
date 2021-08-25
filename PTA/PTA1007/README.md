@@ -18,7 +18,6 @@ ${\textstyle\unicode{x2462}}$ 处理完之后，找到最大的序列并,输出�
 
 将思路翻译成程序,并考虑边界情况。
 
-$\xrightarrow{\text{summit}}$读取输入的字符串,处理成`List[int]`$\xrightarrow{{\textstyle\unicode{x2460}}\text{split\_positive\_negative}}$正负分割完的List$\xrightarrow{{\textstyle\unicode{x2461}}\text{merge\_positive}}$能合并的都合并了$\xrightarrow{{\textstyle\unicode{x2462}}\text{find\_max\_sequence}}$得到符合题目要求的正确结果$\xrightarrow{\text{summit}}$输出
 
 ### 第一次提交
 ![](https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210628210606.png)

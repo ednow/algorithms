@@ -20,7 +20,7 @@
 #include "limits"
 #include "queue"
 #include "numeric"
-
+#include "iomanip"
 
 using namespace std;
 
@@ -235,7 +235,8 @@ MAIN(){
 
         cout << (*answer).size() - 1 << endl;
         for (const auto &p: paths) {
-            cout << "Take Line#" << p.line << " from " << p.start << " to " << p.end << "." << endl;
+            cout << "Take Line#" << p.line << " from ";
+            cout << setw(4) << setfill('0') <<  p.start << " to " << setw(4) << setfill('0') << p.end << "." << endl;
         }
     }
 

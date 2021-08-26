@@ -15,5 +15,12 @@
   "answer": "3\nTake Line#1 from 1001 to 1004.\n",
   "pic": "https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827004855.png",
   "description": "长度一样选择转乘站少的"
-}
+},
+  {
+    "id": "4",
+    "data": "4\n5 0001 1002 1003 1004 1005\n3 0001 0006 1005\n2 0006 1007\n2 1005 1008\n1\n0001 0006",
+    "answer": "1\nTake Line#2 from 0001 to 0006.\n",
+    "pic": "https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827004855.png",
+    "description": "用0填充站名"
+  }
 ]

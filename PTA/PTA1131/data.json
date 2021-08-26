@@ -4,5 +4,16 @@
     "data": "4\n7 1001 3212 1003 1204 1005 1306 7797\n9 9988 2333 1204 2006 2005 2004 2003 2302 2001\n13 3011 3812 3013 3001 1306 3003 2333 3066 3212 3008 2302 3010 3011\n4 6666 8432 4011 1306\n3\n3011 3013\n6666 2001\n2004 3001",
     "answer": "2\nTake Line#3 from 3011 to 3013.\n10\nTake Line#4 from 6666 to 1306.\nTake Line#3 from 1306 to 2302.\nTake Line#2 from 2302 to 2001.\n6\nTake Line#2 from 2004 to 1204.\nTake Line#1 from 1204 to 1306.\nTake Line#3 from 1306 to 3001.\n",
     "description": "题目的样例"
-  }
+  },{
+  "id": "2",
+  "data": "4\n7 1001 3212 1003 1204 1005 1306 7797\n9 9988 2333 1204 2006 2005 2004 2003 2302 2001\n13 3011 3812 3013 3001 1306 3003 2333 3066 3212 3008 2302 3010 3011\n4 6666 8432 4011 1306\n1\n1306 1204",
+  "answer": "2\nTake Line#1 from 1306 to 1204.\n",
+  "description": "起点站是转乘站"
+},{
+  "id": "3",
+  "data": "4\n5 1001 1002 1003 1004 1005\n3 1001 1006 1005\n2 1006 1007\n2 1005 1008\n1\n1001 1004",
+  "answer": "3\nTake Line#1 from 1001 to 1004.\n",
+  "pic": "https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827004855.png",
+  "description": "长度一样选择转乘站少的"
+}
 ]

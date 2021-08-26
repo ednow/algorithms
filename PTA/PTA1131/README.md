@@ -23,4 +23,10 @@ Each station interval belongs to a unique subway line. Although the lines may cr
 
 ## cpp
 
+### 第一次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827000146.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210827000146.png';" /></details>
+
+### 第二次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827003619.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210827003619.png';" /></details>
+
 ### 语法技术

@@ -158,6 +158,8 @@ MAIN(){
         }
     }
 
+    // 给路径染色
+    map<int, map<int, int>> pathToLine;
     // 维护图中两个站是否存在路线
     // 邻接表
     map<int, vector<int>> graph;
@@ -165,6 +167,9 @@ MAIN(){
         for (int j = 0; j <= lines[i].size() - 2; ++j) {
             graph[lines[i][j]].push_back(lines[i][j + 1]);
             graph[lines[i][j + 1]].push_back(lines[i][j]);
+            // 给路径染色
+            pathToLine[lines[i][j]][lines[i][j + 1]] = i;
+            pathToLine[lines[i][j + 1]][lines[i][j]] = i;
         }
     }
 
@@ -204,7 +209,7 @@ MAIN(){
             });});
         auto step = (*answer).begin();
         // 开始的地铁线路
-        int prevLine = *stationToLine[*step].begin();
+        int prevLine = pathToLine[*step][*(step+1)];
         // 开始站
         int startStation = *step;
         step++;
@@ -213,22 +218,20 @@ MAIN(){
 
         // 没有走到尽头
         // 最后一个让后面来收尾，防止一路走到底的刚好换站记录错的bug
-        while (step != (*answer).end()){
+        while (step != (*answer).end() - 1){
             // 现在走到的地铁线路
-            int lineByNow = *stationToLine[*step].begin();
-            // 现在走到的地铁站
-            int stationByNow = *step;
+            int lineByNow = pathToLine[*step][*(step+1)];
             // 线路不一致，而且不是transfer station
             // 产生换线
-            if (prevLine != lineByNow and stationToLine[*step].size() == 1){
-                paths.push_back(path{.line=prevLine, .start=startStation, .end=*(step - 1)});
-                startStation = *(step - 1);
+            if (prevLine != lineByNow){
+                paths.push_back(path{.line=prevLine, .start=startStation, .end=*step});
+                startStation = *step;
                 prevLine = lineByNow;
             }
             step++;
         }
 
-        paths.push_back(path{.line=prevLine, .start=startStation, .end=*(step-1)});
+        paths.push_back(path{.line=prevLine, .start=startStation, .end=*step});
 
         cout << (*answer).size() - 1 << endl;
         for (const auto &p: paths) {

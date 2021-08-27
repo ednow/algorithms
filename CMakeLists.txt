@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1150/TravellingSalesmanProblem.cpp)
+        PTA/PTA1076/ForwardsOnWeibo.cpp)
 
 # 添加头文件
 include_directories(

@@ -1,10 +1,10 @@
 //
 // Created by ednow on 2021/8/27.
 //
-#define CASEID 1091
+#define CASEID 1096
 
 #ifdef CASEID
-#define MAIN PTA1091
+#define MAIN PTA1096
 #else
 #define MAIN main
 #endif
@@ -36,21 +36,26 @@ MAIN(){
     for (int i = 2; i <= (int)sqrt(num) ; ++i) {
         if (num%i==0){
             factors.clear();
-            dfs(i, num, factors);
+            dfs(i, num/i, factors);  // 测试点1
             if (answer.size() < factors.size()){
                 answer = factors;
             }
         }
     }
 
-
-    // 输出结果
-    cout << answer.size() << endl;
-    auto iter = answer.begin();
-    cout << *iter++;
-    while (iter != answer.end()){
-        cout << "*" << *iter++;
+    // 质数,测试点5,6
+    if(answer.empty()){
+        cout << 1 << endl << num;
+    }else{
+        // 输出结果
+        cout << answer.size() << endl;
+        auto iter = answer.begin();
+        cout << *iter++;
+        while (iter != answer.end()){
+            cout << "*" << *iter++;
+        }
     }
+
 
     return 0;
 }

@@ -16,47 +16,47 @@
 #include "unordered_set"
 
 using namespace std;
-
+vector<vector<vector<int>>> slices;
 
 void
 dfs(int z, int y, int x,
     int &M, int &N, int &L,
-    vector<vector<vector<int>>> &slices, map<int, bool> &isVisited, vector<int> &path){
+     map<int, bool> &isVisited, vector<int> &path){
     isVisited[z*N*M + y*N + x] = true;
     path.push_back(z*N*M + y*N + x);
     if (x+1 < N){
         if (slices[z][y][x+1] and !isVisited[z*N*M + y*N + x + 1]){
-            dfs(z, y, x + 1, M, N, L, slices, isVisited, path);
+            dfs(z, y, x + 1, M, N, L,  isVisited, path);
         }
     }
 
     if (x-1>=0){
         if (slices[z][y][x-1]and !isVisited[z*N*M + y*N + x - 1]){
-            dfs(z, y, x - 1, M, N, L, slices, isVisited, path);
+            dfs(z, y, x - 1, M, N, L,  isVisited, path);
         }
     }
 
     if (y+1 < M){
         if (slices[z][y+1][x] and !isVisited[z*N*M + (y+1)*N + x]){
-            dfs(z, y+1, x, M, N, L, slices, isVisited, path);
+            dfs(z, y+1, x, M, N, L,  isVisited, path);
         }
     }
 
     if (y-1>=0){
         if (slices[z][y-1][x] and !isVisited[z*N*M + (y-1)*N + x]){
-            dfs(z, y-1, x, M, N, L, slices, isVisited, path);
+            dfs(z, y-1, x, M, N, L,  isVisited, path);
         }
     }
 
     if (z+1 < L){
         if (slices[z+1][y][x] and !isVisited[(z+1)*N*M + y*N + x]){
-            dfs(z+1, y, x, M, N, L, slices, isVisited, path);
+            dfs(z+1, y, x, M, N, L,  isVisited, path);
         }
     }
 
     if (z-1>=0){
         if (slices[z-1][y][x] and !isVisited[(z-1)*N*M + y*N + x]){
-            dfs(z-1, y, x, M, N, L, slices, isVisited, path);
+            dfs(z-1, y, x, M, N, L,  isVisited, path);
         }
     }
 }
@@ -66,7 +66,7 @@ MAIN(){
     int M, N, L, T;
     cin >> M >> N >> L >> T;
     // MRI扫描出来的三维切片
-    vector<vector<vector<int>>> slices(L, vector<vector<int>>(M, vector<int>(N, 0)));
+    slices.resize(L, vector<vector<int>>(M, vector<int>(N, 0)));
     unordered_set<int> isNotVisited;
     for (int i = 0; i < L; ++i) {
         for (int j = 0; j < M; ++j) {
@@ -90,7 +90,7 @@ MAIN(){
         int z = label / (N * M);
         int y = (label - z*N*M) / N;
         int x = label % N;
-        dfs(z, y, x, M, N, L, slices, isVisited, path);
+        dfs(z, y, x, M, N, L, isVisited, path);
 
         if (path.size()>=T){
             weight += (int)path.size();

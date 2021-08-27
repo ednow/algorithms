@@ -28,3 +28,11 @@ Two pixels are connected and hence belong to the same region if they share a com
 
 ### 第二次提交
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827205518.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210827205518.png';" /></details>
+
+本地测试大数据的时候
+
+`Process finished with exit code -1073741571 (0xC00000FD)`
+
+估计是爆栈了?
+
+[参考文献](https://blog.csdn.net/qq_40520596/article/details/107228190)

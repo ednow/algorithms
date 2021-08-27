@@ -45,11 +45,20 @@ string &replace_all(string &str, const string &old_value, const string &new_valu
         string s = testcase["data"];\
         istringstream oss(s);\
         cin.rdbuf(oss.rdbuf());\
-        std::stringstream redirectStream;\
-        std::streambuf *oldbuf = cout.rdbuf(redirectStream.rdbuf());\
+        std::streambuf *oldbuf;                          \
+        std::stringstream   redirectStream;            \
+        if (config["isTakeOverOutput"].is_boolean()){\
+            if (config["isTakeOverOutput"].get<bool>()){\
+                oldbuf  = std::cout.rdbuf( redirectStream.rdbuf() );\
+            }\
+        }\
         FUNC(case_id);\
         ASSERT_EQ(testcase["answer"], redirectStream.str());\
-        std::cout.rdbuf(oldbuf);                                              \
+        if (config["isTakeOverOutput"].is_boolean()){\
+            if (config["isTakeOverOutput"].get<bool>()){\
+                    std::cout.rdbuf(oldbuf);\
+                }\
+        }\
         std::cout << "testCaseId:" << testcase["id"] << " passed" << endl;\
         std::cout << "--------------------------------" << endl;\
     }

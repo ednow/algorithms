@@ -149,19 +149,27 @@ TEST(TestCase, test_PTA_1133) {
     for (auto e:testcases) {
         cout << e["id"] << endl;
     }
-//    if (testcases.empty()){
-//        testcases = j.get<vector<map<string, string>>>();
-//    }
-//    for (auto & testcase :testcases) {
-//        cout << testcase["data"];
-//        string s = testcase["data"];
-//        replace_all_distinct(s, "\\n", " ");
-//        istringstream oss(s);
-//        cin.rdbuf(oss.rdbuf());  // 将测试用例读进cin
-//        std::stringstream   redirectStream;
-//        std::streambuf*     oldbuf  = std::cout.rdbuf( redirectStream.rdbuf() );
-//        SplittingALinkedList();
-//        ASSERT_EQ(testcase["answer"], redirectStream.str());
-//        std::cout.rdbuf(oldbuf);
-//    }
+    if (testcases.empty()){
+        testcases = j.get<vector<map<string, string>>>();
+    }
+    for (auto & testcase :testcases) {
+        cout << testcase["data"];
+        string s = testcase["data"];
+        istringstream oss(s);
+        cin.rdbuf(oss.rdbuf());
+        std::stringstream   redirectStream;
+        std::streambuf *oldbuf;
+        if (config["isTakeOverOutput"].is_boolean()){
+            if (config["isTakeOverOutput"].get<bool>()){
+                oldbuf  = std::cout.rdbuf( redirectStream.rdbuf() );
+            }
+        }
+        SplittingALinkedList();
+        ASSERT_EQ(testcase["answer"], redirectStream.str());
+        if (config["isTakeOverOutput"].is_boolean()){
+            if (config["isTakeOverOutput"].get<bool>()){
+                std::cout.rdbuf(oldbuf);
+            }
+        }
+    }
 }

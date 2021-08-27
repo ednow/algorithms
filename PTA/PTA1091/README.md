@@ -16,6 +16,7 @@ Two pixels are connected and hence belong to the same region if they share a com
 把三位图形降维到一维然后用多次dfs直到节点都被访问为止
 
 ## cpp
+[参考文献](https://blog.csdn.net/qq_38633884/article/details/102533814)
 
 ### 第一次提交
 两个超时

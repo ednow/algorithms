@@ -74,6 +74,7 @@ class StrokeTest(unittest.TestCase):
         print(result)
         # 41
 
+    @unittest.skip
     def test_get_matrix(self):
         x = np.array([i for i in range(12 * 5)]).reshape((-1, 3, 4))
         dataInt = list(map(int, data.replace("\n", " ").split(" ")[4:]))
@@ -100,7 +101,12 @@ class StrokeTest(unittest.TestCase):
         #  [-- -- -- 55]
         #  [56 -- -- --]]]
 
-
+    def test_gen_test_data(self):
+        a = np.ones(1286 * 128 * 60, int).reshape(-1, 4)
+        result = ""
+        for line in a:
+            result += (" ".join(map(str, line)) + '\n')
+        print("%r" % result)
 
 def summit():
     pass

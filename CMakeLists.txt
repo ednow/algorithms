@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1076/ForwardsOnWeibo.cpp PTA/PTA1096/ConsecutiveFactors.cpp PTA/PTA1096/testVectorCompare.cpp PTA/PTA1091/AcuteStroke.cpp)
+        PTA/PTA1133/SplittingALinkedList.cpp PTA/PTA1076/ForwardsOnWeibo.cpp PTA/PTA1096/ConsecutiveFactors.cpp PTA/PTA1096/testVectorCompare.cpp PTA/PTA1091/AcuteStroke.cpp)
 
 # 添加头文件
 include_directories(

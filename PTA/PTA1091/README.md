@@ -18,6 +18,8 @@ Two pixels are connected and hence belong to the same region if they share a com
 ## cpp
 [参考文献](https://blog.csdn.net/qq_38633884/article/details/102533814)
 
+用数组的方式避免写if非常的巧妙
+
 ### 第一次提交
 两个超时
 
@@ -38,3 +40,8 @@ Two pixels are connected and hence belong to the same region if they share a com
 [参考文献](https://blog.csdn.net/qq_40520596/article/details/107228190)
 
 递归爆栈,必须用bfs
+
+### 第三次提交
+超时+内存超限
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827223557.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210827223557.png';" /></details>

@@ -14,54 +14,75 @@
 #include "algorithm"
 #include "map"
 #include "unordered_set"
+#include "queue"
 
 using namespace std;
-vector<vector<vector<int>>> slices;
-int stackLevel{};
+
+struct item{
+    int x{};
+    int y{};
+    int z{};
+};
 
 void
-dfs(int z, int y, int x,
+bfs(int z, int y, int x,
     int &M, int &N, int &L,
-     map<int, bool> &isVisited, vector<int> &path){
-    cout << "x" << x <<"y" << y <<"z" << z << "stackLevel"<<  stackLevel++ << endl;
+    vector<vector<vector<int>>> &slices, map<int, bool> &isVisited, vector<int> &path){
     isVisited[z*N*M + y*N + x] = true;
-    path.push_back(z*N*M + y*N + x);
-    if (x+1 < N){
-        if (slices[z][y][x+1] and !isVisited[z*N*M + y*N + x + 1]){
-            dfs(z, y, x + 1, M, N, L,  isVisited, path);
+    queue<item> q;
+    q.push(item{.x=x, .y=y, .z=z});
+    while (!q.empty()){
+        auto head = q.front();
+        x = head.x;
+        y = head.y;
+        z = head.z;
+
+        path.push_back(z*N*M + y*N + x);
+        if (x+1 < N){
+            if (slices[z][y][x+1] and !isVisited[z*N*M + y*N + x + 1]){
+                isVisited[z*N*M + y*N + x+1] = true;
+                q.push(item{.x=x + 1, .y=y, .z=z});
+            }
         }
+
+        if (x-1>=0){
+            if (slices[z][y][x-1]and !isVisited[z*N*M + y*N + x - 1]){
+                isVisited[z*N*M + y*N + x-1] = true;
+                q.push(item{.x=x - 1, .y=y, .z=z});
+            }
+        }
+
+        if (y+1 < M){
+            if (slices[z][y+1][x] and !isVisited[z*N*M + (y+1)*N + x]){
+                isVisited[z*N*M + (y+1)*N + x] = true;
+                q.push(item{.x=x, .y=y+1, .z=z});
+            }
+        }
+
+        if (y-1>=0){
+            if (slices[z][y-1][x] and !isVisited[z*N*M + (y-1)*N + x]){
+                isVisited[z*N*M + (y-1)*N + x] = true;
+                q.push(item{.x=x, .y=y-1, .z=z});
+            }
+        }
+
+        if (z+1 < L){
+            if (slices[z+1][y][x] and !isVisited[(z+1)*N*M + y*N + x]){
+                isVisited[(z+1)*N*M + y*N + x] = true;
+                q.push(item{.x=x, .y=y, .z=z+1});
+            }
+        }
+
+        if (z-1>=0){
+            if (slices[z-1][y][x] and !isVisited[(z-1)*N*M + y*N + x]){
+                isVisited[(z-1)*N*M + y*N + x] = true;
+                q.push(item{.x=x, .y=y, .z=z-1});
+            }
+        }
+
+        q.pop();
     }
 
-    if (x-1>=0){
-        if (slices[z][y][x-1]and !isVisited[z*N*M + y*N + x - 1]){
-            dfs(z, y, x - 1, M, N, L,  isVisited, path);
-        }
-    }
-
-    if (y+1 < M){
-        if (slices[z][y+1][x] and !isVisited[z*N*M + (y+1)*N + x]){
-            dfs(z, y+1, x, M, N, L,  isVisited, path);
-        }
-    }
-
-    if (y-1>=0){
-        if (slices[z][y-1][x] and !isVisited[z*N*M + (y-1)*N + x]){
-            dfs(z, y-1, x, M, N, L,  isVisited, path);
-        }
-    }
-
-    if (z+1 < L){
-        if (slices[z+1][y][x] and !isVisited[(z+1)*N*M + y*N + x]){
-            dfs(z+1, y, x, M, N, L,  isVisited, path);
-        }
-    }
-
-    if (z-1>=0){
-        if (slices[z-1][y][x] and !isVisited[(z-1)*N*M + y*N + x]){
-            dfs(z-1, y, x, M, N, L,  isVisited, path);
-        }
-    }
-    stackLevel--;
 }
 
 int
@@ -69,7 +90,7 @@ MAIN(){
     int M, N, L, T;
     cin >> M >> N >> L >> T;
     // MRI扫描出来的三维切片
-    slices.resize(L, vector<vector<int>>(M, vector<int>(N, 0)));
+    vector<vector<vector<int>>> slices(L, vector<vector<int>>(M, vector<int>(N, 0)));
     unordered_set<int> isNotVisited;
     for (int i = 0; i < L; ++i) {
         for (int j = 0; j < M; ++j) {
@@ -82,7 +103,7 @@ MAIN(){
             }
         }
     }
-    cout << "create slices" << endl;
+
     // 区域的重量
     int weight{};
     // 某个节点有没有被访问过
@@ -93,8 +114,7 @@ MAIN(){
         int z = label / (N * M);
         int y = (label - z*N*M) / N;
         int x = label % N;
-        cout << "xyz" << x << y << z << endl;
-        dfs(z, y, x, M, N, L, isVisited, path);
+        bfs(z, y, x, M, N, L, slices, isVisited, path);
 
         if (path.size()>=T){
             weight += (int)path.size();

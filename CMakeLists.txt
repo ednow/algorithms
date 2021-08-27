@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1134/VertexCover.cpp)
+        PTA/PTA1150/TravellingSalesmanProblem.cpp)
 
 # 添加头文件
 include_directories(

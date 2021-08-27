@@ -17,33 +17,10 @@
 using namespace std;
 
 
-void dfs(int start, int end, vector<int> &factors, vector<int> &answer){
-    if (end==1){
-        vector<vector<int>> consecutiveFactors;
-        int prev = 0;
-        for (int i = 1; i < factors.size(); ++i) {
-            if (factors[i-1] + 1 != factors[i]){
-                consecutiveFactors.emplace_back(factors.begin() + prev, factors.begin() + i);
-                prev = i;
-            }
-        }
-        // 先找出最长的，再找乘积最小的
-        auto result = max_element(consecutiveFactors.begin(), consecutiveFactors.end(), [](const auto &a, const auto &b) {
-            if (a.size() != b.size()) return a.size() < b.size();
-            return a>b;
-        });
-        if (answer.size() < (*result).size()){
-            answer = *result;
-        }
-
-        return;
-    }
-    for (int i = start; i <= end; ++i) {
-        if (end % i == 0){
-            factors.push_back(i);
-            dfs(i, end / i, factors, answer);
-            break;
-        }
+void dfs(int start, int end, vector<int> &factors){
+    factors.push_back(start);
+    if (end % (start+1) == 0){
+        dfs((start+1), end / (start+1), factors);
     }
 }
 
@@ -57,17 +34,22 @@ MAIN(){
 
     vector<int> answer;
     for (int i = 2; i <= (int)sqrt(num) ; ++i) {
-        factors.clear();
-        dfs(i, num, factors,answer);
+        if (num%i==0){
+            factors.clear();
+            dfs(i, num, factors);
+            if (answer.size() < factors.size()){
+                answer = factors;
+            }
+        }
     }
 
 
     // 输出结果
-    cout << answer.size();
+    cout << answer.size() << endl;
     auto iter = answer.begin();
     cout << *iter++;
     while (iter != answer.end()){
-        cout << " " << *iter++;
+        cout << "*" << *iter++;
     }
 
     return 0;

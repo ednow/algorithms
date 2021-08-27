@@ -17,11 +17,13 @@
 
 using namespace std;
 vector<vector<vector<int>>> slices;
+int stackLevel{};
 
 void
 dfs(int z, int y, int x,
     int &M, int &N, int &L,
      map<int, bool> &isVisited, vector<int> &path){
+    cout << "x" << x <<"y" << y <<"z" << z << "stackLevel"<<  stackLevel++ << endl;
     isVisited[z*N*M + y*N + x] = true;
     path.push_back(z*N*M + y*N + x);
     if (x+1 < N){
@@ -59,6 +61,7 @@ dfs(int z, int y, int x,
             dfs(z-1, y, x, M, N, L,  isVisited, path);
         }
     }
+    stackLevel--;
 }
 
 int
@@ -79,7 +82,7 @@ MAIN(){
             }
         }
     }
-
+    cout << "create slices" << endl;
     // 区域的重量
     int weight{};
     // 某个节点有没有被访问过
@@ -90,6 +93,7 @@ MAIN(){
         int z = label / (N * M);
         int y = (label - z*N*M) / N;
         int x = label % N;
+        cout << "xyz" << x << y << z << endl;
         dfs(z, y, x, M, N, L, isVisited, path);
 
         if (path.size()>=T){

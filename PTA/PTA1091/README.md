@@ -36,3 +36,5 @@ Two pixels are connected and hence belong to the same region if they share a com
 估计是爆栈了?
 
 [参考文献](https://blog.csdn.net/qq_40520596/article/details/107228190)
+
+递归爆栈,必须用bfs

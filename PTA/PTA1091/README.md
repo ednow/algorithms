@@ -18,4 +18,9 @@ Two pixels are connected and hence belong to the same region if they share a com
 ## cpp
 
 ### 第一次提交
+两个超时
+
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827195634.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210827195634.png';" /></details>
+
+建图的时候内存超限，不知道为什么没有捕获
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827195844.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210827195844.png';" /></details>

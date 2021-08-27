@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1133/SplittingALinkedList.cpp PTA/PTA1103/IntegerFactorization.cpp PTA/PTA1103/other1103.cpp PTA/PTA1131/SubwayMap.cpp)
+        PTA/PTA1134/VertexCover.cpp)
 
 # 添加头文件
 include_directories(

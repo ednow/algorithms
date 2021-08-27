@@ -27,7 +27,7 @@ struct item{
 int
 bfs(int z, int y, int x,
     int &M, int &N, int &L,
-    vector<vector<vector<int>>> &slices, vector<vector<vector<int>>> &isVisited){
+    vector<vector<vector<int>>> &slices, vector<vector<vector<int>>> &isVisited, int T){
     isVisited[z][y][x] = true;
     queue<item> q;
     q.push(item{.x=x, .y=y, .z=z});
@@ -83,7 +83,11 @@ bfs(int z, int y, int x,
 
         q.pop();
     }
-    return w;
+    if (w>=T){
+        return w;
+    }else{
+        return 0;
+    }
 }
 
 int
@@ -113,7 +117,7 @@ MAIN(){
         for (int j = 0; j < M; ++j) {
             for (int k = 0; k < N; ++k) {
                 if (slices[i][j][k] and !isVisited[i][j][k]){
-                    weight+=bfs(i, j, k, M, N, L, slices, isVisited);
+                    weight+=bfs(i, j, k, M, N, L, slices, isVisited, T);
                 }
             }
         }

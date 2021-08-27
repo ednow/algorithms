@@ -30,7 +30,7 @@ dfs(int z, int y, int x,
         }
     }
 
-    if (x-1>0){
+    if (x-1>=0){
         if (slices[z][y][x-1]and !isVisited[z*N*M + y*N + x - 1]){
             dfs(z, y, x - 1, M, N, L, slices, isVisited, path);
         }
@@ -42,7 +42,7 @@ dfs(int z, int y, int x,
         }
     }
 
-    if (y-1>0){
+    if (y-1>=0){
         if (slices[z][y-1][x] and !isVisited[z*N*M + (y-1)*N + x]){
             dfs(z, y-1, x, M, N, L, slices, isVisited, path);
         }
@@ -54,7 +54,7 @@ dfs(int z, int y, int x,
         }
     }
 
-    if (z-1>0){
+    if (z-1>=0){
         if (slices[z-1][y][x] and !isVisited[(z-1)*N*M + y*N + x]){
             dfs(z-1, y, x, M, N, L, slices, isVisited, path);
         }

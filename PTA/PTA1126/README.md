@@ -35,3 +35,8 @@ B.判断欧拉回路是否存在的方法
 ### 第一次提交
 1错，1非零，1超时
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210828175504.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210828175504.png';" /></details>
+
+### 第二次提交
+解决非0
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210828180637.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210828180637.png';" /></details>

@@ -6,21 +6,21 @@ def summit():
     nodeNum, edgeNum = map(int, input().split())
     # 邻接表表示法
     # nodes[idx] -> neighbor
-    nodes: List[List[int]] = [[] for _ in range(nodeNum + 1)]
+    degrees: List[int] = [0 for _ in range(nodeNum + 1)]
     for _ in range(edgeNum):
         a, b = map(int, input().split())
-        nodes[a].append(b)
-        nodes[b].append(a)
+        degrees[a] += 1
+        degrees[b] += 1
 
-    degrees: List[int] = [len(i) for i in nodes[1:]]
-    isEven = [i % 2 == 0 for i in degrees]
-    evenCounter = dict(Counter(isEven))
-    print(" ".join(map(str, degrees)))
-
-    if evenCounter[True] == len(degrees):
-        print("Eulerian", end="")
-        return None
-
+    isEven = [i % 2 == 0 for i in degrees[1:]]
+    evenCounter = Counter(isEven)
+    print(" ".join(map(str, degrees[1:])))
+    try:
+        if evenCounter[True] == len(isEven):
+            print("Eulerian", end="")
+            return None
+    except Exception:
+        pass
     if evenCounter[False] == 2:
         print("Semi-Eulerian", end="")
         return None

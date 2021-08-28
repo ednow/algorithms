@@ -15,6 +15,8 @@ It has been proven that connected graphs with all vertices of even degree have a
 
 ## 边界点
 
+图是否连通
+
 ## 思路
 A.判断欧拉通路是否存在的方法
 
@@ -50,3 +52,7 @@ B.判断欧拉回路是否存在的方法
 ### 第一次提交
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210828184917.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210828184917.png';" /></details>
+
+
+### 第二次提交
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210828191023.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210828191023.png';" /></details>

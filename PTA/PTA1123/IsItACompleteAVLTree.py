@@ -1,5 +1,16 @@
 from __future__ import annotations
 from typing import List
+# OJ环境没有这个包
+try:
+    import ppbtree
+    def print_tree(root:Node):
+        """
+        他的横向打印不符合我的理解
+        :param root: 树
+        """
+        ppbtree.print_tree(root, left_child='right', right_child='left')
+except Exception:
+    pass
 
 
 class Node:
@@ -24,6 +35,24 @@ class Node:
     def __str__(self):
         return str(self.label)
 
+    @property
+    def name(self):
+        """
+        为了能够与格式化输出树的包相协调
+        https://github.com/clemtoy/pptree
+        :return: 返回节点的值
+        """
+        return str(self.label)
+
+    @property
+    def value(self):
+        """
+        为了能够与格式化输出**二叉树**的包相协调
+        https://github.com/clemtoy/pptree
+        :return: 返回节点的值
+        """
+        return f"label:{self.label},bf:{self.bf}"
+
 
 def right_rotate(root: Node):
     """
@@ -38,6 +67,7 @@ def right_rotate(root: Node):
     leftOfRoot.right = root.right
     root.right = leftOfRoot
     leftOfRoot.label, root.label = root.label, leftOfRoot.label
+    root.bf, leftOfRoot.bf = leftOfRoot.bf, root.bf
 
 
 def left_rotate(root: Node):
@@ -53,6 +83,7 @@ def left_rotate(root: Node):
     rightOfRoot.left = root.left
     root.left = rightOfRoot
     rightOfRoot.label, root.label = root.label, rightOfRoot.label
+    rightOfRoot.bf, root.bf = root.bf, rightOfRoot.bf
 
 
 def left_balance(root: Node):
@@ -80,8 +111,8 @@ def left_balance(root: Node):
         root.bf = rightOfLeft.bf = 0
         leftOfRoot.bf = 1
 
-    left_rotate(rightOfLeft)
-    right_rotate(rightOfLeft)
+    left_rotate(leftOfRoot)
+    right_rotate(root)
 
 
 def right_balance(root: Node):
@@ -95,7 +126,7 @@ def right_balance(root: Node):
         left_rotate(root)
         rightOfRoot.bf = root.bf = 0
         return None
-    leftOfRight: Node = rightOfRoot.right
+    leftOfRight: Node = rightOfRoot.left
 
     # 树中只有abc三个节点
     if leftOfRight.bf == 0:
@@ -109,8 +140,8 @@ def right_balance(root: Node):
         rightOfRoot.bf = leftOfRight.bf = 0
         root.bf = 1
 
-    right_rotate(leftOfRight)
-    left_rotate(leftOfRight)
+    right_rotate(rightOfRoot)
+    left_rotate(root)
 
 
 def insert_node(root: Node, child: Node) -> bool:
@@ -159,11 +190,10 @@ def summit():
     input()
     nums: List[int] = list(map(int, input().split()))
     root: Node = Node(nums[0])
+    # globals()["ROOT"] = root  # debug
     for num in nums[1:]:
         insert_node(root, Node(num))
 
-    # 层次遍历统计每一层的数量
-    levelToNum = dict()
     q = [root]
     traversal: List[int] = []
     while len(q) > 0:
@@ -178,7 +208,7 @@ def summit():
     else:
         isComplete = "YES"
 
-    print(f'{" ".join(map(str, traversal)).replace("None", "").strip()}\n{isComplete}', end="")
+    print(f'{" ".join(map(str, filter(lambda x: x is not None, traversal)))}\n{isComplete}', end="")
 
 
 if __name__ == '__main__':

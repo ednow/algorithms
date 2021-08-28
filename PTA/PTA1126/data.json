@@ -22,5 +22,11 @@
     "data": "2 1\n1 2",
     "answer": "1 1\nSemi-Eulerian",
     "description": "猜测数据"
+  },
+  {
+    "id": "4",
+    "data": "2 0\n",
+    "answer": "0 0\nNon-Eulerian",
+    "description": "还要保证连通？"
   }
 ]

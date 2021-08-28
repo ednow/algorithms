@@ -1,6 +1,4 @@
 from typing import List
-from collections import Counter
-
 
 def summit():
     nodeNum, edgeNum = map(int, input().split())
@@ -12,19 +10,15 @@ def summit():
         degrees[a] += 1
         degrees[b] += 1
 
-    isEven = [i % 2 == 0 for i in degrees[1:]]
-    evenCounter = Counter(isEven)
+    isNotEven = [i % 2 for i in degrees[1:]]
+    notEvenNum = sum(isNotEven)
     print(" ".join(map(str, degrees[1:])))
-    try:
-        if evenCounter[True] == len(isEven):
-            print("Eulerian", end="")
-            return None
-    except Exception:
-        pass
-    if evenCounter[False] == 2:
+    if notEvenNum == 0:
+        print("Eulerian", end="")
+        return None
+    if notEvenNum == 2:
         print("Semi-Eulerian", end="")
         return None
-
     print("Non-Eulerian", end="")
 
 

@@ -1,5 +1,6 @@
 from typing import List
 
+
 def summit():
     nodeNum, edgeNum = map(int, input().split())
     # 邻接表表示法

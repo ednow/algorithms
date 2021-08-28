@@ -28,5 +28,11 @@
     "data": "2 0\n",
     "answer": "0 0\nNon-Eulerian",
     "description": "还要保证连通？"
+  },
+  {
+    "id": "4",
+    "data": "11 16\n",
+    "answer": "0 0\nNon-Eulerian",
+    "description": "测试点3"
   }
 ]

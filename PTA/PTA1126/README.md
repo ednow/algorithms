@@ -6,6 +6,10 @@
 ## 问题重述
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210827231138.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210827231138.png';" /></details>
 
+题目已经说明了什么怎么样的图存在欧拉路径
+
+It has been proven that connected graphs with all vertices of even degree have an Eulerian circuit, and such graphs are called Eulerian. If there are exactly two vertices of odd degree, all Eulerian paths start at one of them and end at the other. A graph that has an Eulerian path but not an Eulerian circuit is called semi-Eulerian
+
 ### 要点复述
 
 
@@ -26,6 +30,8 @@ B.判断欧拉回路是否存在的方法
 
 [参考文献](https://www.cnblogs.com/wkfvawl/p/9626163.html)
 
-## cpp
+## python
 
-### 语法技术
+### 第一次提交
+1错，1非零，1超时
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210828175504.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210828175504.png';" /></details>

@@ -30,8 +30,9 @@ def right_rotate(root: Node):
     :param root: 需要旋转的节点
     """
     leftOfRoot: Node = root.left
-    root.left = leftOfRoot.right
-    leftOfRoot.right = root
+    root.left = leftOfRoot.left
+    leftOfRoot.left = leftOfRoot.right
+    root.right = leftOfRoot
     leftOfRoot.label, root.label = root.label, leftOfRoot.label
 
 
@@ -43,8 +44,9 @@ def left_rotate(root: Node):
     :param root: 需要旋转的节点
     """
     rightOfRoot: Node = root.right
-    root.right = rightOfRoot.left
-    rightOfRoot.left = root
+    root.right = rightOfRoot.right
+    rightOfRoot.left = rightOfRoot.left
+    root.left = rightOfRoot
     rightOfRoot.label, root.label = root.label, rightOfRoot.label
 
 
@@ -85,7 +87,7 @@ def right_balance(root: Node):
     """
     rightOfRoot: Node = root.right
     if rightOfRoot.bf == 1:
-        right_rotate(root)
+        left_rotate(root)
         rightOfRoot.bf = root.bf = 0
         return None
     leftOfRight: Node = rightOfRoot.right
@@ -111,41 +113,41 @@ def insert_node(root: Node, child: Node) -> bool:
     if child > root:
         if root.right is None:
             root.right = child
-            return True
+            taller = True
         else:
             taller = insert_node(root.right, child)
-            if taller:
-                # 原本右子树就高1，现在高2
-                if root.bf == -1:
-                    right_balance(root)
-                    return False
+        if taller:
+            # 原本右子树就高1，现在高2
+            if root.bf == -1:
+                right_balance(root)
+                return False
 
-                # 原本左子树高1，现在平衡
-                if root.bf == 1:
-                    root.bf = 0
-                    return False
+            # 原本左子树高1，现在平衡
+            if root.bf == 1:
+                root.bf = 0
+                return False
 
-                if root.bf == 0:
-                    root.bf = -1
-                    return True
+            if root.bf == 0:
+                root.bf = -1
+                return True
     else:
         if root.left is None:
             root.left = child
-            return True
+            taller = True
         else:
             taller = insert_node(root.left, child)
-            if taller:
-                if root.bf == 1:
-                    left_balance(root)
-                    return False
+        if taller:
+            if root.bf == 1:
+                left_balance(root)
+                return False
 
-                if root.bf == -1:
-                    root.bf = 0
-                    return False
+            if root.bf == -1:
+                root.bf = 0
+                return False
 
-                if root.bf == 0:
-                    root.bf = 1
-                    return True
+            if root.bf == 0:
+                root.bf = 1
+                return True
 
 
 def summit():

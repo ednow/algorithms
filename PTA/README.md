@@ -107,8 +107,8 @@
 |1091| | |:white_check_mark: |BFS,三维MRI影像切片|
 |1096| | |:white_check_mark: |DFS,数论|
 |1123|:white_check_mark: | | |平衡二叉树,完全二叉树,平衡二叉树的插入,层次遍历|
-|1126| | | |欧拉路径|
-|1142| | | |Clique|
+|1126| | |:white_check_mark: |欧拉路径|
+|1142| | | |DFS,Clique|
 
 ## 经验
 字符串处理放在最后

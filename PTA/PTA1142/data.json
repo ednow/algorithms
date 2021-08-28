@@ -2,7 +2,7 @@
   {
     "id": "1",
     "data": "8 10\n5 6\n7 8\n6 4\n3 6\n4 5\n2 3\n8 2\n2 7\n5 3\n3 4\n6\n4 5 4 3 6\n3 2 8 7\n2 2 3\n1 1\n3 4 3 6\n3 3 2 1",
-    "answer": "Yes\nYes\nYes\nYes\nNot Maximal\nNot a Clique",
+    "answer": "Yes\nYes\nYes\nYes\nNot Maximal\nNot a Clique\n",
     "description": "题目的样例"
   }
 ]

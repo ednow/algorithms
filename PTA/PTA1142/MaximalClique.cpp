@@ -12,26 +12,21 @@
 #include "vector"
 #include "unordered_set"
 #include "iostream"
+#include "queue"
+#include "algorithm"
 
 using namespace std;
 
 void
-dfs(int source, vector<int> &isVisited, vector<vector<int>> &graph, vector<int> &path){
-    bool isAllConnected = true;
-    for (auto & a:path) {
-        if (!graph[source][a]){
-            isAllConnected = false;
-            break;
-        }
-    }
-    if (isAllConnected){
-        path.push_back(source);
-    }
+dfs(int source, vector<int> &isVisited, vector<unordered_set<int>> &graph, unordered_set<int> &path){
     isVisited[source] = true;
-    for (int i = 1; i < graph.size(); ++i) {
-        if (graph[source][i] and !isVisited[i]){
-            dfs(i, isVisited, graph, path);
-        }
+    // 周围邻居的公共顶点
+    unordered_set<int> common;
+    for (auto &neighbor: graph[source]) {
+        unordered_set<int> res;
+        set_intersection(graph[neighbor].begin(), graph[neighbor].end(), common.begin(), common.end(),
+                         inserter(res, res.end()));
+
     }
 }
 
@@ -39,20 +34,21 @@ int
 MAIN(){
     int nodeNum{}, edgeNum{};
     cin >> nodeNum >> edgeNum;
-    vector<vector<int>> graph(nodeNum + 1, vector<int>(nodeNum+1,0));
+    vector<unordered_set<int>> graph(nodeNum + 1);
     while (edgeNum--){
         int a, b;
         cin >> a >> b;
-        graph[a][b] = true;
-        graph[b][a] = true;
+        graph[a].insert(b);
+        graph[b].insert(a);
     }
     vector<int> isVisited(nodeNum + 1);
     // 最大的子图们
     vector<unordered_set<int>> subGraph;
-    vector<int> path;
+    unordered_set<int> path;
     vector<int> isExactVisited(nodeNum + 1);
     for (int i = 1; i < nodeNum+1; ++i) {
         if (!isExactVisited[i]){
+            path.insert(i);
             dfs(i, isVisited, graph, path);
             subGraph.emplace_back(path.begin(), path.end());
             for (auto &a: path) {

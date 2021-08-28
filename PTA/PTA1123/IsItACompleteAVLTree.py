@@ -21,6 +21,9 @@ class Node:
     def __lt__(self, other):
         return self.label <= other.label
 
+    def __str__(self):
+        return str(self.label)
+
 
 def right_rotate(root: Node):
     """
@@ -32,6 +35,7 @@ def right_rotate(root: Node):
     leftOfRoot: Node = root.left
     root.left = leftOfRoot.left
     leftOfRoot.left = leftOfRoot.right
+    leftOfRoot.right = root.right
     root.right = leftOfRoot
     leftOfRoot.label, root.label = root.label, leftOfRoot.label
 
@@ -45,7 +49,8 @@ def left_rotate(root: Node):
     """
     rightOfRoot: Node = root.right
     root.right = rightOfRoot.right
-    rightOfRoot.left = rightOfRoot.left
+    rightOfRoot.right = rightOfRoot.left
+    rightOfRoot.left = root.left
     root.left = rightOfRoot
     rightOfRoot.label, root.label = root.label, rightOfRoot.label
 
@@ -86,7 +91,7 @@ def right_balance(root: Node):
     :return:
     """
     rightOfRoot: Node = root.right
-    if rightOfRoot.bf == 1:
+    if rightOfRoot.bf == -1:
         left_rotate(root)
         rightOfRoot.bf = root.bf = 0
         return None
@@ -159,28 +164,21 @@ def summit():
 
     # 层次遍历统计每一层的数量
     levelToNum = dict()
-    q = [{"level": 1, "node": root}]
+    q = [root]
     traversal: List[int] = []
     while len(q) > 0:
         head = q.pop(0)
-        levelToNum["level"] = levelToNum.get(head["level"], 0) + 1
-        traversal.append(head["node"].label)
-        if head["node"].left is not None:
-            q.append({
-                "level": head["level"] + 1,
-                "node": head["node"].left
-            })
-        if head["node"].right is not None:
-            q.append({
-                "level": head["level"] + 1,
-                "node": head["node"].right
-            })
-    if all(2**(key-1) == value for key, value in traversal):
-        isComplete = "YES"
-    else:
+        traversal.append(head)
+        if head is not None:
+            q.append(head.left)
+        if head is not None:
+            q.append(head.right)
+    if " " in "".join(map(str, traversal)).replace("None", " ").strip():
         isComplete = "NO"
+    else:
+        isComplete = "YES"
 
-    print(f"{' '.join(map(str, traversal))}\n{isComplete}", end="")
+    print(f'{" ".join(map(str, traversal)).replace("None", "").strip()}\n{isComplete}', end="")
 
 
 if __name__ == '__main__':

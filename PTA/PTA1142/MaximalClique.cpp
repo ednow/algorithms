@@ -31,6 +31,15 @@ get_clique(int source, vector<int> &isVisited, vector<set<int>> &graph, set<int>
     path.insert(source);
     for (auto & neighbor: graph[source]) {
 
+        if (graph[neighbor].size()==1){ // 星型结构
+            if (!isVisited[neighbor]) {
+                path.erase(neighbor);
+                other.push_back(neighbor);
+                isVisited[neighbor] = true;
+                continue;
+            }
+        }
+
         // clique之间是全连接的，出现原来不存在的代表不是这个clique里面
         for (auto & nextNeighbor: graph[neighbor]) {
             if (path.find(nextNeighbor) == path.end()){
@@ -70,7 +79,9 @@ MAIN(){
         vector<int> other;
         if (!isVisited[i]){
             get_clique(i, isVisited, graph, path, other);
-            subGraph.emplace_back(path.begin(), path.end());
+            if (!path.empty()){
+                subGraph.emplace_back(path.begin(), path.end());
+            }
             for (auto &a: path) {
                 isVisited[a] = true;
             }

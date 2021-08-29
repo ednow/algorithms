@@ -4,5 +4,11 @@
     "data": "8 10\n5 6\n7 8\n6 4\n3 6\n4 5\n2 3\n8 2\n2 7\n5 3\n3 4\n6\n4 5 4 3 6\n3 2 8 7\n2 2 3\n1 1\n3 4 3 6\n3 3 2 1",
     "answer": "Yes\nYes\nYes\nYes\nNot Maximal\nNot a Clique\n",
     "description": "题目的样例"
+  },
+  {
+    "id": "2",
+    "data": "4 3\n1 2\n1 3\n 1 4\n2\n1 2\n2 1 2",
+    "answer": "Not Maximal\nYes\n",
+    "description": "模拟最后一个测试点"
   }
 ]

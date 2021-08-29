@@ -17,35 +17,36 @@
 
 using namespace std;
 
+// other是为了捕获2-3这种clique
 void
-bfs(int source, vector<int> &isVisited, vector<unordered_set<int>> &graph, unordered_set<int> &path){
-    // 周围邻居的公共顶点
-    unordered_set<int> common(graph[source].begin(), graph[source].end());
-    common.insert(source);
-    queue<int> q;
-    q.push(source);
-    while (!q.empty()){
-        auto head = q.front();
-        isVisited[head] = true;
-        unordered_set<int> tempCommon;
-        // 对节点周围的节点的孩子和原集合做交集
-        for (auto & neighbor: graph[head]) {
-            if (!isVisited[neighbor]){
-                set_intersection(common.begin(), common.end(), graph[neighbor].begin(), graph[neighbor].end(),
-                                 inserter(tempCommon, tempCommon.end()));
-                common.insert(tempCommon.begin(), tempCommon.end());
-                tempCommon.clear();
-            }
-        }
-        // 下一轮的搜索
-        for (auto & next:common) {
-            if (!isVisited[next]){
-                q.push(next);
-            }
-        }
-        q.pop();
+get_clique(int source, vector<int> &isVisited, vector<unordered_set<int>> &graph, unordered_set<int> &path, vector<int> &other){
+    if (graph[source].empty()){
+        path.insert(source);
+        return;
     }
-    path = common;
+    // 周围邻居的公共顶点
+    path.insert(graph[source].begin(), graph[source].end());
+    path.insert(source);
+    for (auto & neighbor: graph[source]) {
+
+        // clique之间是全连接的，出现原来不存在的代表不是这个clique里面
+        for (auto & nextNeighbor: graph[neighbor]) {
+            if (path.find(nextNeighbor) == path.end()){
+                path.erase(neighbor);
+
+                if (!isVisited[neighbor]){  // 防止案例中先访问2,再访问3,会多出来一个2,3
+                    other.push_back(neighbor);
+                }
+
+                break;
+            }
+        }
+    }
+    // 防止星型结构，如果source被纳入other求出来clique，会将形成source单独称为max clique的bug
+    // 只有孤立点会出现path.size == 1
+    if (path.size()==1){
+        path.erase(source);
+    }
 }
 
 int
@@ -63,17 +64,21 @@ MAIN(){
     // 最大的子图们
     vector<unordered_set<int>> subGraph;
     unordered_set<int> path;
-    vector<int> isExactVisited(nodeNum + 1);
+    vector<int> other;
     for (int i = 1; i < nodeNum+1; ++i) {
-        if (!isExactVisited[i]){
-            path.insert(i);
-            bfs(i, isVisited, graph, path);
+        if (!isVisited[i]){
+            get_clique(i, isVisited, graph, path, other);
             subGraph.emplace_back(path.begin(), path.end());
             for (auto &a: path) {
-                isExactVisited[a] = true;
+                isVisited[a] = true;
             }
-            isVisited = isExactVisited;
+            // other和i将构成max clique
+            for (auto &a: other) {
+                subGraph.emplace_back(unordered_set<int>({i, a}));
+            }
+
             path.clear();
+            other.clear();
         }
     }
     int queryNum;

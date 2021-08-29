@@ -24,3 +24,8 @@ bfs
 
 #### 就地交集
 [参考文献](https://stackoverflow.com/questions/1773526/in-place-c-set-intersection)
+
+#### 集合的关系运算
+unorder_set不支持==比较
+
+[参考文献](https://stackoverflow.com/questions/1349734/why-would-anyone-use-set-instead-of-unordered-set)

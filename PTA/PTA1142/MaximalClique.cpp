@@ -22,12 +22,24 @@ dfs(int source, vector<int> &isVisited, vector<unordered_set<int>> &graph, unord
     isVisited[source] = true;
     // 周围邻居的公共顶点
     unordered_set<int> common;
-    for (auto &neighbor: graph[source]) {
-        unordered_set<int> res;
-        set_intersection(graph[neighbor].begin(), graph[neighbor].end(), common.begin(), common.end(),
-                         inserter(res, res.end()));
+    vector<vector<int>> tempSubClique;
+    // 是不是第一次访问这个节点
+    bool isFirst{true};
+    for (auto & neighbor:graph[source]) {
+        if (!isVisited[neighbor]) {
+            if (isFirst) {
+                tempSubClique[0].push_back(neighbor);
+                isFirst = false;
+                continue;
+            }
+            for (:) {
 
+            }
+        }
     }
+
+
+
 }
 
 int

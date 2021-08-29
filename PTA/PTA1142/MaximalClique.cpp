@@ -18,28 +18,34 @@
 using namespace std;
 
 void
-dfs(int source, vector<int> &isVisited, vector<unordered_set<int>> &graph, unordered_set<int> &path){
-    isVisited[source] = true;
+bfs(int source, vector<int> &isVisited, vector<unordered_set<int>> &graph, unordered_set<int> &path){
     // 周围邻居的公共顶点
-    unordered_set<int> common;
-    vector<vector<int>> tempSubClique;
-    // 是不是第一次访问这个节点
-    bool isFirst{true};
-    for (auto & neighbor:graph[source]) {
-        if (!isVisited[neighbor]) {
-            if (isFirst) {
-                tempSubClique[0].push_back(neighbor);
-                isFirst = false;
-                continue;
-            }
-            for (:) {
-
+    unordered_set<int> common(graph[source].begin(), graph[source].end());
+    common.insert(source);
+    queue<int> q;
+    q.push(source);
+    while (!q.empty()){
+        auto head = q.front();
+        isVisited[head] = true;
+        unordered_set<int> tempCommon;
+        // 对节点周围的节点的孩子和原集合做交集
+        for (auto & neighbor: graph[head]) {
+            if (!isVisited[neighbor]){
+                set_intersection(common.begin(), common.end(), graph[neighbor].begin(), graph[neighbor].end(),
+                                 inserter(tempCommon, tempCommon.end()));
+                common.insert(tempCommon.begin(), tempCommon.end());
+                tempCommon.clear();
             }
         }
+        // 下一轮的搜索
+        for (auto & next:common) {
+            if (!isVisited[next]){
+                q.push(next);
+            }
+        }
+        q.pop();
     }
-
-
-
+    path = common;
 }
 
 int
@@ -61,7 +67,7 @@ MAIN(){
     for (int i = 1; i < nodeNum+1; ++i) {
         if (!isExactVisited[i]){
             path.insert(i);
-            dfs(i, isVisited, graph, path);
+            bfs(i, isVisited, graph, path);
             subGraph.emplace_back(path.begin(), path.end());
             for (auto &a: path) {
                 isExactVisited[a] = true;

@@ -41,7 +41,7 @@
 |1056|:white_check_mark: | | |队列|
 |1051|:white_check_mark: | | |栈|
 |1098|:white_check_mark: | | |堆|
-|1011| | | |查找元素|
+|1011|:white_check_mark: | | |查找元素|
 |1036| | | |查找元素|
 |1010| | | |二分查找|
 |1044| | | |二分查找|
@@ -108,7 +108,7 @@
 |1096| | |:white_check_mark: |DFS,数论|
 |1123|:white_check_mark: | | |平衡二叉树,完全二叉树,平衡二叉树的插入,层次遍历|
 |1126| | |:white_check_mark: |欧拉路径|
-|1142| | | |DFS,Clique|
+|1142| | |:white_check_mark: |DFS,Clique|
 
 ## 经验
 字符串处理放在最后

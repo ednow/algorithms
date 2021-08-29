@@ -10,16 +10,18 @@
 #endif
 
 #include "vector"
-#include "unordered_set"
+#include "set"
 #include "iostream"
 #include "queue"
 #include "algorithm"
+#include "map"
+#include "set"
 
 using namespace std;
 
 // other是为了捕获2-3这种clique
 void
-get_clique(int source, vector<int> &isVisited, vector<unordered_set<int>> &graph, unordered_set<int> &path, vector<int> &other){
+get_clique(int source, vector<int> &isVisited, vector<set<int>> &graph, set<int> &path, vector<int> &other){
     if (graph[source].empty()){
         path.insert(source);
         return;
@@ -53,7 +55,7 @@ int
 MAIN(){
     int nodeNum{}, edgeNum{};
     cin >> nodeNum >> edgeNum;
-    vector<unordered_set<int>> graph(nodeNum + 1);
+    vector<set<int>> graph(nodeNum + 1);
     while (edgeNum--){
         int a, b;
         cin >> a >> b;
@@ -62,10 +64,10 @@ MAIN(){
     }
     vector<int> isVisited(nodeNum + 1);
     // 最大的子图们
-    vector<unordered_set<int>> subGraph;
-    unordered_set<int> path;
-    vector<int> other;
+    vector<set<int>> subGraph;
     for (int i = 1; i < nodeNum+1; ++i) {
+        set<int> path;
+        vector<int> other;
         if (!isVisited[i]){
             get_clique(i, isVisited, graph, path, other);
             subGraph.emplace_back(path.begin(), path.end());
@@ -74,35 +76,34 @@ MAIN(){
             }
             // other和i将构成max clique
             for (auto &a: other) {
-                subGraph.emplace_back(unordered_set<int>({i, a}));
+                subGraph.emplace_back(set<int>({i, a}));
             }
-
-            path.clear();
-            other.clear();
         }
     }
     int queryNum;
     cin >> queryNum;
     while (queryNum--) {
         int setNodeNum{};
-        bool isClique{true};
+        bool isClique{false};
+        set<int> nodeSet;
+        int clusterNum;
         cin >> setNodeNum;
-        int a;
-        cin >> a;
-        int clusterNum{};
-        for (int i = 0; i < subGraph.size(); ++i) {
-            if (subGraph[i].find(a) != subGraph[i].end()){
-                clusterNum = i;
-            }
-        }
-
-        for (int i = 1; i < setNodeNum; ++i) {
+        for (int i = 0; i < setNodeNum; ++i) {
+            int a;
             cin >> a;
-            if (subGraph[clusterNum].find(a) == subGraph[clusterNum].end()){
-                isClique = false;
+            nodeSet.insert(a);
+        }
+        map<int, int> matchClusterNum;
+        // 查找所属的subGraph
+        for (int i = 0; i < subGraph.size(); ++i) {
+            if (includes(subGraph[i].begin(), subGraph[i].end(), nodeSet.begin(), nodeSet.end())){
+                isClique = true;
+                clusterNum = i;
                 break;
             }
         }
+
+        
 
         if (isClique){
             if (setNodeNum == subGraph[clusterNum].size()){

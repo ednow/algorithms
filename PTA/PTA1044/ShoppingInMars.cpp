@@ -28,7 +28,10 @@ MAIN(){
     for (int i = 0; i < diamondLen; ++i) {
         cin >> diamonds[i];
     }
-
+    if (diamonds.size()==1){
+        cout << 1 << "-" << 1;
+        return 0;
+    }
     int start{};
     int end=1;
     int sum{};

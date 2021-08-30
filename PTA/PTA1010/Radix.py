@@ -22,6 +22,7 @@ def is_num_equal(num_radix_known: str, num_radix_unknown: str, radix: int) -> Tu
     :param radix: num_radix_known的进制
     :return:
     """
+    symbol_to_decimal = "0123456789abcdefghijklmnopqrstuvwxyz"
     is_equal = False
     num = num_to_decimal(num_radix_known, radix)
     radix_range = []
@@ -43,7 +44,9 @@ def is_num_equal(num_radix_known: str, num_radix_unknown: str, radix: int) -> Tu
             is_equal = True
             radix = i
             break
-
+    # 测试点19
+    if max(symbol_to_decimal.index(i)+1 for i in num_radix_unknown) > radix:
+        is_equal = False
     return is_equal, radix
 
 

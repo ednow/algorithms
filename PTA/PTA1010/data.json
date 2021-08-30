@@ -12,33 +12,39 @@
     "description": "题目的样例"
   },
   {
+    "id": "0",
+    "data": "6 110 2 2",
+    "answer": "7",
+    "description": "测试点0"
+  },
+  {
     "id": "3",
     "data": "120 1320 2 4",
-    "answer": "",
+    "answer": "10",
     "description": "测试点1"
   },
   {
     "id": "4",
     "data": "193602 3102 1 10",
-    "answer": "",
+    "answer": "40",
     "description": "测试点3"
   },
   {
     "id": "5",
     "data": "193602 3102 1 10",
-    "answer": "",
+    "answer": "40",
     "description": "测试点4"
   },
   {
     "id": "6",
     "data": "3102 2iug 1 40",
-    "answer": "",
+    "answer": "43",
     "description": "测试点5"
   },
   {
     "id": "7",
     "data": "2147483647 10 1 10",
-    "answer": "",
+    "answer": "2147483647",
     "description": "测试点7"
   },
   {

@@ -34,7 +34,12 @@ def is_num_equal(num_radix_known: str, num_radix_unknown: str, radix: int) -> Tu
         radix_range = [radix]
 
     if len(num_radix_unknown) < len(num_radix_known):
-        radix_range = range(radix+1, 37)
+        max_radix = radix+1
+        highest = symbol_to_decimal.index(num_radix_unknown[0])
+        power = (len(num_radix_unknown) - 1)
+        while highest * max_radix ** power < num:
+            max_radix += 1
+        radix_range = range(radix+1, max_radix)
 
     radix = 0
 

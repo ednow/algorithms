@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "data": "6 110 1 10",
+    "answer": "2",
+    "description": "题目的样例"
+  },
+  {
+    "id": "2",
+    "data": "1 ab 1 2",
+    "answer": "Impossible",
+    "description": "题目的样例"
+  }
+]

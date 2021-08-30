@@ -14,30 +14,39 @@
 #include "iostream"
 #include "set"
 #include "limits"
+#include "algorithm"
+#include "queue"
+
+struct item{
+    int low{};
+    int high{};
+};
 
 using namespace std;
 
-void dfs(set<int> &nums, int &maxSize, int&p) {
-    if (nums.empty()){
-        return;
-    }
-    if ((*nums.begin()) * p >= *nums.rbegin()){
-        if (nums.size() > maxSize){
-            maxSize = (int)nums.size();
+void bfs(vector<int> &nums, int &maxSize, int&p) {
+    queue<item> q;
+    q.push(item{.low=0, .high=(int)nums.size() - 1});
+
+    while (!q.empty()){
+        auto head = q.front();
+        if (head.high < head.low) {
+            q.pop();
+            continue;
         }
-        return;
+
+        if (nums[head.low] * p >= nums[head.high]){
+            if (head.high - head.low + 1 > maxSize){
+                maxSize = head.high - head.low + 1;
+            }
+            // 不用push进队列里面，因为此时已经是最大的了
+        }else{
+            q.push(item{.low=head.low + 1, .high=head.high});
+            q.push(item{.low=head.low, .high=head.high - 1});
+        }
+
+        q.pop();
     }
-
-    set<int> tempNums1 = nums;
-    set<int> tempNums2 = nums;
-    if ((*nums.begin()) * p < *nums.rbegin()){
-        tempNums1.erase(tempNums1.begin());
-        tempNums2.erase(*tempNums1.rbegin());
-        dfs(tempNums1, maxSize, p);
-        dfs(tempNums2, maxSize, p);
-    }
-
-
 }
 
 
@@ -45,14 +54,17 @@ int
 MAIN(){
     int numLen{}, p{};
     cin >> numLen >> p;
-    set<int> nums;
+    vector<int> nums;
+    nums.reserve(numLen);
     int num{};
     for (int i = 0; i < numLen; ++i) {
         cin >> num;
-        nums.insert(num);
+        nums.push_back(num);
     }
+
+    sort(nums.begin(), nums.end());
     int maxSize{};
-    dfs(nums, maxSize, p);
+    bfs(nums, maxSize, p);
     cout << maxSize;
 
     return 0;

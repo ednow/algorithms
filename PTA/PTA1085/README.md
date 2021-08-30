@@ -24,6 +24,13 @@
 ### 第二次提交
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210830144603.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210830144603.png';" /></details>
 
+### 第三次提交
+bfs+二分
+
+答案错误+内存超限
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210830182928.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210830182928.png';" /></details>
+
 ### 语法技术
 #### 得到集合中最后一个元素
 *a.rbegin()

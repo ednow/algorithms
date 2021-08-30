@@ -11,7 +11,12 @@
 + 求出来的进制不合理
 + 测试点11进制可以超过36
 
+
 ## 思路
+可以参考2分法的做法
+[参考文献](https://www.liuchuo.net/archives/2458)
+
+[参考文献](https://blog.csdn.net/linghugoolge/article/details/82620905)
 
 ## python
 ### 第一次提交

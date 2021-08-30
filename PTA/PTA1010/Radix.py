@@ -10,6 +10,9 @@ def num_to_decimal(num: str, radix: int) -> int:
     symbol_to_decimal = "0123456789abcdefghijklmnopqrstuvwxyz"
     result = 0
     for idx, i in enumerate(reversed(num)):
+        # 测试点0：symbol不应该大于radix
+        if symbol_to_decimal.index(i) >= radix:
+            return -1
         result += symbol_to_decimal.index(i) * radix ** idx
     return result
 
@@ -31,7 +34,14 @@ def is_num_equal(num_radix_known: str, num_radix_unknown: str, radix: int) -> Tu
         radix_range = range(radix)
 
     if len(num_radix_unknown) == len(num_radix_known):
-        radix_range = [radix]
+        max_radix = radix
+        highest = symbol_to_decimal.index(num_radix_unknown[0])
+        power = (len(num_radix_unknown) - 1)
+        # 测试点6，同长度由于使用symbol不一致导致可以表示不同的数
+        while highest * max_radix ** power < num:
+            max_radix += 1
+        # 测试点0: 一位数，不要比原来最大的还低
+        radix_range = range(radix, max(max_radix, max(symbol_to_decimal.index(i)+1 for i in num_radix_unknown))+1)
 
     if len(num_radix_unknown) < len(num_radix_known):
         max_radix = radix+1
@@ -39,7 +49,8 @@ def is_num_equal(num_radix_known: str, num_radix_unknown: str, radix: int) -> Tu
         power = (len(num_radix_unknown) - 1)
         while highest * max_radix ** power < num:
             max_radix += 1
-        radix_range = range(radix+1, max_radix)
+        # 测试点0: 一位数，不要比原来最大的还低
+        radix_range = range(radix+1, max(max_radix, max(symbol_to_decimal.index(i)+1 for i in num_radix_unknown))+1)
 
     radix = 0
 

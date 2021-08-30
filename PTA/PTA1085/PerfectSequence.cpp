@@ -18,15 +18,16 @@
 using namespace std;
 
 void dfs(set<int> &nums, int &maxSize, int&p) {
+    if (nums.empty()){
+        return;
+    }
     if ((*nums.begin()) * p >= *nums.rbegin()){
         if (nums.size() > maxSize){
             maxSize = (int)nums.size();
         }
         return;
     }
-    if (nums.empty()){
-        return;
-    }
+
     set<int> tempNums1 = nums;
     set<int> tempNums2 = nums;
     if ((*nums.begin()) * p < *nums.rbegin()){
@@ -50,7 +51,7 @@ MAIN(){
         cin >> num;
         nums.insert(num);
     }
-    int maxSize{INT32_MIN};
+    int maxSize{};
     dfs(nums, maxSize, p);
     cout << maxSize;
 

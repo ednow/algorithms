@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1091/AcuteStroke.cpp PTA/PTA1126/EulerianPath.cpp PTA/PTA1142/MaximalClique.cpp)
+        PTA/PTA1091/AcuteStroke.cpp PTA/PTA1126/EulerianPath.cpp PTA/PTA1142/MaximalClique.cpp PTA/PTA1044/ShoppingInMars.cpp)
 
 # 添加头文件
 include_directories(

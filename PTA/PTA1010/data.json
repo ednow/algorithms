@@ -10,5 +10,29 @@
     "data": "1 ab 1 2",
     "answer": "Impossible",
     "description": "题目的样例"
+  },
+  {
+    "id": "3",
+    "data": "120 1320 2 4",
+    "answer": "",
+    "description": "测试点1"
+  },
+  {
+    "id": "4",
+    "data": "193602 3102 1 10",
+    "answer": "",
+    "description": "测试点3"
+  },
+  {
+    "id": "4",
+    "data": "193602 3102 1 10",
+    "answer": "",
+    "description": "测试点4"
+  },
+  {
+    "id": "4",
+    "data": "3102 2iug 1 ",
+    "answer": "",
+    "description": "测试点4"
   }
 ]

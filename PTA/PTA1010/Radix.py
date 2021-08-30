@@ -28,38 +28,23 @@ def is_num_equal(num_radix_known: str, num_radix_unknown: str, radix: int) -> Tu
     symbol_to_decimal = "0123456789abcdefghijklmnopqrstuvwxyz"
     is_equal = False
     num = num_to_decimal(num_radix_known, radix)
-    radix_range = []
 
-    if len(num_radix_unknown) > len(num_radix_known):
-        radix_range = range(radix)
-
-    if len(num_radix_unknown) == len(num_radix_known):
-        max_radix = radix
-        highest = symbol_to_decimal.index(num_radix_unknown[0])
-        power = (len(num_radix_unknown) - 1)
-        # 测试点6，同长度由于使用symbol不一致导致可以表示不同的数
-        while highest * max_radix ** power < num:
-            max_radix += 1
-        # 测试点0: 一位数，不要比原来最大的还低
-        radix_range = range(radix, max(max_radix, max(symbol_to_decimal.index(i)+1 for i in num_radix_unknown))+1)
-
-    if len(num_radix_unknown) < len(num_radix_known):
-        max_radix = radix+1
-        highest = symbol_to_decimal.index(num_radix_unknown[0])
-        power = (len(num_radix_unknown) - 1)
-        while highest * max_radix ** power < num:
-            max_radix += 1
-        # 测试点0: 一位数，不要比原来最大的还低
-        radix_range = range(radix+1, max(max_radix, max(symbol_to_decimal.index(i)+1 for i in num_radix_unknown))+1)
-
-    radix = 0
-
-    for i in radix_range:
-        # 数的真值和已知进制的数的真值相等
-        if num == num_to_decimal(num_radix_unknown, i):
+    min_radix = 0
+    max_radix = num+1  # 记得+1测试点0
+    while min_radix <= max_radix:
+        mid_radix = int((min_radix + max_radix)/2)
+        mid_num = num_to_decimal(num_radix_unknown, mid_radix)
+        if mid_num == num:
             is_equal = True
-            radix = i
+            radix = mid_radix
             break
+
+        if mid_num > num:
+            max_radix = mid_radix - 1
+
+        if mid_num < num:
+            min_radix = mid_radix + 1
+
     # 测试点19
     if max(symbol_to_decimal.index(i)+1 for i in num_radix_unknown) > radix:
         is_equal = False

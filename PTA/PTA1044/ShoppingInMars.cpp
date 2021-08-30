@@ -34,14 +34,15 @@ MAIN(){
     int sum{};
     // 与期望的差 -> [开始，结尾]
     map<int, vector<vector<int>>> result;
-
+    sum = diamonds[0] + diamonds[1];
     while (end != diamondLen) {
-        sum = accumulate(diamonds.begin()+start, diamonds.begin()+end+1, 0, plus<>());
         if (sum<cost){
             end++;
+            sum += diamonds[end];
         }
         if (sum>=cost){
             result[sum - cost].emplace_back(vector<int>({start, end}));
+            sum -= diamonds[start];
             start++;
         }
     }

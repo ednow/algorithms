@@ -14,6 +14,8 @@
 #include "iostream"
 #include "vector"
 #include "algorithm"
+#include "iomanip"
+
 using namespace std;
 
 struct GasStation{
@@ -55,48 +57,76 @@ MAIN(){
     sort(stations.begin(), stations.end(), [](auto &a, auto &b) {
         return a.dis < b.dis;
     });
+    // 补一个终点站虚拟站
+    // TODO
+    // 这里需要提防，他本来就在终点站设置了一个加油站
+    stations.push_back(GasStation{.dis=destinationDis, .price=0, .idx=stationNum});
     // 油满的时候走的最大距离
     int maxDisWhenFull = gasCapacity*disPerGas;
     // 现在走到的加油站的下标
     int stationByNow{};
+    // 按照现在油桶里的油还能走的距离
+    double disToGo{};
     // 现在走的距离
     int disByNow{};
-    // 现在tank中的油量
-    double gasByNow{};
     // 现在花的钱
-    double priceByNow{};
-    while (stationByNow != stations.size() or disByNow < destinationDis) {
-        // 这一站需要加的油量
-        int gasToFill{};
-
+    double priceByNow{};  // 最后还要再除以12
+    // 是否能走到下一个站点
+    bool isFinish{true};
+    while (stationByNow != stations.size() -1) {
+        bool isFindNext = false;
         // 如果在这站加满能走到的最远距离
         int furthestStation{};
-        for (int i = stationByNow+1; i < stationNum; ++i) {
+        for (int i = stationByNow+1; i < stationNum+1; ++i) {
             if (stations[i].dis <= stations[stationByNow].dis + maxDisWhenFull){
                 furthestStation = i;
+                isFindNext = true;
             } else{
                 break;
             }
         }
+        // 走不到下一个站点就结束了
+        // isFindNext和isFinish可以是同一个变量，但会导致语义性不强
+        if (!isFindNext) {
+            isFinish = false;
+            break;
+        }
 
+        // 后面能到达的车站,车站之间最小的价格
         auto stationWithMinPrice = min_element(stations.begin()+stationByNow+1,stations.begin()+furthestStation+1, [](auto &a, auto &b) {
             return a.price < b.price;
         });
+        // 后面能到达的车站,存在比当前车站更低价格的车站
         auto stationWithLessPrice = find_if(stations.begin() + stationByNow + 1, stations.begin() + furthestStation + 1, [&](auto &a) {
             return a.price <= stations[stationByNow].price;
         });
         // 如果有更低的地方,加到能走到这个站的油量即可
         if (stationWithLessPrice != stations.end()) {
-            gasToFill = (((*stationWithLessPrice).dis - stations[stationByNow].dis) * 1.0 / disPerGas) - gasByNow;
+            // 加油
+            disToGo+=(*stationWithLessPrice).dis - stations[stationByNow].dis;
+            // 扣费
+            priceByNow += stations[stationByNow].price * ((*stationWithLessPrice).dis - stations[stationByNow].dis);
+            // 开车
             stationByNow = (*stationWithLessPrice).idx;
+            // 更新里程
+            disByNow += (*stationWithLessPrice).dis - stations[stationByNow].dis;
         } else{
             // 如果高于现在的车站的价格,需要把油加满
-            gasToFill = gasCapacity - gasByNow;
+            // 加油
+            disToGo=maxDisWhenFull;
+            // 扣费
+            priceByNow+=stations[stationByNow].price * ((*stationWithMinPrice).dis - stations[stationByNow].dis);
             // 车开往stationByNow
             stationByNow = (*stationWithMinPrice).idx;
+            // 里程更新
+            disByNow+=((*stationWithMinPrice).dis - stations[stationByNow].dis);
         }
-        // 更新总的花费
-        priceByNow += gasToFill * 1.0 * (*stationWithMinPrice).price;
+    }
+
+    if (isFinish) {
+        cout << setprecision(2) << fixed << priceByNow;
+    } else {
+        cout << "The maximum travel distance = " << setprecision(2) << fixed << disByNow;
     }
 
     return 0;

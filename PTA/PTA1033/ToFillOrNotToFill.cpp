@@ -104,32 +104,36 @@ MAIN(){
             return a.price <= stations[stationByNow].price;
         });
         // 如果有更低的地方,加到能走到这个站的油量即可
-        if (stationWithLessPrice != stations.end()) {
-            // 加油
-            disToGo+=(*stationWithLessPrice).dis - stations[stationByNow].dis;
+        if (stationWithLessPrice != stations.begin() + furthestStation + 1) {
             // 扣费
-            priceByNow += stations[stationByNow].price * ((*stationWithLessPrice).dis - stations[stationByNow].dis);
-            // 开车
-            stationByNow = (*stationWithLessPrice).idx;
+            priceByNow += stations[stationByNow].price * ((*stationWithLessPrice).dis - stations[stationByNow].dis - disToGo);
+            // 加油
+            disToGo+=(*stationWithLessPrice).dis - stations[stationByNow].dis-disToGo;
+            // 耗油
+            disToGo -= (*stationWithLessPrice).dis - stations[stationByNow].dis;
             // 更新里程
             disByNow += (*stationWithLessPrice).dis - stations[stationByNow].dis;
+            // 驶达下一站
+            stationByNow = (*stationWithLessPrice).idx;
         } else{
             // 如果高于现在的车站的价格,需要把油加满
+            // 扣费
+            priceByNow+=stations[stationByNow].price * (maxDisWhenFull-disToGo);
             // 加油
             disToGo=maxDisWhenFull;
-            // 扣费
-            priceByNow+=stations[stationByNow].price * ((*stationWithMinPrice).dis - stations[stationByNow].dis);
-            // 车开往stationByNow
-            stationByNow = (*stationWithMinPrice).idx;
+            // 耗油
+            disToGo -= (*stationWithMinPrice).dis - stations[stationByNow].dis;
             // 里程更新
             disByNow+=((*stationWithMinPrice).dis - stations[stationByNow].dis);
+            // 驶达下一站
+            stationByNow = (*stationWithMinPrice).idx;
         }
     }
 
     if (isFinish) {
         cout << setprecision(2) << fixed << priceByNow/12;
     } else {
-        cout << "The maximum travel distance = " << setprecision(2) << fixed << disByNow;
+        cout << "The maximum travel distance = " << setprecision(2) << fixed << (disByNow+maxDisWhenFull)*1.0;
     }
 
     return 0;

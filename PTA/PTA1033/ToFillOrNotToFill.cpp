@@ -61,9 +61,16 @@ MAIN(){
         stations[i].idx = i;
     }
     // 补一个终点站虚拟站
-    // TODO
     // 这里需要提防，他本来就在终点站设置了一个加油站
-    stations.push_back(GasStation{.dis=destinationDis, .price=0, .idx=stationNum});
+    auto dest = find_if(stations.begin(), stations.end(), [&](auto &a) {
+        return a.dis == destinationDis;
+    });
+    if (dest != stations.end()) {
+        (*dest).price = -1;
+    }else{
+        stations.push_back(GasStation{.dis=destinationDis, .price=-1, .idx=stationNum});
+    }
+
     // 油满的时候走的最大距离
     int maxDisWhenFull = gasCapacity*disPerGas;
     // 现在走到的加油站的下标
@@ -133,7 +140,7 @@ MAIN(){
     if (isFinish) {
         cout << setprecision(2) << fixed << priceByNow/12;
     } else {
-        cout << "The maximum travel distance = " << setprecision(2) << fixed << (disByNow+maxDisWhenFull)*1.0;
+        cout << "The maximum travel distance = " << setprecision(2) << fixed << (disByNow+maxDisWhenFull-disToGo)*1.0;
     }
 
     return 0;

@@ -52,11 +52,14 @@ MAIN(){
     for (int i = 0; i < stationNum; ++i) {
         cin >> stations[i].price;
         cin >> stations[i].dis;
-        stations[i].idx = i;
     }
     sort(stations.begin(), stations.end(), [](auto &a, auto &b) {
         return a.dis < b.dis;
     });
+    // 应排序之后再标号
+    for (int i = 0; i < stationNum; ++i) {
+        stations[i].idx = i;
+    }
     // 补一个终点站虚拟站
     // TODO
     // 这里需要提防，他本来就在终点站设置了一个加油站
@@ -71,7 +74,7 @@ MAIN(){
     int disByNow{};
     // 现在花的钱
     double priceByNow{};  // 最后还要再除以12
-    // 是否能走到下一个站点
+    // 是否能走到终点站
     bool isFinish{true};
     while (stationByNow != stations.size() -1) {
         bool isFindNext = false;
@@ -124,7 +127,7 @@ MAIN(){
     }
 
     if (isFinish) {
-        cout << setprecision(2) << fixed << priceByNow;
+        cout << setprecision(2) << fixed << priceByNow/12;
     } else {
         cout << "The maximum travel distance = " << setprecision(2) << fixed << disByNow;
     }

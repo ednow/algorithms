@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1142/MaximalClique.cpp PTA/PTA1044/ShoppingInMars.cpp PTA/PTA1085/PerfectSequence.cpp PTA/PTA1107/SocialClusters.cpp)
+        PTA/PTA1142/MaximalClique.cpp PTA/PTA1044/ShoppingInMars.cpp PTA/PTA1085/PerfectSequence.cpp PTA/PTA1107/SocialClusters.cpp PTA/PTA1033/ToFillOrNotToFill.cpp)
 
 # 添加头文件
 include_directories(

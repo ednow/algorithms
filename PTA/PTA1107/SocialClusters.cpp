@@ -62,34 +62,40 @@ MAIN(){
             clusters.push_back(subGraph{.graph=set<int>(people[i].begin(), people[i].end()),.nodeNum=1});
         }
     }
-    // 合并成更大的圈子
-    bool isChange = false;
-    int start = 0;
+    bool isNext = false;
     do {
-        isChange = false;
-        for (int i = start+1; i < clusters.size()-1; ++i) {
-            // 找一下之后的兄弟有没有跟start有一腿
-            set<int> res;
-            set_intersection(clusters[i].graph.begin(), clusters[i].graph.end(), clusters[start].graph.begin(), clusters[start].graph.end(),
-                             inserter(res, res.end()));
-            if (!res.empty()){
-                isChange = true;
-                clusters[start].nodeNum += clusters[i].nodeNum;
-                clusters[start].isRemove = true;
-                for (auto & hobby: clusters[i].graph) {
-                    clusters[start].graph.insert(hobby);
+        isNext = false;
+        // 合并成更大的圈子
+        bool isChange = false;
+        int start = 0;
+        do {
+            isChange = false;
+            for (int i = start + 1; i < clusters.size() - 1; ++i) {
+                // 找一下之后的兄弟有没有跟start有一腿
+                set<int> res;
+                set_intersection(clusters[i].graph.begin(), clusters[i].graph.end(), clusters[start].graph.begin(),
+                                 clusters[start].graph.end(),
+                                 inserter(res, res.end()));
+                if (!res.empty()) {
+                    isChange = true;
+                    clusters[start].nodeNum += clusters[i].nodeNum;
+                    clusters[start].isRemove = true;
+                    for (auto &hobby: clusters[i].graph) {
+                        clusters[start].graph.insert(hobby);
+                    }
                 }
             }
-        }
-        if (isChange){
-            clusters.erase(remove_if(clusters.begin(), clusters.end(), [](auto &a) {
-                return a.isRemove;
-            }), clusters.end());
-            start++;
-        }
+            if (isChange) {
+                isNext = true;
 
+                clusters.erase(remove_if(clusters.begin(), clusters.end(), [](auto &a) {
+                    return a.isRemove;
+                }), clusters.end());
+                start++;
+            }
+        } while (isChange and start < clusters.size() - 1);
+    } while (isNext);
 
-    } while (isChange and start < clusters.size()-1);
 
     sort(clusters.begin(), clusters.end(), [](const auto &a, const auto &b) {
         return a.nodeNum > b.nodeNum;

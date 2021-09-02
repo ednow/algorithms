@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1033/ToFillOrNotToFill.cpp)
+        PTA/PTA1033/ToFillOrNotToFill.cpp PTA/PTA1057/Stack.cpp)
 
 # 添加头文件
 include_directories(

@@ -46,6 +46,10 @@ MAIN(){
     // StationNum加油站
     int gasCapacity{}, destinationDis{}, disPerGas{}, stationNum{};
     cin >> gasCapacity >> destinationDis >> disPerGas >> stationNum;
+    if (stationNum==0){
+        cout << "The maximum travel distance = 0.00";
+        return 0;
+    }
     // 加油站数据
     vector<GasStation> stations(stationNum);
     // 读取加油站数据
@@ -56,6 +60,10 @@ MAIN(){
     sort(stations.begin(), stations.end(), [](auto &a, auto &b) {
         return a.dis < b.dis;
     });
+    if (stations[0].dis > 0) {
+        cout << "The maximum travel distance = 0.00";
+        return 0;
+    }
     // 应排序之后再标号
     for (int i = 0; i < stationNum; ++i) {
         stations[i].idx = i;
@@ -138,7 +146,7 @@ MAIN(){
     }
 
     if (isFinish) {
-        cout << setprecision(2) << fixed << priceByNow/12;
+        cout << setprecision(2) << fixed << priceByNow/disPerGas;
     } else {
         cout << "The maximum travel distance = " << setprecision(2) << fixed << (disByNow+maxDisWhenFull-disToGo)*1.0;
     }

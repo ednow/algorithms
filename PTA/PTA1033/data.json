@@ -10,5 +10,29 @@
     "data": "50 1300 12 2\n7.10 0\n7.00 600",
     "answer": "The maximum travel distance = 1200.00",
     "description": "题目的样例"
+  },
+  {
+    "id": "3",
+    "data": "5 5 1 0\n",
+    "answer": "The maximum travel distance = 0.00",
+    "description": "一步都走不了"
+  },
+  {
+    "id": "4",
+    "data": "5 6 1 1\n1 0",
+    "answer": "The maximum travel distance = 5.00",
+    "description": "刚好遗憾"
+  },
+  {
+    "id": "5",
+    "data": "5 6 1 1\n1 0",
+    "answer": "5.00",
+    "description": "刚好通过"
+  },
+  {
+    "id": "6",
+    "data": "50 1300 10 2\n7.10 10\n7.00 400",
+    "answer": "The maximum travel distance = 0.00",
+    "description": "测试点2:一步都走不了,有油站到不了"
   }
 ]

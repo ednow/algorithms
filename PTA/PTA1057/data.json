@@ -1,0 +1,8 @@
+[
+  {
+    "id": "1",
+    "data": "17\nPop\nPeekMedian\nPush 3\nPeekMedian\nPush 2\nPeekMedian\nPush 1\nPeekMedian\nPop\nPop\nPush 5\nPush 4\nPeekMedian\nPop\nPop\nPop\nPop",
+    "answer": "Invalid\nInvalid\n3\n2\n2\n1\n2\n4\n4\n5\n3\nInvalid\n",
+    "description": "题目的样例"
+  }
+]

@@ -12,15 +12,24 @@
 #include "string"
 #include "vector"
 #include "iostream"
+#include "set"
 
 using namespace std;
+
+//int get_median(vector<int> &stack){
+//    int result{};
+//
+//}
 
 int
 MAIN(){
     int operationNum{};
     string operation;
     cin >> operationNum;
+    // 栈
     vector<int> stack;
+    // 用来求中位数
+    multiset<int> mirrorStack;
     while (operationNum--) {
         cin >> operation;
         if (operation == "Pop"){
@@ -29,6 +38,7 @@ MAIN(){
                 continue;
             }
             cout << *stack.rbegin() << endl;
+            mirrorStack.erase(mirrorStack.lower_bound(*stack.rbegin()));
             stack.pop_back();
             continue;
         }
@@ -38,8 +48,10 @@ MAIN(){
                 cout << "Invalid" << endl;
                 continue;
             }
-            cout << stack[stack.size()/2] << endl;
-//            stack.erase(stack.begin()+stack.size()/2);
+            auto iter = mirrorStack.begin();
+            int n = (int)(mirrorStack.size()+1)/ 2-1;
+            advance(iter, n);
+            cout << *iter << endl;
             continue;
         }
 
@@ -47,6 +59,7 @@ MAIN(){
             int numToPush;
             cin >> numToPush;
             stack.push_back(numToPush);
+            mirrorStack.insert(numToPush);
             continue;
         }
 

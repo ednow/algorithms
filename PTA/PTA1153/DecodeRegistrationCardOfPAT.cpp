@@ -14,6 +14,7 @@
 #include "map"
 #include "vector"
 #include "algorithm"
+#include "iomanip"
 
 using namespace std;
 
@@ -87,25 +88,27 @@ MAIN(){
         if (queryType == 2) {
             int siteId;
             cin >> siteId;
-            cout << "Case " << i << ": " << queryType << " " << siteId<< endl;
+            cout << "Case " << i << ": " << queryType << " " << setw(3) << setfill('0') << siteId<< endl;
             if (numAndTotalScoreBySiteId.find(siteId)==numAndTotalScoreBySiteId.end()) {
                 cout << "NA"<<endl;
                 continue;
             }
-            cout << numAndTotalScoreBySiteId[siteId].testNum << " " << numAndTotalScoreBySiteId[siteId].totalScore << endl;
+            cout << numAndTotalScoreBySiteId[siteId].testNum << " "
+            <<  numAndTotalScoreBySiteId[siteId].totalScore << endl;
             continue;
         }
         // 输出每一个日期中，考试站和他提交的题目的数量
         if (queryType==3) {
             int date;
             cin >> date;
-            cout << "Case " << i << ": " << queryType << " " << date<< endl;
+            cout << "Case " << i << ": " << queryType << " " << setw(6) << setfill('0') << date<< endl;
             if (siteByDate.find(date)==siteByDate.end()) {
                 cout << "NA"<<endl;
                 continue;
             }
             for (auto & item:siteByDate[date]) {
-                cout << item.siteId << " " << item.testNum << endl;
+                cout << setw(3) << setfill('0') << item.siteId << " "
+                    << item.testNum << endl;
             }
         }
 

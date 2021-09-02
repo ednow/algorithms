@@ -22,6 +22,11 @@ int
 MAIN(){
     int N;
     cin >> N;
+    if (N==0) {
+        cout << 0;
+        return 0;
+    }
+
     vector<int> nums(N);
     for (int i = 0; i < N; ++i) {
         cin >> nums[i];
@@ -34,7 +39,7 @@ MAIN(){
         if (maxZeroToI[i-1] < nums[i]) {
             maxZeroToI[i] = nums[i];
         } else {
-            maxZeroToI[i] = nums[i-1];
+            maxZeroToI[i] = maxZeroToI[i-1];
         }
     }
 
@@ -45,7 +50,7 @@ MAIN(){
         if (minIToN[i+1] > nums[i]) {
             minIToN[i] = nums[i];
         } else {
-            minIToN[i] = nums[i+1];
+            minIToN[i] = minIToN[i+1];
         }
     }
     // 顺次找到最小值和最大值
@@ -67,6 +72,11 @@ MAIN(){
 
     if (maxZeroToI[N-2] < nums[N-1]) {
         result.push_back(nums[N - 1]);
+    }
+    // 测试点2
+    if (result.empty()) {
+        cout << 0 << endl << endl;
+        return 0;
     }
     sort(result.begin(), result.end());
     cout << result.size() << endl;

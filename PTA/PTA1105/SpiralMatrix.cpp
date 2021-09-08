@@ -64,19 +64,19 @@ MAIN(){
             matrix[startI][startJ] = nums[finish++];
         }
         // 向右移动
-        for (int i = 0; i < maxJ; ++i) {
+        for (int i = 0; i < maxJ and finish < N; ++i) {
             matrix[startI][startJ++] = nums[finish++];
         }
         // 向下移动
-        for (int i = 0; i < maxI; ++i) {
+        for (int i = 0; i < maxI and finish < N; ++i) {
             matrix[startI++][startJ] = nums[finish++];
         }
         // 向左移动
-        for (int i = 0; i < maxJ; ++i) {
+        for (int i = 0; i < maxJ and finish < N; ++i) {
             matrix[startI][startJ--] = nums[finish++];
         }
         // 向上移动
-        for (int i = 0; i < maxI; ++i) {
+        for (int i = 0; i < maxI and finish < N; ++i) {
             matrix[startI--][startJ] = nums[finish++];
         }
 

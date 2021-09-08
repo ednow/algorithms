@@ -36,6 +36,7 @@ For each test case, output the resulting matrix in $m$ lines, each contains $n$ 
 ## 边界点
 
 ## 思路
+[参考文献](https://blog.csdn.net/birdmanqin/article/details/107116084)
 
 ## cpp
 
@@ -48,6 +49,14 @@ For each test case, output the resulting matrix in $m$ lines, each contains $n$ 
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210908224329.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210908224329.png';" /></details>
 
+### 第三次提交
+5*1的情况没有处理好
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210908230818.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210908230818.png';" /></details>
+
 ### 语法技术
 #### 循环迭代器
 [参考文献](https://stackoverflow.com/questions/2616643/is-there-a-standard-cyclic-iterator-in-c)
+
+#### 二维数组初始化
+[参考文献](https://stackoverflow.com/questions/40887674/initializing-2d-vector-using-only-1-line-c)

@@ -59,28 +59,28 @@ MAIN(){
     // startJ,结束行号
     int finish{}, maxI{m-1}, maxJ{n-1},startI{0}, startJ{0};
 
-    while (finish < N) {
+    while (finish < N-1) {
+        matrix[startI][startJ] = nums[finish];
 
         // 向右移动
-        for (int i = 0; i < maxJ; ++i) {
-            matrix[startI][startJ++] = nums[finish++];
+        for (int i = 0; i < maxJ and finish < N-1; ++i) {
+            matrix[startI][++startJ] = nums[++finish];
         }
         // 向下移动
-        for (int i = 0; i < maxI; ++i) {
-            matrix[startI++][startJ] = nums[finish++];
+        for (int i = 0; i < maxI and finish < N-1; ++i) {
+            matrix[++startI][startJ] = nums[++finish];
         }
         // 向左移动
-        for (int i = 0; i < maxJ; ++i) {
-            matrix[startI][startJ--] = nums[finish++];
+        for (int i = 0; i < maxJ and finish < N-1; ++i) {
+            matrix[startI][--startJ] = nums[++finish];
         }
         // 向上移动
-        for (int i = 0; i < maxI; ++i) {
-            matrix[startI--][startJ] = nums[finish++];
+        for (int i = 1; i < maxI and finish < N-1; ++i) {
+            matrix[--startI][startJ] = nums[++finish];
         }
 
         maxI-=2;
         maxJ-=2;
-        startI++;
         startJ++;
     }
 

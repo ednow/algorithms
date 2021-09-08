@@ -41,8 +41,12 @@ For each test case, output the resulting matrix in $m$ lines, each contains $n$ 
 
 ### 第一次提交
 一超时,两错误
+超时是因为3*3这种情况
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210908214520.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210908214520.png';" /></details>
 
+### 第二次提交
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210908224329.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210908224329.png';" /></details>
 
 ### 语法技术
 #### 循环迭代器

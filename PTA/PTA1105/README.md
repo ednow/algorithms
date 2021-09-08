@@ -37,6 +37,10 @@ For each test case, output the resulting matrix in $m$ lines, each contains $n$ 
 
 ## 思路
 [参考文献](https://blog.csdn.net/birdmanqin/article/details/107116084)
+具有参考价值的思路
++ 三元运算符缩短cout的代码
++ 位移向量的设计
++ 模运算循环位移向量
 
 ## cpp
 

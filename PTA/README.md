@@ -102,6 +102,7 @@
 |1131| | |:white_check_mark: |BFS,DFS,无权图最短路径|
 |1134| | |:white_check_mark: |其他的图论,边点集|
 |1150| | |:white_check_mark: |旅行商问题,最短路径|
+|1154| | | |顶点着色,水题|
 |1076| | |:white_check_mark: |BFS,有向图,微博转发|
 |1091| | |:white_check_mark: |BFS,三维MRI影像切片|
 |1096| | |:white_check_mark: |DFS,数论|

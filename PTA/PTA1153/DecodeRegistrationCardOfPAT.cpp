@@ -15,6 +15,8 @@
 #include "vector"
 #include "algorithm"
 #include "iomanip"
+#include "ios"
+#include "sstream"
 
 using namespace std;
 
@@ -31,6 +33,10 @@ struct Card{
 
 int
 MAIN(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    ostringstream resultStr;
     int queryNum{}, cardNum{};
     cin >> cardNum >> queryNum;
     map<char, vector<Card>> cardsByLevel;
@@ -74,13 +80,13 @@ MAIN(){
         if (queryType == 1) {
             string level;
             cin >> level;
-            cout << "Case " << i << ": " << queryType << " " << level<< endl;
+            resultStr << "Case " << i << ": " << queryType << " " << level<< endl;
             if (cardsByLevel.find(level[0]) == cardsByLevel.end()) {
-                cout << "NA"<<endl;
+                resultStr << "NA"<<endl;
                 continue;
             }
             for (auto & item:cardsByLevel[level[0]]) {
-                cout << item.card << " " <<item.score << endl;
+                resultStr << item.card << " " <<item.score << endl;
             }
             continue;
         }
@@ -88,12 +94,12 @@ MAIN(){
         if (queryType == 2) {
             int siteId;
             cin >> siteId;
-            cout << "Case " << i << ": " << queryType << " " << setw(3) << setfill('0') << siteId<< endl;
+            resultStr << "Case " << i << ": " << queryType << " " << setw(3) << setfill('0') << siteId<< endl;
             if (numAndTotalScoreBySiteId.find(siteId)==numAndTotalScoreBySiteId.end()) {
-                cout << "NA"<<endl;
+                resultStr << "NA"<<endl;
                 continue;
             }
-            cout << numAndTotalScoreBySiteId[siteId].testNum << " "
+            resultStr << numAndTotalScoreBySiteId[siteId].testNum << " "
             <<  numAndTotalScoreBySiteId[siteId].totalScore << endl;
             continue;
         }
@@ -101,18 +107,19 @@ MAIN(){
         if (queryType==3) {
             int date;
             cin >> date;
-            cout << "Case " << i << ": " << queryType << " " << setw(6) << setfill('0') << date<< endl;
+            resultStr << "Case " << i << ": " << queryType << " " << setw(6) << setfill('0') << date<< endl;
             if (siteByDate.find(date)==siteByDate.end()) {
-                cout << "NA"<<endl;
+                resultStr << "NA"<<endl;
                 continue;
             }
             for (auto & item:siteByDate[date]) {
-                cout << setw(3) << setfill('0') << item.siteId << " "
+                resultStr << setw(3) << setfill('0') << item.siteId << " "
                     << item.testNum << endl;
             }
         }
 
     }
+    cout << resultStr.str();
     return 0;
 }
 

@@ -4,5 +4,11 @@
     "data": "4\n0.1 0.2 0.3 0.4",
     "answer": "5.00",
     "description": "题目样例"
+  },
+  {
+    "id": "1",
+    "data": "1\n5.00",
+    "answer": "5.00",
+    "description": "题目样例"
   }
 ]

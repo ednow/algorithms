@@ -25,11 +25,7 @@ MAIN() {
     }
     double result{};
     for (int i = 0; i < N; ++i) {
-        for (int j = i; j < N; ++j) {
-            for (int k = i; k <= j; ++k) {
-                result += num[k];
-            }
-        }
+        result += num[i] * (i + 1) * (N - i);
     }
     cout << setprecision(2) << fixed << result;
 

@@ -38,43 +38,18 @@ MAIN() {
         cin >> c >> d;
         b[c] = d;
     }
-
-    // 找到所有的次数
-    set<int> powers;
-    for (auto & temp:a) {
-        powers.insert(temp.first);
-    }
-    for (auto & temp:b) {
-        powers.insert(temp.first);
-    }
-
     // 得到乘积的结果
     map<int, long double> result;
-    for (auto & power: powers) {
-        if (a.find(power) != a.end() and b.find(power) != b.end()) {
-//            long double times = a[power] * b[power];
-//            if (times != 0) {
-            result[power] = a[power] * b[power];
-//            }
-            continue;
-        }
-
-        if (a.find(power) != a.end()) {
-            result[power] = a[power];
-            continue;
-        }
-
-
-        if (b.find(power) != b.end()) {
-            result[power] = b[power];
-            continue;
+    for (auto& i:a) {
+        for (auto& j:b) {
+            result[i.first + j.first] += i.second * j.second;
         }
     }
 
     cout << result.size();
     auto iter = result.rbegin();
     while (iter != result.rend()) {
-        cout << " " << (*iter).first << " " << (*iter).second;
+        cout << " " << (*iter).first << " " << setprecision(1) << fixed << (*iter).second;
         iter++;
     }
 

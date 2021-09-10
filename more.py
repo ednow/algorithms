@@ -48,9 +48,9 @@ def combine_readme():
                 )
             # 读入代码和测试数据
             for codeType, chain in zip(["py", "cpp", "json"], [pythonChain, cppChain, dataChain]):
-                for codeFile in filter(lambda x: x.endswith(codeType), os.listdir(os.path.join(pta_root_dir, subdir))):
+                for codeFile in filter(lambda x: x.endswith(codeType) and x != "__init__.py", os.listdir(os.path.join(pta_root_dir, subdir))):
                     with open(os.path.join(pta_root_dir, subdir, codeFile), "r", encoding="utf-8") as f:
-                        string += Prefix(f"## {codeFile}\n").do_preprocess(chain(Data(f.read())))
+                        string += Prefix(f"\n\n## {codeFile}\n").do_preprocess(chain(Data(f.read())))
 
     # 写入文件
     dir_to_store = "page"

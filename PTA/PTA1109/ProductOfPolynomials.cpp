@@ -19,13 +19,13 @@ using namespace std;
 
 int
 MAIN() {
-    map<int, long double> a;
-    map<int, long double> b;
-    int Len;
+    map<long long, long double> a;
+    map<long long, long double> b;
+    long long Len;
     // 读入A
     cin >> Len;
     while (Len--) {
-        int c;
+        long long c;
         long double d;
         cin >> c >> d;
         a[c] = d;
@@ -33,13 +33,13 @@ MAIN() {
     // 读入B
     cin >> Len;
     while (Len--) {
-        int c;
+        long long c;
         long double d;
         cin >> c >> d;
         b[c] = d;
     }
     // 得到乘积的结果
-    map<int, long double> result;
+    map<long long, long double> result;
     for (auto& i:a) {
         for (auto& j:b) {
             result[i.first + j.first] += i.second * j.second;

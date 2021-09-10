@@ -11,6 +11,7 @@ class Data:
 
     def set_key(self, key: int):
         self.key = key
+        return self
 
     def set_data(self, data: str):
         self.data = data
@@ -29,10 +30,14 @@ class Data:
         preprocessor.do_preprocess(self)
         return self
 
+    def __iadd__(self, other: Data):
+        self.set_data(self.get_data() + other.get_data())
+        return self
+
 
 class AbstractPreprocess(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def do_preprocess(self, data: Data):
+    def do_preprocess(self, data: Data) -> Data:
         pass
 
 
@@ -46,6 +51,7 @@ class Replace(AbstractPreprocess):
 
     def do_preprocess(self, data: Data):
         data.set_data(re.sub(self.toBeReplace, self.replaceTo, data.get_data(), flags=re.DOTALL))
+        return data
 
     def __str__(self):
         return f"<Replace (toBeReplace: {self.toBeReplace}, replaceTo: {self.replaceTo})>"
@@ -58,18 +64,20 @@ class Prefix(AbstractPreprocess):
 
     def do_preprocess(self, data: Data):
         data.set_data(self.prefix + data.get_data())
+        return data
 
     def __str__(self):
         return f"<Prefix (prefix: {self.prefix})>"
 
 
 class Suffix(AbstractPreprocess):
-    """添加前缀"""
+    """添加后缀"""
     def __init__(self, suffix: str):
         self.suffix = suffix
 
     def do_preprocess(self, data: Data):
         data.set_data(data.get_data() + self.suffix)
+        return data
 
     def __str__(self):
         return f"<Suffix (suffix: {self.suffix})>"
@@ -85,6 +93,7 @@ class Chain:
     def __call__(self, data: Data):
         for preprocessor in self.preprocessors:
             preprocessor.do_preprocess(data)
+        return data
 
 
 class Configuration:

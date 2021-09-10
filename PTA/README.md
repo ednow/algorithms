@@ -109,6 +109,8 @@
 |1123|:white_check_mark: | | |平衡二叉树,完全二叉树,平衡二叉树的插入,层次遍历|
 |1126| | |:white_check_mark: |欧拉路径|
 |1142| | |:white_check_mark: |DFS,Clique|
+|1104| | |:white_check_mark: |求和|
+|1109| | | |指数求和|
 |1057| | | |栈,中位数,树状数组,超纲|
 
 ## 经验

@@ -19,11 +19,11 @@ int
 MAIN() {
     int N;
     cin >> N;
-    vector<double> num(N,0);
+    vector<long double> num(N,0);
     for (int i = 0; i < N; ++i) {
         cin >> num[i];
     }
-    double result{};
+    long double result{};
     for (int i = 0; i < N; ++i) {
         result += num[i] * (i + 1) * (N - i);
     }

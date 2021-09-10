@@ -37,7 +37,7 @@ file(GLOB_RECURSE SOURCES
 
 add_executable(algorithms
         main.cpp
-        PTA/PTA1105/SpiralMatrix.cpp PTA/PTA1154/VertexColoring.cpp)
+        PTA/PTA1105/SpiralMatrix.cpp PTA/PTA1154/VertexColoring.cpp PTA/PTA1104/SumOfNumberSegments.cpp)
 
 # 添加头文件
 include_directories(

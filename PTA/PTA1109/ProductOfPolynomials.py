@@ -1,5 +1,7 @@
 def summit():
-    pass
+    a = dict()
+    b = dict()
+
 
 
 if __name__ == '__main__':

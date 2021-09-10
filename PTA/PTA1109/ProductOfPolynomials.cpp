@@ -45,10 +45,21 @@ MAIN() {
             result[i.first + j.first] += i.second * j.second;
         }
     }
+    long long size{};
+    for (auto & temp:result) {
+        if (temp.second == 0) {
+            continue;
+        }
+        size++;
+    }
 
-    cout << result.size();
+    cout << size;
     auto iter = result.rbegin();
     while (iter != result.rend()) {
+        if ((*iter).second == 0) {
+            iter++;
+            continue;
+        }
         cout << " " << (*iter).first << " " << setprecision(1) << fixed << (*iter).second;
         iter++;
     }

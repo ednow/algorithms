@@ -4,6 +4,34 @@
 
 
 ## 问题重述
+Given a pair of positive integers, for example, 6 and 110, can this equation 6 = 110 be true?  The answer is `yes`, if 6 is a decimal number and 110 is a binary number.Now for any pair of positive integers $N_1$ and $N_2$, your task is to find the radix of one number while that of the other is given.
+
+### Input Specification:
+Each input file contains one test case. Each case occupies a line which contains 4 positive integers:```N1 N2 tag radix```Here `N1` and `N2` each has no more than 10 digits.  A digit is less than its radix and is chosen from the set { 0-9, `a`-`z` } where 0-9 represent the decimal numbers 0-9, and `a`-`z` represent the decimal numbers 10-35.  The last number `radix` is the radix of `N1` if `tag` is 1, or of `N2` if `tag` is 2.
+
+### Output Specification:
+For each test case, print in one line the radix of the other number so that the equation `N1` = `N2` is true.  If the equation is impossible, print `Impossible`.  If the solution is not unique, output the smallest possible radix.
+
+### Sample Input 1:
+```
+6 110 1 10
+```
+
+### Sample Output 1:
+```
+2
+```
+
+### Sample Input 2:
+```
+1 ab 1 2
+```
+
+### Sample Output 2:
+```
+Impossible
+```
+
 
 ### 要点复述
 
@@ -20,22 +48,28 @@
 + tag直接对数ab交换即可
 
 ## python
+
 ### 第一次提交
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210830083550.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210830083550.png';" /></details>
 
+
 #### 无脑range会错的更多
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210830084024.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210830084024.png';" /></details>
+
 
 ### 第二次提交
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210830185743.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210830185743.png';" /></details>
 
+
 ### 第三次提交
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210830193319.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210830193319.png';" /></details>
+
 
 ### 第四次提交
 使用二分查找
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210830194416.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210830194416.png';" /></details>
+
 
 ### 语法技术

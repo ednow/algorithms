@@ -19,11 +19,11 @@
 测试点2是因为-1的锅
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210729235147.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210729235147.png';" /></details>
 
-#### 第三次提交
+### 第三次提交
 姓名有可能是000000001啥的，不能按int来读
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210729235921.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210729235921.png';" /></details>
 
-#### 第四次提交
+### 第四次提交
 > output must be sorted in nondecreasing order of their registration numbers.
 
 <details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20210730001203.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20210730001203.png';" /></details>

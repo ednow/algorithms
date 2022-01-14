@@ -167,7 +167,7 @@ MAIN(){
         for (int j = 0; j <= lines[i].size() - 2; ++j) {
             graph[lines[i][j]].push_back(lines[i][j + 1]);
             graph[lines[i][j + 1]].push_back(lines[i][j]);
-            // 给路径染色
+            // 给路径染色,从一个站点到另外一个站点只能是一种线号
             pathToLine[lines[i][j]][lines[i][j + 1]] = i;
             pathToLine[lines[i][j + 1]][lines[i][j]] = i;
         }

@@ -46,7 +46,7 @@ def get_paths(
         # # 弹出最顶的节点
         # if stack[-1] != indexOfProblemStation:
         #     stack.pop(-1)
-        return None
+        return None  # 递归返回
 
     for father in nodes[node]["fathers"]:
         get_paths(father, nodes, paths, stack, halfCapacity, indexOfProblemStation)

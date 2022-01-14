@@ -21,6 +21,7 @@
 
 因为需要升序排序，所以使用大根堆
 
+一份更有意思的实现：[参考文献](https://blog.csdn.net/sinat_29278271/article/details/47939833?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1.no_search_link&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1.no_search_link)
 
 ### 如何判断是什么排序的结果
 + 思路1：直接生成一遍中间结果,一一比较

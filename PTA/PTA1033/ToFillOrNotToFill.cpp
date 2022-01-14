@@ -88,7 +88,7 @@ MAIN(){
     // 现在走的距离
     int disByNow{};
     // 现在花的钱
-    double priceByNow{};  // 最后还要再除以12
+    double priceByNow{};  
     // 是否能走到终点站
     bool isFinish{true};
     while (stationByNow != stations.size() -1) {

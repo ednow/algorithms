@@ -1,7 +1,7 @@
 
 
 # SQL
-
+## 牛客sql题库
 + [入门](https://www.nowcoder.com/ta/sql-quick-study)
 + [进阶](https://www.nowcoder.com/ta/sql-advanced)
 + [面试题](https://www.nowcoder.com/ta/sql-factory-interview)
@@ -10,20 +10,64 @@
 + [网址1](https://www.guofei.site/pictures_for_blog/app/online_sql/online_sql.html)
 + [网址2](https://www.bejson.com/runcode/sql/)
 
+## 数据类型
+[参考文献](https://www.w3school.com.cn/sql/sql_datatypes.asp)
+
+
 ## 基本语法
 ### UNIQUE 和 DISTINCT的区别
 
-13 . 哪条 SQL 语句可返回唯一不同的值？
+### 13 . 哪条 SQL 语句可返回唯一不同的值？
 
     SELECT DIFFERENT
     SELECT DISTINCT
     SELECT UNIQUE
 
-17 . 通过 SQL，您如何向 "Persons" 表中的 "LastName" 列插入 "Wilson" ？
+unique和distinct都是去重的意思，但是他们所用的语句不同
+
+a、unique可以用在创建表时或修改表的结构时使用
+
+b、distinct用于对select语句使用
+
+### 17 . 通过 SQL，您如何向 "Persons" 表中的 "LastName" 列插入 "Wilson" ？
 
     INSERT INTO Persons (LastName) VALUES ('Wilson')
     INSERT ('Wilson') INTO Persons (LastName)
     INSERT INTO Persons ('Wilson') INTO LastName
+
+
+insert into的用法
+
+#### 最简单的搞法
+
+<details><summary>代码详情</summary>
+
+```sql
+create table test(
+  keyid int identity,
+  sort varchar(10),
+  qty int
+) 
+insert into test (qty2,sort2) values (1,'e') 
+
+```
+
+</details>
+
+
+#### 插入多个值，插入多条记录这个写法还是好些的
+`insert into test(qty,sort) values (1,'a') ,(2,'a'),(3,'b'),(8,'c'),(9,'c') `
+
+#### 3，赋值其他表中的值，注意类型和大小
+<details><summary>代码详情</summary>
+
+```sql
+insert into  test(qty,sort)  select  qty2,sort2 from test2  --不加条件是全部复制，
+语法：  insert into  表(字段,字段)  select  字段,字段 from 表 
+
+```
+
+</details>
 
 18 . 您如何把 "Persons" 表中 "LastName" 列的 "Gates" 改为 "Wilson" ？
 
@@ -31,6 +75,8 @@
     UPDATE Persons SET LastName='Wilson' WHERE LastName='Gates'
     UPDATE Persons SET LastName='Wilson' INTO LastName='Gates'
     MODIFY Persons SET LastName='Wilson' INTO LastName='Gates'
+
+`UPDATE Persons SET LastName='Wilson' WHERE LastName='Gates' `
 
 ### sql中update，alter，modify，delete，drop
 [update，alter，modify](https://zhidao.baidu.com/question/407180215.html)
@@ -43,6 +89,33 @@
 
 ### group by和group concat
 [参考文献](https://www.cnblogs.com/zhuiluoyu/p/6862673.html)
+
+[参考文献](https://baijiahao.baidu.com/s?id=1595349117525189591&wfr=spider&for=pc)
+
+### primary key与unique的区别
+
+> 简单的说，primary key = unique +  not null 
+
+[参考文献](https://blog.csdn.net/zm2714/article/details/8482625)
+
+### MYSQL中顿号的作用
+mysql关键字的转义，因为password是mysql的关键字，如果要作为字段的话，必须加上"顿号",例如：
+
+<details><summary>用来转义</summary>
+
+```sql
+insert into users(name,`password`,adds,sex,email,age,times) values('李','123','123','男','123','123','2010-10-10')
+```
+
+</details>
+
+[参考文献](https://chartio.com/learn/sql-tips/single-double-quote-and-backticks-in-mysql-queries/)
+
+### INT(10)和INT(11)的区别
+
+显示宽度不同
+
+[参考文献](https://blog.csdn.net/qq_44802992/article/details/113915517)
 
 ## 入门
 
@@ -3023,6 +3096,8 @@ WHERE MONTH(date)=8
 </details>
 
 ## 进阶
+### SQL1 插入记录（一）
+
 牛客后台会记录每个用户的试卷作答记录到exam_record表，现在有两个用户的作答记录详情如下：
 
 
@@ -3033,7 +3108,7 @@ WHERE MONTH(date)=8
 
 试卷作答记录表exam_record中，表已建好，其结构如下，请用一条语句将这两条记录插入表中。
 
-<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220114234348.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220114234348.png';" /></details>
+<details><summary>exam_record</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220114234348.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220114234348.png';" /></details>
 
 该题最后会通过执行SELECT uid, exam_id, start_time, submit_time, score FROM exam_record;来对比结果
 
@@ -3062,3 +3137,1227 @@ TRUNCATE exam_record;
 1002|9002|2021-09-04 07:01:02|None|None
 
 ```
+
++ [INSERT参考文献](https://www.w3school.com.cn/sql/sql_insert.asp)
++ 一条语句插入多条记录，用逗号隔开即可
+
+> INSERT INTO Persons VALUES ('Gates', 'Bill', 'Xuanwumen 10', 'Beijing')
+> INSERT INTO Persons (LastName, Address) VALUES ('Wilson', 'Champs-Elysees')
+
+<details><summary>我的答案</summary>
+
+```sql
+INSERT INTO exam_record (uid, exam_id, start_time, submit_time, score)
+VALUES 
+    (1001, 9001, '2021-09-01 22:11:12', '2021-09-01 23:01:12', 90),
+    (1002, 9002, '2021-09-04 07:01:02', NULL, NULL);
+
+-- 应该提供列名
+-- https://blog.csdn.net/hi__study/article/details/92669938
+-- INSERT INTO exam_record
+-- VALUES 
+--     (1001, 9001, '2021-09-01 22:11:12', '2021-09-01 23:01:12', 90),
+--     (1002, 9002, '2021-09-04 07:01:02', NULL, NULL);
+
+-- SQL_ERROR_INFO: "Column count doesn't match value count at row 1
+```
+
+</details>
+
+### SQL2 插入记录（二）
+
+现有一张试卷作答记录表exam_record，结构如下表，其中包含多年来的用户作答试卷记录，由于数据越来越多，维护难度越来越大，需要对数据表内容做精简，历史数据做备份。
+
+
+<details><summary>exam_record</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220114234348.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220114234348.png';" /></details>
+
+我们已经创建了一张新表exam_record_before_2021用来备份2021年之前的试题作答记录，结构和exam_record表一致，请将2021年之前的已完成了的试题作答纪录导入到该表。
+
+
+后台会通过执行"SELECT * FROM exam_record_before_2021;"语句来对比结果
+
+<details><summary>代码详情</summary>
+
+```sql
+drop table if EXISTS exam_record;
+CREATE TABLE IF NOT EXISTS exam_record (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+uid int NOT NULL COMMENT '用户ID',
+exam_id int NOT NULL COMMENT '试卷ID',
+start_time datetime NOT NULL COMMENT '开始时间',
+submit_time datetime COMMENT '提交时间',
+score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE TABLE IF NOT EXISTS exam_record_before_2021 (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+uid int NOT NULL COMMENT '用户ID',
+exam_id int NOT NULL COMMENT '试卷ID',
+start_time datetime NOT NULL COMMENT '开始时间',
+submit_time datetime COMMENT '提交时间',
+score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+TRUNCATE exam_record;
+TRUNCATE exam_record_before_2021;
+INSERT INTO exam_record(uid,exam_id,start_time,submit_time,score) VALUES
+(1001, 9001, '2020-01-01 09:00:01', null, null),
+(1001, 9002, '2020-01-02 09:01:01', '2020-01-02 09:21:01', 70),
+(1001, 9002, '2020-09-02 09:00:01', null, null),
+(1002, 9001, '2021-05-02 10:01:01', '2021-05-02 10:30:01', 81),
+(1002, 9002, '2021-09-02 12:01:01', null, null);
+
+-- 1|1001|9002|2020-01-02 09:01:01|2020-01-02 09:21:01|70
+
+
+```
+
+</details>
+
+
+
+<details><summary>我的答案</summary>
+
+```sql
+INSERT INTO exam_record_before_2021 (uid, exam_id, start_time, submit_time, score)
+SELECT uid, exam_id, start_time, submit_time, score FROM exam_record
+WHERE (YEAR(start_time) < 2021 OR YEAR(submit_time) < 2021) AND submit_time IS NOT NULL;
+```
+
+</details>
+
+
+### SQL3 插入记录（三）
+现在有一套ID为9003的高难度SQL试卷，时长为一个半小时，请你将 2021-01-01 00:00:00 作为发布时间插入到试题信息表examination_info（其表结构如下图），不管该ID试卷是否存在，都要插入成功，请尝试插入它。
+
+<details><summary>examination_info</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220117000532.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220117000532.png';" /></details>
+
+后台会通过执行 SELECT exam_id,tag,difficulty,duration,release_time FROM examination_info 语句来对比结果。
+
+<details><summary>我的答案</summary>
+
+```sql
+drop table if EXISTS examination_info;
+CREATE TABLE IF NOT EXISTS examination_info (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+exam_id int UNIQUE NOT NULL COMMENT '试卷ID',
+tag varchar(32) COMMENT '类别标签',
+difficulty varchar(8) COMMENT '难度',
+duration int NOT NULL COMMENT '时长(分钟数)',
+release_time datetime COMMENT '发布时间'
+)CHARACTER SET utf8 COLLATE utf8_bin;
+TRUNCATE examination_info;
+INSERT INTO examination_info(exam_id,tag,difficulty,duration,release_time) VALUES
+(9001, 'SQL', 'hard', 60, '2020-01-01 10:00:00'),
+(9002, '算法', 'easy', 60, '2020-01-01 10:00:00'),
+(9003, 'SQL', 'medium', 60, '2020-01-02 10:00:00'),
+(9004, '算法', 'hard', 80, '2020-01-01 10:00:00');
+
+```
+
+</details>
+
++ 插入当没有的时候更新：[参考文献](https://stackoverflow.com/questions/6030071/mysql-table-insert-if-not-exist-otherwise-update)：`INSERT ... ON DUPLICATE KEY UPDATE`
++ REPLACE INTO [参考文献](https://chartio.com/resources/tutorials/how-to-insert-if-row-does-not-exist-upsert-in-mysql/#using-replace)
+
+
+
+<details><summary>我的答案</summary>
+REPLACE INTO examination_info (exam_id, tag, difficulty, duration, release_time)
+VALUES (9003, 'SQL', 'hard', 90, '2021-01-01 00:00:00');
+
+
+```sql
+-- ALTER TABLE examination_info ADD UNIQUE (exam_id)
+-- UNION ALL
+-- INSERT INTO examination_info (exam_id, tag, difficulty, duration, release_time)
+-- VALUES (9003, 'SQL', 'hard', 90, '2021-01-01 00:00:00')
+-- ON DUPLICATE KEY UPDATE
+--     exam_id=VALUES(exam_id)
+
+-- SQL_ERROR_INFO: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNION ALL\nINSERT INTO examination_info (exam_id, tag, difficulty, duration, rele' at line 2"
+
+
+-- INSERT INTO examination_info (exam_id, tag, difficulty, duration, release_time)
+-- VALUES (9003, 'SQL', 'hard', 90, '2021-01-01 00:00:00')
+-- ON DUPLICATE KEY UPDATE
+--     tag='SQL',
+--     difficulty='hard',
+--     duration=90,
+--     release_time='2021-01-01 00:00:00';
+
+-- 期望输出
+-- 9001|SQL|hard|60|2020-01-01 10:00:00
+-- 9002|算法|easy|60|2020-01-01 10:00:00
+-- 9004|算法|hard|80|2020-01-01 10:00:00
+-- 9003|SQL|hard|90|2021-01-01 00:00:00
+
+-- 我的输出
+-- 9001|SQL|hard|60|2020-01-01 10:00:00
+-- 9002|算法|easy|60|2020-01-01 10:00:00
+-- 9003|SQL|hard|90|2021-01-01 00:00:00
+-- 9004|算法|hard|80|2020-01-01 10:00:00
+
+```
+
+</details>
+
+### SQL4 更新记录（一）
+现有一张试卷信息表examination_info，表结构如下图所示：
+
+<details><summary>exam_record</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220117152555.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220117152555.png';" /></details>
+
+请把examination_info表中tag为PYTHON的tag字段全部修改为Python。
+
+
+
+后台会通过执行'SELECT exam_id,tag,difficulty,duration,release_time FROM examination_info;'语句来对比结果。
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if EXISTS examination_info;
+CREATE TABLE IF NOT EXISTS examination_info (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+exam_id int UNIQUE NOT NULL COMMENT '试卷ID',
+tag varchar(32) COMMENT '类别标签',
+difficulty varchar(8) COMMENT '难度',
+duration int NOT NULL COMMENT '时长',
+release_time datetime COMMENT '发布时间'
+)CHARACTER SET utf8 COLLATE utf8_bin;
+TRUNCATE examination_info;
+INSERT INTO examination_info(exam_id,tag,difficulty,duration,release_time) VALUES
+(9001, 'SQL', 'hard', 60, '2020-01-01 10:00:00'),
+(9002, 'python', 'easy', 60, '2020-01-01 10:00:00'),
+(9003, 'Python', 'medium', 80, '2020-01-01 10:00:00'),
+(9004, 'PYTHON', 'hard', 80, '2020-01-01 10:00:00');
+
+```
+
+</details>
+
+<details><summary>我的答案</summary>
+
+```sql
+UPDATE examination_info SET tag='Python' WHERE tag='PYTHON'
+
+-- UPDATE examination_info SET tag=python WHERE tag=PYTHON
+-- SQL_ERROR_INFO: "Unknown column 'PYTHON' in 'where clause'"
+
+
+```
+
+</details>
+
+### SQL5 更新记录（二）
+
+现有一张试卷作答记录表exam_record，其中包含多年来的用户作答试卷记录，结构如下表：
+作答记录表exam_record：
+
+<details><summary>exam_record</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220117152555.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220117152555.png';" /></details>
+
+
+请把exam_record表中2021年9月1日之前开始作答的未完成记录全部改为被动完成，即：将完成时间改为'2099-01-01 00:00:00'，分数改为0。
+
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if EXISTS exam_record;
+CREATE TABLE IF NOT EXISTS exam_record (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+uid int NOT NULL COMMENT '用户ID',
+exam_id int NOT NULL COMMENT '试卷ID',
+start_time datetime NOT NULL COMMENT '开始时间',
+submit_time datetime COMMENT '提交时间',
+score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+INSERT INTO exam_record(uid,exam_id,start_time,submit_time,score) VALUES
+(1001, 9001, '2020-01-02 09:01:01', '2020-01-02 09:21:01', 80),
+(1001, 9002, '2021-09-01 09:01:01', '2021-09-01 09:21:01', 90),
+(1002, 9001, '2021-08-02 19:01:01', null, null),
+(1002, 9002, '2021-09-05 19:01:01', '2021-09-05 19:40:01', 89),
+(1003, 9001, '2021-09-02 12:01:01', null, null),
+(1003, 9002, '2021-09-01 12:01:01', null, null);
+
+```
+
+</details>
+
+日期比较：[参考文献](https://blog.csdn.net/weixin_30722589/article/details/101080893)
+
+<details><summary>我的答案</summary>
+
+```sql
+UPDATE exam_record SET submit_time='2099-01-01 00:00:00', score=0
+WHERE submit_time IS NULL AND start_time < '2021-09-01 00:00:00';
+```
+
+</details>
+
+### SQL6 删除记录（一）
+现有一张试卷作答记录表exam_record，其中包含多年来的用户作答试卷记录，结构如下表：
+<details><summary>exam_record</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220117152555.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220117152555.png';" /></details>
+
+<details><summary>输入数据
+</summary>
+
+```sql
+drop table if EXISTS exam_record;
+CREATE TABLE IF NOT EXISTS exam_record (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+uid int NOT NULL COMMENT '用户ID',
+exam_id int NOT NULL COMMENT '试卷ID',
+start_time datetime NOT NULL COMMENT '开始时间',
+submit_time datetime COMMENT '提交时间',
+score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+TRUNCATE exam_record;
+INSERT INTO exam_record(uid, exam_id, start_time, submit_time, score) VALUES
+(1001, 9001, '2020-01-01 22:11:12', '2020-01-01 23:16:12', 50),
+(1001, 9002, '2020-01-02 09:01:01', '2020-01-02 09:06:00', 58),
+(1002, 9001, '2021-05-02 10:01:01', '2021-05-02 10:05:58', 60),
+(1002, 9002, '2021-06-02 19:01:01', '2021-06-02 19:05:01', 54),
+(1003, 9001, '2021-09-05 19:01:01', '2021-09-05 19:40:01', 49),
+(1003, 9001, '2021-09-05 19:01:01', '2021-09-05 19:15:01', 70),
+(1003, 9001, '2021-09-06 19:01:01', '2021-09-06 19:05:01', 80),
+(1003, 9002, '2021-09-09 07:01:02', null, null);
+
+
+```
+
+</details>
+
+请删除exam_record表中作答时间小于5分钟整且分数不及格（及格线为60分）的记录；
+
+后台会通过 SELECT * FROM exam_record; 语句来对比结果。
+
++ [DELETE语句](https://www.w3school.com.cn/sql/sql_delete.asp)：`DELETE FROM 表名称 WHERE 列名称 = 值`
++ 计算minute时间差：[参考文献](https://stackoverflow.com/questions/7636599/calculating-time-difference-between-2-dates-in-minutes)，`A-B,TIMESTAMPDIFF(MINUTE, B, A)`
+
+
+<details><summary>我的答案</summary>
+
+```sql
+DELETE FROM exam_record 
+WHERE 
+    TIMESTAMPDIFF(MINUTE, start_time, submit_time) < 5 AND score < 60;
+
+-- 减数和被减数传参的顺序反了
+-- DELETE FROM exam_record 
+-- WHERE 
+--     TIMESTAMPDIFF(MINUTE, submit_time, start_time) < 5 AND score < 60;
+
+-- 目标输出
+-- 1|1001|9001|2020-01-01 22:11:12|2020-01-01 23:16:12|50
+-- 3|1002|9001|2021-05-02 10:01:01|2021-05-02 10:05:58|60
+-- 5|1003|9001|2021-09-05 19:01:01|2021-09-05 19:40:01|49
+-- 6|1003|9001|2021-09-05 19:01:01|2021-09-05 19:15:01|70
+-- 7|1003|9001|2021-09-06 19:01:01|2021-09-06 19:05:01|80
+-- 8|1003|9002|2021-09-09 07:01:02|None|None
+
+-- 我的输出
+-- 3|1002|9001|2021-05-02 10:01:01|2021-05-02 10:05:58|60
+-- 6|1003|9001|2021-09-05 19:01:01|2021-09-05 19:15:01|70
+-- 7|1003|9001|2021-09-06 19:01:01|2021-09-06 19:05:01|80
+-- 8|1003|9002|2021-09-09 07:01:02|None|None
+
+
+    
+    
+```
+
+</details>
+
+### SQL7 删除记录（二）
+现有一张试卷作答记录表exam_record，其中包含多年来的用户作答试卷记录，结构如下表：
+
+作答记录表exam_record：
+
+start_time是试卷开始时间
+
+submit_time 是交卷时间，即结束时间，如果未完成的话，则为空
+
+
+<details><summary>exam_record</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220117152555.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220117152555.png';" /></details>
+
+<details><summary>输入数据
+</summary>
+
+```sql
+drop table if EXISTS exam_record;
+CREATE TABLE IF NOT EXISTS exam_record (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+uid int NOT NULL COMMENT '用户ID',
+exam_id int NOT NULL COMMENT '试卷ID',
+start_time datetime NOT NULL COMMENT '开始时间',
+submit_time datetime COMMENT '提交时间',
+score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+TRUNCATE exam_record;
+INSERT INTO exam_record(uid, exam_id, start_time, submit_time, score) VALUES
+(1001, 9001, '2020-01-01 22:11:12', '2020-01-01 23:16:12', 50),
+(1001, 9002, '2020-01-02 09:01:01', '2020-01-02 09:06:00', 58),
+(1001, 9002, '2020-01-02 09:01:01', '2020-01-02 09:05:01', 58),
+(1002, 9001, '2021-05-02 10:01:01', '2021-05-02 10:06:58', 60),
+(1002, 9002, '2021-06-02 19:01:01', null, null),
+(1003, 9001, '2021-09-05 19:01:01', null, null),
+(1003, 9001, '2021-09-05 19:01:01', null, null),
+(1003, 9002, '2021-09-09 07:01:02', null, null);
+
+
+
+```
+
+</details>
+
+请删除exam_record表中未完成作答或作答时间小于5分钟整的记录中，开始作答时间最早的3条记录。
+
+后台会通过 SELECT * FROM exam_record 语句来对比结果。
+
+<details><summary>我的答案</summary>
+
+```sql
+DELETE FROM exam_record
+WHERE 
+    submit_time IS NULL 
+    OR TIMESTAMPDIFF(MINUTE, start_time, submit_time) < 5
+ORDER BY start_time
+LIMIT 3;
+```
+
+</details>
+
+### SQL8 删除记录（三）
+现有一张试卷作答记录表exam_record，其中包含多年来的用户作答试卷记录，结构如下表：
+
+<details><summary>exam_record</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220117152555.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220117152555.png';" /></details>
+
+请删除exam_record表中所有记录，并重置自增主键。
+
+后台会通过SELECT table_rows, auto_increment FROM information_schema.tables WHERE table_name=\'exam_record\'   语句来对比输出结果
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if EXISTS exam_record;
+CREATE TABLE IF NOT EXISTS exam_record (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+uid int NOT NULL COMMENT '用户ID',
+exam_id int NOT NULL COMMENT '试卷ID',
+start_time datetime NOT NULL COMMENT '开始时间',
+submit_time datetime COMMENT '提交时间',
+score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+TRUNCATE exam_record;
+INSERT INTO exam_record(uid, exam_id, start_time, submit_time, score) VALUES
+(1001, 9001, '2020-01-01 22:11:12', '2020-01-01 23:16:12', 50),
+(1001, 9002, '2020-01-02 09:01:01', '2020-01-02 09:06:00', 58);
+
+```
+
+</details>
+
+
++ [mysql里面alter的用法](https://www.cnblogs.com/Daniel-c-h-e-n/p/10819075.html) 
++ [删除表并且重置自增主键](https://stackoverflow.com/questions/8923114/how-to-reset-auto-increment-in-mysql#:~:text=ALTER%20TABLE%20news_feed%20DROP%20id)
+
+网友的答案：`truncate table exam_record`
+
+DROP TABLE, TRUNCATE TABLE, DELETE TABLE三种删除语句的区别：DROP是把表的Scheme都删了，而TRUNCATE和DELETE是只删除表的行，但表是如何定义的没有删除（即不删除Scheme）。
+
+1.DROP TABLE：清除数据并且销毁表，是一种数据库定义语言(DDL Data Definition Language), 执行后不能撤销，被删除表格的关系，索引，权限等等都会被永久删除。
+
+2.TRUNCATE TABLE：只清除数据，保留表结构，列，权限，索引，视图，关系等等，相当于清零数据，是一种数据库定义语言(DDL Data Definition Language)，执行后不能撤销。
+
+3.DELETE TABLE：删除（符合某些条件的）数据，是一种数据操纵语言(DML Data Manipulation Language)，执行后可以撤销。DELETE比较安全指的是在事务中可以回滚（ROLLBACK）。
+
+运行速度一般DROP最快，DELETE最慢，但是DELETE最安全。
+
+
+
+
+<details><summary>我的答案</summary>
+
+```sql
+
+ALTER TABLE exam_record DROP id;
+
+-- DELETE FROM exam_record;
+-- ALTER TABLE exam_record AUTO_INCREMENT = NULL;
+
+-- SQL_ERROR_INFO: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NULL' at line 1"
+```
+
+</details>
+
+
+### SQL9 创建一张新表
+原来的用户信息表：
+
+
+<details><summary>user_info_vip</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220119220246.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220119220246.png';" /></details>
+
+作为数据分析师，请创建一张优质用户信息表user_info_vip，表结构和用户信息表一致。
+
+
+备注：
+
+1.后台会通过 SHOW FULL FIELDS FROM user_info_vip 语句，来对比输出结果
+
+2.如果该表已经被其他分析师创建过了，正常返回即可
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if EXISTS user_info_vip;
+```
+
+</details>
+
+
++ MySQL中的[约束](https://blog.csdn.net/w_linux/article/details/79655073)
++ [菜鸟教程](https://www.runoob.com/sql/sql-constraints.html)：mysql中的约束
++ mysql[创建表](https://www.runoob.com/mysql/mysql-create-tables.html)
+
+
+<details><summary>我的答案</summary>
+
+```sql
+CREATE TABLE IF NOT EXISTS user_info_vip (
+    id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+    uid INT(11) NOT NULL UNIQUE COMMENT '用户ID',
+    nick_name VARCHAR(64) COMMENT '昵称',
+    achievement INT(11) DEFAULT 0 COMMENT '成就值',
+    `level` INT(11) COMMENT '用户等级',
+    job VARCHAR(32) COMMENT '职业方向',
+    register_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间'
+) 
+
+-- 不用顿号包裹也是可以的
+-- CREATE TABLE IF NOT EXISTS user_info_vip (
+--     id INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+--     uid INT(11) NOT NULL UNIQUE COMMENT '用户ID',
+--     nick_name VARCHAR(64) COMMENT '昵称',
+--     achievement INT(11) DEFAULT 0 COMMENT '成就值',
+--     level INT(11) COMMENT '用户等级',
+--     job VARCHAR(32) COMMENT '职业方向',
+--     register_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '注册时间'
+-- ) 
+```
+
+</details>
+
+### SQL10 修改表
+现有一张用户信息表user_info，其中包含多年来在平台注册过的用户信息。
+
+
+<details><summary>user_info_vip</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220119220246.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220119220246.png';" /></details>
+
+请在用户信息表，字段level的后面增加一列最多可保存15个汉字的字段school；并将表中job列名改为profession，同时varchar字段长度变为10；achievement的默认值设置为0。
+
+备注：建表时限制的字符集为utf8，MySQL版本为8.*
+
+后台会通过SHOW FULL FIELDS FROM user_info 来对比输出结果。
+
++ 修改[多个字段](https://www.jianshu.com/p/dd7585398137)
++ 在指定列后增加一列：[参考文献](https://www.cnblogs.com/ichimoku/p/7880959.html)
+
+`alter table 表名 add column 列名 varchar(20) not null after user1;`
+
++ [添加约束](https://jingyan.baidu.com/article/59a015e3f2c5d5b795886562.html)
+
+`ALTER TABLE <数据表名> CHANGE COLUMN <字段名> <数据类型> DEFAULT <默认值>;`
+
+<details><summary>我的答案</summary>
+
+```sql
+ALTER TABLE user_info 
+    CHANGE job profession VARCHAR(10),
+    ADD COLUMN school VARCHAR(15) AFTER `level`,
+    CHANGE COLUMN achievement achievement INT(11) DEFAULT 0;
+```
+
+</details>
+
+### SQL11 删除表
+现有一张试卷作答记录表exam_record，其中包含多年来的用户作答试卷记录。一般每年都会为exam_record表建立一张备份表exam_record_{YEAR}，{YEAR}为对应年份。
+
+现在随着数据越来越多，存储告急，请你把很久前的（2011到2014年）备份表都删掉（如果存在的话）。
+
+
+备注:后台会通过SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_NAME LIKE \'exam\_record\_201_\'  来对比输出结果。
+
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if EXISTS exam_record;
+CREATE TABLE IF NOT EXISTS exam_record (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+uid int NOT NULL COMMENT '用户ID',
+exam_id int NOT NULL COMMENT '试卷ID',
+start_time datetime NOT NULL COMMENT '开始时间',
+submit_time datetime COMMENT '提交时间',
+score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE TABLE IF NOT EXISTS exam_record_2010 (LIKE exam_record); 
+CREATE TABLE IF NOT EXISTS exam_record_2012 (LIKE exam_record); 
+CREATE TABLE IF NOT EXISTS exam_record_2013 (LIKE exam_record); 
+CREATE TABLE IF NOT EXISTS exam_record_2014 (LIKE exam_record); 
+CREATE TABLE IF NOT EXISTS exam_record_2015 (LIKE exam_record); 
+
+```
+
+</details>
+
++ [删除不在列表中的list](https://stackoverflow.com/questions/5875293/drop-tables-that-are-not-in-a-list)
++ [INFORMATION_SCHEMA](https://blog.csdn.net/kikajack/article/details/80065753)数据库
++ 字符串使用单引号和双引号拼接都可以：[参考文献](https://blog.csdn.net/qq_42889294/article/details/105353639)
+
+<details><summary>删除不在列表中的list的代码</summary>
+
+```sql
+SELECT CONCAT("DROP TABLE ", table_name, ";") 
+FROM information_schema.TABLES 
+WHERE table_schema = <whatever your db name is> 
+AND table_name NOT IN (<your list>);
+```
+
+</details>
+
+<details><summary>我的答案</summary>
+
+```sql
+DROP TABLE IF EXISTS exam_record_2011, exam_record_2012, exam_record_2013, exam_record_2014;
+
+
+-- 一张表都没有删除
+-- SELECT CONCAT('DROP TABLE ', TABLE_NAME, ';')
+-- FROM INFORMATION_SCHEMA.TABLES
+-- WHERE TABLE_NAME IN 
+--     (
+--         'exam_record_2011', 
+--         'exam_record_2012',
+--         'exam_record_2013',
+--         'exam_record_2014'
+--     )
+```
+
+</details>
+
+### SQL12 创建索引
+现有一张试卷信息表examination_info，其中包含各种类型试卷的信息。为了对表更方便快捷地查询，需要在examination_info表创建以下索引，规则如下：
+
+在duration列创建普通索引idx_duration、在exam_id列创建唯一性索引uniq_idx_exam_id、在tag列创建全文索引full_idx_tag。
+
+根据题意，将返回如下结果：
+
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120161920.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120161920.png';" /></details>
+
+备注：后台会通过 SHOW INDEX FROM examination_info 语句来对比输出结果
+
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if exists examination_info;
+CREATE TABLE IF NOT EXISTS examination_info (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+exam_id int UNIQUE NOT NULL COMMENT '试卷ID',
+tag varchar(32) COMMENT '类别标签',
+difficulty varchar(8) COMMENT '难度',
+duration int NOT NULL COMMENT '时长',
+release_time datetime COMMENT '发布时间'
+)CHARACTER SET utf8 COLLATE utf8_bin;
+
+```
+
+</details>
+
+
++ 为字段[添加索引](https://blog.csdn.net/qq_41904362/article/details/108198961)
+
+<details><summary>代码详情</summary>
+
+```sql
+ALTER TABLE `table_name` ADD INDEX index_name ( `column` )
+```
+
+</details>
+
+<details><summary>我的答案</summary>
+
+```sql
+ALTER TABLE examination_info 
+    ADD INDEX idx_duration(`duration`),
+    ADD UNIQUE uniq_idx_exam_id(`exam_id`),
+    ADD FULLTEXT full_idx_tag(`tag`);
+    
+```
+
+</details>
+
+### SQL13 删除索引
+请删除examination_info表上的唯一索引uniq_idx_exam_id和全文索引full_idx_tag。
+
+后台会通过 SHOW INDEX FROM examination_info 来对比输出结果。
+
+
++ 删除索引：` DROP INDEX <索引名> ON <表名>`，[参考文献](http://c.biancheng.net/view/2607.html)，
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if exists examination_info;
+CREATE TABLE IF NOT EXISTS examination_info (
+id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+exam_id int COMMENT '试卷ID',
+tag varchar(32) COMMENT '类别标签',
+difficulty varchar(8) COMMENT '难度',
+duration int NOT NULL COMMENT '时长(分钟数)',
+release_time datetime COMMENT '发布时间'
+)CHARACTER SET utf8 COLLATE utf8_bin;
+CREATE INDEX idx_duration ON examination_info(duration);
+CREATE UNIQUE INDEX uniq_idx_exam_id ON examination_info(exam_id);
+ALTER TABLE examination_info ADD FULLTEXT full_idx_tag(tag);
+
+```
+
+</details>
+
+<details><summary>我的答案</summary>
+
+```sql
+ALTER TABLE examination_info 
+DROP INDEX uniq_idx_exam_id, 
+DROP INDEX full_idx_tag;
+```
+
+</details>
+
+### SQL14 SQL类别高难度试卷得分的截断平均值
+牛客的运营同学想要查看大家在SQL类别中高难度试卷的得分情况。
+
+
+请你帮她从exam_record数据表中计算所有用户完成SQL类别高难度试卷得分的截断平均值（去掉一个最大值和一个最小值后的平均值）。
+示例数据：examination_info（exam_id试卷ID, tag试卷类别, difficulty试卷难度, duration考试时长, release_time发布时间）
+
+<details><summary>exam_record数据表</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120163118.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120163118.png';" /></details>
+
+示例数据：exam_record（uid用户ID, exam_id试卷ID, start_time开始作答时间, submit_time交卷时间, score得分）
+
+<details><summary>exam_record</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120163132.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120163132.png';" /></details>
+
+
+根据输入你的查询结果如下：
+
+
+<details><summary>查询结果</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120163148.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120163148.png';" /></details>
+
+从examination_info表可知，试卷9001为高难度SQL试卷，该试卷被作答的得分有[80,81,84,90,50]，去除最高分和最低分后为[80,81,84]，平均分为81.6666667，保留一位小数后为81.7
+
+**输入描述：**
+
+
+输入数据中至少有3个有效分数
+
+<details><summary>输入数据</summary>
+
+```sql
+
+drop table if exists examination_info;
+CREATE TABLE  examination_info (
+    id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+    exam_id int UNIQUE NOT NULL COMMENT '试卷ID',
+    tag varchar(32) COMMENT '类别标签',
+    difficulty varchar(8) COMMENT '难度',
+    duration int NOT NULL COMMENT '时长',
+    release_time datetime COMMENT '发布时间'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+drop table if exists exam_record;
+CREATE TABLE exam_record (
+    id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+    uid int NOT NULL COMMENT '用户ID',
+    exam_id int NOT NULL COMMENT '试卷ID',
+    start_time datetime NOT NULL COMMENT '开始时间',
+    submit_time datetime COMMENT '提交时间',
+    score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+INSERT INTO examination_info(exam_id,tag,difficulty,duration,release_time) VALUES
+  (9001, 'SQL', 'hard', 60, '2020-01-01 10:00:00'),
+  (9002, '算法', 'medium', 80, '2020-08-02 10:00:00');
+
+INSERT INTO exam_record(uid,exam_id,start_time,submit_time,score) VALUES
+(1001, 9001, '2020-01-02 09:01:01', '2020-01-02 09:21:01', 80),
+(1001, 9001, '2021-05-02 10:01:01', '2021-05-02 10:30:01', 81),
+(1001, 9001, '2021-06-02 19:01:01', '2021-06-02 19:31:01', 84),
+(1001, 9002, '2021-09-05 19:01:01', '2021-09-05 19:40:01', 89),
+(1001, 9001, '2021-09-02 12:01:01', null, null),
+(1001, 9002, '2021-09-01 12:01:01', null, null),
+(1002, 9002, '2021-02-02 19:01:01', '2021-02-02 19:30:01', 87),
+(1002, 9001, '2021-05-05 18:01:01', '2021-05-05 18:59:02', 90),
+(1003, 9001, '2021-02-06 12:01:01', null, null),
+(1003, 9001, '2021-09-07 10:01:01', '2021-09-07 10:31:01', 50);
+
+-- 输出
+-- SQL|hard|81.7
+```
+
+</details>
+
++ mysql中的[不等于](https://blog.csdn.net/qq_41946557/article/details/103466057)：在<>和！=是等价的。在某字段不等于某值（非空的值）时，输出的结果此字段为空不输出。is 和 is not 用于和 null 结合，我称它为不是，不是空
++ MYSQL中保留小数`ROUND(33.33,1)`
+
+<details><summary>代码详情</summary>
+
+```sql
+SELECT tag, difficulty,ROUND(AVG(a.score), 1) AS clip_avg_score
+FROM
+    (
+        SELECT 
+            tag, 
+            difficulty, 
+            score
+        FROM examination_info
+        JOIN exam_record
+        ON examination_info.exam_id = exam_record.exam_id
+        WHERE score IS NOT NULL 
+            AND difficulty='hard' 
+            AND tag='SQL' 
+    )a,
+    (
+        SELECT
+            MAX(score) AS max_score, 
+            MIN(score) AS min_score
+        FROM examination_info
+        JOIN exam_record
+        ON examination_info.exam_id = exam_record.exam_id
+        WHERE score IS NOT NULL 
+            AND difficulty='hard' 
+            AND tag='SQL' 
+    )b
+WHERE score != max_score AND score != min_score;
+
+-- （总-大-小）/（数-2）
+-- SELECT ei.tag,
+--        ei.difficulty,
+--        ROUND((SUM(er.score)-MIN(er.score)-MAX(er.score)) / (COUNT(er.score)-2),1) AS clip_avg_score
+-- FROM examination_info ei,exam_record er
+-- WHERE ei.exam_id = er.exam_id
+--   AND ei.tag = "SQL"
+--   AND ei.difficulty = "hard"; 
+/** 
+MYSQL 的 ROUND()函数
+ROUND(X),返回参数 X 最近似的整数
+ROUND(X,D),返回 X ,其值保留到小数点后 D 位,第 D 位的保留方式为四舍五入
+**/
+
+-- SELECT tag, difficulty, AVG(score) AS clip_avg_score
+-- FROM 
+-- (
+--     SELECT 
+--         tag, 
+--         difficulty, 
+--         score, 
+--         MAX(score) AS max_score, 
+--         MIN(score) AS min_score
+--     FROM examination_info
+--     JOIN exam_record
+--     ON examination_info.exam_id = exam_record.exam_id
+--     WHERE score IS NOT NULL 
+--         AND difficulty='hard' 
+--         AND tag='SQL' 
+-- )a
+-- WHERE score NOT IN (min_score, max_score);
+
+-- SQL|hard|80.0000
+```
+
+</details>
+
+### SQL15 统计作答次数
+有一个试卷作答记录表exam_record，请从中统计出总作答次数total_pv、试卷已完成作答数complete_pv、已完成的试卷数complete_exam_cnt。
+
+示例数据 exam_record表（uid用户ID, exam_id试卷ID, start_time开始作答时间, submit_time交卷时间, score得分）：
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120170436.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120170436.png';" /></details>
+
+示例输出：
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120170449.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120170449.png';" /></details>
+
+解释：表示截止当前，有11次试卷作答记录，已完成的作答次数为7次（中途退出的为未完成状态，其交卷时间和份数为NULL），已完成的试卷有9001和9002两份。
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if exists exam_record;
+CREATE TABLE exam_record (
+    id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+    uid int NOT NULL COMMENT '用户ID',
+    exam_id int NOT NULL COMMENT '试卷ID',
+    start_time datetime NOT NULL COMMENT '开始时间',
+    submit_time datetime COMMENT '提交时间',
+    score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+INSERT INTO exam_record(uid,exam_id,start_time,submit_time,score) VALUES
+(1001, 9001, '2020-01-02 09:01:01', '2020-01-02 09:21:01', 80),
+(1001, 9001, '2021-05-02 10:01:01', '2021-05-02 10:30:01', 81),
+(1001, 9001, '2021-06-02 19:01:01', '2021-06-02 19:31:01', 84),
+(1001, 9002, '2021-09-05 19:01:01', '2021-09-05 19:40:01', 89),
+(1001, 9001, '2021-09-02 12:01:01', null, null),
+(1001, 9002, '2021-09-01 12:01:01', null, null),
+(1002, 9002, '2021-02-02 19:01:01', '2021-02-02 19:30:01', 87),
+(1002, 9001, '2021-05-05 18:01:01', '2021-05-05 18:59:02', 90),
+(1003, 9001, '2021-02-06 12:01:01', null, null),
+(1003, 9001, '2021-09-07 10:01:01', '2021-09-07 10:31:01', 89),
+(1004, 9001, '2021-09-06 12:01:01', null, null);
+```
+
+</details>
+
+
+
+<details><summary>我的答案</summary>
+
+```sql
+SELECT 
+    COUNT(exam_id) AS total_pv, 
+    SUM(IF(submit_time IS NULL, 0, 1)) AS complete_pv, 
+    MAX(complete_exam_cnt)
+FROM 
+    exam_record,
+    (
+        SELECT COUNT(DISTINCT exam_id) AS complete_exam_cnt
+        FROM exam_record
+        WHERE submit_time IS NOT NULL
+    )a
+    ;
+
+
+-- https://blog.csdn.net/smallnine9/article/details/87857852
+-- complete_exam_cnt加上聚合函数就好了
+-- SELECT 
+--     COUNT(exam_id) AS total_pv, 
+--     SUM(IF(submit_time IS NULL, 0, 1)) AS complete_pv, 
+--     complete_exam_cnt
+-- FROM 
+--     exam_record,
+--     (
+--         SELECT COUNT(DISTINCT exam_id) AS complete_exam_cnt
+--         FROM exam_record
+--         WHERE submit_time IS NOT NULL
+--     )a
+--     ;
+-- SQL_ERROR_INFO: "In aggregated query without GROUP BY, expression #3 of SELECT list contains nonaggregated column 'a.complete_exam_cnt'; this is incompatible with sql_mode=only_full_group_by"
+
+-- 法一：
+-- SELECT
+--     COUNT(start_time) AS total_pv,
+--     COUNT(submit_time) AS complete_pv,
+--     COUNT(DISTINCT exam_id AND score IS NOT NULL) AS complete_exam_cnt
+-- FROM exam_record
+-- 法二：
+-- SELECT
+--     COUNT(start_time) AS total_pv,
+--     COUNT(submit_time) AS complete_pv,
+--     COUNT(DISTINCT IF(score IS NOT NULL,exam_id,NULL)) AS complete_exam_cnt
+--     FROM exam_record
+
+```
+
+</details>
+
+
+### SQL16 得分不小于平均分的最低分
+
+
+请从试卷作答记录表中找到SQL试卷得分不小于该类试卷平均得分的用户最低得分。
+
+示例数据 exam_record表（uid用户ID, exam_id试卷ID, start_time开始作答时间, submit_time交卷时间, score得分）：
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120204256.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120204256.png';" /></details>
+
+examination_info表（exam_id试卷ID, tag试卷类别, difficulty试卷难度, duration考试时长, release_time发布时间）
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120204306.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120204306.png';" /></details>
+
+示例输出数据：
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120204316.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120204316.png';" /></details>
+
+解释：试卷9001和9002为SQL类别，作答这两份试卷的得分有[80,89,87,90]，平均分为86.5，不小于平均分的最小分数为87
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if exists examination_info;
+CREATE TABLE  examination_info (
+    id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+    exam_id int UNIQUE NOT NULL COMMENT '试卷ID',
+    tag varchar(32) COMMENT '类别标签',
+    difficulty varchar(8) COMMENT '难度',
+    duration int NOT NULL COMMENT '时长',
+    release_time datetime COMMENT '发布时间'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+drop table if exists exam_record;
+CREATE TABLE  exam_record (
+    id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+    uid int NOT NULL COMMENT '用户ID',
+    exam_id int NOT NULL COMMENT '试卷ID',
+    start_time datetime NOT NULL COMMENT '开始时间',
+    submit_time datetime COMMENT '提交时间',
+    score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+INSERT INTO examination_info(exam_id,tag,difficulty,duration,release_time) VALUES
+  (9001, 'SQL', 'hard', 60, '2020-01-01 10:00:00'),
+  (9002, 'SQL', 'easy', 60, '2020-02-01 10:00:00'),
+  (9003, '算法', 'medium', 80, '2020-08-02 10:00:00');
+
+INSERT INTO exam_record(uid,exam_id,start_time,submit_time,score) VALUES
+(1001, 9001, '2020-01-02 09:01:01', '2020-01-02 09:21:01', 80),
+(1002, 9001, '2021-09-05 19:01:01', '2021-09-05 19:40:01', 89),
+(1002, 9002, '2021-09-02 12:01:01', null, null),
+(1002, 9003, '2021-09-01 12:01:01', null, null),
+(1002, 9001, '2021-02-02 19:01:01', '2021-02-02 19:30:01', 87),
+(1002, 9002, '2021-05-05 18:01:01', '2021-05-05 18:59:02', 90),
+(1003, 9002, '2021-02-06 12:01:01', null, null),
+(1003, 9003, '2021-09-07 10:01:01', '2021-09-07 10:31:01', 86),
+(1004, 9003, '2021-09-06 12:01:01', null, null);
+
+-- 输出
+-- 87
+```
+
+</details>
+
+
+<details><summary>我的答案</summary>
+
+```sql
+SELECT MIN(score) AS min_score_over_avg
+FROM
+(
+    SELECT score
+    FROM exam_record
+    JOIN examination_info
+    ON exam_record.exam_id = examination_info.exam_id
+    WHERE tag='SQL' AND score IS NOT NULL
+)a, 
+(
+    SELECT AVG(score) AS avg_score
+    FROM exam_record
+    JOIN examination_info
+    ON exam_record.exam_id = examination_info.exam_id
+    WHERE tag='SQL' AND score IS NOT NULL
+)b
+WHERE score >= avg_score;
+```
+
+</details>
+
+### SQL17 平均活跃天数和月活人数
+用户在牛客试卷作答区作答记录存储在表exam_record中，内容如下：
+
+exam_record表（uid用户ID, exam_id试卷ID, start_time开始作答时间, submit_time交卷时间, score得分）
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120212047.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120212047.png';" /></details>
+
+请计算2021年每个月里试卷作答区用户平均月活跃天数avg_active_days和月度活跃人数mau，上面数据的示例输出如下：
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120212143.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120212143.png';" /></details>
+
+解释：2021年7月有2人活跃，共活跃了3天（1001活跃1天，1002活跃2天），平均活跃天数1.5；2021年9月有4人活跃，共活跃了5天，平均活跃天数1.25，结果保留2位小数。
+
+注：此处活跃指有交卷行为。
+
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if exists exam_record;
+CREATE TABLE exam_record (
+    id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+    uid int NOT NULL COMMENT '用户ID',
+    exam_id int NOT NULL COMMENT '试卷ID',
+    start_time datetime NOT NULL COMMENT '开始时间',
+    submit_time datetime COMMENT '提交时间',
+    score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+INSERT INTO exam_record(uid,exam_id,start_time,submit_time,score) VALUES
+(1001, 9001, '2021-07-02 09:01:01', '2021-07-02 09:21:01', 80),
+(1002, 9001, '2021-09-05 19:01:01', '2021-09-05 19:40:01', 81),
+(1002, 9002, '2021-09-02 12:01:01', null, null),
+(1002, 9003, '2021-09-01 12:01:01', null, null),
+(1002, 9001, '2021-07-02 19:01:01', '2021-07-02 19:30:01', 82),
+(1002, 9002, '2021-07-05 18:01:01', '2021-07-05 18:59:02', 90),
+(1003, 9002, '2021-07-06 12:01:01', null, null),
+(1003, 9003, '2021-09-07 10:01:01', '2021-09-07 10:31:01', 86),
+(1004, 9003, '2021-09-06 12:01:01', null, null),
+(1002, 9003, '2021-09-01 12:01:01', '2021-09-01 12:31:01', 81),
+(1005, 9001, '2021-09-01 12:01:01', '2021-09-01 12:31:01', 88),
+(1006, 9002, '2021-09-02 12:11:01', '2021-09-02 12:31:01', 89);
+```
+
+</details>
+
+### SQL17 平均活跃天数和月活人数
+用户在牛客试卷作答区作答记录存储在表exam_record中，内容如下：
+
+exam_record表（uid用户ID, exam_id试卷ID, start_time开始作答时间, submit_time交卷时间, score得分）
+
+<details><summary>exam_record</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120220609.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120220609.png';" /></details>
+
+请计算2021年每个月里试卷作答区用户平均月活跃天数avg_active_days和月度活跃人数mau，上面数据的示例输出如下：
+
+<details><summary>图片详情</summary><img src="https://raw.githubusercontent.com/ednow/cloudimg/main/githubio/20220120220724.png" alt="找不到图片(Image not found)" onerror="this.onerror=null;this.src='https://gitee.com/ednow/cloudimg/raw/main/githubio/20220120220724.png';" /></details>
+
+解释：2021年7月有2人活跃，共活跃了3天（1001活跃1天，1002活跃2天），平均活跃天数1.5；2021年9月有4人活跃，共活跃了5天，平均活跃天数1.25，结果保留2位小数。
+
+注：此处活跃指有交卷行为。
+
+<details><summary>输入数据</summary>
+
+```sql
+drop table if exists exam_record;
+CREATE TABLE exam_record (
+    id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+    uid int NOT NULL COMMENT '用户ID',
+    exam_id int NOT NULL COMMENT '试卷ID',
+    start_time datetime NOT NULL COMMENT '开始时间',
+    submit_time datetime COMMENT '提交时间',
+    score tinyint COMMENT '得分'
+)CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+INSERT INTO exam_record(uid,exam_id,start_time,submit_time,score) VALUES
+(1001, 9001, '2021-07-02 09:01:01', '2021-07-02 09:21:01', 80),
+(1002, 9001, '2021-09-05 19:01:01', '2021-09-05 19:40:01', 81),
+(1002, 9002, '2021-09-02 12:01:01', null, null),
+(1002, 9003, '2021-09-01 12:01:01', null, null),
+(1002, 9001, '2021-07-02 19:01:01', '2021-07-02 19:30:01', 82),
+(1002, 9002, '2021-07-05 18:01:01', '2021-07-05 18:59:02', 90),
+(1003, 9002, '2021-07-06 12:01:01', null, null),
+(1003, 9003, '2021-09-07 10:01:01', '2021-09-07 10:31:01', 86),
+(1004, 9003, '2021-09-06 12:01:01', null, null),
+(1002, 9003, '2021-09-01 12:01:01', '2021-09-01 12:31:01', 81),
+(1005, 9001, '2021-09-01 12:01:01', '2021-09-01 12:31:01', 88),
+(1006, 9002, '2021-09-02 12:11:01', '2021-09-02 12:31:01', 89);
+
+
+-- drop table if exists exam_record;
+-- CREATE TABLE  exam_record (
+-- id int PRIMARY KEY AUTO_INCREMENT COMMENT '自增ID',
+-- uid int NOT NULL COMMENT '用户ID',
+-- exam_id int NOT NULL COMMENT '试卷ID',
+-- start_time datetime NOT NULL COMMENT '开始时间',
+-- submit_time datetime COMMENT '提交时间',
+-- score tinyint COMMENT '得分'
+-- )CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+-- INSERT INTO exam_record(uid,exam_id,start_time,submit_time,score) VALUES
+-- (1001, 9001, '2021-07-02 09:01:01', '2021-07-02 09:21:01', 80),
+-- (1002, 9001, '2021-09-05 19:01:01', '2021-09-05 19:40:01', 81),
+-- (1002, 9002, '2021-09-02 12:01:01', null, null),
+-- (1002, 9003, '2021-09-01 12:01:01', null, null),
+-- (1002, 9001, '2021-07-02 19:01:01', '2021-07-02 19:30:01', 82),
+-- (1002, 9002, '2021-07-05 18:01:01', '2021-07-05 18:59:02', 90),
+-- (1003, 9002, '2021-07-06 12:01:01', null, null),
+-- (1003, 9003, '2021-09-07 10:01:01', '2021-09-07 10:31:01', 86),
+-- (1004, 9003, '2021-09-06 12:01:01', null, null),
+-- (1002, 9003, '2021-09-01 12:01:01', '2021-09-01 12:31:01', 81),
+-- (1005, 9001, '2021-09-01 12:01:01', '2021-09-01 12:31:01', 88),
+-- (1005, 9002, '2021-09-01 12:01:01', '2021-09-01 12:31:01', 88),
+-- (1006, 9002, '2021-08-02 12:11:01', '2021-08-02 12:31:01', 89);
+
+-- SELECT * FROM exam_record
+-- WHERE submit_time IS NOT NULL
+-- 	AND MONTH(start_time) = 9
+-- ;
+```
+
+</details>
+
+
+
+<details><summary>我的答案</summary>
+
+```sql
+-- SELECT 
+--     `month`,
+--     ROUND(MAX(active) / COUNT(DISTINCT a.uid), 2) AS avg_active_days,
+--     COUNT(DISTINCT a.uid) AS mau
+-- FROM (
+--     SELECT
+--     DATE_FORMAT(start_time, '%Y%m') AS `month`,
+--     start_time,
+--     uid
+--     FROM exam_record
+--     WHERE submit_time IS NOT NULL
+-- ) a
+-- JOIN
+-- (
+--     SELECT 
+--         COUNT(DISTINCT DAY(start_time)) AS active,
+--         uid
+--     FROM exam_record
+--     WHERE submit_time IS NOT NULL
+--     GROUP BY MONTH(submit_time), uid
+-- ) b
+-- ON a.uid = b.uid
+-- GROUP BY `month`;
+
+-- SELECT 
+--     `month`,
+--     ROUND(COUNT(DISTINCT DAY(start_time)) OVER (PARTITION BY uid) / COUNT(DISTINCT uid), 2) AS avg_active_days,
+--     COUNT(DISTINCT uid) AS mau
+-- FROM (
+--     SELECT
+--     DATE_FORMAT(start_time, '%Y%m') AS `month`,
+--     start_time,
+--     uid,
+--     id
+--     FROM exam_record
+--     WHERE submit_time IS NOT NULL
+-- ) a
+-- GROUP BY `month`;
+
+-- SQL_ERROR_INFO: "This version of MySQL doesn't yet support '<window function>(DISTINCT ..)'"
+
+
+-- 范例过了，过不了测试用例，一个人可能在一天内上线多次，但只计算一次
+-- SELECT 
+--     `month`,
+--     ROUND(COUNT(start_time) / COUNT(DISTINCT uid), 2) AS avg_active_days,
+--     COUNT(DISTINCT uid) AS mau
+-- FROM (
+--     SELECT
+--     DATE_FORMAT(start_time, '%Y%m') AS `month`,
+--     start_time,
+--     uid,
+--     id
+--     FROM exam_record
+--     WHERE submit_time IS NOT NULL
+-- ) a
+-- GROUP BY `month`;
+
+-- 参考文献
+-- https://stackoverflow.com/questions/41887460/select-list-is-not-in-group-by-clause-and-contains-nonaggregated-column-inc#:~:text=then%20you%20can,any%20other%20column
+-- 只能选择group by的列和其他列配合聚合函数
+-- SELECT 
+--     DATE_FORMAT(start_time, '%Y%m') AS `month`,
+--     COUNT(start_time) / COUNT(DISTINCT uid) AS avg_active_days,
+--     COUNT(DISTINCT uid) AS mau
+-- FROM exam_record
+-- GROUP BY MONTH(start_time);
+
+-- SQL_ERROR_INFO: "Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'exam_record.start_time' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by"
+```
+
+</details>
